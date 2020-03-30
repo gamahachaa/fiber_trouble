@@ -1,0 +1,3 @@
+flag	YES	NO	MID
+$flow.nointernet.vti.CheckContractorVTI	VoIP(Format=41123456789)		
+$flow.nointernet.postLedChecks._ReadRXValues			(Valeur RX, aaa: AppleTV unique LAN, bbb: BootSequence not normal, iii: WiFI invisible and no LAN to test )

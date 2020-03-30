@@ -1,0 +1,16 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
+$flow.installation._EnsureCorrectPortPlug	<b>Particulièrement si le câble a été changé<b>	S'assurer que le câble Fiber est connecté au bon port OTO	box/oto/Correctplugfr				
+$flow.installation._EnsureNoLanLoop	Une boucle LAN (LAN Loop) est une câble qui part d'un port de la box et revient directement sur un autre port	S'assurer qu'il n'y a pas de boucle LAN	box/lanloop				
+$flow.installation._RemoveMultiplePowerSocket	La box ne doit pas être branchée sur une prise multiple	Brancher la Box directement sur un prise murale					
+$flow.installation.IsOTOidAligned	Demander au client de lire le N°OTO à haute voix	Numéro OTO est le même que celui de VTI ?					
+$flow.installation.OTOPlugDamagedNotClicking	Le câble Fiber sur la prise ne tient pas bien (pas de <LQ>click<RQ> l'orsqu'on l'enfonce)	La prise OTO est endommagée ?					
+$flow.installation._CheckSFP	Essayer de <b>ne pas trop faire manipuler le SFP<b>. Juste vérifier que :<N><T>- Le levier blue est vers le haut.<N><T>- Le SFP est bien enfoncé jusqu'à la butée. 	S'assurer que le SFP enferme correctement le câble Fiber	box/sfp/badgood				https://qoof.salt.ch/fr/customer-process/use_trouble/internet/led_fiber_off_red#raccordez-tous-les-c%C3%A2bles-selon-la-vid%C3%A9o
+$flow.installation._RemoveMultiplePowerSocket	Si la box est branchée sur un multiprise, brancher directement sur la prise murale.<N>Essayer sur une autre prise murale.	Vérifier les branchements de la prise électrique					
+	$flow.activation._SendCustomerBAckToStore	Proposer au client de retourner au Store.<N> Ne pas insister.	Noter les coordonnées du Store					https://qoof.salt.ch/customer-process/discover/salt_company_info/stores_adress_list
+$flow.activation._SOTicketOrderLost	QOOK ME : Reco from Anjelika. This should be a mail to a TL pool (including 2nd level TL)	Faire un Ticket S.O. 'Order Lost*'						
+$flow.activation.SendTicketToTLPool	Le TL va contacter Fabien et Bart	Collecte les infos et vas vers ton TL.					
+$flow.activation.IsFiberOrMultisurf		Est-ce bien un contrat Fiber ou MultiSurf ?		Fiber	MultiSurf		
+$flow.activation.WhereWasOrderDone		Où s'est faite la commande ?		En ligne ou porte à porte	Dans un Store		https://qoom.salt.ch/customer-process/discover/salt_company_info/stores_adress_list
+$flow.activation._GetAdresAndElligibility		Vérifier l'adresse et son eligibilité à Fiber					https://qoof.salt.ch/fr/customer-process/discover/services/availability_check#dans-les-salt-stores-par-le-service-client%C3%A8le
+$flow.activation.ActivationDoneEnd	Suite à un problème technique votre commande s'est perdue dans nos systèmes, nous allons vous contacter dans les heures qui suivent.	Fin	general/end				
+$flow.activation.HaveStoreReciept		Fiber a été souscrit dans un Store.<N>Le client a gardé le ticket de caisse avec lui ?		Souscription au store	Souscription en ligne		

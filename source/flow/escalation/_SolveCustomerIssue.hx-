@@ -1,0 +1,22 @@
+package flow.escalation;
+
+import flow.escalation._ProposeMifi;
+import process.Action;
+
+/**
+ * ...
+ * @author ...
+ */
+class _SolveCustomerIssue extends Action 
+{
+
+	override public function create():Void
+	{
+		//this._titleTxt = "Résoudre le problème du client";
+		//this._detailTxt = "";
+		//this._illustration = "";
+		this._nextProcesses = [new _ProposeMifi()];
+		super.create();
+	}
+	
+}

@@ -1,0 +1,6 @@
+flag	UI1	UI2	UI3
+$defaultBtn	Nein	Weiter	Ja
+$flow.nointernet.vti.CheckContractorVTI	Die VoIP-Nummer einfügen (CTRL+V)	(Format 41123456789)	
+$helpBtn	SHIFT+Q (Erweiterte im		
+$voipCopyPaste	Crtl+C zum Kopieren		
+$needUpdate	Eine neue Version ist verfügbar. Schließen Sie dieses Dialogfeld und aktualisieren Sie Ihren Browser (F5).		

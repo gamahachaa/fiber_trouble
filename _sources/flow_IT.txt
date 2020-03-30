@@ -1,0 +1,102 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN
+$hello.world	Buongiorno a tutti!					
+$flow.TutoOne	Ciò che è <LQ>mappato<RQ>:<N><T><T><T><T>Non ho internet<C><N><T><T><T>TroubleShoot WiFi<C><N><T>TroubleShoot LAN<C><N><T>Sawp Fiber cable<C><N><T>Collection path<C><N><T>Activtion issue<C><N><T>Trouble soot stability<C><N><T>Escalation (Recaller)<C><N><T>MiFi<C><N><T>Power cable<C>	Aiuto alla decisione	flow/TutoOne_fr			
+$flow.TutoTwo						
+$flow.activation._SendCustomerBAckToStore	Proporre al cliente di ritornare al negozio.<N> Non insistere.	Annotare le coordinate dello Store				
+$flow.activation._SOTicketOrderLost	QOOK ME : Reco from Anjelika. This should be a mail to a TL pool (including 2nd level TL)	Crare un Ticket SO Order Lost*				
+$flow.activation._TroubleShootActivation		Seguire la procedura di troubleshooting d'attivazione				
+$flow.activation.ActivationDoneEnd	A causa di un problema tecnico, la sua richiesta è andata persa nei nostri sistemi. La contatteremo nelle prossime ore.	Fine	general/end			
+$flow.activation.HaveStoreReciept		Fiber è stato sottoscritto in uno Store.<N>Il cliente ha tenuto lo scontrino?				
+$flow.all.customer._SendMail		Inviare un e-mail				
+$flow.all.fiberbox._ResetFiberBox	(reset box)	Ripristinare il Fiber Box alle impostazioni di fabbrica	box/box_reset			
+$flow.all.vti._AddMemoVti		Aggiungere un memo in VTI				
+$flow.collection._ExplainReasons		Spiegare i motivi				
+$flow.collection._InformUsualPaymentDelays	Secondo il metodo scelto<N> i pagamenti possono impiegare 5 giorni ad arrivare.	Informare il cliente sulle scadenze usuali				
+$flow.collection._OneHourAfterMoneyRecivedUnblocked		I servizi saranno sbloccati un'ora dopo la ricezione del pagamento.				
+$flow.collection._Pay		Il cliente deve pagare gli importi in sospeso.				
+$flow.collection._PaymentSearch		Lanciare una ricerca di pagamento				
+$flow.collection._SoTicketTreeTwoOne	NON PROMETTERE NIENTE!	Creare un Ticket 321				
+$flow.collection._VerifyCollectionStep	In:<N>- VTI<N>- CC Dashboard	Verificare a che punto è la collection e i motivi				
+$flow.collection._YouWillBeInformed	La contattaremo presto per informarla del risultato!	Informare il cliente.				
+$flow.collection.IsBillChallenged	O anche i costi di chiamata?	Il cliente mette in discussione la fattura?				
+$flow.collection.IsPaymentOneHourOldVisible		Un pagamento più vecchio di un'ora è visibile in VTI?				
+$flow.collection.IsSaltMistake		Si tratta di un errore di Salt?				
+$flow.collection.IsTechnicalReasons		Il pagamento non ha potuto essere eseguito per ragioni tecniche?				
+$flow.collection.ManuallyUnblock		Sblocco manuale dei servizi TV				
+$flow.collection.MoreThanFiveDaysAgo		Più di cinque giorni fa?				
+$flow.collection.PayedAlready		Il cliente dice di avere già pagato?				
+$flow.escalation._AddMemoOne	<T>- Dettagli per elaborare il caso<N>dati di contatto	Aggiungere il memo 1				
+$flow.escalation._AddMemoTwo	Correggere i dettagli se necessario in VTI.	Aggiungere il memo 2 con l'ID del ticket				
+$flow.escalation._EmailTLtech		E-mail PEDRO				
+$flow.escalation._EscalateTicket	216 verso 622<N>215 verso 623 <N>511 verso 611<N>413 verso 612<N>414 verso 613<N>416 verso 621	Escalate				
+$flow.escalation._InformTicketIsBeingTreated	Lo contatteremo a breve.	Informare il cliente che il suo ticket è in elaborazione.				
+$flow.escalation._InformUpmostPrio	Sarà contattato entro 48 ore	Informare il cliente che il ticket sarà trattato con priorità.				
+$flow.escalation._SolveCustomerIssue		Risolvere il problema del cliente				
+$flow.escalation._VerifyContactDetails		Verificare i dati del cliente e chiederne conferma				
+$flow.escalation.IsCustomerRecaller		Il cliente chiama per lo stesso problema?				
+$flow.escalation.IsMoveOrTermTicket		Si tratta di un ticket trasloco 215 o disdetta 216 ?				
+$flow.escalation.IsOrderTicket		Si tratta di un ticket ordine 413, 414, 416 o 511 ?				
+$flow.escalation.IsTechTicket		Si tratta di un ticket 521, 523 o 524 ?				
+$flow.escalation.LessThanFifteenDaysUntilSwitchDate		Lo switch date è tra meno di 15 giorni?				
+$flow.escalation.TicketOlderThanSixDays		Il ticket risale a 6 giorni fa o più?				
+$flow.lan._CreateLanIssueTicket		Creare un ticket LAN ISSUE				
+$flow.lan._RemoveAllCablesConnectedToBox	E rifare i test	Rimuovere tutti gli altri cavi				
+$flow.lan._SwapEthernetCable	E rifare i test	Provare con un altro cavo Ethernet				
+$flow.lan.CanCheckWithAppleTVorOtherDevice	Se l'AppleTV è diponibile, provare con quella. Se no con un altro apparecchio via LAN.	È possibile provare con un altro apparecchio?				
+$flow.lan.ConnectDirectToFiberbox		Collegare l'apparecchio via LAN direttamente sul Box				
+$flow.lan.ConnectedViaSwitch	(non direttamente sul box)	L'apparecchio è collegato tramite uno switch				
+$flow.lan.LanConnectionOK		La connessione LAN funziona?				
+$flow.nointernet.customer._ProposeMifi	Assicurarsi che il cliente non abbia altri modi per connettersi a internet<T>(Ad es. inutile proporgli se ha un abbonamento Salt mobile Swiss o superiore)	Proporre un MiFi				
+$flow.nointernet.customer._TellCustomerAllOkWithFiberCnx		Dire al cliente che funziona tutto correttamente con la connessione in fibra ottica				
+$flow.nointernet.customer.ConnectionType	LAN o WiFi	Su cosa è collegato l'apparecchio del cliente?		LAN	WiFi	
+$flow.nointernet.customer.FiberCableChanged		Il cavo Fiber è stato cambiato?				
+$flow.nointernet.customer.FiberCableIsSalt		Il cavo Fiber è di Salt?				
+$flow.nointernet.customer.InstallationOk		L'installazione è OK?				
+$flow.nointernet.customer.WongOTO		Creare un ticket S.O. 511 WRONG OTO  ID 				
+$flow.nointernet.fiberbox._RebootBox	(staccare e riattaccare l'alimentazione)	Riavviare il Fiber Box				
+$flow.nointernet.fiberbox._SpeedAndStability	Seguire la procedura Speed e stabilità	Valori RX fuori dalla norma?				
+$flow.nointernet.fiberbox.BadRxValues		RX è > -11 dBm o RX < -18 dBm?	vti/rx_values			
+$flow.nointernet.fiberbox.BootSequence	<T>- Fiber LED RED (steady/blinking),<N><T> - Fiber LED GREEN BLINKING,<N> WWW OFF,<N> Fiber LED OFF	La sequenza di boot è:?				
+$flow.nointernet.fiberbox.FiberLedGreenStable		Il LED Fiber è verde e non lampeggia?				
+$flow.nointernet.fiberbox.IconRedNoRX		Nessun valore RX e icona rossa?				
+$flow.nointernet.so._CreateTicketModemCNX		Creare un ticket S.O. 521 MODEM CONNEXION				
+$flow.nointernet.so._InformTicketStatus	Inserire le informazioni mancanti nel ticket.	Informare il cliente sull'avanzamento del ticket.	general/conversation			
+$flow.nointernet.so.ModemConnectionTicketOpen		Esiste un ticket S.O. 521 MODEM CONNECTION aperto?				
+$flow.nointernet.so.IsTicketOpened	Verificare in S.O.<N>215, 413, 414, 416 o 511	Esiste un ticket aperto per lo stesso problema?	so/techticketopened			
+$flow.nointernet.vti.CheckContractorVTI	Verificare in VTI che il contratto aperto corrisponda al cliente. <N>*Se il cliente non è rintracciabile in VTI, seguire il processo di attivazione.	Il N° contractor corrisponde al cliente?	vti/search_contractor	È quello giusto	Introvabile	
+$flow.nointernet.vti.ActivationDone		La fornitura dell'ordine è OK?				
+$flow.nointernet.vti.IconStatusBoxManagement	Verificare in VTI Healthcheck.<N>*WANMGT WANHSI WANVOIP VOICE_REG<N>	Tutto è VERDE* in VTI > Dashboard Healthcheck > Router ?	vti/IconStatusBoxManagement		FiberRED no RX values	
+$flow.nointernet.vti.IsBarred		Il cliente è disattivato?	vti/IsBarred_fr			
+$flow.powercable._CreateTicketModemBoxSwap	Il supporto tecnico ricontatterà a breve	Fare un ticket Box Swap				
+$flow.powercable._RemoveMultiplePowerSocket	Se il Box è collegato a una presa multipla, attaccarlo direttamente alla presa murale.<N>Provare con un'altra presa murale	Controllare i collegamenti della presa elettrica				
+$flow.powercable.CanGoToTheShop	Lì potrà provare il suo box con un'altra alimentazione.	Il cliente può andare nello Store più vicino?				
+$flow.powercable.LedPowerOn	(il LED Power deve essere verde)	Il Box è alimentato correttamente?	box/powerLed			
+$flow.stability._BadOutstandingFlows	Reboot BOX<N>Seguire la sequenza dei LED per vedere se è tutto ok e aprire Box Admin<N>Annotare RX/TX	I flussi sono insolitamente lenti				
+$flow.stability._CNXallGooodMan	cf Qoof 'Argumentaire - Perception de lenteur de la connexion Internet'<N>https://qoof.salt.ch/fr/knowledge/technical/wording_tips/wording_poor_internet_speed	La connessione funziona normalmente				
+$flow.stability._OpenSpeedTest	Con un browser o da installer App	Aprire salt.speedtest.net				
+$flow.stability._RedoTestAndWthOtherNTW	2,4Ghz <-> 5Ghz	Rifare i test sull'altra rete WiFi				
+$flow.stability._SelectSaltServer	"Premere il tasto GO al centro dello schermo
+   <N>Patientate ~30s, il tempo che
+   <N>si facciano i calcoli
+   <N>Ripetere una o due volte"	Selezionare il server Salt				
+$flow.stability.LanOrWiFi		Test LAN o WiFi		LAN	WiFi	
+flow.stability.ValuesOverEightHundred		Valori RX > 800 Mbps?				
+$flow.stability.ValuesOverTwenty		Valori superiori o uguali a 20Mbps?				
+$flow.swapcable._FiberCableByPost	1. Creare un ticket 5.2.6<N>(prima delle 16 il cavo arriverà il giorno dopo<N><N>altrimenti dopo due giorni)	Invio postale di un cavo Fiber				
+$flow.swapcable._FiberCableByStore	Inviare un e-mail ricordandogli di portare con sé il vecchio cavo.	Mandare il cliente in uno Store.				
+$flow.swapcable.SwapFiberCable	Questo può essere fatto in un Salt Store o alla posta.	Bisogna cambiare il cavo di Fibra ottica.		STORE	POST	
+$flow.wifi._ConteactDeviceSupport		Contattare il supporto tecnico dell'apparecchio	box/box_reset			
+$flow.wifi._CreateTicketWifiIssue		Crare un ticket 'Wifi issue'				
+$flow.wifi._ResetWifiParams	(Forget WiFi sui dispositivi)	Ripristinare i parametri WiFi dell'apparecchio alle impostazioni di fabbrica				
+$flow.wifi._RestartDevice		Riavviare l'apparecchio				
+$flow.wifi._SwitchOnUsingButton	Per X secondi	Premere il tasto di fronte	box/box_front_wlan			
+$flow.wifi._SwitchOnWifiFromAdminConsole		Attivare le 2 WiFi dall'admin del box				
+$flow.wifi.CanConnectToBoxWithLAN		È possibile collegare un apparecchio via LAN?				
+$flow.wifi.ErrorIconOnWifiIcon		Errore sull'icona della WiFi?				
+$flow.wifi.WifiButtonBroken	(quando lo si preme, non torna alla sua posizione originale)	Il tasto della WiFi è rotto?				
+$flow.wifi.WifiOnInDashboard	Contrariamente a questa immagine, le icone del WiFi devono essere verdi	Le 2 WiFi sono verdi nel dashboard ?	vti/WifiOnInDashboard			
+$flow.wifi.WiFiPasswordAccepted		La password WiFi è accettata?				
+$flow.wifi.WifiVisibleByAppleTV	(Staccare prima il cavo LAN dell'AppleTV)	La WiFi è visibile dall'Apple TV ?				
+$flow.wifi.WifiVisibleOnDevice		La WiFi è visibile sull'apparecchio?				
+$flow.activation.SendTicketToTLPool	!! Procédure à completer	Envoyer Ticket XXX TL Pool.				
+$flow.End	Click >> to start a new trouble shooting session	End	general/end			

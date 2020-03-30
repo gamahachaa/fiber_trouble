@@ -1,0 +1,102 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN
+$hello.world	Hello everyone!					
+$flow.TutoOne	This is <LQ>mapped<RQ>:<N><T><T><T><T>I don't have Internet<C><N><T><T><T>TroubleShoot WiFi<C><N><T>TroubleShoot LAN<C><N><T>Swap Fiber cable<C><N><T>Collection path<C><N><T>Activation issue<C><N><T>TroubleShoot stability<C><N><T>Escalation (Recaller)<C><N><T>MiFi<C><N><T>Power cable<C>	Decision support	flow/TutoOne_fr			
+$flow.TutoTwo						
+$flow.activation._SendCustomerBAckToStore	Suggest to the customer to return to the store.<N>Do not insist.	Write down the Store's contact details				
+$flow.activation._SOTicketOrderLost	QOOK ME : Reco from Anjelika. This should be a mail to a TL pool (including 2nd level TL)	Create a SO 'Order Lost*' Ticket				
+$flow.activation._TroubleShootActivation		Follow the activation troubleshooting process				
+$flow.activation.ActivationDoneEnd	Due to a technical error, your order has been lost in our systems; we will contact you in the following hours.	End	general/end			
+$flow.activation.HaveStoreReciept		Fiber was purchased in a Store.<N>Did the customer keep the receipt?				
+$flow.all.customer._SendMail		Send an email				
+$flow.all.fiberbox._ResetFiberBox	(reset box)	Reset the Fiber Box to factory settings	box/box_reset			
+$flow.all.vti._AddMemoVti		Add a memo in VTI				
+$flow.collection._ExplainReasons		Explain the reasons				
+$flow.collection._InformUsualPaymentDelays	Depending on the chosen method<N>it may take up to 5 days for payments to arrive.	Inform the customer about the usual delays				
+$flow.collection._OneHourAfterMoneyRecivedUnblocked		Services will be unblocked one hour after receipt of payment.				
+$flow.collection._Pay		The customer must pay the overdue amount.				
+$flow.collection._PaymentSearch		Start a payment search				
+$flow.collection._SoTicketTreeTwoOne	DON'T PROMISE ANYTHING!	Create a ticket 321				
+$flow.collection._VerifyCollectionStep	In :<N>- VTI<N>- CC Dashboard	Check the collection steps and reasons				
+$flow.collection._YouWillBeInformed	We will contact you soon to inform you of the outcome!	Inform the customer.				
+$flow.collection.IsBillChallenged	Or also the reminder fees?	Does the customer dispute the invoice?				
+$flow.collection.IsPaymentOneHourOldVisible		A payment older than one hour is visible in VTI?				
+$flow.collection.IsSaltMistake		Is this an error created by Salt?				
+$flow.collection.IsTechnicalReasons		Was the payment not made due to technical reasons?				
+$flow.collection.ManuallyUnblock		Manually unblock the TV services				
+$flow.collection.MoreThanFiveDaysAgo		More than 5 days ago?				
+$flow.collection.PayedAlready		The customer claims to have already paid?				
+$flow.escalation._AddMemoOne	<T>- Detail for handling the case<N>contact details	Add memo 1				
+$flow.escalation._AddMemoTwo	Correct details if necessary in VTI.	Add memo 2 with the ticket ID				
+$flow.escalation._EmailTLtech		Email PEDRO				
+$flow.escalation._EscalateTicket	216 to 622<N>215 to 623 <N>511 to 611<N>413 to 612<N>414 to 613<N>416 to 621	Escalate				
+$flow.escalation._InformTicketIsBeingTreated	We will contact him shortly.	Inform the customer that his ticket is being processed.				
+$flow.escalation._InformUpmostPrio	He will be contacted within 48 hours	Inform the customer that the ticket will be treated with priority.				
+$flow.escalation._SolveCustomerIssue		Solve the customer's problem				
+$flow.escalation._VerifyContactDetails		Check the customer's contact details and have them confirmed				
+$flow.escalation.IsCustomerRecaller		Does the customer call for the same problem?				
+$flow.escalation.IsMoveOrTermTicket		Is it a 215 move ticket or 216 cancellation?				
+$flow.escalation.IsOrderTicket		Is it an order ticket 413, 414, 416 or 511?				
+$flow.escalation.IsTechTicket		Is it a 521, 523 or 524 ticket?				
+$flow.escalation.LessThanFifteenDaysUntilSwitchDate		Is the switch date in less than 15 days?				
+$flow.escalation.TicketOlderThanSixDays		Is the ticket older than 6 days or more?				
+$flow.lan._CreateLanIssueTicket		Create a 'LAN ISSUE' ticket				
+$flow.lan._RemoveAllCablesConnectedToBox	And repeat the tests	Remove all other cables				
+$flow.lan._SwapEthernetCable	And repeat the tests	Try with another Ethernet cable				
+$flow.lan.CanCheckWithAppleTVorOtherDevice	If Apple TV is available, if not, try using another device in LAN.	Is it possible to try with another device?				
+$flow.lan.ConnectDirectToFiberbox		Connect the device directly to the Box via LAN				
+$flow.lan.ConnectedViaSwitch	(not directly to the box)	The device is connected through a switch				
+$flow.lan.LanConnectionOK		Does the LAN connection work?				
+$flow.nointernet.customer._ProposeMifi	Ensure that the customer has no other way to connect to the Internet<T>( e. g. No need to offer him if he has a Swiss or higher mobile Salt subscription)	Propose a MiFi				
+$flow.nointernet.customer._TellCustomerAllOkWithFiberCnx		Tell the customer that everything works properly with the Fiber Optic connection				
+$flow.nointernet.customer.ConnectionType	LAN or WiFi	To what is the customer's device connected?		LAN	WiFi	
+$flow.nointernet.customer.FiberCableChanged		Was the Fiber cable changed?				
+$flow.nointernet.customer.FiberCableIsSalt		Is the Fiber cable a Salt cable?				
+$flow.nointernet.customer.InstallationOk		Is the installation OK?				
+$flow.nointernet.customer.WongOTO		Create a S.O. ticket 511 'WRONG OTO ID'				
+$flow.nointernet.fiberbox._RebootBox	(disconnect and reconnect the power cable)	Reboot the Fiber Box				
+$flow.nointernet.fiberbox._SpeedAndStability	Follow the Speed and Stability process	Non-standard RX values?				
+$flow.nointernet.fiberbox.BadRxValues		Is the RX value > -11 dBm or RX < -18 dBm?	vti/rx_values			
+$flow.nointernet.fiberbox.BootSequence	<T>- Fiber LED RED (steady/blinking),<N><T> - Fiber LED GREEN BLINKING,<N> WWW OFF,<N> Fiber LED OFF	Is the boot sequence:				
+$flow.nointernet.fiberbox.FiberLedGreenStable		The Fiber LED is green and does not blink?				
+$flow.nointernet.fiberbox.IconRedNoRX		No RX value and Red icon?				
+$flow.nointernet.so._CreateTicketModemCNX		Create a S.O. ticket 521 'MODEM CONNEXION'				
+$flow.nointernet.so._InformTicketStatus	Enter the missing information to the ticket, if specified.	Inform the customer about the ticket status.	general/conversation			
+$flow.nointernet.so.ModemConnectionTicketOpen		Is there an open S.O. ticket 521 'MODEM CONNECTION'?				
+$flow.nointernet.so.IsTicketOpened	Check in  S.O.<N>215, 413, 414, 416 or 511	Is there an open ticket for the same problem?	so/techticketopened			
+$flow.nointernet.vti.CheckContractorVTI	Check in VTI that the opened contract corresponds to the customer. <N>*If the customer is missing in VTI, follow the activation process.	The contractor number corresponds to the customer?	vti/search_contractor	C'est le bon	introuvable	
+$flow.nointernet.vti.ActivationDone		The provisioning of the order is OK?				
+$flow.nointernet.vti.IconStatusBoxManagement	Check in VTI Health check.<N>*WANMGT WANHSI WANVOIP VOICE_REG<N>	Everything is GREEN* in VTI > Health Check > Router?	vti/IconStatusBoxManagement		FiberRED no RX values	
+$flow.nointernet.vti.IsBarred		Is the customer blocked?	vti/IsBarred_fr			
+$flow.powercable._CreateTicketModemBoxSwap	The technical team will contact you shortly.	Create a 'Box Swap' ticket				
+$flow.powercable._RemoveMultiplePowerSocket	If the box is plugged into a multiplug, plug directly into the wall socket. <N>Try another wall socket.	Check the connections of the electrical socket				
+$flow.powercable.CanGoToTheShop	He can test the box there with another power supply.	Can the customer go to the nearest store?				
+$flow.powercable.LedPowerOn	(Power LED must be green)	Is the Box properly powered?	box/powerLed			
+$flow.stability._BadOutstandingFlows	Reboot the Box<N>Follow the led sequence to see if everything is ok and open the Box Admin<N>Mark RX/TX	The flows are unusually slow				
+$flow.stability._CNXallGooodMan	See Qoof 'Argumentaire - Perception de lenteur de la connexion Internet'<N>https://qoof.salt.ch/fr/knowledge/technical/wording_tips/wording_poor_internet_speed	The connection works properly				
+$flow.stability._OpenSpeedTest	With a browser or within the App	Open salt.speedtest.net				
+$flow.stability._RedoTestAndWthOtherNTW	2,4Ghz <-> 5Ghz	Repeat the tests on the other WiFi network				
+$flow.stability._SelectSaltServer	"Press the GO button in the centre of the screen
+   <N>Wait ~30s until the
+   <N>calculations are made
+   <N>Repeat once or twice"	Select the Salt server				
+$flow.stability.LanOrWiFi		Tests with LAN or WiFi		LAN	WiFi	
+flow.stability.ValuesOverEightHundred		RX values > 800 Mbps?				
+$flow.stability.ValuesOverTwenty		Values higher than or equal to 20 Mbps?				
+$flow.swapcable._FiberCableByPost	1. Create a ticket 5.2.6<N>(before 4pm the cable will arrive the next day<N><N>otherwise if not the day after)	Shipment of a Fiber cable by post				
+$flow.swapcable._FiberCableByStore	Send an email reminding him to take the old cable with him.	Send the customer to a Store.				
+$flow.swapcable.SwapFiberCable	This can be done either in a Salt store or by post.	The fiber optic cable must be changed.		STORE	POST	
+$flow.wifi._ConteactDeviceSupport		Contact the technical support of the device	box/box_reset			
+$flow.wifi._CreateTicketWifiIssue		Create a 'Wifi issue' ticket				
+$flow.wifi._ResetWifiParams	(Forget WiFi on the devices)	Reset the device's WiFi settings to factory settings				
+$flow.wifi._RestartDevice		Reboot the device				
+$flow.wifi._SwitchOnUsingButton	During X seconds	Press the button on the front	box/box_front_wlan			
+$flow.wifi._SwitchOnWifiFromAdminConsole		Activate the 2 WiFis from the admin of the box 				
+$flow.wifi.CanConnectToBoxWithLAN		Is it possible to connect a device via LAN?				
+$flow.wifi.ErrorIconOnWifiIcon		Error on the WiFi Icon?				
+$flow.wifi.WifiButtonBroken	(when pressed, it does not return to its initial position)	Is the WiFi button broken?				
+$flow.wifi.WifiOnInDashboard	Contrary to this image, the WiFi icons must be green	Are the 2 WiFi are green in the dashboard?	vti/WifiOnInDashboard			
+$flow.wifi.WiFiPasswordAccepted		Is the WiFi password accepted?				
+$flow.wifi.WifiVisibleByAppleTV	(Disconnect the LAN cable from the Apple TV first)	Is WiFi visible on the Apple TV?				
+$flow.wifi.WifiVisibleOnDevice		Is WiFi visible on the device?				
+$flow.activation.SendTicketToTLPool	!! Procédure à completer	Envoyer Ticket XXX TL Pool.				
+$flow.End	Click >> to start a new trouble shooting session	End	general/end			

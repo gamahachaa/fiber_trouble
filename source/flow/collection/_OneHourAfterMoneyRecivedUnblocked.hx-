@@ -1,0 +1,21 @@
+package flow.collection;
+
+import process.Action;
+
+/**
+ * ...
+ * @author ...
+ */
+class _OneHourAfterMoneyRecivedUnblocked extends Action 
+{
+
+	override public function create():Void
+	{
+		//this._titleTxt = "Les services seront débloqués une heure aprés l'arrivée du paiement.";
+		//this._detailTxt = "";
+		//this._illustration = "";
+		this._nextProcesses = [ new IsPaymentOneHourOldVisible()];
+		super.create();
+	}
+	
+}

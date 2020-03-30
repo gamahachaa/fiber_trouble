@@ -1,0 +1,38 @@
+package flow;
+
+import flixel.FlxG;
+import layout.History.Interactions;
+import process.Descision;
+
+/**
+ * ...
+ * @author bbaudry
+ */
+class LangSwitcher extends Descision
+{
+	override public function create():Void
+	{
+		_titleTxt = "Choose your language";
+		_nextYesProcesses = [new flow.TutoOne()];
+		_buttonYesTxt = "F";
+		_buttonNoTxt = "D";
+		super.create();
+	}
+	override public function update(elapsed:Float):Void
+	{
+		if ( FlxG.keys.justReleased.F )
+		{
+			//onYesClick();
+			Main.tongue.init("fr-CH", function(){trace(Main.tongue.get("$hello.world", "data")); });
+			move_to_next(this._nextYesProcesses, Interactions.Yes);
+		}
+		if ( FlxG.keys.justReleased.D)
+		{
+			//onNoClick();
+			Main.tongue.init("de-CH", function(){trace(Main.tongue.get("$hello.world", "data")); });
+			move_to_next(this._nextYesProcesses, Interactions.Yes);
+		}
+		
+		super.update(elapsed);
+	}
+}

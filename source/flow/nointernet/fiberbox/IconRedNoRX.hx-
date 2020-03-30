@@ -1,0 +1,21 @@
+package flow.nointernet.fiberbox;
+
+import flow.nointernet.fiberbox._SpeedAndStability;
+import flow.nointernet.vti.ActivationDone;
+import process.Descision;
+
+/**
+ * ...
+ * @author ...
+ */
+class IconRedNoRX extends Descision
+{
+	override public function create()
+	{
+		//this._titleTxt = "Aucne valeur RX et icon Rouge ?";
+		this._nextYesProcesses = [new ActivationDone()];
+		this._nextNoProcesses = [new _SpeedAndStability()];
+		super.create();
+	}
+
+}

@@ -1,0 +1,132 @@
+package flow.nointernet.vti;
+
+import flixel.FlxG;
+import flixel.addons.ui.FlxInputText;
+import flixel.addons.ui.FlxUIInputText;
+import flixel.effects.FlxFlicker;
+import flixel.input.keyboard.FlxKey;
+import flixel.text.FlxText;
+import flow.activation.HaveStoreReciept;
+import flow.activation.SendTicketToTLPool;
+import flow.nointernet.so.IsTicketOpened;
+import js.Browser;
+import js.html.ClipboardEvent;
+import layout.History.Interactions;
+import process.Descision;
+import salt.Customer;
+
+/**
+ * ...
+ * @author
+ */
+class CheckContractorVTIOLD extends Descision
+{
+	var _soTicket:flixel.addons.ui.FlxInputText;
+	var _contractorID:flixel.addons.ui.FlxInputText;
+	var _focused:flixel.addons.ui.FlxInputText;
+	var _contractorIDText:flixel.text.FlxText;
+	var _voIPValidtionFailed:String;
+	// var _soTicketText:flixel.text.FlxText;
+	override public function create():Void
+	{
+
+		this._nextYesProcesses = [new IsTicketOpened()];
+		//this._nextNoProcesses = [new Intro()]; // @todo proper sub process
+		//this._nextNoProcesses = [new HaveStoreReciept()]; // @todo proper sub process
+		this._nextNoProcesses = [new SendTicketToTLPool()];
+		_contractorIDText = new FlxText(0, 0, 300, Main.tongue.get("$flow.nointernet.vti.CheckContractorVTI_UI1", "meta"));
+		_contractorIDText.setFormat(Main.INTERACTION_FMT.font, Main.INTERACTION_FMT.size, Main.INTERACTION_FMT.color);
+		
+		_contractorID = new FlxInputText(0, 0, 200, 14);
+		
+		_contractorID.focusGained = _onVTIfocus; // ADD
+		
+		_focused = _contractorID;
+		_contractorID.filterMode = FlxInputText.ONLY_NUMERIC;
+		_voIPValidtionFailed = Main.tongue.get("$flow.nointernet.vti.CheckContractorVTI_UI2", "meta");
+		add(_contractorIDText);
+		add(_contractorID);
+		
+		super.create();
+
+		Browser.document.addEventListener("paste", onPaste);//add
+	}
+	override function positionThis(){
+		super.positionThis();
+		_contractorID.x = _contractorIDText.x = _padding;
+		_contractorIDText.y = this.details.y + this.details.height + this._padding/2;
+		_contractorID.y =  _contractorIDText.y + _contractorIDText.height;
+	}
+	/**
+	 * ADD
+	 */
+	function onPaste(e: ClipboardEvent):Void
+	{
+		// var tIn:FlxInputText = _contractorID.hasFocus ? _contractorID:_soTicket;
+		var tIn:FlxInputText = _contractorID;
+		_onVTIfocus();
+		tIn.text = e.clipboardData.getData("text/plain");
+	}
+	/**
+	 * ADD
+	 */
+	function _onVTIfocus():Void
+	{
+		//trace("focused");
+		if (FlxFlicker.isFlickering(_contractorIDText))
+		{
+			FlxFlicker.stopFlickering(_contractorIDText);
+		}
+		// _focused = _contractorID;
+	}
+	/**
+	 * ADD
+	 */
+	override public function update(elapsed)
+	{
+		super.update(elapsed);
+
+		if (FlxG.keys.justReleased.BACKSPACE && _focused != null)
+		{
+			//trace();
+			// trace(_focused.text);
+			var t = _focused.text.split("");
+			t.pop();
+			_focused.text = t.join("");
+			_focused.caretIndex = t.length;
+			_focused.draw();
+			_focused.drawFrame(true);
+		}
+	}
+	/**
+	 * ADD Flickering
+	 */
+	override public function onYesClick():Void
+	{
+		super.onYesClick(); // test only
+		if (_contractorID.text == "")
+		{
+			FlxFlicker.flicker(_contractorIDText, 0, 0.1);
+		}
+		else if( !validateVoIP(_contractorID.text))
+		{
+			_contractorIDText.text = _voIPValidtionFailed;
+			FlxFlicker.flicker(_contractorIDText, 0, .5);
+		}
+		else{
+			Main.customer = new Customer(_contractorID.text, "");
+			super.onYesClick();
+		}
+	}
+	override function pushToHistory(buttonTxt:String, interactionType:Interactions)
+	{
+		super.pushToHistory( buttonTxt + " (" + this._contractorID.text + ")", interactionType);
+	}
+	function validateVoIP(s:String)
+	{
+		// return true;
+		var reg:EReg = ~/^41\d{9}$/i;
+		return reg.match(s);
+
+	}
+}

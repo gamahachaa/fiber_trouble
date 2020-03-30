@@ -1,0 +1,22 @@
+package flow.escalation;
+
+import process.Descision;
+
+/**
+ * ...
+ * @author ...
+ */
+class IsCustomerRecaller extends Descision
+{
+
+	override public function create():Void
+	{
+		//this._titleTxt = "Le client appelle pour le même problème ?";
+		//this._detailTxt = "";
+		//this._illustration = "";
+		this._nextYesProcesses = [ new _VerifyContactDetails()];
+		this._nextNoProcesses = [ new _SolveCustomerIssue()];
+		super.create();
+	}
+
+}

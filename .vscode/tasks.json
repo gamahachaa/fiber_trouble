@@ -1,0 +1,28 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		
+		{
+			"label": "POST BUILD DEBUG",
+			"type": "shell",
+			"command": "${workspaceFolder}/send.bat debug"
+		}
+		,
+		{
+			"label": "POST BUILD",
+			"type": "shell",
+			"command": "${workspaceFolder}/send.bat",
+			"problemMatcher": []
+		},
+		{
+			"label" : "Build with completion server",
+			"type": "lime",
+			"command": "test",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+		
+	]
+}

@@ -75,6 +75,16 @@ class Main extends Sprite
 	public static var FIX_523:Ticket = {domain:'FIX', number:'523',queue:'FIBER_TECH_SO', desc:'5.Technical 2.Modem - Router 3.Box Swap Request (under condition)', email:'fiber.tech.qtool@salt.ch'};
 	public static var FIX_526:Ticket = {domain:'FIX', number:'526',queue:'FIBER_PARTS_REQUEST_SO', desc:'5.Technical 2.Modem - Router 6.New Fibre Cable request (send by post)', email:'fiber.tech.qtool@salt.ch'};
 	public static var FIX_541:Ticket = {domain:'FIX', number:'541',queue:'FIBER_LOW_PRIO_TECH_SO', desc:'5.Technical 4.TV and Video Services 1.Salt TV problem', email:'fiber.tech.qtool.low@salt.ch'};
+	public static var FIX_531:Ticket = {domain:'FIX', number:'531',queue:'FIBER_LOW_PRIO_TECH_SO', desc:'5.Technical 3.Voip Telephony 1.Voip Calls', email:'fiber.tech.qtool@salt.ch'};
+	public static var FIX_524:Ticket = {domain:'FIX', number:'524',queue:'FIBER_TECH_SO', desc:'5.Technical 2.Modem - Router 4.WWW LED OFF', email:'fiber.tech.qtool@salt.ch'};
+	public static var FIX_525:Ticket = {domain:'FIX', number:'525',queue:'FIBER_LOW_PRIO_TECH_SO', desc:'5.Technical 2.Modem - Router 5.Internet check et Speed test', email:'fiber.tech.qtool@salt.ch'};
+	public static var FIX_532:Ticket = {domain:'FIX', number:'532',queue:'FIBER_LOW_PRIO_TECH_SO', desc:'5.Technical 3.Voip Telephony 2.VTI Voice Service', email:'fiber.tech.qtool@salt.ch'};
+	public static var FIX_542:Ticket = {domain:'FIX', number:'542',queue:'FIBER_LOW_PRIO_TECH_SO', desc:'5.Technical 4.TV and Video Services 2.Salt VOD problem', email:'fiber.tech.qtool@salt.ch'};
+	public static var FIX_125:Ticket = {domain:'FIX', number:'125',queue:'FIBER_LOW_PRIO_TECH_SO', desc:'10.Escalation (Only for Backoffice) 2.Admin (Backoffice Internal only) 5.Termination - TECH Reason (only Backoffice)', email:'fiber.tech.qtool@salt.ch'};
+	public static var FIX_527:Ticket = {domain:'FIX', number:'527',queue:'FIBER_LOW_PRIO_TECH_SO', desc:'5.Technical 2.Modem - Router 7. IP Option Management', email:'fiber.tech.qtool@salt.ch'};
+	public static var FIX_351:Ticket = {domain:'FIX', number:'351', queue:'FIBER_FINANCIAL_SO', desc:'3.Billing 5.Bill & charging content 1.Contestation of content', email:'fiber.tech.qtool@salt.ch'};
+	public static var FIX_416:Ticket = {domain:'FIX', number:'416', queue:'FIBER_DELEGATE_BACKOFFICE_SO', desc:'4.Order 1.Order Process 6.Order Status check request', email:'fiber.tech.qtool@salt.ch'};
+	public static var FIX_421:Ticket = {domain:'FIX', number:'421',queue:'FIBER_LOGISTICS_SO', desc:'4.Order 2.Logistics 1.Equipement delivery', email:'fiber.tech.qtool@salt.ch'};
 
 	public static var VERSION:String;
 	static var scriptFileVersion:String;

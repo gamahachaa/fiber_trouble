@@ -9,8 +9,8 @@ class _SwapBox extends ActionMail {
 		super(Main.FIX_523);
 	}
     override public function create():Void
-        {
-            this._nextProcesses = [new End()];
-            super.create();
-        }
+	{
+		this._nextProcesses = [new End()];
+		super.create();
+	}
 }

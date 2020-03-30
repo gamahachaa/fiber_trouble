@@ -1,0 +1,23 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
+$flow.lan._CreateLanIssueTicket	- A ticket [521] will be automatically generated upon advancing to the next step. Do not manually create one (SuperOffice). A copy of the content will be sent to your mailbox.<N><N>Inform that:<N><T>- Inform that:<N><T>- a technical ticket is forw	Automatic ticket creation [521] in SuperOffice					
+$flow.lan._RemoveAllCablesConnectedToBox	And repeat the tests	Remove all other cables					
+$flow.lan._SwapEthernetCable	And repeat the tests	Try with another Ethernet cable					
+$flow.lan.CanCheckWithAppleTVorOtherDevice	With Apple TV if available, if not, try using another device in LAN.	Is it possible to try with another device?		Apple TV or other LAN device	No other LAN device		
+$flow.lan.ConnectDirectToFiberbox		Connect the device directly to the Box via LAN					
+$flow.lan.ConnectedViaSwitch	(not directly to the box)	The device is connected through a switch					
+$flow.lan.LanConnectionOK		Does the LAN connection work?					
+$flow.lan._SwapEthernetPort		Try on another Ethernet port	box/lan/lan				
+$flow.wifi._ConteactDeviceSupport		Contact the technical support of the device					
+$flow.wifi._CreateTicketWifiIssue	'- A ticket [522] will be automatically generated upon advancing to the next step. Do not manually create one (SuperOffice). A copy of the content will be sent to your mailbox.<N><N>Inform that:<N><T>- a technical ticket is forwarded to our technical department for a thorough analysis.<N><T>- he may be contacted.<N><T>- he will receive feedback as soon as possible.<N><T> - <em>the box must always be powered (230V) and plugged in (SFP, Fibre, OTO) during the whole life of a ticket.<em>'	Automatic ticket creation [522] in SuperOffice					
+$flow.wifi._ResetWifiParams	Forget WiFi on the devices.<N>Use the device help tool if the customer needs assistance.	Reset the device's WiFi settings to factory settings					https://salt.ch/en/device-help/ 
+$flow.wifi._RestartDevice		Reboot the device					
+$flow.wifi._SwitchOnUsingButton	During X seconds	Press the button on the front	box/box-front-wlan				
+$flow.wifi._SwitchOnWifiFromAdminConsole	Open a browser and enter 192.168.1.1<N><N>Enter the user name and password (default admin / admin)<N><N>Change the view from Standard to Expert<N><N>Under WLAN go to Combined View<N><N>Make sure that ON is displayed under the connected band network next to the SSID Enabled field	Activate the 2 WiFis from the admin of the box 					https://qoof.salt.ch/knowledge/technical/modem_router/turn_on_off_wifi_in_the_admin_console
+$flow.wifi.CanConnectToBoxWithLAN		Is it possible to connect a device via LAN?					
+$flow.wifi.ErrorIconOnWifiIcon		Error on the devices WiFi Icon?					
+$flow.wifi.WifiButtonBroken	(when pressed, it does not return to its initial position)	Is the WiFi button broken?					
+$flow.wifi.WifiOnInDashboard		Are the 2 WiFi are green in the dashboard?	vti/WifiOnInDashboard-en				https://qoof.salt.ch/knowledge/technical/modem_router/check_in_vti_if_wifi_is_active
+$flow.wifi.WiFiPasswordAccepted		Is the WiFi password accepted?					https://qoof.salt.ch/customer-process/configure/admin_console/change_wifi_name_and_password
+$flow.wifi.WifiVisibleByAppleTV	(Disconnect the LAN cable from the Apple TV first)<N><N>Apple TV -> Settings -> Network -> Wi-Fi.<N>Choose the name of a compatible Wi-Fi network to join.	Is WiFi visible on the Apple TV?					
+$flow.wifi.WifiVisibleOnDevice		Is WiFi visible on the device?					
+$flow.wifi._MoveCloseUnplugRepeater		Get close to the box and make sure you are not within range of a WiFi repeater	box/getClose				

@@ -1,0 +1,10 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
+$flow.stability._BadOutstandingFlows	Box neu straten<N>Die LED-Sequenz befolgen, um zu prüfen, ob alles in Ordnung ist, und den Box Admin öffnen.<N>RX/TX Werte aufschreiben	Der Datenfluss ist ungewöhnlich langsam					https://qoof.salt.ch/de/knowledge/technical/modem_router/boot_led_sequence#pr%C3%BCfung-der-led-sequenz-reihenfolge
+$flow.stability._CNXallGooodMan	Siehe Qoof 'Argumentationshilfe - Langsame Internetverbindung'	Die Verbindung funktioniert normal					https://qoof.salt.ch/de/knowledge/technical/wording_tips/wording_poor_internet_speed
+$flow.stability._OpenSpeedTest	Am besten über AppleTV (App ggf. aus dem App Store installieren) oder in einem Webbrowser.	salt.speedtest.net öffnen					
+$flow.stability._RedoTestAndWthOtherNTW	2,4Ghz <-> 5Ghz	Die Tests über das andere WiFi-Netzwerk wiederholen					
+$flow.stability._SelectSaltServer	Die GO-Taste in der Mitte des Bildschirms drücken.<N>~30s warten, bis die<N>Berechnungen durchgeführt werden<N>Ein- oder zweimal wiederholen	Den Salt-Server auswählen	flow/stability/-SelectSaltServer				
+$flow.stability.LanOrWiFi		Tests im LAN oder WiFi		WiFi	LAN		https://qoof.salt.ch/de/customer-process/getstarted/test_internet
+$flow.stability.ValuesOverEighty		Übertragungswerte grösser oder gleich 80 Mbps?					
+$flow.stability.ValuesOverTwenty		Übertragungswerte grösser oder gleich 20 Mbps?					
+$flow.stability._CreateSOTechModemSpeed							

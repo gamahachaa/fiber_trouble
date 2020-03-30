@@ -1,0 +1,25 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
+$flow.salttv._ActivateTVServicesVTI		Activate TV services in VTI					
+$flow.salttv._CheckHDMIcnx
+$flow.salttv._CheckIfAppNeedsUpdate
+$flow.salttv._CheckIfSaltTVNeedsUpdate
+$flow.salttv._ChekSaltTVKNownBugs
+$flow.salttv._ConnectAppleTVtoOneGhz		Make sure AppleTV is connected to the 1Ghz ethernet port					
+$flow.salttv._CreateAppleIDorBypass
+$flow.salttv._CreateSOTicketSaltTV
+$flow.salttv._InstallSaltTV
+$flow.salttv._InstallSpeedTestAplleTV
+$flow.salttv._MakeSurePowerCableWellPlugged
+$flow.salttv._QuitAndRelaunchSaltTV
+$flow.salttv._RebootAppleTV		Reboot the AppleTV					
+$flow.salttv._RepairProcess
+$flow.salttv._ResetAppleTV		Reset the AppleTV					
+$flow.salttv.HasAppleAccount
+$flow.salttv.IsAppleTVvisibleOnTVScreen
+$flow.salttv.IsImageJerky		Is the image Jerky ?		Jerky images	Other		
+$flow.salttv.IsMessageInvitingToContactCC
+$flow.salttv.IsSaltIconVisibleOnAppleTV
+$flow.salttv.IsTVServicesActiveVTI		Are the services active in VTI ?					
+$flow.salttv.ProblemSolved
+$flow.salttv.WhatAppleTVcnxType		How is the AppleTV connected ?		On LAN	On WiFi		
+$flow.salttv.WhiteLightLids							

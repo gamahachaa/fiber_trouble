@@ -1,0 +1,53 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
+$flow.lan._CreateLanIssueTicket	'- Un ticket [521] sera automatiquement généré lors du passage à l'étape suivante. Ne pas créer manuellement un ticket (SuperOffice). Une copie du contenu sera envoyée à ta boîte e-mail.<N><N>Informer :<N><T>- qu’un ticket technique sera transmis à notre service technique pour une analyse approfondie.<N><T>- on pourrait le contacter.<N><T>- il recevra un feedback dès que possible.<N><T>- <em>la box doit toujours être alimenté (230V) et branché (SFP, Fibre, OTO) pendant toute la durée de vie d'un ticket.<em>'	Création automatique de tickets [521] dans SuperOffice				Envoyer	
+$flow.lan._RemoveAllCablesConnectedToBox	Et refaire les tests	Retirer tous les autres câbles					
+$flow.lan._SwapEthernetCable	Et refaire les tests	Essayer avec un autre câble Ethernet					
+$flow.lan.CanCheckWithAppleTVorOtherDevice	Si l'AppleTV est disponible, essayer avec sinon un autre appareil en LAN.	Est-il possible d'essayer avec un autre appareil ?		AppleTV ou autre appareil en LAN	Pas d'autre appareil en LAN		
+$flow.lan.ConnectDirectToFiberbox		Connecter l'appareil via LAN directement à la box					
+$flow.lan.ConnectedViaSwitch	(pas directement sur la box)	L'appareil est connecté via un switch					
+$flow.lan.LanConnectionOK		La connexion en LAN fonctionne ?					
+$flow.lan._SwapEthernetPort		Essayer sur un autre port Ethernet	box/lan/lan				
+$flow.wifi._ConteactDeviceSupport		Contacter le support technique de l'appareil					
+$flow.wifi._CreateTicketWifiIssue	'- Un ticket [522] sera automatiquement généré lors du passage à l'étape suivante. Ne pas créer manuellement un ticket (SuperOffice). Une copie du contenu sera envoyée à ta boîte e-mail.<N><N>Informer :<N><T>- qu’un ticket technique sera transmis à notre service technique pour une analyse approfondie.<N><T>- on pourrait le contacter.<N><T>- il recevra un feedback dès que possible.<N><T>- <em>la box doit toujours être alimenté (230V) et branché (SFP, Fibre, OTO) pendant toute la durée de vie d'un ticket.<em>'	Création automatique de tickets [522] dans SuperOffice					
+$flow.wifi._ResetWifiParams	Forget WiFi sur les appareils<N>Utiliser l'outil Assistance pour les appareils si le client a besoin de soutien.	Faire un une remise à zéro aux réglages d'usine des paramètres WiFi de l'appareil					https://salt.ch/device-help/
+$flow.wifi._RestartDevice		Rebooter l'appareil					
+$flow.wifi._SwitchOnUsingButton	Pendant X secondes	Appuyer sur le bouton en façade	box/box-front-wlan				
+$flow.wifi._SwitchOnWifiFromAdminConsole	Ouvrir votre navigateur internet : taper l’adresse 192.168.1.1<N><N>Saisir le nom d'utilisateur et le mot de passe (admin / admin par défaut).<N><N>Changer la vue de « Standard » à « Expert ».<N><N>Aller dans Vue combinée sous WLAN.<N><N>S'assurer que ON est affiché sous le réseau de la bande connectée à côté du champ Activer SSID.	Depuis l'admin du box faites activer les 2 WiFis					https://qoof.salt.ch/knowledge/technical/modem_router/turn_on_off_wifi_in_the_admin_console
+$flow.wifi.CanConnectToBoxWithLAN		Est-il possible de connecter un appareil en LAN ?					
+$flow.wifi.ErrorIconOnWifiIcon		Erreur sur l'icône WiFi de l'appareil ?					
+$flow.wifi.WifiButtonBroken	(quand on appuie dessus, il ne revient pas à sa position initiale)	Le bouton de WiFi est-il cassé ?					
+$flow.wifi.WifiOnInDashboard		Est-ce-que les 2 WiFi sont verts dans sur le dashboard ?	vti/WifiOnInDashboard-fr				https://qoof.salt.ch/knowledge/technical/modem_router/check_in_vti_if_wifi_is_active
+$flow.wifi.WiFiPasswordAccepted		Le mot de passe WiFi est accepté ?					https://qoof.salt.ch/customer-process/configure/admin_console/change_wifi_name_and_password
+$flow.wifi.WifiVisibleByAppleTV	(Débrancher le câble LAN de l'AppleTV au préalable)<N><N>Apple TV -> Réglages -> Réseau -> Wi-Fi<N>Choisir le nom d'un réseau Wi-Fi compatible pour connecter.	Le WiFi est visible par l'apple TV ?					
+$flow.wifi.WifiVisibleOnDevice		Le WiFi est visible sur l'appareil ?					
+$flow.wifi._MoveCloseUnplugRepeater		S'approcher de la box et s'assurer de pas être à portée d'un répéteur WiFi	box/getClose				
+
+
+
+
+
+
+
+
+$flow.lan._CreateLanIssueTicket	'- Un ticket [521] sarà generato automaticamente all'avanzamento alla fase successiva. Non crearne uno manualmente (SuperOffice). Una copia del contenuto sarà inviata alla tua casella di posta elettronica.<N><N>Informare che:<N><T>- un ticket verrà trasmesso al nostro servizio tecnico per un'analisi approfondita.<N><T>- potremmo contattarlo.<N><T>- riceverà un feedback appena possibile.<N><T>- <em>il box deve restare attaccato alla presa di corrente (230V) e collegato (SFP, Fiber, OTO) durante tutta la durata del ticket.<em>'	Creazione automatica del ticket [521] in SuperOffice					
+$flow.lan._RemoveAllCablesConnectedToBox	E rifare i test	Rimuovere tutti gli altri cavi					
+$flow.lan._SwapEthernetCable	E rifare i test	Provare con un altro cavo Ethernet					
+$flow.lan.CanCheckWithAppleTVorOtherDevice	Se l'Apple TV è diponibile, provare con quella. Se no con un altro apparecchio via LAN.	È possibile provare con un altro apparecchio?		AppleTV o un altro apparecchio via LAN	Nessun altro apparecchio via LAN		
+$flow.lan.ConnectDirectToFiberbox		Collegare l'apparecchio via LAN direttamente al box					
+$flow.lan.ConnectedViaSwitch	(non direttamente sul box)	L'apparecchio è collegato tramite uno switch					
+$flow.lan.LanConnectionOK		La connessione LAN funziona?					
+$flow.lan._SwapEthernetPort		Provare su un'altra porta Ethernet	box/lan/lan					
+$flow.wifi._ConteactDeviceSupport		Contattare il supporto tecnico dell'apparecchio					
+$flow.wifi._CreateTicketWifiIssue	'- Un ticket [522] sarà generato automaticamente all'avanzamento alla fase successiva.<N>- Non crearne uno manualmente (SuperOffice).<N>- Una copia del contenuto sarà inviata alla tua casella di posta elettronica.<N><N>Informare che:<N><T>- un ticket verrà trasmesso al nostro servizio tecnico per un'analisi approfondita.<N><T>- potremmo contattarlo.<N><T>- riceverà un feedback appena possibile.<N><T>- <em>il box deve restare attaccato alla presa di corrente (230V) e collegato (SFP, Fiber, OTO) durante tutta la durata del ticket.<em>'	Creazione automatica del ticket [522] in SuperOffice					
+$flow.wifi._ResetWifiParams	Forget WiFi sui dispositivi<N>Utilizzare il tool di supporto per i dispositivi se il cliente ha bisogno di aiuto.	Ripristinare i parametri WiFi dell'apparecchio alle impostazioni di fabbrica					https://salt.ch/device-help/
+$flow.wifi._RestartDevice		Riavviare l'apparecchio					
+$flow.wifi._SwitchOnUsingButton	Per X secondi	Premere il tasto sul pannello frontale	box/box-front-wlan				
+$flow.wifi._SwitchOnWifiFromAdminConsole	Aprire il browser internet: digitare l'indirizzo 192.168.1.1.<N><N>Inserire il nome utente e la password (admin / admin di default).<N><N>Cambiare la vista da «Standard» a «Expert».<N><N>Andare in Vista combinata sotto WLAN.<N><N>Assicurarsi che ON appaia sotto la rete della banda connessa accanto al campo Attivare SSID.	Attivare le 2 WiFi dall'admin del box					https://qoof.salt.ch/knowledge/technical/modem_router/turn_on_off_wifi_in_the_admin_console
+$flow.wifi.CanConnectToBoxWithLAN		È possibile collegare un apparecchio via LAN?					
+$flow.wifi.ErrorIconOnWifiIcon		Errore sull'icona della WiFi?					
+$flow.wifi.WifiButtonBroken	(quando lo si preme, non torna alla sua posizione originale)	Il tasto della WiFi è rotto?					
+$flow.wifi.WifiOnInDashboard		Le 2 WiFi sono verdi nel dashboard ?	vti/WifiOnInDashboard-it				https://qoof.salt.ch/knowledge/technical/modem_router/check_in_vti_if_wifi_is_active
+$flow.wifi.WiFiPasswordAccepted		La password WiFi è accettata?					https://qoof.salt.ch/customer-process/configure/admin_console/change_wifi_name_and_password
+$flow.wifi.WifiVisibleByAppleTV	(Staccare prima il cavo LAN dell'Apple TV)<N><N>Apple TV -> Impostazioni -> Rete -> Wi-Fi<N>Scegliere il nome di una rete Wi-Fi compatibile per connettersi.	La WiFi è visibile dall'Apple TV ?					
+$flow.wifi.WifiVisibleOnDevice		La WiFi è visibile sull'apparecchio?					
+$flow.wifi._MoveCloseUnplugRepeater		Avvicinarsi al box e assicurarsi di non essere nel raggio di un ripetitore WiFi	box/getClose					

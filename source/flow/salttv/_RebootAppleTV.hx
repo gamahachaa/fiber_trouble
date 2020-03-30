@@ -11,7 +11,7 @@ class _RebootAppleTV extends Action
 
 	override public function create()
 	{
-		this._nextProcesses = [new _ProblemSolved()];
+		this._nextProcesses = [new ProblemSolved()];
 		super.create();
 	}
 	

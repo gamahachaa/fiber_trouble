@@ -14,14 +14,17 @@ class ConnectionType extends Descision
 
 	override public function create():Void
 	{
-		//this._titleTxt = "Sur quoi est connecté l'appareil du client ?";
-		//this._detailTxt = "LAN ou WiFi";
-		//this._illustration = "";
-		//this._buttonNoTxt = "LAN";
-		//this._buttonYesTxt = "WiFi";
-		
+
+		//trace(Main.HISTORY.isInHistory("flow.nointernet.customer._TellCustomerAllOkWithFiberCnx", Next));
+		//trace(Main.HISTORY.isInHistory("flow.nointernet.customer.FiberCableIsSalt", Yes));
+		//if (Main.HISTORY.isInHistory("flow.nointernet.customer._TellCustomerAllOkWithFiberCnx", Next))
+		//{
+			//this.move_to_next([new _RemoveAllCablesConnectedToBox()], Next);
+		//}
+		//else{
+			//this._nextYesProcesses = [new ConnectedViaSwitch()];
+		//}
 		this._nextYesProcesses = [new ConnectedViaSwitch()];
-		
 		this._nextNoProcesses = [new WifiOnInDashboard()];
 		super.create();
 	}

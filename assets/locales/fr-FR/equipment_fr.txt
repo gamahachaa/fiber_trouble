@@ -1,0 +1,24 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
+$flow.equipment._AddNoteVtiCustDidNotFecthParcel
+$flow.equipment._ExplainToWait
+$flow.equipment._GiveStatusAndRemindMyaccount
+$flow.equipment._InformShipmentStatusMyAccount
+$flow.equipment._OpenPostParcelTracking
+$flow.equipment._ParcelIsBackToSalt
+$flow.equipment._ResendValidationEmail
+$flow.equipment._SendParcelTrackingByEmail
+$flow.equipment._SendParcelTrackingBySMS
+$flow.equipment._SoOrderLogisticsEquipment
+$flow.equipment._SoOrderProcessStatusCheck
+$flow.equipment._TellCustToGoToPost
+$flow.equipment._TellCustWeSendParcelBackAgain
+$flow.equipment.DidCustomerRecievedEmail
+$flow.equipment.HasCustomerEmailAddress
+$flow.equipment.IsPOMOrderPhaseAccepted
+$flow.equipment.IsStatusDelivered
+$flow.equipment.IsStatusReturned
+$flow.equipment.IsVTILaposteSendBoxMsgVisible
+$flow.equipment.IsWhishDateWayAhead
+$flow.equipment.VTIMailCliackAcceptSent
+$flow.equipment.VtiTrackParcelVisible
+$flow.equipment.WasParcelInRothenbug

@@ -2,45 +2,32 @@
 
 @echo off
 
+rem PREPARE DATESTAMP ------------------------------------------------------------------------------------------------------------------------------
 for /f "tokens=2 delims==" %%a in ('wmic OS Get localdatetime /value') do set "dt=%%a"
 set "YY=%dt:~2,2%" & set "YYYY=%dt:~0,4%" & set "MM=%dt:~4,2%" & set "DD=%dt:~6,2%"
 set "HH=%dt:~8,2%" & set "Min=%dt:~10,2%" & set "Sec=%dt:~12,2%"
-
 set "datestamp=%YYYY%%MM%%DD%" & set "timestamp=%HH%%Min%%Sec%"
 set "fullstamp=%YYYY%%MM%%DD%_%HH%%Min%%Sec%"
-rem echo datestamp: "%datestamp%"
-rem echo timestamp: "%timestamp%"
-rem echo fullstamp: "%fullstamp%"
-
+rem DEFINE FILE NAMES ------------------------------------------------------------------------------------------------------------------------------
 set oldScriptName=nointernet.js
-rem set UNIQUE=%YEAR%%MONTH%%DAY%_%STARTTIME%
-rem echo %oldScriptName%
-rem echo %UNIQUE%
 set newScriptName=nointernet_%fullstamp%%.js
 set newMapName=nointernet_%fullstamp%%.js.map
-rem echo %newScriptName%
-
-rem echo %cd%
+rem PREPARE and CLEAR OLD FILE removal  ------------------------------------------------------------------------------------------------------------------------------
 set BINDIR=%cd%\export\html5\bin\
-rem echo %BINDIR%
 set FILESDELETE=%BINDIR%nointernet_20*
+rem DELETE  ------------------------------------------------------------------------------------------------------------------------------
 del /F %FILESDELETE%
-
+rem REPLACE META LINK TO JS FILES  ------------------------------------------------------------------------------------------------------------------------------
 powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptName%' | Out-File -encoding UTF8 %BINDIR%/index.html"
 powershell -Command "(gc %BINDIR%/index.html) -replace 'background: #000000;', 'background: #4c4d4d;' | Out-File -encoding UTF8 %BINDIR%/index.html"
-
+rem REENAME JS FILES  ------------------------------------------------------------------------------------------------------------------------------
 powershell -Command "Rename-Item -Path "%BINDIR%/nointernet.js" -NewName %newScriptName%"
 powershell -Command "Rename-Item -Path "%BINDIR%/nointernet.js.map" -NewName %newMapName%"
-rem powershell -Command "Rename-Item -Path "%BINDIR%/nointernet.js.map" -NewName %newScriptName%.map"
 
-
-rem robocopy export\html5\bin "C:\xampp\htdocs\localhost" * /E
-
-rem bellow is the way before amending the index
-rem robocopy export\html5\bin "C:\xampp\htdocs\localhost" * /xf index.html /E
 
 if "%1"=="debug" goto :end
 
+rem PUSH to SERVER  ------------------------------------------------------------------------------------------------------------------------------
 "C:\_mesProgs\WinSCP\WinSCP.com" ^
   /log="%cd%\WinSCP.log" /ini=nul ^
   /command ^
@@ -112,6 +99,7 @@ rem add new MAP
     "exit"
 
 :end
+rem PUSH to TEST SERVER  ------------------------------------------------------------------------------------------------------------------------------
 robocopy export\html5\bin "C:\xampp\htdocs\localhost" * /E
 
 "C:\_mesProgs\WinSCP\WinSCP.com" ^

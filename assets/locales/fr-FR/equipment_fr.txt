@@ -1,24 +1,24 @@
 FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
-$flow.equipment._AddNoteVtiCustDidNotFecthParcel
-$flow.equipment._ExplainToWait
-$flow.equipment._GiveStatusAndRemindMyaccount
-$flow.equipment._InformShipmentStatusMyAccount
-$flow.equipment._OpenPostParcelTracking
-$flow.equipment._ParcelIsBackToSalt
-$flow.equipment._ResendValidationEmail
-$flow.equipment._SendParcelTrackingByEmail
-$flow.equipment._SendParcelTrackingBySMS
-$flow.equipment._SoOrderLogisticsEquipment
-$flow.equipment._SoOrderProcessStatusCheck
-$flow.equipment._TellCustToGoToPost
-$flow.equipment._TellCustWeSendParcelBackAgain
-$flow.equipment.DidCustomerRecievedEmail
-$flow.equipment.HasCustomerEmailAddress
-$flow.equipment.IsPOMOrderPhaseAccepted
-$flow.equipment.IsStatusDelivered
-$flow.equipment.IsStatusReturned
-$flow.equipment.IsVTILaposteSendBoxMsgVisible
-$flow.equipment.IsWhishDateWayAhead
-$flow.equipment.VTIMailCliackAcceptSent
-$flow.equipment.VtiTrackParcelVisible
-$flow.equipment.WasParcelInRothenbug
+$flow.equipment._AddNoteVtiCustDidNotFecthParcel		Ajouter une note 'customer did not fetch his parcel' dans VTI					
+$flow.equipment._ExplainToWait	Expliquer que nous n'envoyons le matériel qu'environ 1 semaine avant la date. Il faut patienter encore quelques jours.	C'est encore un peu trop tôt.					
+$flow.equipment._GiveStatusAndRemindMyaccount		Informer du status de livraison. Conseiller le suivi par MyAccount					
+$flow.equipment._InformShipmentStatusMyAccount		Informer que le colis peut être suivi depuis MyAccount					
+$flow.equipment._OpenPostParcelTracking	Voir dans : <N><T>1.  VTI<N><T>2.  Vie du Client <N><T>3. Tab Historique des actes<N><T>4. POST Track and Trace for Send Box : XX.XX.XXXXXX.XXXXXXXX pour ...<N><T>5. <em>Cliquer sur le N° de colis<em>	Ouvrir le suivi de colis (La Poste)					
+$flow.equipment._ParcelIsBackToSalt		Informer que le colis nous est retourné.					
+$flow.equipment._ResendValidationEmail		Envoyer à nouveau l'email de validation	vti/emailValidationBTN				
+$flow.equipment._SendParcelTrackingByEmail		Envoyer le N° de colis par email					
+$flow.equipment._SendParcelTrackingBySMS		Envoyer le N° de colis par SMS					
+$flow.equipment._SoOrderLogisticsEquipment		Création automatique d'un ticket Super Office 421					
+$flow.equipment._SoOrderProcessStatusCheck		Création automatique d'un ticket Super Office 416					
+$flow.equipment._TellCustToGoToPost		Informer le client d'aller à la poste chercher le colis					
+$flow.equipment._TellCustWeSendParcelBackAgain		Informer que le colis va être livré à nouveau					
+$flow.equipment.DidCustomerRecievedEmail		L'email contenant le numéro de colis est reçu ?		Oui	Non, pas reçu		
+$flow.equipment.HasCustomerEmailAddress		Demander une adresse email et la saisir dans VTI		Ok	Ne possède pas d'email		
+$flow.equipment.IsPOMOrderPhaseAccepted	Voir dans : <N><T>1.  VTI<N><T>2.  Vie du Client <N><T>3. Tab Historique des actes<N><T>4. <em>POM Odering phase …<em>	Est-ce-que la phase de commande est validée dans les systêmes ?	vti/vtiPomOrderingPhase	Oui	Pas de 'POM ordering phase...' 		
+$flow.equipment.IsStatusDelivered		Est-ce-que le status est 'Delivered' ?					
+$flow.equipment.IsStatusReturned		Est-ce-que le status est 'Returned' ?					
+$flow.equipment.IsVTILaposteSendBoxMsgVisible	Voir dans : <N><T>1.  VTI<N><T>2.  Vie du Client <N><T>3. Tab Historique des actes<N><T>4. <em>LA POSTE send box parcel<em>	Il y a dans VTI 'LA POSTE send box parcel' ?					
+$flow.equipment.IsWhishDateWayAhead		La date d’activation 'whish date' est dans plus de 15j ?		Oui > 15j	Non, proche ou passée		
+$flow.equipment.VTIMailCliackAcceptSent	Voir dans : <N><T>1.  VTI<N><T>2.  Information Contractant <N><T>3. Owner<N><T>4. <em>Validation de l'adresse email Ok<em>	Vérifier que l'adrese mail est validée		Ok	Pas validée		
+$flow.equipment.VtiTrackParcelVisible	Voir dans : <N><T>1.  VTI<N><T>2.  Vie du Client <N><T>3. Tab Historique des actes<N><T>4. <em>POST Track and Trace for Send Box : XX.XX.XXXXXX.XXXXXXXX pour ...<em>	Le numéro de colis de La Poste est dans VTI ?	vti/vtiPostTracking				
+$flow.equipment.WasParcelInRothenbug		Est-ce-que le status est 'Deliverd byRothenbug' ?					

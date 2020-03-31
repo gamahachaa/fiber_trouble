@@ -73,7 +73,7 @@ class CheckContractorVTI extends DescisionInput
 			Main.customer.iri = cID == "" ? "39999999": cID;
 			Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
 		#else
-			Main.customer.iri = cID;314c3771-7ae9-4cd7-9e96-f401f7e0e7bf
+			Main.customer.iri = cID;
 			Main.customer.voIP = voipSO;
 		#end
 		super.onYesClick();

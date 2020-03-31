@@ -14,10 +14,10 @@
 	<file id="data" value="all_de.txt"/>
 	<file id="data" value="all_en.txt"/>
 	<!-- flow -->
-    <file id="data" value="flow_fr.txt"/>
-    <file id="data" value="flow_it.txt"/>
-	<file id="data" value="flow_de.txt"/>
-	<file id="data" value="flow_en.txt"/>
+    <!--<file id="data" value="flow_fr.txt"/>-->
+    <!--<file id="data" value="flow_it.txt"/>-->
+	<!--<file id="data" value="flow_de.txt"/>-->
+	<!--<file id="data" value="flow_en.txt"/>-->
 		<!-- nointernet -->
     <file id="data" value="nointernet_fr.txt"/>
     <file id="data" value="nointernet_it.txt"/>

@@ -2,6 +2,7 @@ package flow.nointernet.vti;
 
 import flixel.FlxG;
 import flow.activation.IsFiberOrMultisurf;
+import flow.equipment.IsWhishDateWayAhead;
 import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
 import flow.nointernet.so.IsTicketOpened;
 import layout.UIInputTf;
@@ -51,7 +52,12 @@ class CheckContractorVTI extends DescisionInput
 		contractorEreg = ~/^3\d{7}$/g;
 		vtiContractorUI.addToParent(this, false);
 		//this._nextYesProcesses = [new IsTicketOpened()];
-		this._nextYesProcesses = [new HasCustomerLEXnetworkIssue()];
+		if (Main.HISTORY.isInHistory("flow.Intro", Mid))
+		{
+			this._nextYesProcesses = [new IsWhishDateWayAhead()];
+		}
+		else
+			this._nextYesProcesses = [new HasCustomerLEXnetworkIssue()];
 		this._nextNoProcesses = [new IsFiberOrMultisurf()];
 		
 		super.create();
@@ -67,7 +73,7 @@ class CheckContractorVTI extends DescisionInput
 			Main.customer.iri = cID == "" ? "39999999": cID;
 			Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
 		#else
-			Main.customer.iri = cID;
+			Main.customer.iri = cID;314c3771-7ae9-4cd7-9e96-f401f7e0e7bf
 			Main.customer.voIP = voipSO;
 		#end
 		super.onYesClick();
@@ -79,6 +85,9 @@ class CheckContractorVTI extends DescisionInput
 	}
 	override function validateYes()
 	{
+		#if debug
+			return true;
+		#end
 		if (!contractorEreg.match( vtiContractorUI.getInputedText() ) )
 		{
 			//vtiContractorUI._labelValidator = Main.tongue.get("$" + this._name + "_YES", "validators");

@@ -26,79 +26,10 @@ powershell -Command "Rename-Item -Path "%BINDIR%/nointernet.js.map" -NewName %ne
 
 
 if "%1"=="debug" goto :end
+if "%1"=="release" goto :test
 
-rem PUSH to SERVER  ------------------------------------------------------------------------------------------------------------------------------
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
-    "lcd %BINDIR%\flixel" ^
-    "cd /home/qook/app/entry_point_qook/trouble/flixel" ^
-    "put -nopreservetime *" ^
-    "exit"
-
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
-    "lcd %BINDIR%\manifest" ^
-    "cd /home/qook/app/entry_point_qook/trouble/manifest" ^
-    "put -nopreservetime *" ^
-    "exit"
-
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
-    "lcd %BINDIR%\lib" ^
-    "cd /home/qook/app/entry_point_qook/trouble/lib" ^
-    "put -nopreservetime *" ^
-    "exit"
-rem delete old JS
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
-    "cd /home/qook/app/entry_point_qook/trouble/" ^
-    "rm *.js" ^
-    "exit"
-rem add new JS
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
-    "lcd %BINDIR%\" ^
-    "cd /home/qook/app/entry_point_qook/trouble/" ^
-    "put -nopreservetime *.js" ^
-    "exit"
-rem delete old JS MAP	
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
-    "cd /home/qook/app/entry_point_qook/trouble" ^
-    "rm *.js.map" ^
-    "exit"
-rem add new MAP	
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
-    "lcd %BINDIR%" ^
-    "cd /home/qook/app/entry_point_qook/trouble" ^
-    "put -nopreservetime *.js.map" ^
-    "exit"
-	
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
-    "lcd %BINDIR%\" ^
-    "cd /home/qook/app/entry_point_qook/trouble" ^
-    "put -nopreservetime index.html" ^
-    "exit"
-
-:end
+:test
+echo %1
 rem PUSH to TEST SERVER  ------------------------------------------------------------------------------------------------------------------------------
 robocopy export\html5\bin "C:\xampp\htdocs\localhost" * /E
 
@@ -173,3 +104,5 @@ rem add new JS MAP
     "cd /home/qook/app/qook/trouble" ^
     "put -nopreservetime index.html" ^
     "exit"
+
+:end

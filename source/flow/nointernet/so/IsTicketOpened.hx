@@ -1,5 +1,6 @@
 package flow.nointernet.so;
 
+import flow.equipment.IsWhishDateWayAhead;
 import flow.escalation.IsTechTicket;
 import flow.nointernet.vti.ActivationDone;
 import flow.nointernet.vti.IconStatusBoxManagement;
@@ -21,8 +22,12 @@ class IsTicketOpened extends Descision
 		{
 			this._nextNoProcesses =  [new IconStatusBoxManagement()];
 		}
-		else
+		else if (Main.HISTORY.isInHistory("flow.Intro", Mid)){
+			this._nextNoProcesses =  [new IsWhishDateWayAhead()];
+		}
+		else{
 			this._nextNoProcesses =  [new ActivationDone()];
+		}
 		super.create();
 	}
 

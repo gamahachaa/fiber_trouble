@@ -15,6 +15,7 @@ class Intro extends Triplet
 	override public function create():Void
 	{
 		Process.INIT();
+		trace("WTF"); 
 		var next = new CheckContractorVTI();
 		this._nextYesProcesses = [new IsSlowOrKaput()];
 		this._nextNoProcesses = [ next];

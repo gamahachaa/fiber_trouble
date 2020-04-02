@@ -8,62 +8,64 @@
 	<!-- <file id="data" value="data.tsv"/> -->
 	<!-- <file id="data" value="more_data.tsv"/> -->
 	<!-- <file id="data" value="flow.txt"/> -->
-	<!-- all -->
+<!-- all -->
 	<file id="data" value="all_fr.txt"/>
     <file id="data" value="all_it.txt"/>
 	<file id="data" value="all_de.txt"/>
 	<file id="data" value="all_en.txt"/>
-	<!-- flow -->
-    <!--<file id="data" value="flow_fr.txt"/>-->
-    <!--<file id="data" value="flow_it.txt"/>-->
-	<!--<file id="data" value="flow_de.txt"/>-->
-	<!--<file id="data" value="flow_en.txt"/>-->
-		<!-- nointernet -->
-    <file id="data" value="nointernet_fr.txt"/>
-    <file id="data" value="nointernet_it.txt"/>
-	<file id="data" value="nointernet_de.txt"/>
-	<file id="data" value="nointernet_en.txt"/>
-	<!-- TV -->
-	<file id="data" value="salttv_fr.txt"/>
-	<file id="data" value="salttv_it.txt"/>
-	<file id="data" value="salttv_de.txt"/>
-	<file id="data" value="salttv_en.txt"/>
-	<!-- escalation -->
-	<file id="data" value="escalation_fr.txt"/>
-	<file id="data" value="escalation_it.txt"/>
-	<file id="data" value="escalation_de.txt"/>
-	<file id="data" value="escalation_en.txt"/>
-		<!-- equipment -->
-	<file id="data" value="equipment_fr.txt"/>
-	<file id="data" value="equipment_it.txt"/>
-	<file id="data" value="equipment_de.txt"/>
-	<file id="data" value="equipment_en.txt"/>
-		<!-- collection -->
-	<file id="data" value="collection_fr.txt"/>
-	<file id="data" value="collection_it.txt"/>
-	<file id="data" value="collection_de.txt"/>
-	<file id="data" value="collection_en.txt"/>
-		<!-- cables -->
+<!-- cables -->
 	<file id="data" value="cables_fr.txt"/>
 	<file id="data" value="cables_it.txt"/>
 	<file id="data" value="cables_de.txt"/>
 	<file id="data" value="cables_en.txt"/>
-		<!-- wifi-lan -->
+<!-- collection -->
+	<file id="data" value="collection_fr.txt"/>
+	<file id="data" value="collection_it.txt"/>
+	<file id="data" value="collection_de.txt"/>
+	<file id="data" value="collection_en.txt"/>
+<!-- equipment -->
+	<file id="data" value="equipment_fr.txt"/>
+	<file id="data" value="equipment_it.txt"/>
+	<file id="data" value="equipment_de.txt"/>
+	<file id="data" value="equipment_en.txt"/>
+<!-- escalation -->
+	<file id="data" value="escalation_fr.txt"/>
+	<file id="data" value="escalation_it.txt"/>
+	<file id="data" value="escalation_de.txt"/>
+	<file id="data" value="escalation_en.txt"/>
+<!-- installation -->
+	<file id="data" value="installation-activation_fr.txt"/>
+	<file id="data" value="installation-activation_it.txt"/>
+	<file id="data" value="installation-activation_de.txt"/>
+	<file id="data" value="installation-activation_en.txt"/>
+
+<!-- nointernet -->
+    <file id="data" value="nointernet_fr.txt"/>
+    <file id="data" value="nointernet_it.txt"/>
+	<file id="data" value="nointernet_de.txt"/>
+	<file id="data" value="nointernet_en.txt"/>
+<!-- TV -->
+	<file id="data" value="salttv_fr.txt"/>
+	<file id="data" value="salttv_it.txt"/>
+	<file id="data" value="salttv_de.txt"/>
+	<file id="data" value="salttv_en.txt"/>
+<!-- stability -->
+	<file id="data" value="stability_fr.txt"/>
+	<file id="data" value="stability_it.txt"/>
+	<file id="data" value="stability_de.txt"/>
+	<file id="data" value="stability_en.txt"/>
+<!-- wifi-lan -->
 	<file id="data" value="wifi-lan_fr.txt"/>
 	<file id="data" value="wifi-lan_it.txt"/>
 	<file id="data" value="wifi-lan_de.txt"/>
 	<file id="data" value="wifi-lan_en.txt"/>
 
-		<!-- installation -->
-	<file id="data" value="installation-activation_fr.txt"/>
-	<file id="data" value="installation-activation_it.txt"/>
-	<file id="data" value="installation-activation_de.txt"/>
-	<file id="data" value="installation-activation_en.txt"/>
-			<!-- stability -->
-	<file id="data" value="stability_fr.txt"/>
-	<file id="data" value="stability_it.txt"/>
-	<file id="data" value="stability_de.txt"/>
-	<file id="data" value="stability_en.txt"/>
+
+	<!-- flow -->
+    <!--<file id="data" value="flow_fr.txt"/>-->
+    <!--<file id="data" value="flow_it.txt"/>-->
+	<!--<file id="data" value="flow_de.txt"/>-->
+	<!--<file id="data" value="flow_en.txt"/>-->
 	
     <!-- meta -->
     <file id="meta" value="meta_fr.txt"/>

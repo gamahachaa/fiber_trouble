@@ -7,4 +7,5 @@ $flow.all.fiberbox._LoopResetFiberBox	(Reset)<N><N>Premere il tasto «Reset» su
 $flow.all.vti._AddMemoVti		Aggiungere una nota in VTI	vti/addnoteit				
 $flow.End	Cliccare su Next per iniziare una nuova sessione di troubleshooting	Fine	general/end				
 $flow.TutoTree	Segui la procedura:<N><T>- cliccando sui tasti o<N><T>- utilizzando la tastiera (come nell'immagine a lato).<N><N>In modalità training, clicca sul radar in alto a destra per disattivare la creazione automatica di ticket.<N><N>Su alcune pagine troverai la seguente icona, sotto la quale troverai istruzioni più dettagliate.<N><T>- Pagine Qoof<N><T>- Video YouTube<N><T>- Altre pagine internet<N><T>- Ecc...    	Istruzioni generali	ui/tutoKeyboardIT				https://qoof.salt.ch
-$flow.Intro	Il cliente ci contatta perché non riesce a collegarsi a internet.<N><N><em>Assicurati che la box sia a casa sua (e non per esempio in uno Store)<em>.	Internet non funziona	customer/When-It-Doesnt-Work				
+$flow.Intro	Il cliente ci contatta perché non riesce a collegarsi a internet.<N><N><em>Assicurati che la box sia a casa sua (e non per esempio in uno Store)<em>.	Internet non funziona	customer/When-It-Doesnt-Work	Internet non funziona		La TV non funziona correttamente	Non ha ricevuto il Box Fibra	
+$flow.all.customer.IsSlowOrKaput		Internet è solo lento?			Sì, lento	No, non funziona affatto		

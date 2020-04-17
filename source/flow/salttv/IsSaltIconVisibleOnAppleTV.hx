@@ -11,8 +11,8 @@ class IsSaltIconVisibleOnAppleTV extends Descision
 
 	override public function create()
 	{
-		this._nextNoProcesses = [new _InstallSaltTV()];
-		this._nextYesProcesses = [ new IsMessageInvitingToContactCC()];
+		this._nextNoProcesses = [new HasAppleAccount()];
+		this._nextYesProcesses = [ new _OpenSaltTVApp()];
 		super.create();
 	}
 }

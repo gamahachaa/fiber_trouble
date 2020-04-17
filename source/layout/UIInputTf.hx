@@ -138,6 +138,7 @@ class UIInputTf
 		if (start){
 			_labelValidator != "" ? imputLabel.text = _labelValidator : _label;
 			FlxFlicker.flicker(imputLabel, 0, .5);
+			inputtextfield.hasFocus = true;
 		}
 		else{
 			imputLabel.text = _label;

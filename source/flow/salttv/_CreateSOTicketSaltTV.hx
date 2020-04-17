@@ -2,6 +2,7 @@ package flow.salttv;
 
 import flow.all.vti._AddMemoVti;
 import process.ActionMail;
+import salt.SOTickets;
 
 /**
  * ...
@@ -12,7 +13,7 @@ class _CreateSOTicketSaltTV extends ActionMail
 
 	public function new() 
 	{
-		super(Main.FIX_541);
+		super(SOTickets.FIX_541);
 	}
 	override public function create()
 	{

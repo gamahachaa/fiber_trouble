@@ -7,6 +7,8 @@ import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
 import flow.nointernet.so.IsTicketOpened;
 import layout.UIInputTf;
 import process.DescisionInput;
+import Main;
+import utils.XapiTracker;
 
 /**
  * ...
@@ -55,9 +57,27 @@ class CheckContractorVTI extends DescisionInput
 		if (Main.HISTORY.isInHistory("flow.Intro", Mid))
 		{
 			this._nextYesProcesses = [new IsWhishDateWayAhead()];
+			Main.track.setActivity("equipment");
 		}
 		else
+		{
+			if (Main.HISTORY.isInHistory("flow.Intro", No))
+			{
+				Main.track.setActivity("tv");
+			}
+			else if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", No))
+			{
+				Main.track.setActivity("no-internet");
+			}
+			else if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes))
+			{
+				Main.track.setActivity("slow-internet");
+			}
+			else{
+				Main.track.setActivity("");
+			}
 			this._nextYesProcesses = [new HasCustomerLEXnetworkIssue()];
+		}
 		this._nextNoProcesses = [new IsFiberOrMultisurf()];
 		
 		super.create();
@@ -73,9 +93,22 @@ class CheckContractorVTI extends DescisionInput
 			Main.customer.iri = cID == "" ? "39999999": cID;
 			Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
 		#else
-			Main.customer.iri = cID;
-			Main.customer.voIP = voipSO;
+			if (Main.DEBUG) {
+				//Main.customer.iri = cID == "" ? "39999999": cID;
+				//Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
+				Main.customer.iri = cID;
+				Main.customer.voIP = voipSO;
+			}
+			else{
+				Main.customer.iri = cID;
+				Main.customer.voIP = voipSO;
+			}
 		#end
+		Main.track.setVerb("initialized");
+		Main.track.setStatementRef(null);
+		Main.track.setCustomer();
+		Main.track.send();
+		Main.track.setVerb("resolved");
 		super.onYesClick();
 	}
 	override public function setStyle()
@@ -88,6 +121,7 @@ class CheckContractorVTI extends DescisionInput
 		#if debug
 			return true;
 		#end
+		//if (Main.DEBUG) return true;
 		if (!contractorEreg.match( vtiContractorUI.getInputedText() ) )
 		{
 			//vtiContractorUI._labelValidator = Main.tongue.get("$" + this._name + "_YES", "validators");

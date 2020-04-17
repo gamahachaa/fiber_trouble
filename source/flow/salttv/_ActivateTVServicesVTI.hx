@@ -10,7 +10,7 @@ class _ActivateTVServicesVTI extends Action
 
 	override public function create()
 	{
-		this._nextProcesses = [ new IsMessageInvitingToContactCC() ];
+		this._nextProcesses = [ new _OpenSaltTVApp() ];
 		super.create();
 	}
 	

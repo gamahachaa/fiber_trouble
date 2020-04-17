@@ -15,7 +15,7 @@ class _CNXallGooodMan extends Action
 	override public function create():Void
 	{
 		//this._nextProcesses = [new _AddMemoVti()];//2020-04-02
-		if (Main.HISTORY.isInHistory("flow.Intro", No))
+		if (Main.HISTORY.isInHistory("flow.Intro", No) || Main.HISTORY.isInHistory("flow.salttv.IsImageJerky", Yes))
 		{
 			this._nextProcesses = [new _QuitAndRelaunchSaltTV()];
 		}

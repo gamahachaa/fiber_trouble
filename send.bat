@@ -24,7 +24,7 @@ rem REENAME JS FILES  ----------------------------------------------------------
 powershell -Command "Rename-Item -Path "%BINDIR%/nointernet.js" -NewName %newScriptName%"
 powershell -Command "Rename-Item -Path "%BINDIR%/nointernet.js.map" -NewName %newMapName%"
 
-
+if "%1"=="" goto :dead
 if "%1"=="debug" goto :end
 if "%1"=="release" goto :test
 
@@ -104,5 +104,12 @@ rem add new JS MAP
     "cd /home/qook/app/qook/trouble" ^
     "put -nopreservetime index.html" ^
     "exit"
-
+goto :completed
 :end
+echo "JUST DEBUGGING"
+:dead
+echo "NO DIRECTIVES"
+
+:completed
+
+echo "completed"

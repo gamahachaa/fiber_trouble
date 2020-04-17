@@ -6,7 +6,7 @@ $flow.lan.CanCheckWithAppleTVorOtherDevice	With Apple TV if available, if not, t
 $flow.lan.ConnectDirectToFiberbox		Connect the device directly to the Box via LAN					
 $flow.lan.ConnectedViaSwitch	(not directly to the box)	The device is connected through a switch					
 $flow.lan.LanConnectionOK		Does the LAN connection work?					
-$flow.lan._SwapEthernetPort		Try on another Ethernet port	box/lan/lan				
+$flow.lan._SwapEthernetPort	Try another port <b> 1 Ghz<b>	Try on another Ethernet port	box/lan/lan				
 $flow.wifi._ConteactDeviceSupport		Contact the technical support of the device					
 $flow.wifi._CreateTicketWifiIssue	'- A ticket [522] will be automatically generated upon advancing to the next step. Do not manually create one (SuperOffice). A copy of the content will be sent to your mailbox.<N><N>Inform that:<N><T>- a technical ticket is forwarded to our technical department for a thorough analysis.<N><T>- he may be contacted.<N><T>- he will receive feedback as soon as possible.<N><T> - <em>the box must always be powered (230V) and plugged in (SFP, Fibre, OTO) during the whole life of a ticket.<em>'	Automatic ticket creation [522] in SuperOffice					
 $flow.wifi._ResetWifiParams	Forget WiFi on the devices.<N>Use the device help tool if the customer needs assistance.	Reset the device's WiFi settings to factory settings					https://salt.ch/en/device-help/ 
@@ -21,3 +21,4 @@ $flow.wifi.WiFiPasswordAccepted		Is the WiFi password accepted?					https://qoof
 $flow.wifi.WifiVisibleByAppleTV	(Disconnect the LAN cable from the Apple TV first)<N><N>Apple TV -> Settings -> Network -> Wi-Fi.<N>Choose the name of a compatible Wi-Fi network to join.	Is WiFi visible on the Apple TV?					
 $flow.wifi.WifiVisibleOnDevice		Is WiFi visible on the device?					
 $flow.wifi._MoveCloseUnplugRepeater		Get close to the box and make sure you are not within range of a WiFi repeater	box/getClose				
+$flow.lan.TestWithAppleTV

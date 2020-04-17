@@ -12,7 +12,7 @@ class DidCustomerRecievedEmail extends Descision
 	override public function create()
 	{
 		this._nextNoProcesses = [new VTIMailCliackAcceptSent()];
-		this._nextYesProcesses = [];
+		this._nextYesProcesses = [new _InformShipmentStatusMyAccount()];
 		super.create();
 	}
 	

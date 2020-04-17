@@ -11,7 +11,7 @@ class _ConnectAppleTVtoOneGhz extends Action
 
 	override public function create()
 	{
-		this._nextProcesses = [new _ResetAppleTV()];
+		this._nextProcesses = [ new _InstallSpeedTestAplleTV() ];
 		super.create();
 	}
 	

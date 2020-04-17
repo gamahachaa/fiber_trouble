@@ -1,7 +1,7 @@
 package flow.salttv;
 
 import flow.all.vti._AddMemoVti;
-import flow.nointernet.so._CreateTicketModemCNX;
+import flow.salttv._CreateSOTicketSaltTV;
 import process.Descision;
 
 /**

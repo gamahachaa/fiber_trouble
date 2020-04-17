@@ -203,7 +203,7 @@ class Process extends FlxState
 			add(voipReminder);
 			Browser.document.addEventListener("copy", function(e){e.clipboardData.setData('text/plain', Main.customer.voIP);e.preventDefault();});
 		}
-		if (Main.HISTORY.history.length > 1)
+		if (Main.HISTORY.history.length > 0)
 		{
 			registerButton(backBtn);
 			add(backBtn);
@@ -320,27 +320,58 @@ class Process extends FlxState
 		var to = "mailto:bruno.baudry@salt.ch; aron.peter@salt.ch?";
 		var subject = "subject=[TROUBLE comment] " + this._name;
 		var doubleBreak = "\n\n";
-		var content = "TITLE:\n" + _titleTxt + doubleBreak;
+		var content = "TITLE:\n" + stripTags(_titleTxt) + doubleBreak;
 
-		content += "DETAILS:" + _detailTxt + doubleBreak + doubleBreak;
+		content += "DETAILS:\n" + stripTags(_detailTxt) + doubleBreak ;
 		var history = "";
-		for (i in 0...Main.HISTORY.history.length)
-		{
-			history += "\t" + Main.HISTORY.history[i].processTitle + " (" + Main.HISTORY.history[i].processName + ") "
-			+ Main.HISTORY.history[i].iteractionTitle + " (" + Main.HISTORY.history[i].interaction + ")\n";
+		var line = "";
+		try{
+			for (i in 0...Main.HISTORY.history.length)
+			{
+				//trace(Main.HISTORY.history[i]);
+				line = "";
+				line += (i+1) + ". " ;
+				line += Main.HISTORY.history[i].processTitle +" ";
+				line += Main.HISTORY.history[i].iteractionTitle +" ";
+				//line += Main.HISTORY.history[i].processName +" ";
+				//line += Main.HISTORY.history[i].interaction+")";
+				history += stripTags(line) + "\n";
+				//trace(line);
+			}
+			//trace(history);
+			//trace(history.length);
+			
+			//content += "CUSTOMER:\n" + Main.customer.iri + doubleBreak;
+			//if (Main.customer.processStage == recaller)
+				//content += "S.O ticket:\n" + Main.customer._history[0] + doubleBreak;
+			content += "HISTORY:\n" + history + doubleBreak;
+			//trace(content);
+			//content += "Thanks,\n" + Main.user.firstName + " " + Main.user.sirName + " (" + Main.user.department + ")" + doubleBreak;
+			
+			Browser.window.location.href = to + subject + "?&body=" + StringTools.urlEncode(content);
 		}
-		content += "CUSTOMER:\n" + Main.customer.iri + doubleBreak;
-		if (Main.customer.processStage == recaller)
-			content += "S.O ticket:\n" + Main.customer._history[0] + doubleBreak;
-		content += "HISTORY:\n" + history + doubleBreak;
-		content += "Thanks,\n" + Main.user.firstName + " " + Main.user.sirName + " (" + Main.user.department + ")" + doubleBreak;
-
-		Browser.window.location.href = to + subject + "?&body=" + StringTools.urlEncode(content);
+		catch (e:Dynamic)
+		{
+			trace(e);
+		}
 	}
-
-	function translate(txt:String, suffix:String):String
+	function stripTags(s:String):String
 	{
-		var t = Main.tongue.get("$" + this._name + "_" + suffix, "data");
+		s = StringTools.replace(s, "<B>", " ");
+		s = StringTools.replace(s, "<N>", " ");
+		s = StringTools.replace(s, "<T>", " ");
+		s = StringTools.replace(s, "<EM>", " ");
+		s = StringTools.replace(s, "\t", " ");
+		s = StringTools.replace(s, "\n", " ");
+		return s;
+	}
+	
+	function translate(txt:String, suffix:String, ?context="data"):String
+	{
+		/**
+		 * @todo make it nicer
+		 */
+		var t = context == "data" ? Main.tongue.get("$" + this._name + "_" + suffix, context) : Main.tongue.get("$" + txt + "_" + suffix, context);
 		return t.indexOf("$") == 0 || StringTools.trim(t) == "" ? txt : t;
 	}
 
@@ -368,7 +399,7 @@ class Process extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		//trace(FlxG.keys.justReleased.Q && FlxG.keys.justReleased.SHIFT);
-		if (FlxG.keys.pressed.S && FlxG.keys.pressed.SHIFT && !isFocused)
+		if (FlxG.keys.pressed.ALT && FlxG.keys.pressed.CONTROL && FlxG.keys.pressed.SHIFT &&  FlxG.keys.pressed.S  && !isFocused)
 		{
 			openSubState(dataView);
 		}
@@ -376,11 +407,11 @@ class Process extends FlxState
 		{
 			onBack();
 		}
-		else if (FlxG.keys.pressed.C && FlxG.keys.pressed.SHIFT && !isFocused)
+		else if (FlxG.keys.pressed.ALT && FlxG.keys.pressed.CONTROL && FlxG.keys.pressed.SHIFT && FlxG.keys.pressed.C && !isFocused)
 		{
 			onComment();
 		}
-		else if (hasQook && FlxG.keys.pressed.Q && FlxG.keys.pressed.SHIFT && !isFocused)
+		else if (hasQook && FlxG.keys.pressed.Q && FlxG.keys.pressed.ALT && FlxG.keys.pressed.CONTROL && FlxG.keys.pressed.SHIFT && !isFocused)
 		{
 			onQook();
 		}
@@ -397,7 +428,7 @@ class Process extends FlxState
 		FlxG.keys.preventDefaultKeys = [FlxKey.BACKSPACE, FlxKey.TAB];
 		Main.customer.reset();
 		Main.HISTORY.init();
-		Main.CHECK_NEW_VERSION();
+		//Main.CHECK_NEW_VERSION();
 	}
 
 	static public function GET_PREVIOUS_INSTANCE()

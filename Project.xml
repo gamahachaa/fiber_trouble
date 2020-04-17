@@ -33,6 +33,7 @@
 	<assets path="assets" />
 	
 	<!-- _______________________________ Libraries ______________________________ -->
+	<haxelib name="csv" />
 	<haxelib name="lime" />
 	<!--<set name="next"/>-->
 	<haxelib name="flixel" />
@@ -41,8 +42,11 @@
 
 	<haxelib name="firetongue" />
 	<haxelib name="hscript" />
-	<haxelib name="xapi" />
-	<haxelib name="lrs" />
+	<!--<haxelib name="xapi" />-->
+	<!--<haxelib name="lrs" />-->
+	<!--<haxelib name="msignal" />-->
+	<!--<haxelib name="thx.core" />-->
+
 	<!--<haxelib name="ldap" />-->
 	
 	<!--<haxelib name="openfl" />-->
@@ -62,7 +66,7 @@
 	<!--<haxelib name="nape" />-->
 	
 	<!-- ______________________________ Haxedefines _____________________________ -->
-	
+	<haxeflag name="-D" value="haxeJSON" />
 	<!--Enable the Flixel core recording system-->
 	<!--<haxedef name="FLX_RECORD" />-->
 	
@@ -93,7 +97,7 @@
 	<!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 
-	
+	<haxedef name="haxeJSON" />
 	<!-- _________________________________ Custom _______________________________ -->
 	
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->

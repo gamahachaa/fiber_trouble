@@ -17,7 +17,8 @@ class CanConnectToBoxWithLAN extends Descision
 		//this._detailTxt = "";
 		//this._illustration = "";
 		this._nextYesProcesses = [new _SwitchOnWifiFromAdminConsole()];
-		this._nextNoProcesses = [new _CreateTicketWifiIssue()];
+		//this._nextNoProcesses = [new _CreateTicketWifiIssue()];
+		this._nextNoProcesses = [new WhyCannotConnectWithLan()];
 		super.create();
 	}
 

@@ -3,8 +3,10 @@ import flixel.util.FlxSignal.FlxTypedSignal;
 import haxe.Http;
 import haxe.Json;
 import js.Browser;
+import layout.History.Snapshot;
 import process.Process;
 import Main;
+import salt.SOTickets;
 /**
  * ...
  * @author bbaudry
@@ -38,15 +40,15 @@ class Mail
 	var http:Http;
 	var _mailSubject:String;
 	//var _queue:String;
-	var _ticket:Ticket;
+	var _ticket:SOTickets;
 	var _currentProcess(default, set):Process;
 	public var successSignal(get, null):FlxTypedSignal<Result->Void>;
 	public var statusSignal(get, null):FlxTypedSignal<Int->Void>;
 	public var errorSignal(get, null):FlxTypedSignal<Dynamic->Void>;
 
-	@:isVar public var params(get, set):haxe.ds.Map<Parameters,String>;
+	@:isVar public var params(get, set):haxe.ds.Map<Parameters,Dynamic>;
 
-	public function new(ticket:Ticket, currentProcess:Process)
+	public function new(ticket:SOTickets, currentProcess:Process)
 	{
 		_ticket = ticket;
 
@@ -55,7 +57,8 @@ class Mail
 		successSignal = new FlxTypedSignal<Result->Void>();
 		statusSignal = new FlxTypedSignal<Int->Void>();
 		errorSignal = new FlxTypedSignal<Dynamic->Void>();
-		params = new Map<Parameters,String>();
+		//params = new Map<Parameters,String>();
+		params = new Map<Parameters,Dynamic>();
 		//setSubject(mailSubject, currentProcess);
 
 		//trace(params.get(subject));
@@ -65,22 +68,32 @@ class Mail
 
 		//params.set(to_email, ticket.email); // Test on SO prod cs.salt.ch
 		#else
-		if (_ticket.email == null)
+		if (Main.DEBUG)
 		{
-			params.set(to_email, "Giuliano.Rappazzo@salt.ch");
-			params.set(to_full_name, "Giuliano Rappazzo");
+			params.set(to_email, ticket.email);
+			//params.set(to_email, "Giuliano.Rappazzo@salt.ch");
+			//params.set(to_email, "bruno.baudry@salt.ch");
+			//params.set(to_full_name, "Giuliano Rappazzo");
+			//params.set(to_full_name, "Bruno Baudry");
+			params.set(cc_email, '${Main.user.iri},Fiber.TechSupport@salt.ch,Giuliano.Rappazzo@salt.ch');
+			
+			//params.set(bcc_email, "qook@salt.ch");
+			//params.set(bcc_full_name, "qook");
+			//params.set(cc_full_name, (Main.user.sirName + " " + Main.user.firstName) );
 		}
 		else
 		{
 			params.set(to_email, ticket.email);
 			//params.set(to_full_name, to.fullName);
+
+			params.set(cc_email, '${Main.user.iri},Fiber.TechSupport@salt.ch,Giuliano.Rappazzo@salt.ch');
+			//params.set(cc_full_name, (Main.user.sirName + " " + Main.user.firstName) );
 		}
 		params.set(bcc_email, "qook@salt.ch");
-		params.set(bcc_full_name, "qook");
+		//params.set(bcc_full_name, "qook");
 		#end
 		//params.set(subject, '[${Main.customer.iri}] $mailSubject' );
-		params.set(cc_email, Main.user.iri);
-		params.set(cc_full_name, (Main.user.sirName + " " + Main.user.firstName) );
+
 
 		http = new Http(Browser.location.origin + Browser.location.pathname+ "php/mail/index.php" );
 		http.async = true;
@@ -138,9 +151,9 @@ class Mail
 		{
 			//b += '<h1>$_mailSubject</h1>';
 			if (memo != "") b += '<p>$memo</p>';
-			b += "<h2>CUSTOMER:</h2>";
-			b += '<h3>ID: ${Main.customer.iri}</h3>';
-			b += '<h3>VoIP: ${Main.customer.voIP}</h3>';
+			b += '<h2>CONTRACTOR: ${Main.customer.iri} ';
+			b += 'VoIP: ${Main.customer.voIP}';
+			b += '</h2>';
 			if (Main.customer.shipingAdress != null && Main.customer.shipingAdress._zip != "")
 			{
 				b += "<h3>Shiping Adress :</h3>";
@@ -188,12 +201,45 @@ class Mail
 		var end:Date = Main.HISTORY.getLast().start;
 		for (i in Main.HISTORY.history)
 		{
-			//bodyList += '<li>${i.processName}:${i.interaction} :: ${i.processTitle}:${i.iteractionTitle}</li>';
-			bodyList += '<li>${i.processTitle} : <strong>${i.iteractionTitle}</strong></li>';
+			bodyList += "<li>";
+			bodyList += '${i.processTitle} : <strong>${i.iteractionTitle}</strong>';
+			bodyList += "<br/><em>";
+			bodyList += getItInEnglsh(i);
+			bodyList += "</em></li>";
+			//bodyList += Main.tongue.get("$"+i.processName + "_TITLE","data") + " : " + Main.tongue.get(i.processName,"data")}:${i.interaction}</li>';
+			
 		}
+		
 		bodyList += "<li><strong>"+_currentProcess.question.text +"</strong></li>";
-		b += '<h2>FLOW:</h2><h3>Start: ${start.toString()}</h3><ol>$bodyList</ol><h3>End: ${end.toString()}</h3>';
+		b += '<h3>Start: ${start.toString()}</h3><ol>$bodyList</ol><h3>End: ${end.toString()}</h3>';
 		params.set(body, b);
+	}
+	
+	function getItInEnglsh(i:Snapshot):String
+	{
+		Main.tongue.init("en-GB");
+		var s = "";
+		var interaction = switch(i.interaction){
+			case Yes: "RIGHT-BTN";
+			case No: "LEFT-BTN";
+			case Next: "MID-BTN";
+			default: "MID-BTN";
+		};
+		var interactionEN = Main.tongue.get("$" + i.processName + "_" + interaction, "data");
+		if (interactionEN == "" || interactionEN == null || interactionEN.indexOf("$") == 0)
+		{
+			interactionEN = Main.tongue.get("$defaultBtn_" + switch(i.interaction){
+			case Yes: "UI3";
+			case No: "UI1";
+			case Next: "UI2";
+			default: "UI2";
+		}, "meta");
+		}	
+		
+		s += Main.tongue.get("$" + i.processName + "_TITLE", "data") + " : " + interactionEN;
+		
+		Main.tongue.init(Main.user.mainLanguage);
+		return s;
 	}
 	function onStatus(s:Int)
 	{
@@ -214,7 +260,7 @@ class Mail
 		successSignal.dispatch(s);
 	}
 
-	function get_params():haxe.ds.Map<Parameters, String>
+	function get_params():haxe.ds.Map<Parameters, Dynamic>
 	{
 		return params;
 	}
@@ -234,7 +280,7 @@ class Mail
 		return errorSignal;
 	}
 
-	function set_params(value:haxe.ds.Map<Parameters, String>):haxe.ds.Map<Parameters, String>
+	function set_params(value:haxe.ds.Map<Parameters, Dynamic>):haxe.ds.Map<Parameters, Dynamic>
 	{
 		return params = value;
 	}

@@ -1,6 +1,9 @@
 package flow.equipment;
 
+import flow.End;
+import flow.all.vti._AddMemoVti;
 import process.ActionMail;
+import salt.SOTickets;
 
 /**
  * ...
@@ -11,11 +14,11 @@ class _SoOrderLogisticsEquipment extends ActionMail
 
 	public function new() 
 	{
-		super(Main.FIX_421);
+		super(SOTickets.FIX_421);
 	}
 	override public function create():Void
 	{
-		this._nextProcesses = [];
+		this._nextProcesses = [new _AddMemoVti()];
 		super.create();
 	}
 	

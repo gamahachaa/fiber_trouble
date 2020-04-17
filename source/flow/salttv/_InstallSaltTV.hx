@@ -11,7 +11,7 @@ class _InstallSaltTV extends Action
 
 	override public function create()
 	{
-		this._nextProcesses = [new HasAppleAccount()];
+		this._nextProcesses = [new IsSaltIconVisibleOnAppleTV()];
 		super.create();
 	}
 	

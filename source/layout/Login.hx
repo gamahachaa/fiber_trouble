@@ -55,7 +55,7 @@ class Login extends FlxState
 			{
 				Main.user.mainLanguage = lang;
 			}
-			Main.tongue.init(Main.user.mainLanguage, ()->(FlxG.switchState(new TutoTree())) );
+			moveOn(); // launch APP
 		}
 		else
 		{
@@ -174,7 +174,7 @@ class Login extends FlxState
 				Main.user.mainLanguage = lang;
 			}
 			Main.COOKIE.flush();
-			Main.tongue.init(Main.user.mainLanguage, ()->(FlxG.switchState(new TutoTree())) );
+			moveOn(); // launch APP
 		}
 		else
 		{
@@ -185,6 +185,11 @@ class Login extends FlxState
 			//this.subState = new FlxSubState(FlxColor.RED);
 			//this.openSubState(new FlxSubState());
 		}
+	}
+	function moveOn()
+	{
+		Main.track.setActor(); 
+		Main.tongue.init(Main.user.mainLanguage, ()->(FlxG.switchState(new TutoTree()) ) );
 	}
 	function onSubmit()
 	{

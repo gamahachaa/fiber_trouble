@@ -1,0 +1,24 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
+$flow.equipment._AddNoteVtiCustDidNotFecthParcel	Add a note in VTI: <Q>Customer did not fetch his parcel<Q>	Add a note in VTI	vti/addnotenoparcelen				
+$flow.equipment._ExplainToWait	Explain that we only send the material about 1 week before the date. Please wait a few more days.	It's a bit too early.					
+$flow.equipment._GiveStatusAndRemindMyaccount	Recommend monitoring in MyAccount	Inform about the delivery status.					
+$flow.equipment._InformShipmentStatusMyAccount	MyAccount -> Status Tracking -> Hardware Shipping Status	Inform that the shipment can be monitored in MyAccount					https://fiber.salt.ch/myaccount/?lang=en#/Statuses
+$flow.equipment._OpenPostParcelTracking	Check in:<N><T>1.  VTI<N><T>2.  Customer events’ log <N><T>3. Tab Recent activities (main tab)<N><T>4. POST Track and Trace for Send Box: XX.XX.XXXXXX.XXXXXXXX pour ...<N><T>5. <em>Click on the consignment number.<em>	Access the parcel tracking (Swiss Post)	vti/trackandtrace				
+$flow.equipment._ParcelIsBackToSalt		Inform that the package has been returned to us.					
+$flow.equipment._ResendValidationEmail		Resend the validation email	vti/emailValidationBTN				
+$flow.equipment._SendParcelTrackingByEmail		Send the consignment number by email					
+$flow.equipment._SendParcelTrackingBySMS		Send the consignment number by SMS					
+$flow.equipment._SoOrderLogisticsEquipment	A ticket [421] will be automatically generated upon advancing to the next step. Do not manually create one (SuperOffice). A copy of the content will be sent to your mailbox.<N><N>Inform that:<N><T>- a ticket is forwarded to our logistics department for a thorough analysis.	Automatic ticket creation [421] in SuperOffice					
+$flow.equipment._SoOrderProcessStatusCheck	A ticket [416] will be automatically generated upon advancing to the next step. Do not manually create one (SuperOffice). A copy of the content will be sent to your mailbox.<N><N>Inform that:<N><T>- a ticket is forwarded to our technical department for a thorough analysis.	Automatic ticket creation [416] in SuperOffice					
+$flow.equipment._TellCustToGoToPost		Tell the customer to go to the post office to pick up the package.					
+$flow.equipment._TellCustWeSendParcelBackAgain		Inform that the package will be shipped again.					
+$flow.equipment.DidCustomerRecievedEmail		Did the customer receive the e-mail with the shipment/tracking number?		Yes	No e-mail received		
+$flow.equipment.HasCustomerEmailAddress		Request an email address and register it in VTI		OK	Does not have an email address		https://qoof.salt.ch/de/knowledge/admin/contract/edit_customer_data_in_vti#%C3%A4nderung-der-basisangaben
+$flow.equipment.IsPOMOrderPhaseAccepted	Check in:<N><T>1.  VTI<N><T>2.  Customer events’ log <N><T>3. Tab Recent activities (main tab)<N><T>4. <em>POM Odering phase …<em>	Is the order status validated in the system?	vti/vtiPomOrderingPhase	Yes	No <Q>POM ordering phase…<Q> 		
+$flow.equipment.IsStatusDelivered		Is the status <Q>Delivered<Q>?					
+$flow.equipment.IsStatusReturned		Is the status <Q>Returned<Q>					
+$flow.equipment.IsVTILaposteSendBoxMsgVisible	Check in:<N><T>1.  VTI<N><T>2.  Customer events’ log <N><T>3. Tab Recent activities (main tab)<N><T>4. <em>LA POSTE send box parcel<em>	Is there in VTI <Q>LA POSTE send box parcel<Q>?					
+$flow.equipment.IsWhishDateWayAhead		Is the activation date <Q>whish date<Q> in more than 15 days?		Yes > 15 days	No		
+$flow.equipment.VTIMailCliackAcceptSent	Voir dans : <N><T>1.  VTI<N><T>2. Billing account information <N><T>3. Owner<N><T>4. <em>Email validation Ok<em>	Check if the email address is validated	vti/emailvalidateden	OK	Not validated		
+$flow.equipment.VtiTrackParcelVisible	Check in:<N><T>1.  VTI<N><T>2.  Customer events’ log <N><T>3. Tab Recent activities (main tab)<N><T>4. <em>POST Track and Trace for Send Box : XX.XX.XXXXXX.XXXXXXXX pour ...<em>	The Post Office consignment number is in VTI?	vti/vtiPostTracking				
+$flow.equipment.WasParcelInRothenbug		Is the status <Q>Deliverd byRothenbug<Q>?		Deliverd byRothenbug	No		

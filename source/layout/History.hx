@@ -109,4 +109,14 @@ class History
 		}
 		return false;
 	}
+	public function getRawSteps()
+	{
+		var t = [];
+		var s = 0;
+		for (i in history)
+		{
+			t.push({nb:s++, step:i.processName, interaction: i.iteractionTitle});
+		}
+		return t;
+	}
 }

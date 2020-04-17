@@ -1,5 +1,6 @@
 package flow.equipment;
 
+import flow.End;
 import process.Action;
 
 /**
@@ -11,7 +12,7 @@ class _AddNoteVtiCustDidNotFecthParcel extends Action
 
 	override public function create()
 	{
-		this._nextProcesses = [];
+		this._nextProcesses = [ new End()];
 		super.create();
 	}
 	

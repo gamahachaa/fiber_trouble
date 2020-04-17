@@ -1,5 +1,6 @@
 package flow.wifi;
 
+import flow.lan._CreateLanIssueTicket;
 import flow.wifi._CreateTicketWifiIssue;
 import flow.all.fiberbox._LoopResetFiberBox;
 import process.Descision;
@@ -18,7 +19,12 @@ class WifiVisibleByAppleTV extends Descision
 		//this._detailTxt = "(Débrancher le câble LAN de l'AppleTV au préalable)";
 		//this._illustration = "";
 		this._nextYesProcesses = [new WifiVisibleOnDevice()];
-		this._nextNoProcesses = [new _LoopResetFiberBox(new WifiOnInDashboard()),new _CreateTicketWifiIssue()];
+		if (Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
+		{
+			this._nextNoProcesses = [new _CreateLanIssueTicket()];
+		}
+		else
+			this._nextNoProcesses = [new _LoopResetFiberBox(),new _CreateTicketWifiIssue()];
 		super.create();
 	}
 

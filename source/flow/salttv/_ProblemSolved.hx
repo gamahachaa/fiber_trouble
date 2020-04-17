@@ -13,7 +13,7 @@ class _ProblemSolved extends Descision
 
 	override public function create()
 	{
-		this._nextNoProcesses = [new _CheckIfAppNeedsUpdate(), new _RebootAppleTV(), new _CheckIfSaltTVNeedsUpdate(), new _ResetAppleTV(), new _CreateSOTicketSaltTV()];
+		this._nextNoProcesses = [new _CheckIfAppNeedsUpdate(), new _RebootAppleTV(), new _CheckIfSaltTVNeedsUpdate(), new _ResetAppleTV( new _ProblemSolved() ), new _CreateSOTickets.FIXaltTV()];
 		this._nextYesProcesses = [new _AddMemoVti()];
 		super.create();
 	}

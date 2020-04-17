@@ -1,23 +1,24 @@
 FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
-$flow.lan._CreateLanIssueTicket	'- Ein Ticket [521] wird automatisch generiert, wenn der nÃ¤chste Schritt erreicht wird. Erstelle nicht manuell (SuperOffice) eines. Eine Kopie des Inhalts wird an deine Mailbox geschickt.<N><N>Informieren, dass:<N><T>- ein technisches Ticket zur weiteren AbklÃ¤rung an unseren technischen Dienst weitergeleitet wurde.<N><T>- wir ihn kontaktieren kÃ¶nnten.<N><T>- er so schnell wie mÃ¶glich ein Feedback erhalten wird.<N><T>- <em>die Box wÃ¤hrend des gesamten Lebenszyklus des Tickets bei ihm immer mit Strom versorgt (230V) und angeschlossen (SFP, Fiber, OTO) sein muss.<em>'	Automatische Ticket-Erstellung [521] in SuperOffice 					
+$flow.lan._CreateLanIssueTicket	'- Ein Ticket [521] wird automatisch generiert, wenn der nächste Schritt erreicht wird. Erstelle nicht manuell (SuperOffice) eines. Eine Kopie des Inhalts wird an deine Mailbox geschickt.<N><N>Informieren, dass:<N><T>- ein technisches Ticket zur weiteren Abklärung an unseren technischen Dienst weitergeleitet wurde.<N><T>- wir ihn kontaktieren könnten.<N><T>- er so schnell wie möglich ein Feedback erhalten wird.<N><T>- <em>die Box während des gesamten Lebenszyklus des Tickets bei ihm immer mit Strom versorgt (230V) und angeschlossen (SFP, Fiber, OTO) sein muss.<em>'	Automatische Ticket-Erstellung [521] in SuperOffice 					
 $flow.lan._RemoveAllCablesConnectedToBox	Und die Tests wiederholen	Alle anderen Kabel entfernen					
 $flow.lan._SwapEthernetCable	Und die Tests wiederholen	Mit einem anderen Ethernet-Kabel testen					
-$flow.lan.CanCheckWithAppleTVorOtherDevice	Mit Apple TV wenn verfÃ¼gbar, wenn nicht, mit einem anderen GerÃ¤t im LAN versuchen.	Ist es mÃ¶glich, mit einem anderen GerÃ¤t zu probieren?		Apple TV o. anderes LAN-GerÃ¤t	Kein anderes LAN-GerÃ¤t		
-$flow.lan.ConnectDirectToFiberbox		Das GerÃ¤t Ã¼ber LAN direkt mit der Box verbinden					
-$flow.lan.ConnectedViaSwitch	(nicht direkt zur Box)	Das GerÃ¤t ist Ã¼ber einen Switch angeschlossen					
+$flow.lan.CanCheckWithAppleTVorOtherDevice	Mit Apple TV wenn verfügbar, wenn nicht, mit einem anderen Gerät im LAN versuchen.	Ist es möglich, mit einem anderen Gerät zu probieren?		Apple TV o. anderes LAN-Gerät	Kein anderes LAN-Gerät		
+$flow.lan.ConnectDirectToFiberbox		Das Gerät über LAN direkt mit der Box verbinden					
+$flow.lan.ConnectedViaSwitch	(nicht direkt zur Box)	Das Gerät ist über einen Switch angeschlossen					
 $flow.lan.LanConnectionOK		Funktioniert die LAN-Verbindung?					
-$flow.lan._SwapEthernetPort		An einem anderen Ethernet-Port testen	box/lan/lan				
-$flow.wifi._ConteactDeviceSupport		Den technischen Support des GerÃ¤ts kontaktieren					
-$flow.wifi._CreateTicketWifiIssue	'- Ein Ticket [522] wird automatisch generiert, wenn der nÃ¤chste Schritt erreicht wird. Erstelle nicht manuell (SuperOffice) eines. Eine Kopie des Inhalts wird an deine Mailbox geschickt.<N><N>Informieren, dass:<N><T>- ein technisches Ticket zur weiteren AbklÃ¤rung an unseren technischen Dienst weitergeleitet wurde.<N><T>- wir ihn kontaktieren kÃ¶nnten.<N><T>- er so schnell wie mÃ¶glich ein Feedback erhalten wird.<N><T>- <em>die Box wÃ¤hrend des gesamten Lebenszyklus des Tickets bei ihm immer mit Strom versorgt (230V) und angeschlossen (SFP, Fiber, OTO) sein muss.<em>'	Automatische Ticket-Erstellung [522] in SuperOffice 					
-$flow.wifi._ResetWifiParams	WiFi auf GerÃ¤ten vergessen<N>Das GerÃ¤te-Hilfe-Tool verwenden, sollte der Kunde Hilfe benÃ¶tigen.	Die WiFi-Einstellungen des GerÃ¤ts auf die Werkseinstellungen zurÃ¼cksetzen					https://salt.ch/de/device-help/
-$flow.wifi._RestartDevice		Das GerÃ¤t neu starten					
-$flow.wifi._SwitchOnUsingButton	WÃ¤hrend X Sekunden	Die Taste auf der Vorderseite drÃ¼cken	box/box-front-wlan				
-$flow.wifi._SwitchOnWifiFromAdminConsole	WÃ¤hrend X Sekunden	Ãœber den Admin der Box die 2 WiFis aktivieren					https://qoof.salt.ch/de/knowledge/technical/modem_router/turn_on_off_wifi_in_the_admin_console
-$flow.wifi.CanConnectToBoxWithLAN		Ist es mÃ¶glich, ein GerÃ¤t Ã¼ber LAN anzuschliessen?					
-$flow.wifi.ErrorIconOnWifiIcon		Fehler beim WiFi-Symbol des GerÃ¤ts?					
-$flow.wifi.WifiButtonBroken	(beim DrÃ¼cken kehrt er nicht in seine ursprÃ¼ngliche Position zurÃ¼ck)	Ist die WiFi-Taste defekt?					
-$flow.wifi.WifiOnInDashboard		Sind die 2 WiFi grÃ¼n im Dashboard (Angebotsverwaltung)?	vti/WifiOnInDashboard-de				https://qoof.salt.ch/de/knowledge/technical/modem_router/check_in_vti_if_wifi_is_active
+$flow.lan._SwapEthernetPort	Versuchen Sie einen anderen Port <b> 1 Ghz<b>	An einem anderen Ethernet-Port testen	box/lan/lan				
+$flow.wifi._ConteactDeviceSupport		Den technischen Support des Geräts kontaktieren					
+$flow.wifi._CreateTicketWifiIssue	'- Ein Ticket [522] wird automatisch generiert, wenn der nächste Schritt erreicht wird. Erstelle nicht manuell (SuperOffice) eines. Eine Kopie des Inhalts wird an deine Mailbox geschickt.<N><N>Informieren, dass:<N><T>- ein technisches Ticket zur weiteren Abklärung an unseren technischen Dienst weitergeleitet wurde.<N><T>- wir ihn kontaktieren könnten.<N><T>- er so schnell wie möglich ein Feedback erhalten wird.<N><T>- <em>die Box während des gesamten Lebenszyklus des Tickets bei ihm immer mit Strom versorgt (230V) und angeschlossen (SFP, Fiber, OTO) sein muss.<em>'	Automatische Ticket-Erstellung [522] in SuperOffice 					
+$flow.wifi._ResetWifiParams	WiFi auf Geräten vergessen<N>Das Geräte-Hilfe-Tool verwenden, sollte der Kunde Hilfe benötigen.	Die WiFi-Einstellungen des Geräts auf die Werkseinstellungen zurücksetzen					https://salt.ch/de/device-help/
+$flow.wifi._RestartDevice		Das Gerät neu starten					
+$flow.wifi._SwitchOnUsingButton	Während X Sekunden	Die Taste auf der Vorderseite drücken	box/box-front-wlan				
+$flow.wifi._SwitchOnWifiFromAdminConsole	"Einen Browser öffnen: die Adresse 192.168.1.1 eingeben<N><N> Benutzername und Passwort eingeben (standardmässig admin / admin).<N><N> Die Ansicht von <Q>Standard<Q> auf <Q>Expert<Q> wechseln.<N><N> Unter <Q>WLAN<Q> zu der Registerkarte ""Combined view"" gehen.<N><N> Sicherstellen, dass unter dem Netzwerk des angeschlossenen WLAN-Frequenzbands neben dem Feld SSID <Q>ON<Q> aktiviert angezeigt wird."	Über den Admin der Box die 2 WiFis aktivieren					https://qoof.salt.ch/de/knowledge/technical/modem_router/turn_on_off_wifi_in_the_admin_console
+$flow.wifi.CanConnectToBoxWithLAN		Ist es möglich, ein Gerät über LAN anzuschliessen?					
+$flow.wifi.ErrorIconOnWifiIcon		Fehler beim WiFi-Symbol des Geräts?					
+$flow.wifi.WifiButtonBroken	(beim Drücken kehrt er nicht in seine ursprüngliche Position zurück)	Ist die WiFi-Taste defekt?					
+$flow.wifi.WifiOnInDashboard		Sind die 2 WiFi grün im Dashboard (Angebotsverwaltung)?	vti/WifiOnInDashboard-de				https://qoof.salt.ch/de/knowledge/technical/modem_router/check_in_vti_if_wifi_is_active
 $flow.wifi.WiFiPasswordAccepted		Wird das WiFi-Passwort akzeptiert?					https://qoof.salt.ch/de/customer-process/configure/admin_console/change_wifi_name_and_password
-$flow.wifi.WifiVisibleByAppleTV	(Das LAN-Kabel zuvor vom AppleTV trennen.)<N><N>Apple TV -> Einstellungen -> Netzwerk -> WLAN<N>Den Namen eines kompatiblen Wi-Fi-Netzwerks zur Verbindung wÃ¤hlen.	Ist WiFi auf dem Apple TV sichtbar?					
-$flow.wifi.WifiVisibleOnDevice		Ist WiFi auf dem GerÃ¤t sichtbar?					
-$flow.wifi._MoveCloseUnplugRepeater		Sich der Box nÃ¤hern und sicherstellen, dass kein WiFi-Repeaters in Reichweite ist.	box/getClose				
+$flow.wifi.WifiVisibleByAppleTV	(Das LAN-Kabel zuvor vom AppleTV trennen.)<N><N>Apple TV -> Einstellungen -> Netzwerk -> WLAN<N>Den Namen eines kompatiblen Wi-Fi-Netzwerks zur Verbindung wählen.	Ist WiFi auf dem Apple TV sichtbar?					
+$flow.wifi.WifiVisibleOnDevice		Ist WiFi auf dem Gerät sichtbar?					
+$flow.wifi._MoveCloseUnplugRepeater		Sich der Box nähern und sicherstellen, dass kein WiFi-Repeaters in Reichweite ist.	box/getClose				
+$flow.lan.TestWithAppleTV							

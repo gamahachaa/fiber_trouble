@@ -13,6 +13,8 @@ class End extends Action
 	{
 		this._nextProcesses = [new Intro()];
 		super.create();
+		Main.track.setResolution();
+		Main.track.send();
 	}
 	
 }

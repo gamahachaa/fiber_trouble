@@ -6,3 +6,4 @@ $voipCopyPaste	Ctrl+C zum Kopieren
 $needUpdate	Neue Version verfügbar. Dieses Dialogfenster schliessen und den Browser aktualisieren. (F5).		
 $describeIssue	Das Anliegen des Kunden beschreiben:		
 $cycleTime	Geschätzte Bearbeitungszeit: <X> Tag(e)		
+$summary	Zusammenfassung		

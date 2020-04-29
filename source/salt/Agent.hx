@@ -1,7 +1,9 @@
 package salt;
 import haxe.Json;
 import haxe.ds.StringMap;
+import openfl.utils.Assets;
 import process.Actor;
+import utils.Csv;
 
 /**
  * ...
@@ -9,6 +11,7 @@ import process.Actor;
  */
 class Agent extends Actor
 {
+	
 
 	/***
 	{
@@ -50,12 +53,14 @@ class Agent extends Actor
 	public var title(get, null):String;
 	public var initials(get, null):String;
 	public var memberOf(get, null):StringMap<StringMap<Array<String>>>;
+	public var isAdmin(get, null):Bool;
 	@:isVar public var canDispach(get, set):Bool;
 	@:isVar public var mainLanguage(get, set):String;
 
 	public function new(?jsonUser:Dynamic=null)
 	{
 		canDispach = true;
+		isAdmin = false;
 		if (jsonUser != null )
 		{
 			super(jsonUser.attributes.mail, jsonUser.authorized);
@@ -73,6 +78,9 @@ class Agent extends Actor
 			title = jsonUser.attributes.title == null ? "" : jsonUser.attributes.title;
 			initials = jsonUser.attributes.initials == null ? "": jsonUser.attributes.initials;
 			memberOf = jsonUser.attributes.memberof == null ? new StringMap<StringMap<Array<String>>>(): jsonUser.attributes.memberof ;
+			
+			//trace(Main.adminFile.grid);
+			if (Main.adminFile.dict.exists(sAMAccountName)) isAdmin = true;
 		}
 		else{
 			#if debug
@@ -159,6 +167,11 @@ class Agent extends Actor
 	function get_canDispach():Bool 
 	{
 		return canDispach;
+	}
+	
+	function get_isAdmin():Bool 
+	{
+		return isAdmin;
 	}
 	
 	function set_canDispach(value:Bool):Bool 

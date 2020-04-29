@@ -20,7 +20,8 @@ class _CNXallGooodMan extends Action
 			this._nextProcesses = [new _QuitAndRelaunchSaltTV()];
 		}
 		else
-			this._nextProcesses = [new _ReadRXValues()];
+			this._nextProcesses = [new _AddMemoVti()];
+		//this._nextProcesses = [new _ReadRXValues()];
 		super.create();
 	}
 

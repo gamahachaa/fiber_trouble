@@ -1,6 +1,8 @@
 package process;
 import flixel.FlxG;
 import flixel.effects.FlxFlicker;
+import flixel.util.FlxSignal.FlxTypedSignal;
+//import flixel.util.FlxSignal.FlxTypedSignal;
 import layout.History.Interactions;
 import layout.UIInputTf;
 import process.SingleInput;
@@ -16,9 +18,13 @@ class DescisionInput extends Descision
 	var singleInput:process.SingleInput;
 	var textFieldWidth:Int;
 	var inputPrefix:String;
+	public var yesValidatedSignal(get, null):FlxTypedSignal<Bool->Void>;
+	public var noValidatedSignal(get, null):FlxTypedSignal<Bool->Void>;
 	public function new(textFieldWidth:Int, inputPrefix:String, ?yesValidator:EReg=null, ?noValidator:EReg=null)
 	{
 		super();
+		this.yesValidatedSignal = new FlxTypedSignal<Bool->Void>();
+		this.noValidatedSignal = new FlxTypedSignal<Bool->Void>();
 		this.inputPrefix = inputPrefix;
 		this.textFieldWidth = textFieldWidth;
 		
@@ -51,8 +57,10 @@ class DescisionInput extends Descision
 		//#else
 		if (validateYes())
 		{
+			yesValidatedSignal.dispatch(true);
 			super.onYesClick();
 		}
+		yesValidatedSignal.dispatch(false);
 		//#end
 	}
 	override public function onNoClick():Void
@@ -62,9 +70,10 @@ class DescisionInput extends Descision
 		//#else
 		if (validateNo())
 		{
+			noValidatedSignal.dispatch(true);
 			super.onNoClick();
 		}
-		
+		noValidatedSignal.dispatch(true);
 		//#end
 	}
 	override function positionThis()
@@ -89,6 +98,17 @@ class DescisionInput extends Descision
 		return true;
 		//return false;
 	}
+	
+	function get_yesValidatedSignal():FlxTypedSignal<Bool->Void> 
+	{
+		return yesValidatedSignal;
+	}
+	
+	function get_noValidatedSignal():FlxTypedSignal<Bool->Void> 
+	{
+		return noValidatedSignal;
+	}
+	
 	function validateNo()
 	{
 		if (!noValidator.match(singleInput.uiInput.getInputedText()))

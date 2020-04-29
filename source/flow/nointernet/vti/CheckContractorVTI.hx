@@ -25,7 +25,8 @@ class CheckContractorVTI extends DescisionInput
 		var regY:EReg = ~/^41\d{9}$/i;
 		//super(270, "VoIP N°");
 		inputs = [];
-		super(150, "VoIP N°",regY);
+		super(150, "VoIP N°", regY);
+		this.yesValidatedSignal.add(canITrack);
 	}
 	override public function update(elapsed)
 	{
@@ -69,7 +70,7 @@ class CheckContractorVTI extends DescisionInput
 			{
 				Main.track.setActivity("no-internet");
 			}
-			else if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes))
+			else if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes) || Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid))
 			{
 				Main.track.setActivity("slow-internet");
 			}
@@ -93,22 +94,18 @@ class CheckContractorVTI extends DescisionInput
 			Main.customer.iri = cID == "" ? "39999999": cID;
 			Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
 		#else
-			if (Main.DEBUG) {
-				//Main.customer.iri = cID == "" ? "39999999": cID;
-				//Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
-				Main.customer.iri = cID;
-				Main.customer.voIP = voipSO;
+			if (Main.DEBUG && Main.user.isAdmin) {
+				Main.customer.iri = cID == "" ? "39999999": cID;
+				Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
+				//Main.customer.iri = cID;
+				//Main.customer.voIP = voipSO;
 			}
 			else{
 				Main.customer.iri = cID;
 				Main.customer.voIP = voipSO;
 			}
 		#end
-		Main.track.setVerb("initialized");
-		Main.track.setStatementRef(null);
-		Main.track.setCustomer();
-		Main.track.send();
-		Main.track.setVerb("resolved");
+		
 		super.onYesClick();
 	}
 	override public function setStyle()
@@ -121,7 +118,7 @@ class CheckContractorVTI extends DescisionInput
 		#if debug
 			return true;
 		#end
-		//if (Main.DEBUG) return true;
+		if (Main.DEBUG && Main.user.isAdmin) return true;
 		if (!contractorEreg.match( vtiContractorUI.getInputedText() ) )
 		{
 			//vtiContractorUI._labelValidator = Main.tongue.get("$" + this._name + "_YES", "validators");
@@ -136,6 +133,18 @@ class CheckContractorVTI extends DescisionInput
 	{
 		super.positionThis();
 		vtiContractorUI.positionMe(this.singleInput.uiInput.inputtextfield, 4, bottom);
+	}
+	function canITrack(go:Bool)
+	{
+		if (go)
+		{
+			Main.track.setVerb("initialized");
+			Main.track.setStatementRef(null);
+			Main.track.setCustomer();
+			Main.track.send();
+			Main.track.setVerb("resolved");
+		}
+		
 	}
 	function whoHasFocus():Int
 	{

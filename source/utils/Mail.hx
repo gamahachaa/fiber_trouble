@@ -204,7 +204,7 @@ class Mail
 			bodyList += "<li>";
 			bodyList += '${i.processTitle} : <strong>${i.iteractionTitle}</strong>';
 			bodyList += "<br/><em>";
-			bodyList += getItInEnglsh(i);
+			if(Main.user.mainLanguage != "en-GB") bodyList += getItInEnglsh(i);
 			bodyList += "</em></li>";
 			//bodyList += Main.tongue.get("$"+i.processName + "_TITLE","data") + " : " + Main.tongue.get(i.processName,"data")}:${i.interaction}</li>';
 			

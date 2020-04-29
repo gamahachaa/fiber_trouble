@@ -1,6 +1,7 @@
 package process;
 import flixel.FlxG;
 import flixel.effects.FlxFlicker;
+import flixel.util.FlxSignal.FlxTypedSignal;
 import layout.History.Interactions;
 //import layout.UIInputTf;
 
@@ -16,9 +17,12 @@ class ActionInput extends Action
 	var singleInput:SingleInput;
 	var textFieldWidth:Int;
 	var inputPrefix:String;
+	public var nextValidatedSignal(get, null):FlxTypedSignal<Bool->Void>;
 	public function new(textFieldWidth:Int, inputPrefix:String, ?validator:EReg=null)
 	{
 		super();
+		nextValidatedSignal = new FlxTypedSignal<Bool->Void>();
+		
 		this.inputPrefix = inputPrefix;
 		this.textFieldWidth = textFieldWidth;
 		
@@ -53,8 +57,10 @@ class ActionInput extends Action
 		#else 
 		if (validate())
 		{
+			nextValidatedSignal.dispatch(true);
 			super.onClick();
 		}
+		nextValidatedSignal.dispatch(false);
 		#end
 	}
 	override function positionThis()
@@ -72,6 +78,12 @@ class ActionInput extends Action
 		var inputDisplay = singleInput.uiInput.getInputedText().length>0?" (" + singleInput.uiInput._label + " " + singleInput.uiInput.getInputedText() + ")":"";
 		super.pushToHistory( inputDisplay, interactionType);
 	}
+	
+	function get_nextValidatedSignal():FlxTypedSignal<Bool->Void> 
+	{
+		return nextValidatedSignal;
+	}
+	
 	function validate()
 	{
 		if (!validator.match(singleInput.uiInput.getInputedText()))

@@ -2,6 +2,7 @@ package flow.nointernet.customer;
 
 
 import flow.salttv.IsAppleTVvisibleOnTVScreen;
+import flow.salttv._InstallSpeedTestAplleTV;
 import flow.stability._OpenSpeedTest;
 import process.Action;
 
@@ -19,10 +20,11 @@ class _TellCustomerAllOkWithFiberCnx extends Action
 		}
 		else if (Main.HISTORY.isInHistory("flow.Intro", Yes))
 		{
-			if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes))
+			if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes) || Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid))
 			{
 				// slow internet
-				this._nextProcesses = [new _OpenSpeedTest()];
+				//this._nextProcesses = [new _OpenSpeedTest()];
+				this._nextProcesses = [new _InstallSpeedTestAplleTV()];
 			}
 			else{
 				this._nextProcesses = [new ConnectionType()];

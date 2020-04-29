@@ -18,7 +18,7 @@ class IsTicketOpened extends Descision
 	override public function create():Void
 	{
 		this._nextYesProcesses = [new IsTechTicket()];
-		if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes))
+		if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes)|| Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid))
 		{
 			this._nextNoProcesses =  [new IconStatusBoxManagement()];
 		}

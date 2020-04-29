@@ -10,15 +10,17 @@ import flixel.text.FlxText.FlxTextFormatMarkerPair;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
 import flow.Intro;
+import flow.all.customer.IsSlowOrKaput;
 import flow.lan._RemoveAllCablesConnectedToBox;
 import flow.nointernet.customer._TellCustomerAllOkWithFiberCnx;
 import flow.nointernet.fiberbox.FiberLedGreenStable;
 import flow.nointernet.postLedChecks._ReadRXValues;
 import flow.nointernet.vti.CheckContractorVTI;
 import flow.nointernet.vti.IconStatusBoxManagement;
-import flow.salttv.IsAppleTVvisibleOnTVScreen;
+import flow.salttv._InstallSpeedTestAplleTV;
 import flow.salttv.IsTVServicesActiveVTI;
 import flow.salttv.ProblemSolved;
+import flow.salttv._InstallSpeedTestAplleTV;
 import flow.salttv._OpenSaltTVApp;
 import flow.swapcable.SwapFiberCable;
 import flow.swapcable._InputShipingAdress;
@@ -74,6 +76,7 @@ class Main extends Sprite
 	static inline var TITLE_FONT:String = "assets/fonts/Lato-Black.ttf";
 	static inline var BASIC_FONT:String = "assets/fonts/Lato-Regular.ttf";
 	
+	public static var adminFile:utils.Csv;
 	public static var TITLE_FMT:BasicFormat = {font:TITLE_FONT, size:24};
 	public static var BASIC_FMT:BasicFormat = {font:BASIC_FONT, size:16};
 	public static var META_FMT:BasicFormat = {font:TITLE_FONT, size:16};
@@ -120,6 +123,10 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
+		adminFile = new Csv(Assets.getText("assets/data/admins.txt"),",",false);
+		//trace(adminFile);
+		COOKIE = new FlxSave();
+		COOKIE.bind("nointernet-20200421.user");
 		//LRS = new LearninLocker("https://qast.test.salt.ch/data/xAPI", "7220703c1ebc99bffa69dedb25b36200c2be5b85", "d0812cafc803e7e676f571faf2526240318f844c");
 		//LRS.testConnection();
 		//LRS.httpData.add(onLRSdata);
@@ -153,7 +160,8 @@ class Main extends Sprite
 		//addChild(new FlxGame(1400, 880, IsAppleTVvisibleOnTVScreen, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _RemoveAllCablesConnectedToBox, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, WifiOnInDashboard, 1, 30, 30, true, true));
-		addChild(new FlxGame(1400, 880, _OpenSaltTVApp, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, _OpenSaltTVApp, 1, 30, 30, true, true));
+		addChild(new FlxGame(1400, 880, _InstallSpeedTestAplleTV, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _ReadRXValues, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, FiberLedGreenStable, 1, 30, 30, true, true));
@@ -182,10 +190,11 @@ class Main extends Sprite
 		{
 			Browser.window.alert("I know your browser is the best on this planet\n\n.But this tool is only fully tested with Firefox...\n\nIt should work with all major browsers but we cannot guarantee all functionalities @100%. \n\nThanks you to acknowledge this.");
 		}
+		
 		addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
-
+		
 		#end
-		setUpSystemDefault();
+		//
 	}
 	
 	public function onLRSdata(data:String) 
@@ -197,11 +206,11 @@ class Main extends Sprite
 	{
 		THEME = THEME == WHITE_THEME ? DARK_THEME: WHITE_THEME;
 	}
-	function setUpSystemDefault()
+	static public function setUpSystemDefault(?block:Bool = false )
 	{
 		FlxG.sound.soundTrayEnabled = false;
-		FlxG.mouse.useSystemCursor = true;
-		FlxG.keys.preventDefaultKeys = [FlxKey.BACKSPACE, FlxKey.TAB];
+		FlxG.mouse.useSystemCursor = block;
+		FlxG.keys.preventDefaultKeys = block ? [FlxKey.BACKSPACE, FlxKey.TAB] : [FlxKey.TAB];
 		//FlxG.keys.preventDefaultKeys = [FlxKey.TAB];
 	}
 	

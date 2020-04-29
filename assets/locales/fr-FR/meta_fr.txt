@@ -6,3 +6,4 @@ $voipCopyPaste	Ctrl+C pour le copier
 $needUpdate	Une nouvelle version est disponible. Quand tu fermera cette boîte de dialogue la page se rafraîchira pour la charger.		
 $describeIssue	Décris le souci du client :		
 $cycleTime	Temps de traitement estimé : <X> jours(s)		
+$summary	Résumé		

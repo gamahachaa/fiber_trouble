@@ -6,3 +6,4 @@ $voipCopyPaste	Ctrl+C to copy
 $needUpdate	A new version is available. Close this dialog box and refresh your browser (F5).		
 $describeIssue	Describe the customer's issue:		
 $cycleTime	Estimated time for treatment: <X> day(s)		
+$summary	Summary		

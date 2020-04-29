@@ -14,8 +14,7 @@ class Csv extends CSV
 	{
 		super(input, delimeter, quoted);
 		dict = new Map<String,Map<String, String>>();
-		csvToDict();
-		
+		csvToDict();	
 	}
 	
 	function get_dict():Map<String, Map<String, String>> 

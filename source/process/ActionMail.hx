@@ -27,7 +27,9 @@ class ActionMail extends Action
 		super();
 		this.ticket = ticket;
 		mail = new Mail(ticket, this);
+		#if debug
 		trace(ticket);
+		#end
 		//mail.currentProcess = this;
 		//mail.statusSignal.add(onMailStatus);
 
@@ -55,10 +57,12 @@ class ActionMail extends Action
 		tf.borderColor = SaltColor.BLACK;
 		tf.background = true;
 		tf.defaultTextFormat = textFieldFormat;
+		// special Texfield  positioning
 		FlxG.addChildBelowMouse( tf );
+		//
 		tf.x = 10;
 		tf.y = 10;
-		if(Main.DEBUG) _detailTxt += '\n- $eta'; // en test seulement pour l'instant
+		//if(Main.DEBUG) _detailTxt += '\n- $eta'; // en test seulement pour l'instant
 		_detailTxt += prepareHistory();
 		super.create();
 		//FlxG.keys.preventDefaultKeys = [ FlxKey.TAB];

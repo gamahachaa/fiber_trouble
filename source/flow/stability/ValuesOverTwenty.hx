@@ -1,5 +1,6 @@
 package flow.stability;
 
+import flow.all.fiberbox._LoopResetFiberBox;
 import process.Descision;
 
 /**
@@ -15,7 +16,7 @@ class ValuesOverTwenty extends Descision
 		//this._detailTxt = "";
 		//this._illustration = "";
 		this._nextYesProcesses = [ new _CNXallGooodMan()];
-		this._nextNoProcesses = [ new _RedoTestAndWthOtherNTW(),new _BadOutstandingFlows()];
+		this._nextNoProcesses = [ new _RedoTestAndWthOtherNTW(), new _LoopResetFiberBox(new _SelectSaltServer() ),new _BadOutstandingFlows()];
 		super.create();
 	}
 	

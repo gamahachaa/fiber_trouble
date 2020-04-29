@@ -18,7 +18,7 @@ $flow.equipment.IsPOMOrderPhaseAccepted	Voir dans : <N><T>1.  VTI<N><T>2.  Vie d
 $flow.equipment.IsStatusDelivered		Est-ce que le statut est <Q>Delivered<Q> ?					
 $flow.equipment.IsStatusReturned		Est-ce que le statut est <Q>Returned<Q> ?					
 $flow.equipment.IsVTILaposteSendBoxMsgVisible	Voir dans : <N><T>1.  VTI<N><T>2.  Vie du Client <N><T>3. Tab Historique des actes (tab principale)<N><T>4. <em>LA POSTE send box parcel<em>	Il y a dans VTI <Q>LA POSTE send box parcel<Q> ?					
-$flow.equipment.IsWhishDateWayAhead		La date d’activation <Q>whish date<Q> est dans plus de 15 jours ?		Oui > 15j	Non		
+$flow.equipment.IsWhishDateWayAhead		La date d’activation <Q>wish date<Q> est dans plus de 15 jours ?		Oui > 15j	Non		
 $flow.equipment.VTIMailCliackAcceptSent	Voir dans : <N><T>1.  VTI<N><T>2.  Information Contractant <N><T>3. Owner<N><T>4. <em>Validation de l'adresse email Ok<em>	Vérifier que l'adresse e-mail est validée	vti/emailvalidatedfr	Ok	Pas validée		
 $flow.equipment.VtiTrackParcelVisible	Voir dans : <N><T>1.  VTI<N><T>2.  Vie du Client <N><T>3. Tab Historique des actes (tab principale)<N><T>4. <em>POST Track and Trace for Send Box : XX.XX.XXXXXX.XXXXXXXX pour ...<em>	Le numéro de colis de la Poste est dans VTI ?	vti/vtiPostTracking				
 $flow.equipment.WasParcelInRothenbug		Est-ce-que le statut est <Q>Deliverd byRothenbug<Q> ?		Deliverd byRothenbug	Non		

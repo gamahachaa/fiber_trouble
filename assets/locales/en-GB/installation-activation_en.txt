@@ -12,3 +12,4 @@ $flow.activation.WhereWasOrderDone		Where was the order placed?		Online or Door-
 $flow.activation._GetAdresAndElligibility		Check the address and its eligibility to Fibre					https://qoof.salt.ch/de/customer-process/discover/services/availability_check#in-den-salt-stores-%C3%BCber-den-kundendienst
 $flow.activation.ActivationDoneEnd	"Due to a technical error, your order has been lost in our systems; we will contact you in the following hours."	End	general/end				
 $flow.activation.HaveStoreReciept		Fiber was purchased in a Store.<N>Did the customer keep the receipt?		Order in Store	Online order		
+flow.installation.IsOtoPortWrong		Does the customer's OTO socket have the VTI port number?					

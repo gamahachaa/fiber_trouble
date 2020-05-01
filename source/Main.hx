@@ -161,7 +161,7 @@ class Main extends Sprite
 		//addChild(new FlxGame(1400, 880, _RemoveAllCablesConnectedToBox, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, WifiOnInDashboard, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _OpenSaltTVApp, 1, 30, 30, true, true));
-		addChild(new FlxGame(1400, 880, _InstallSpeedTestAplleTV, 1, 30, 30, true, true));
+		addChild(new FlxGame(1400, 880, IconStatusBoxManagement, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _ReadRXValues, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, FiberLedGreenStable, 1, 30, 30, true, true));

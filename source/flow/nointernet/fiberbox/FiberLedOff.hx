@@ -1,6 +1,7 @@
 package flow.nointernet.fiberbox;
 
-import flow.installation._EnsureCorrectPortPlug;
+import flow.installation.OTOPlugDamagedNotClicking;
+//import flow.installation._EnsureCorrectPortPlug;
 import process.Descision;
 
 /**
@@ -13,7 +14,7 @@ class FiberLedOff extends Descision
 	override public function create()
 	{
 		this._nextNoProcesses = [new FiberLedGreenStable()];
-		this._nextYesProcesses = [new _EnsureCorrectPortPlug()];
+		this._nextYesProcesses = [new OTOPlugDamagedNotClicking()];
 		super.create();
 	}
 	

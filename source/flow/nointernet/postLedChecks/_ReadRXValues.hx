@@ -1,6 +1,7 @@
 package flow.nointernet.postLedChecks;
 
 //import flow.nointernet.customer.FiberCableChanged;
+import flow.nointernet.customer.FiberCableChanged;
 import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.so.tckets._SwapBox;
 import flow.stability._CreateSOTechModemSpeed;
@@ -13,7 +14,7 @@ class _ReadRXValues extends TripletInput
 	public function new() 
 	{
 		//super(100, "RX" , new EReg("(^-?[0-9,.]{1,6}$)|(^aaa$)","i"));
-		super(100, "RX" , new EReg("(^-[0-9,.]{1,6}$)|(^aaa$)","i"));
+		super(100, "RX" , new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)|(^aaa$)","i"));
 	}
 	override public function create():Void
 	{
@@ -28,5 +29,12 @@ class _ReadRXValues extends TripletInput
 		this._nextMidProcesses = [new _SwapBox()];
 		super.create();
 	}
-	
+	override public function onYesClick()
+	{
+		if (Std.parseFloat(this.singleInput.uiInput.inputtextfield.text) < -20.99)
+		{
+			this._nextYesProcesses = [new FiberCableChanged()];
+		}
+		super.onYesClick();
+	}
 }

@@ -6,7 +6,7 @@ import process.Action;
  * ...
  * @author ...
  */
-class _RebootBox extends Action 
+class _RebootBox extends Action
 {
 
 	override public function create():Void

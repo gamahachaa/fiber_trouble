@@ -12,4 +12,4 @@ $flow.activation.WhereWasOrderDone		Où s'est faite la commande ?		En ligne ou p
 $flow.activation._GetAdresAndElligibility		Vérifier l'adresse et la disponibilité de la fibre optique de Salt					https://qoof.salt.ch/fr/customer-process/discover/services/availability_check#dans-les-salt-stores-par-le-service-client%C3%A8le
 $flow.activation.ActivationDoneEnd	Suite à un problème technique votre commande s'est perdue dans nos systèmes, nous allons vous contacter dans les heures qui suivent.	Fin	general/end				
 $flow.activation.HaveStoreReciept		Fiber a été souscrit dans un Salt store.<N>Le client a gardé le ticket de caisse avec lui ?		Souscription au store	Souscription en ligne		
-flow.installation.IsOtoPortWrong		La prise OTO du client a bien le numéro VTI?					
+$flow.installation.IsOtoPortWrong		La prise OTO du client a bien le numéro VTI?					

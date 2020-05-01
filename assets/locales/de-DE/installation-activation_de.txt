@@ -12,4 +12,4 @@ $flow.activation.WhereWasOrderDone		Wo wurde die Bestellung abgeschlossen?		Onli
 $flow.activation._GetAdresAndElligibility		Adresse und Verfügbarkeit der Glasfaser an der Adresse prüfen					https://qoof.salt.ch/de/customer-process/discover/services/availability_check#in-den-salt-stores-%C3%BCber-den-kundendienst
 $flow.activation.ActivationDoneEnd	"Aufgrund eines technischen Fehlers ist Ihre Bestellung in unseren Systemen verloren gegangen; wir werden Sie in den kommenden Stunden kontaktieren."	Ende	general/end				
 $flow.activation.HaveStoreReciept		Fiber wurde in einem Store erworben.<N>Hat der Kunde den Beleg behalten?		Bestellung im Store	Online Bestellung		
-flow.installation.IsOtoPortWrong		Verfügt der OTO-Anschluss des Kunden über die VTI-Portnummer?					
+$flow.installation.IsOtoPortWrong		Verfügt der OTO-Anschluss des Kunden über die VTI-Portnummer?					

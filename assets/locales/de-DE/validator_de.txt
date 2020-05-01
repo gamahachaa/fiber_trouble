@@ -1,3 +1,4 @@
 flag	YES	NO	MID
 $flow.nointernet.vti.CheckContractorVTI	VoIP(Format=41123456789)		
-$flow.nointernet.postLedChecks._ReadRXValues			(RX-Wärte, aaa: nur Apple TV)
+$flow.nointernet.postLedChecks._ReadRXValues	(RX-Wärte, aaa: nur Apple TV)		
+$flow.nointernet.fiberbox.NormalRxValues	(Valeur RX)	(Valeur RX)	(Valeur RX)		

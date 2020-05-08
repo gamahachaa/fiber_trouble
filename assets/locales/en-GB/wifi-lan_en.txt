@@ -21,4 +21,6 @@ $flow.wifi.WiFiPasswordAccepted		Is the WiFi password accepted?					https://qoof
 $flow.wifi.WifiVisibleByAppleTV	(Disconnect the LAN cable from the Apple TV first)<N><N>Apple TV -> Settings -> Network -> Wi-Fi.<N>Choose the name of a compatible Wi-Fi network to join.	Is WiFi visible on the Apple TV?					
 $flow.wifi.WifiVisibleOnDevice		Is WiFi visible on the device?					
 $flow.wifi._MoveCloseUnplugRepeater		Get close to the box and make sure you are not within range of a WiFi repeater	box/getClose				
-$flow.lan.TestWithAppleTV
+$flow.lan.TestWithAppleTV		Tester avec l'AppleTV en LAN					
+$flow.wifi._ConnectWiFIToFiveGH		Se connecter au réseau 5Gz					
+$flow.wifi._ConnectWiFIToTwoDotFourGH		Se connecter au réseau 2.4Gz					

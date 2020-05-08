@@ -1,22 +1,31 @@
 package flow.nointernet.fiberbox;
 
 import flow.installation.OTOPlugDamagedNotClicking;
-import process.DescisionInput;
+import process.DescisionMultipleInput;
 //import flow.installation._EnsureCorrectPortPlug;
 import flow.nointernet.customer._TellCustomerAllOkWithFiberCnx;
-import process.Descision;
-
+import process.DescisionMultipleInput;
+import layout.UIInputTfCore;
 /**
  * ...
  * @author ...
  Changesd title to "RX values are normal ?"
  */
-class NormalRxValues extends DescisionInput
+class NormalRxValues extends DescisionMultipleInput
 {
 	public function new() 
 	{
 		//super(100, "RX" , new EReg("(^-?[0-9,.]{1,6}$)|(^aaa$)","i"));
-		super(100, "RX" , new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)","i"));
+		//super(100, "RX" , new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)", "i"), new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)", "i"));
+		super([
+		{
+			ereg: new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)","i"),
+			input:{
+				width:100,
+				prefix:"RX",
+				position:bottom
+			}
+		}]);
 	}
 	override public function create()
 	{

@@ -1,5 +1,6 @@
 package flow.stability;
 
+import flow.wifi._ConnectWiFIToFiveGH;
 import process.Action;
 
 /**
@@ -14,7 +15,12 @@ class _OpenSpeedTest extends Action
 		//this._titleTxt = "Ouvrir salt.speedtest.net";
 		//this._detailTxt = "Avec dans un navigateur ou depuis installer App";
 		//this._illustration = "";
-		this._nextProcesses = [new _SelectSaltServer()];
+		if (Main.HISTORY.isInHistory("flow.stability.HasLANDevice", No))
+		{
+			this._nextProcesses = [new _ConnectWiFIToFiveGH()];
+		}
+		else
+			this._nextProcesses = [new _SelectSaltServer()];
 		super.create();
 	}
 	

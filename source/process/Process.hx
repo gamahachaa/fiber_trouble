@@ -197,11 +197,15 @@ class Process extends FlxState
 			voip.insert(3, " ");
 			
 			var displayVoip = voip.join("");
-			voipReminder.text = '$displayVoip (${Main.customer.iri})\n' + Main.tongue.get("$voipCopyPaste_UI1", "meta");
+			voipReminder.text = '$displayVoip (${Main.customer.iri})\n';
+			//voipReminder.text = '$displayVoip (${Main.customer.iri})\n' + Main.tongue.get("$voipCopyPaste_UI1", "meta");
 			registerButton(clipBoardBtn);
-			add(clipBoardBtn);
+			//add(clipBoardBtn);
 			add(voipReminder);
-			Browser.document.addEventListener("copy", function(e){e.clipboardData.setData('text/plain', Main.customer.voIP);e.preventDefault();});
+			/**
+			 * @TODO keep clipboard trick to fill clipboard with data
+			 */
+			//Browser.document.addEventListener("copy", function(e){e.clipboardData.setData('text/plain', Main.customer.voIP);e.preventDefault();});
 		}
 		if (Main.HISTORY.history.length > 0)
 		{
@@ -227,7 +231,7 @@ class Process extends FlxState
 	}
 	function onClipBoardClick() 
 	{
-		Browser.document.execCommand("copy");
+		//Browser.document.execCommand("copy");
 		//trace('Browser.document.execCommand("copy")');
 	}
 	
@@ -375,9 +379,10 @@ class Process extends FlxState
 		return t.indexOf("$") == 0 || StringTools.trim(t) == "" ? txt : t;
 	}
 
-	function pushToHistory(buttonTxt:String, interactionType:Interactions):Void
+	function pushToHistory(buttonTxt:String, interactionType:Interactions,?values:Map<String,Dynamic>=null):Void
 	{
-		Main.HISTORY.add(_name, interactionType, _titleTxt, buttonTxt);
+		Main.HISTORY.add(_name, interactionType, _titleTxt, buttonTxt, values);
+		//trace(Main.HISTORY.history);
 		// HISTORY.push({processName : this._name, interaction: buttonTxt});
 	}
 

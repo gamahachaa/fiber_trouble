@@ -11,33 +11,6 @@ import utils.Csv;
  */
 class Agent extends Actor
 {
-	
-
-	/***
-	{
-	authorized : true,
-	iri : Bruno.Baudry@salt.ch,
-	sAMAccountName : bbaudry,
-	firstName : Bruno,
-	sirName : Baudry,
-	mobile : +41 78 787 8673,
-	company : Salt Mobile SA,
-	workLocation : Biel,
-	division : Customer Operations,
-	department : Process & Quality,
-	directReports : CN=qook,OU=Users,OU=Domain-Users,DC=ad,DC=salt,DC=ch,
-	accountExpires : 0,
-	mainLanguage : en-GB,
-	title : Manager Knowledge & Learning,
-	initials : BB,
-	memberOf : {
-		ch.salt.ad : {
-			Domain-Users.Users : [SG-PasswordSync,Customer Operations - Knowledge - Management,Customer Operations - Direct Reports,Customer Operations - Fiber Back Office,DOLPHIN_REC,Application-GIT_SALT-Visitor,Application-GIT_SALT-Operator,SG-OCH-WLAN_Users,SG-OCH-EnterpriseVault_DefaultProvisioningGroup,Entrust_SMS,MIS Mobile Users,GI-EBU-OR-CH-MobileUsers],
-			Domain-Security-Groups : [RA-EasyConnect-Web-Mobile-Qook,Exchange_Customer Operations Management_ud,Exchange_CustomerCareServiceDesign_ud],
-			Domain-Distribution-Groups : [Exchange_CO_KnowledgeAndTranslationMgmt_gd,Exchange_co training admin_ud,Exchange_Floor Marshalls Biel_gd]
-		}
-	}
-	**/
 
 	public var sAMAccountName(get, null):String;
 	public var firstName(get, null):String;

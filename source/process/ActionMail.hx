@@ -111,7 +111,7 @@ class ActionMail extends Action
 		var t = "\n\nSummrary :\n";
 		for ( i in hist )
 		{
-			t += i.processTitle + " :: " + i.iteractionTitle + "\n";
+			t += i.processTitle + " :: " + i.iteractionTitle + (i.values==null? "": i.values.toString()) + "\n" ;
 		}
 		trace(t);
 		return t;

@@ -1,18 +1,27 @@
 package flow.activation;
-
-import process.DescisionInput;
+import layout.UIInputTfCore;
+import process.DescisionMultipleInput;
 
 /**
  * ...
  * @author bb
  */
-class WhereWasOrderDone extends DescisionInput 
+class WhereWasOrderDone extends DescisionMultipleInput 
 {
 
 	public function new() 
 	{
-		super(280, "Store");
-		
+		//super(280, "Store");
+		super([
+		{
+			ereg: new EReg("[\\s\\S]*","i"),
+			input:{
+				width:200,
+				prefix:"Store",
+				position:bottom
+			}
+		}
+		]);
 	}
 	override public function create()
 	{

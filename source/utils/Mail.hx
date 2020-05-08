@@ -133,7 +133,11 @@ class Mail
 		// do not create ticket in training mode
 		if (Main.user.canDispach)
 		{
+			#if debug
+			trace("testing");
+			#else
 			http.request(true);
+			#end
 		}
 		else
 		{
@@ -203,6 +207,10 @@ class Mail
 		{
 			bodyList += "<li>";
 			bodyList += '${i.processTitle} : <strong>${i.iteractionTitle}</strong>';
+			if (i.values != null) {
+				
+				bodyList += i.values.toString();
+			}
 			bodyList += "<br/><em>";
 			if(Main.user.mainLanguage != "en-GB") bodyList += getItInEnglsh(i);
 			bodyList += "</em></li>";

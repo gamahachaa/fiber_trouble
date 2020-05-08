@@ -22,6 +22,9 @@ import flow.salttv.IsTVServicesActiveVTI;
 import flow.salttv.ProblemSolved;
 import flow.salttv._InstallSpeedTestAplleTV;
 import flow.salttv._OpenSaltTVApp;
+import flow.stability.HasAppleTV;
+import flow.stability._OpenSpeedTest;
+import flow.stability._SelectSaltServer;
 import flow.swapcable.SwapFiberCable;
 import flow.swapcable._InputShipingAdress;
 import flow.wifi.WifiOnInDashboard;
@@ -35,7 +38,7 @@ import utils.XapiTracker;
 //import lrs.vendors.LearninLocker;
 import openfl.Assets;
 import openfl.display.Sprite;
-import process.ActionAdress;
+//import process.ActionAdress;
 import process.Triplet;
 import salt.Agent;
 import salt.Customer;
@@ -59,7 +62,8 @@ typedef ThemeColor =
 	var interaction:FlxColor;
 	var bg:FlxColor;
 }
-typedef Ticket = {
+typedef Ticket =
+{
 	var domain:String;
 	var number:String;
 	var queue:String;
@@ -75,7 +79,7 @@ class Main extends Sprite
 	public static var track:XapiTracker;
 	static inline var TITLE_FONT:String = "assets/fonts/Lato-Black.ttf";
 	static inline var BASIC_FONT:String = "assets/fonts/Lato-Regular.ttf";
-	
+
 	public static var adminFile:utils.Csv;
 	public static var TITLE_FMT:BasicFormat = {font:TITLE_FONT, size:24};
 	public static var BASIC_FMT:BasicFormat = {font:BASIC_FONT, size:16};
@@ -83,9 +87,8 @@ class Main extends Sprite
 	public static var INTERACTION_FMT:BasicFormat = {font:TITLE_FONT, size:20};
 	//public static var TECH_LOW:MailReciepient = {to:"fiber.tech.qtool.low@salt.ch", fullName:"FIBER_LOW_TECH"};
 	//public static var TECH_HIGH:MailReciepient = {to:"fiber.tech.qtool@salt.ch", fullName:"FIBER_TECH"};
-	
+
 	//public static var FIX_511:Ticket = {domain:'FIX', number:'511',queue:'FIBER_WRONG_OTO_SO', desc:'5.Technical 1.Optical connection / OTO 1.Wrong OTO connected', email:'fiber.tech.qtool@salt.ch'};
-	
 
 	public static var VERSION:String;
 	public static var VERSION_TRACKER:VersionTracker;
@@ -135,6 +138,7 @@ class Main extends Sprite
 		DEBUG = LOCATION.origin.indexOf("qook.test.salt.ch") > -1;
 		VERSION_TRACKER = new VersionTracker( LOCATION.origin + LOCATION.pathname+ "php/version/index.php");
 		THEME = DARK_THEME;
+		
 		Main.customer = new Customer();
 		tongue.init("fr-FR",
 					function()
@@ -147,21 +151,23 @@ class Main extends Sprite
 		#if debug
 		//var data = Assets.getText("assets/data/20200402_CycleTimeExpectedNextWeek_BB.csv");
 		//var csv:Csv = new Csv(data, ";", false);
-		
+
 		//trace(data);
 		//trace(csv.fields);
 		//trace(csv.grid);
 		//trace(csv.dict);
 		Main.user = new Agent();
 		//addChild(new FlxGame(1400, 880, SwapFiberCable, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, CheckContractorVTI, 1, 30, 30, true, true));
+		addChild(new FlxGame(1400, 880, CheckContractorVTI, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _InputShipingAdress, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, IsTVServicesActiveVTI, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, IsAppleTVvisibleOnTVScreen, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _RemoveAllCablesConnectedToBox, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, WifiOnInDashboard, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _OpenSaltTVApp, 1, 30, 30, true, true));
-		addChild(new FlxGame(1400, 880, IconStatusBoxManagement, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, _SelectSaltServer, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, _OpenSpeedTest, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _ReadRXValues, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, FiberLedGreenStable, 1, 30, 30, true, true));
@@ -184,20 +190,20 @@ class Main extends Sprite
 			//trace(Browser.navigator.userAgent);
 			//trace(Browser.navigator.vendor);
 			//trace(Browser.navigator.vendorSub);
-			
+
 		}
 		if (Browser.navigator.userAgent.indexOf("Firefox") == -1)
 		{
 			Browser.window.alert("I know your browser is the best on this planet\n\n.But this tool is only fully tested with Firefox...\n\nIt should work with all major browsers but we cannot guarantee all functionalities @100%. \n\nThanks you to acknowledge this.");
 		}
-		
+
 		addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
-		
+
 		#end
 		//
 	}
-	
-	public function onLRSdata(data:String) 
+
+	public function onLRSdata(data:String)
 	{
 		trace(data);
 	}
@@ -213,5 +219,5 @@ class Main extends Sprite
 		FlxG.keys.preventDefaultKeys = block ? [FlxKey.BACKSPACE, FlxKey.TAB] : [FlxKey.TAB];
 		//FlxG.keys.preventDefaultKeys = [FlxKey.TAB];
 	}
-	
+
 }

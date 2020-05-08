@@ -21,4 +21,6 @@ $flow.wifi.WiFiPasswordAccepted		Le mot de passe WiFi est accepté ?					https:/
 $flow.wifi.WifiVisibleByAppleTV	(Débrancher le câble LAN de l'AppleTV au préalable)<N><N>Apple TV -> Réglages -> Réseau -> Wi-Fi<N>Choisir le nom d'un réseau Wi-Fi compatible pour connecter.	Le WiFi est visible par l'Apple TV ?					
 $flow.wifi.WifiVisibleOnDevice		Le WiFi est visible sur l'appareil ?					
 $flow.wifi._MoveCloseUnplugRepeater		S'approcher de la Box et s'assurer de ne pas être à portée d'un répéteur WiFi	box/getClose				
-$flow.lan.TestWithAppleTV							
+$flow.lan.TestWithAppleTV		Tester avec l'AppleTV en LAN					
+$flow.wifi._ConnectWiFIToFiveGH		Se connecter au réseau 5Gz					
+$flow.wifi._ConnectWiFIToTwoDotFourGH		Se connecter au réseau 2.4Gz					

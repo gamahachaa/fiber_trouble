@@ -8,3 +8,5 @@ $flow.stability.LanOrWiFi	Based on the connection type used by the customer. 	Te
 $flow.stability.ValuesOverEighty	Values equal or greater 80 Mbps = The connection is working properly.	DOWNLOAD Values higher than or equal to 80 Mbps?		more than 80 Mbps	less than 80 Mbps		
 $flow.stability.ValuesOverTwenty	Values equal or greater 20 Mbps = The connection is working properly.	DOWNLOAD Values higher than or equal to 20 Mbps?		more than 20 Mbps	less than 20 Mbps		
 $flow.stability._CreateSOTechModemSpeed	A ticket [525] will be automatically generated upon advancing to the next step. Do not manually create one (SuperOffice). A copy of the content will be sent to your mailbox.<N><N>Inform that:<N><T>- a technical ticket is forwarded to our technical department for a thorough analysis.<N><T>- he may be contacted.<N><T>- he will receive feedback as soon as possible.<N><T> - <em>the box must always be powered (230V) and plugged in (SFP, Fibre, OTO) during the whole life of a ticket.<em>	Automatic ticket creation [525] in SuperOffice					
+$flow.stability.HasLANDevice		Vous pouvez connecter un appareil en LAN ? 					
+$flow.stability.HasAppleTV		Vous avez une AppleTV ?					

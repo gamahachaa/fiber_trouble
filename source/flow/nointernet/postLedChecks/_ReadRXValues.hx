@@ -5,16 +5,23 @@ import flow.nointernet.customer.FiberCableChanged;
 import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.so.tckets._SwapBox;
 import flow.stability._CreateSOTechModemSpeed;
-//import process.ActionInput;
-import process.TripletInput;
+import process.TripletMultipleInput;
 
 
-class _ReadRXValues extends TripletInput
+class _ReadRXValues extends TripletMultipleInput
 {
 	public function new() 
 	{
 		//super(100, "RX" , new EReg("(^-?[0-9,.]{1,6}$)|(^aaa$)","i"));
-		super(100, "RX" , new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)|(^aaa$)","i"));
+		//super(100, "RX" , new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)|(^aaa$)", "i"));
+		super([{
+			ereg:new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)|(^aaa$)", "i"),
+			input:{
+				width:100,
+				prefix:"RX",
+				position:bottom
+			}
+		}]);
 	}
 	override public function create():Void
 	{
@@ -31,7 +38,8 @@ class _ReadRXValues extends TripletInput
 	}
 	override public function onYesClick()
 	{
-		if (Std.parseFloat(this.singleInput.uiInput.inputtextfield.text) < -20.99)
+		//if (Std.parseFloat(this.singleInput.uiInput.inputtextfield.text) < -20.99)
+		if (Std.parseFloat(this.multipleInputs.inputs.get("RX").getInputedText()) < -20.99)
 		{
 			this._nextYesProcesses = [new FiberCableChanged()];
 		}

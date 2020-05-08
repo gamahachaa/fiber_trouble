@@ -3,6 +3,7 @@ package flow.nointernet.customer;
 
 import flow.salttv.IsAppleTVvisibleOnTVScreen;
 import flow.salttv._InstallSpeedTestAplleTV;
+import flow.stability.HasAppleTV;
 import flow.stability._OpenSpeedTest;
 import process.Action;
 
@@ -24,7 +25,8 @@ class _TellCustomerAllOkWithFiberCnx extends Action
 			{
 				// slow internet
 				//this._nextProcesses = [new _OpenSpeedTest()];
-				this._nextProcesses = [new _InstallSpeedTestAplleTV()];
+				//this._nextProcesses = [new _InstallSpeedTestAplleTV()];
+				this._nextProcesses = [new HasAppleTV()];
 			}
 			else{
 				this._nextProcesses = [new ConnectionType()];

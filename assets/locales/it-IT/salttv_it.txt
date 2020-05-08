@@ -25,3 +25,4 @@ $flow.salttv.WhatAppleTVcnxType	Qual è il tipo di connessione del cliente? 	Com
 $flow.salttv.WhiteLightLids	Se l'alimentazione è corretta, il LED è stabile e bianco	Il LED bianco (luce di stato) dell'Apple TV è acceso? 	tv/statusled	Sì, bianco	Altro		https://support.apple.com/it-it/guide/tv/atvba38a4135/tvos
 $flow.salttv._OpenSaltTVApp		Aprire l'app Salt TV					
 $flow.salttv._LogInWithSwissAppleID		Effettuare il login con un account Apple TV Svizzera					
+$flow.salttv._ConnectAppleTVtoTheLAN		Connecter l'AppleTV an LAN					

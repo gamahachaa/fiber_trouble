@@ -38,7 +38,7 @@ class Login extends FlxState
 	//var pwd:flixel.addons.ui.FlxUIInputText;
 	var pwd: openfl.text.TextField;
 	var _padding:Int = 20;
-	var lang:String;
+	static inline var lang:String = "en-EN";
 	var logo:FlxSprite;
 	var loginTxt:flixel.text.FlxText;
 	var pwdTxt:flixel.text.FlxText;
@@ -46,12 +46,16 @@ class Login extends FlxState
 	var _focused: openfl.display.InteractiveObject;
 	var loginUrl:haxe.Http;
 	var markerFormat:FlxTextFormatMarkerPair;
+	var dummyAgent:salt.Agent;
 	override public function create()
 	{
 		super.create();
+		dummyAgent = cretaDummyAgent();
+		//new Agent();
+		
 		loginUrl = new Http(Main.LOCATION.origin + Main.LOCATION.pathname+ "php/login/index.php" );
 		Main.setUpSystemDefault(false);
-		lang = "en-EN"; // default
+		//lang =  // default
 		//trace(Main.COOKIE);
 		if (Main.COOKIE.data.user != null)
 		{
@@ -171,13 +175,30 @@ class Login extends FlxState
 			pwdTxtInfo.color = SaltColor.LIGHT_BLUE;
 
 			add(submitButton);
-			//username.hasFocus = true;
-			//pwd.hasFocus = false;
-			// listen to paste event
-			//Browser.document.addEventListener("paste", onPaste);
-
 		}
 
+	}
+	
+	function cretaDummyAgent() 
+	{
+		var a = {
+			authorized : true,
+			attributes:{
+			company : "Qook",
+			department : "Service Design",
+			division : "Customer Operations",
+			givenname : "Bruno",
+			initials : "bb",
+			iri : "bruno.abaudry@salt.ch",
+			isAdmin : true,
+			msexchuserculture : "en",
+			samaccountname : "bbaudry",
+			sn : "Baudry",
+			title : "Factotum",
+			l : "Biel"
+			}
+		}
+		return new Agent(a);
 	}
 
 	function onShowPwd()
@@ -196,68 +217,39 @@ class Login extends FlxState
 		{
 			_focused = FlxG.stage.focus;
 			FlxG.stage.focus = _focused == pwd ? username :  pwd;
-			//trace(_focused == pwd);
-			//trace(_focused == username);
-			//if()
-			//trace(FlxG.stage.focus);
-			//username.setSelection(0, 1);
-			//username.hasFocus = !username.hasFocus;
-			//pwd.hasFocus = !pwd.hasFocus;
 		}
-		//else if (FlxG.keys.justReleased.BACKSPACE && _focused != null)
-		//{
-			//var tf:  openfl.text.TextField = cast _focused;
-			//var t = tf.text.split("");
-			//t.pop();
-			//tf.text = t.join("");
-			////_focused.caretIndex = t.length;
-			////_focused.draw();
-			////_focused.drawFrame(true);
-		//}
 		else if (FlxG.keys.justReleased.ENTER)
 		{
 			onSubmit();
 		}
 		super.update(elapsed);
 	}
-	//function onPaste(e):Void
-	//{
-	//var tIn:FlxUIInputText = username.hasFocus ? username:pwd;
-	//tIn.text = e.clipboardData.getData("text/plain");
-//
-	//}
 	function ondata(data:String)
 	{
-		//trace(data);
-
+		#if debug
+			Main.user = dummyAgent;
+			Main.COOKIE.data.user = Main.user;
+			Main.COOKIE.flush();
+			moveOn(); // launch APP
+		#else
 		var d = Json.parse(data);
-		//trace(d);
+		
 		if (d.authorized)
 		{
 			Main.user = new Agent(d);
-			#if debug
-			trace(Main.user);
-			#end
 			Main.COOKIE.data.user = Main.user;
-			//trace(Main.user);
-			//trace(Main.COOKIE.data.user);
 			if (Main.user.mainLanguage == null || Main.user.mainLanguage == "")
 			{
 				Main.user.mainLanguage = lang;
 			}
 			Main.COOKIE.flush();
-			
 			moveOn(); // launch APP
 		}
 		else
 		{
 			pwdTxtInfo.applyMarkup ("\n\nNT login + password <b>did not match<b>.",[markerFormat]);
-			#if debug
-			trace("Not authorized");
-			#end
-			//this.subState = new FlxSubState(FlxColor.RED);
-			//this.openSubState(new FlxSubState());
 		}
+		#end
 	}
 	function moveOn()
 	{
@@ -267,7 +259,9 @@ class Login extends FlxState
 	}
 	function onSubmit()
 	{
-		
+		#if debug
+		ondata("");
+		#else
 		pwdTxtInfo.text = "";
 		if (StringTools.trim(username.text) == "")
 		{
@@ -286,13 +280,10 @@ class Login extends FlxState
 		loginUrl.onData = ondata;
 		loginUrl.onError = onError;
 		loginUrl.onStatus = onStatus;
-		//#if debug
-		//Main.tongue.init(lang, ()->(FlxG.switchState(new TutoTree())) );
-		//#else
-		//
-		//#end
+
 		loginUrl.request(true);
 		//u.request(true);
+		#end
 	}
 
 	function onStatus(s:Int):Void

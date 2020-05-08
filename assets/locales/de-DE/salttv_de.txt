@@ -25,3 +25,4 @@ $flow.salttv.WhatAppleTVcnxType	Welche Verbindungsart hat der Kunde? 	Wie ist da
 $flow.salttv.WhiteLightLids	Wenn die LED korrekt mit Strom versorgt wird, leuchtet sie stabil und weiss. 	Leuchtet die weisse LED (Statusanzeige) auf dem Apple TV?	tv/statusled	Ja, weiss	Anders		https://support.apple.com/de-ch/guide/tv/atvba38a4135/tvos
 $flow.salttv._OpenSaltTVApp		Die Salt TV App öffnen					
 $flow.salttv._LogInWithSwissAppleID		Anmeldung mit einem Schweizer Apple TV-Konto					
+$flow.salttv._ConnectAppleTVtoTheLAN		Connecter l'AppleTV an LAN					

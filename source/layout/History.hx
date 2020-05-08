@@ -11,9 +11,11 @@ typedef Snapshot =
 	var interaction: Interactions;
 	var processTitle:String;
 	var iteractionTitle:String;
+	var values:Map<String,Dynamic>;
 	var start:Date;
 }
-enum Interactions{
+enum Interactions
+{
 	Yes;
 	No;
 	Mid;
@@ -31,16 +33,17 @@ class History
 		history = new Array<Snapshot>();
 		//stack = new FlxSprite();
 	}
-	public function add( process:String, interaction:Interactions, title:String, iteractionTitle:String)
+	public function add( process:String, interaction:Interactions, title:String, iteractionTitle:String, ?values:Map<String,Dynamic>=null)
 	{
 		history.push(
-			{
-				processName : process, 
-				interaction: interaction, 
-				processTitle:title, 
-				iteractionTitle:iteractionTitle,
-				start: Date.now()
-			}
+		{
+			processName : process,
+			interaction: interaction,
+			processTitle:title,
+			iteractionTitle:iteractionTitle,
+			values:values,
+			start: Date.now()
+		}
 		);
 	}
 
@@ -48,16 +51,18 @@ class History
 	{
 		history = [];
 	}
-	public function clearHistoryFrom(index:Int){
+	public function clearHistoryFrom(index:Int)
+	{
 		#if debug
-			trace(index);
-			trace(history.length);
-			trace(history.length - index -1);
+		//trace(index);
+		//trace(history.length);
+		//trace(history.length - index -1);
 		#end
 		var old = history.splice(index, history.length - index);
 		return Type.createInstance( Type.resolveClass( old[0].processName), [] );
 	}
-	public function onStepBack(){
+	public function onStepBack()
+	{
 		var last = history.pop();
 		return Type.createInstance( Type.resolveClass( last.processName), [] );
 	}
@@ -70,7 +75,7 @@ class History
 			{
 				count++;
 			}
-			
+
 		}
 		return count;
 	}
@@ -79,12 +84,11 @@ class History
 		return history[history.length - 1];
 	}
 
-	
 	inline public function getPreviousInstance()
 	{
 		return Type.createInstance( Type.resolveClass( getPreviousProcess().processName), [] );
 	}
-	
+
 	function get_history():Array<Snapshot>
 	{
 		return history;
@@ -101,13 +105,45 @@ class History
 	{
 		for ( i in history )
 		{
-			if (interaction == i.interaction && i.processName == processName ) 
+			if (interaction == i.interaction && i.processName == processName )
 			{
 				return true;
 			}
-			
+
 		}
 		return false;
+	}
+	public function findStepsInHistory(processName:String, ?times:Int=1, ?fromBegining:Bool=true):Array<Snapshot>
+	{
+		var tab = [];
+		var count = 0;
+		if (fromBegining)
+		{
+			for (i in 0...history.length)
+			{
+				if ( history[i].processName == processName )
+				{
+					tab.push(history[i]);
+					if ( ++count == times) break; 
+					
+				}
+			}
+		}
+		else{
+			var l = history.length;
+		
+			while (l > 0)
+			{
+				--l;
+				if (history[l].processName == processName )
+				{
+					tab.push(history[l]);
+					if ( ++count == times) break; 
+					
+				}
+			}
+		}
+		return tab;
 	}
 	public function getRawSteps()
 	{

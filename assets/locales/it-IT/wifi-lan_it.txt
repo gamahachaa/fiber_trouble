@@ -24,3 +24,5 @@ $flow.wifi._MoveCloseUnplugRepeater		Avvicinarsi al Box e assicurarsi di non ess
 $flow.lan.TestWithAppleTV		Tester avec l'AppleTV en LAN					
 $flow.wifi._ConnectWiFIToFiveGH		Se connecter au réseau 5Gz					
 $flow.wifi._ConnectWiFIToTwoDotFourGH		Se connecter au réseau 2.4Gz					
+$flow.wifi.WhyCannotConnectWithLan		Perché non può collegarsi alla LAN?		Non ha dispositivi in LAN 	La LAN non funziona		
+$flow.lan._TestWithAnotherLanDevice		Prova con un altro dispositivo in LAN					

@@ -16,7 +16,7 @@ class TestWithAppleTV extends Descision
 		//this._detailTxt = "Si l'AppleTV est dipo, essayer avec sinon un autre appareil en LAN.";
 		//this._illustration = "";
 		this._nextYesProcesses = [new LanConnectionOK ()];
-		this._nextNoProcesses = [new TestWithAnotherLanDevice()];
+		this._nextNoProcesses = [new _TestWithAnotherLanDevice()];
 		super.create();
 	}
 

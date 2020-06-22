@@ -8,12 +8,15 @@ import flixel.addons.ui.FlxUIButton;
 import flixel.input.keyboard.FlxKey;
 import flixel.math.FlxPoint;
 import flixel.text.FlxText;
+import flixel.text.FlxTextBB;
 import flixel.ui.FlxButton;
+import flow.TutoTree;
 import flow.all.vti._AddMemoVti;
 import haxe.ds.Either;
 import haxe.ds.StringMap;
 import js.Browser;
 import layout.History.Interactions;
+import layout.Instructions;
 import layout.SaltColor;
 import openfl.system.Capabilities;
 import openfl.ui.Mouse;
@@ -31,7 +34,13 @@ class Process extends FlxState
 	static public var STORAGE:StringMap<Dynamic> = new StringMap<Dynamic>();
 	public var _padding(get, null):Int = 30;
 	public var question(get, null):FlxText;
-	public var details(get, null):FlxText;
+	#if debug
+		//public var details(get, null):FlxTextBB;
+		public var details(get, null):FlxText;
+	#else
+	
+		public var details(get, null):FlxText;
+	#end
 	var _titleTxt(default, set):String = "";
 	var _detailTxt(default, set):String = "";
 	var _illustration(default, set):String = "";
@@ -60,9 +69,11 @@ class Process extends FlxState
 	var voipReminder:FlxText;
 	var hasVoip:Bool;
 	var menuBG:flixel.addons.display.shapes.FlxShapeBox;
-	var clipBoardBtn:flixel.ui.FlxButton;
+	//var clipBoardBtn:flixel.ui.FlxButton;
 	var backBtn:flixel.ui.FlxButton;
 	var isFocused:Bool;
+	var howTo:flixel.ui.FlxButton;
+	var howToSubState:Instructions;
 
 	//var _myClass:Class<T>;
 
@@ -98,12 +109,16 @@ class Process extends FlxState
 		backBtn = new FlxButton(0, 0, "", onBack );
 		backBtn.loadGraphic("assets/images/ui/back.png", true, 50, 40);
 		
+		howTo = new FlxButton(0, 0, "", onHowTo );
+		howTo.loadGraphic("assets/images/ui/howto.png", true, 40, 40);
+		howToSubState = new Instructions();
+		
 		bucket = new FlxButton(0, 0, "", toggleStyle);
 		bucket.loadGraphic("assets/images/ui/light.png", true, 40, 40);
 		registerButton(bucket);
 		
-		clipBoardBtn = new FlxButton(0, 0, "", onClipBoardClick);
-		clipBoardBtn.loadGraphic("assets/images/ui/clipBoard.png", true , 40, 40);
+		//clipBoardBtn = new FlxButton(0, 0, "", onClipBoardClick);
+		//clipBoardBtn.loadGraphic("assets/images/ui/clipBoard.png", true , 40, 40);
 		
 		trainingMode = new FlxUIButton(0, 0, "", toogleTrainingMode);
 		trainingMode.loadGraphic("assets/images/ui/trainingMode.png", true, 40, 40);
@@ -131,6 +146,7 @@ class Process extends FlxState
 
 		destroySubStates = false;
 		dataView = new DataView(Main.THEME.bg, this._name);
+		
 		hasQook = _qookLink.length>0 && _qookLink[0]!="";
 		hasIllustration = _illustration != "";
 		hasVoip = !Main.customer.isInitial();
@@ -145,7 +161,8 @@ class Process extends FlxState
 		add(menuBG);
 		add(separatorH);
 		add(bucket);
-		
+		if(!Std.is(this,DescisionMultipleInput) && !Std.is(this,ActionMultipleInput) && !Std.is(this,ActionMail) )
+			add(howTo);
 		add(comment);
 		add(fr);
 		add(de);
@@ -157,8 +174,14 @@ class Process extends FlxState
 
 		// PROCESS UI		
 		question = new FlxText(0, 0, 1000, _titleTxt, 24, true);
+		
+		
+		#if debug
 		details = new FlxText(0, 0, hasIllustration ? FlxG.width / 3 : FlxG.width-_padding, _detailTxt, hasIllustration? 16:20 , true);
-
+		#else
+		details = new FlxText(0, 0, hasIllustration ? FlxG.width / 3 : FlxG.width-_padding, _detailTxt, hasIllustration? 16:20 , true);
+		#end
+		
 		question.setFormat(Main.TITLE_FMT.font, Main.TITLE_FMT.size);
 		details.setFormat(Main.BASIC_FMT.font, Main.BASIC_FMT.size);
 		details.autoSize = question.autoSize = false;
@@ -197,9 +220,10 @@ class Process extends FlxState
 			voip.insert(3, " ");
 			
 			var displayVoip = voip.join("");
-			voipReminder.text = '$displayVoip (${Main.customer.iri})\n';
+			var owner = Main.customer.contract.owner == null? "":Main.customer.contract.owner.name;
+			voipReminder.text = '$displayVoip (${Main.customer.iri})\n$owner';
 			//voipReminder.text = '$displayVoip (${Main.customer.iri})\n' + Main.tongue.get("$voipCopyPaste_UI1", "meta");
-			registerButton(clipBoardBtn);
+			//registerButton(clipBoardBtn);
 			//add(clipBoardBtn);
 			add(voipReminder);
 			/**
@@ -216,8 +240,11 @@ class Process extends FlxState
 		question.y = _padding * 2;
 
 		registerButton(exitBtn);
+		registerButton(howTo);
 		
 	}
+	
+	
 	function switchLang(lang:String)
 	{
 		Main.user.mainLanguage = lang;
@@ -234,7 +261,10 @@ class Process extends FlxState
 		//Browser.document.execCommand("copy");
 		//trace('Browser.document.execCommand("copy")');
 	}
-	
+	function onHowTo() 
+	{
+		openSubState(howToSubState);
+	}
 	function toogleTrainingMode() 
 	{
 		Main.user.canDispach = !Main.user.canDispach;
@@ -258,7 +288,9 @@ class Process extends FlxState
 		backBtn.x = exitBtn.x - _padding - trainingMode.width;
 		trainingMode.y = exitBtn.y;
 		trainingMode.x = backBtn.x - _padding - trainingMode.width;
-		comment.x = bucket.x - (_padding * 3) - comment.width;
+		howTo.x = bucket.x - (_padding * 3) - howTo.width;
+		howTo.y = 4;
+		comment.x = howTo.x - (_padding * 3) - comment.width;
 		comment.y = 4;
 		separatorH.x = 0;
 		separatorH.y = detailsTop;
@@ -282,10 +314,11 @@ class Process extends FlxState
 		}
 		if (hasVoip)
 		{
-			clipBoardBtn.y = 4;
-			clipBoardBtn.x = 0;
+			//clipBoardBtn.y = 4;
+			//clipBoardBtn.x = 0;
 			voipReminder.y = menuBG.height/2 - (voipReminder.height/2);
-			voipReminder.x = clipBoardBtn.x + clipBoardBtn.width + (_padding/2) ;
+			voipReminder.x = _padding/2 ;
+			//voipReminder.x = clipBoardBtn.x + clipBoardBtn.width + (_padding/2) ;
 		}
 
 	}
@@ -375,7 +408,15 @@ class Process extends FlxState
 		/**
 		 * @todo make it nicer
 		 */
+		var defaultString = "$" + txt + "_" + suffix;
+		var customString = "$" + this._name + "_" + suffix;
+		
 		var t = context == "data" ? Main.tongue.get("$" + this._name + "_" + suffix, context) : Main.tongue.get("$" + txt + "_" + suffix, context);
+		#if debug
+			trace(defaultString);
+			trace(customString);
+			trace(t);
+		#end
 		return t.indexOf("$") == 0 || StringTools.trim(t) == "" ? txt : t;
 	}
 
@@ -404,7 +445,7 @@ class Process extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		//trace(FlxG.keys.justReleased.Q && FlxG.keys.justReleased.SHIFT);
-		if (FlxG.keys.pressed.ALT && FlxG.keys.pressed.CONTROL && FlxG.keys.pressed.SHIFT &&  FlxG.keys.pressed.S  && !isFocused)
+		if (Main.user.isAdmin && FlxG.keys.pressed.ALT && FlxG.keys.pressed.CONTROL && FlxG.keys.pressed.SHIFT &&  FlxG.keys.pressed.S  && !isFocused)
 		{
 			openSubState(dataView);
 		}
@@ -511,12 +552,18 @@ class Process extends FlxState
 	 {
 		 return _name;
 	 }
-	 
+	 #if debug
+	 //function get_details():FlxTextBB 
+	 function get_details():FlxText
+	 {
+		 return details;
+	 }
+	 #else
 	 function get_details():FlxText 
 	 {
 		 return details;
 	 }
-	 
+	 #end
 	function registerButton(btn:Dynamic)
 	{
 		btn.onOver.callback = onButtonOver;

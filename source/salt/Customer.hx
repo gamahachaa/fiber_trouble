@@ -13,79 +13,73 @@ enum CustomerProcess{
 
 class Customer extends Actor
 {
-	@:isVar public var products(get, set):Array<String>; // @todo makeit a Type
-	@:isVar public var _history(get, set):Array<String>; // make it a type so far just a ticket then maekit a Customer process Type
-	@:isVar public var processStage(get, set):CustomerProcess;
-	@:isVar public var shipingAdress(get, set):Adress;
-	@:isVar public var voIP(get, set):String;
-	public static inline var TEST_IRI:String = "3000000000";
-	public function new(?uniqueIdentifier:String, ?history:String="") 
+	@:isVar public var dataSet(get, set):Map<String,Map<String,String>>;
+	@:isVar public var contract(get, set):Contractor;
+	//@:isVar public var products(get, set):Array<String>; // @todo makeit a Type
+	//@:isVar public var _history(get, set):Array<String>; // make it a type so far just a ticket then maekit a Customer process Type
+	//@:isVar public var processStage(get, set):CustomerProcess;
+	public var shipingAdress(get, set):Adress;
+	public var voIP(get, set):String;
+	public static inline var TEST_IRI:String = "not found";
+	public function new() 
 	{
-		this._history = [history];
-		processStage = (history== "") ? firstCall: recaller;
-		super(uniqueIdentifier == null ? TEST_IRI : uniqueIdentifier, true); // for now customers are authorized
+		super(TEST_IRI, true); // for now customers are authorized
+		contract = new Contractor(TEST_IRI, "");
+		dataSet = [];
 	}
 	public function reset()
 	{
-		this._history = [];
-		this.products = [];
-		this.processStage = unknown;
+		this.contract.reset();
 		this.shipingAdress = null;
 		this.iri = TEST_IRI;
-		this.voIP = "";
+		this.dataSet = [];
+		//this.voIP = "";
 	}
 	public function isInitial()
 	{
 		return TEST_IRI == this.iri;
 	}
-	function get__history():Array<String> 
-	{
-		return _history;
-	}
-	
-	function set__history(value:Array<String>):Array<String> 
-	{
-		return _history = value;
-	}
-	
-	function get_products():Array<String> 
-	{
-		return products;
-	}
-	
-	function set_products(value:Array<String>):Array<String> 
-	{
-		return products = value;
-	}
-	
-	function get_processStage():CustomerProcess 
-	{
-		return processStage;
-	}
-	
-	function set_processStage(value:CustomerProcess):CustomerProcess 
-	{
-		return processStage = value;
-	}
 	
 	function get_shipingAdress():Adress 
 	{
-		return shipingAdress;
+		return this.contract.address;
 	}
 	
 	function set_shipingAdress(value:Adress):Adress 
 	{
-		return shipingAdress = value;
+		return this.contract.address = value;
 	}
 	
 	function get_voIP():String 
 	{
-		return voIP;
+		return this.contract.voip;
 	}
 	
 	function set_voIP(value:String):String 
 	{
-		return voIP = value;
+		return this.contract.voip = value;
+	}
+	
+	function get_contract():Contractor 
+	{
+		return contract;
+	}
+	
+	function get_dataSet():Map<String, Map<String, String>> 
+	{
+		return dataSet;
+	}
+	
+	function set_dataSet(value:Map<String, Map<String, String>>):Map<String, Map<String, String>> 
+	{
+		return dataSet = value;
+	}
+	
+	function set_contract(value:Contractor):Contractor 
+	{
+		//this.iri = value.contractorID==""?TEST_IRI:value.contractorID;
+		//this.voIP = value.voip;
+		return contract = value;
 	}
 	
 }

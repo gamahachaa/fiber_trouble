@@ -39,7 +39,14 @@ class _ReadRXValues extends TripletMultipleInput
 	override public function onYesClick()
 	{
 		//if (Std.parseFloat(this.singleInput.uiInput.inputtextfield.text) < -20.99)
-		if (Std.parseFloat(this.multipleInputs.inputs.get("RX").getInputedText()) < -20.99)
+		#if debug
+		trace(this.multipleInputs.inputs.get("RX").getInputedText());
+		trace(Std.parseFloat(this.multipleInputs.inputs.get("RX").getInputedText()));
+		#end
+		var rxString = this.multipleInputs.inputs.get("RX").getInputedText();
+		var rxFloat= Std.parseFloat(rxString);
+		
+		if (rxString == "aaa" || rxFloat < -20.99)
 		{
 			this._nextYesProcesses = [new FiberCableChanged()];
 		}

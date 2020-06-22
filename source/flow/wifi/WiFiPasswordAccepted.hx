@@ -23,7 +23,7 @@ class WiFiPasswordAccepted extends Descision
 			this._nextNoProcesses = [new _CreateLanIssueTicket()];
 		}
 		else
-			this._nextNoProcesses = [new _LoopResetFiberBox(new WifiVisibleOnDevice()),new _CreateTicketWifiIssue()];
+			this._nextNoProcesses = [new _LoopResetFiberBox(new WifiVisibleOnDevice(),new WifiVisibleOnDevice()),new _CreateTicketWifiIssue()];
 		super.create();
 	}
 

@@ -17,7 +17,7 @@ class WhereWasOrderDone extends DescisionMultipleInput
 			ereg: new EReg("[\\s\\S]*","i"),
 			input:{
 				width:200,
-				prefix:"Store",
+				prefix:"Store name",
 				position:bottom
 			}
 		}

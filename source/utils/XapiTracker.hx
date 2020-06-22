@@ -1,6 +1,7 @@
 package utils;
 
 import flixel.util.FlxSignal.FlxTypedSignal;
+import haxe.Exception;
 import haxe.Http;
 import haxe.Json;
 import salt.SOTickets;
@@ -26,6 +27,8 @@ class XapiTracker
 	
 	function onData(data:String) 
 	{
+		//trace(data);
+		try{
 		var d = Json.parse(data);
 		if (d.status == "success") 
 		{
@@ -36,6 +39,12 @@ class XapiTracker
 		}
 		else{
 			dispatcher.dispatch(false);
+		}
+		}
+		catch (e:Exception)
+		{
+			trace(e);
+			trace(data);
 		}
 	}
 	public function setActor()

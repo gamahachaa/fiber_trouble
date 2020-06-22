@@ -15,14 +15,12 @@ class NormalRxValues extends DescisionMultipleInput
 {
 	public function new() 
 	{
-		//super(100, "RX" , new EReg("(^-?[0-9,.]{1,6}$)|(^aaa$)","i"));
-		//super(100, "RX" , new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)", "i"), new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)", "i"));
 		super([
 		{
 			ereg: new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)","i"),
 			input:{
 				width:100,
-				prefix:"RX",
+				prefix:"VTI RX",
 				position:bottom
 			}
 		}]);
@@ -36,5 +34,23 @@ class NormalRxValues extends DescisionMultipleInput
 		//this._nextYesProcesses = [new _TroubleShootActivation()];
 		this._nextYesProcesses = [new _TellCustomerAllOkWithFiberCnx()];
 		super.create();
+	}
+	override public function onYesClick(){
+		if (!valueInRange()){
+			this._nextYesProcesses = [new OTOPlugDamagedNotClicking()];
+		}
+		super.onYesClick();
+	}
+	override public function onNoClick(){
+		if (valueInRange()){
+			this._nextNoProcesses = [new _TellCustomerAllOkWithFiberCnx()];
+		}
+		super.onNoClick();
+	}
+	function valueInRange()
+	{
+		var rxString = this.multipleInputs.inputs.get("VTI RX").getInputedText();
+		var rxFloat = Std.parseFloat(rxString);
+		return (rxFloat > -21.00);
 	}
 }

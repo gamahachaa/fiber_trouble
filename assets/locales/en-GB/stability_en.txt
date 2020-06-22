@@ -1,12 +1,12 @@
 FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
 $flow.stability._BadOutstandingFlows	Reboot the Box<N>Follow the led sequence to see if everything is OK, then open the administration console of the box<N>Capture the RX/TX values	The flows are unusually slow					https://qoof.salt.ch/de/knowledge/technical/modem_router/boot_led_sequence#pr%C3%BCfung-der-led-sequenz-reihenfolge
 $flow.stability._CNXallGooodMan	See Qoof: <Q>Argumentationshilfe - Langsame Internetverbindung<Q>.	The connection works properly					https://qoof.salt.ch/de/knowledge/technical/wording_tips/wording_poor_internet_speed
-$flow.stability._OpenSpeedTest	Preferably on the Apple TV (install the app if necessary), or in a web browser.	Open Speedtest					https://www.speedtest.net/apps/appletv
+$flow.stability._OpenSpeedTest	<T>- on the Apple TV in the apps<N><T>- from the browser of a computer in LAN: https://salt.speedtest.net<N><T>- on a mobile device by launching the app<N><T>- on a mobile device by launching https://salt.speedtest.net in a web browser	Open Speedtest					https://salt.speedtest.net
 $flow.stability._RedoTestAndWthOtherNTW	2,4Ghz <-> 5Ghz	Repeat the test on the other WiFi network					
-$flow.stability._SelectSaltServer	Press the GO button in the centre of the screen<N>Wait ~30s until the<N>calculations are made<N>Repeat once or twice	Select the Salt server	flow/stability/-SelectSaltServer				
+$flow.stability._SelectSaltServer	Press the GO button in the centre of the screen<N>Wait ~30s until the<N>calculations are made<N>Repeat once or twice.<N><N><b>RECORD:<N><T>- The device model<N><T>- The DOWNLOAD value<N><T>- The UPLOAD value<b><N><N>If you ran the test more than once, write down a single average value	Select the Salt server	flow/stability/-SelectSaltServer				
 $flow.stability.LanOrWiFi	Based on the connection type used by the customer. 	Tests with LAN or WiFi		WiFi	LAN		https://qoof.salt.ch/customer-process/getstarted/test_internet
 $flow.stability.ValuesOverEighty	Values equal or greater 80 Mbps = The connection is working properly.	DOWNLOAD Values higher than or equal to 80 Mbps?		more than 80 Mbps	less than 80 Mbps		
 $flow.stability.ValuesOverTwenty	Values equal or greater 20 Mbps = The connection is working properly.	DOWNLOAD Values higher than or equal to 20 Mbps?		more than 20 Mbps	less than 20 Mbps		
 $flow.stability._CreateSOTechModemSpeed	A ticket [525] will be automatically generated upon advancing to the next step. Do not manually create one (SuperOffice). A copy of the content will be sent to your mailbox.<N><N>Inform that:<N><T>- a technical ticket is forwarded to our technical department for a thorough analysis.<N><T>- he may be contacted.<N><T>- he will receive feedback as soon as possible.<N><T> - <em>the box must always be powered (230V) and plugged in (SFP, Fibre, OTO) during the whole life of a ticket.<em>	Automatic ticket creation [525] in SuperOffice					
-$flow.stability.HasLANDevice		Vous pouvez connecter un appareil en LAN ? 					
-$flow.stability.HasAppleTV		Vous avez une AppleTV ?					
+$flow.stability.HasLANDevice		Can you connect a device via LAN? 					
+$flow.stability.HasAppleTV		Do you own an Apple TV?					

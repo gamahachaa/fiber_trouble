@@ -9,25 +9,7 @@ import flixel.text.FlxText.FlxTextFormat;
 import flixel.text.FlxText.FlxTextFormatMarkerPair;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
-import flow.Intro;
-import flow.all.customer.IsSlowOrKaput;
-import flow.lan._RemoveAllCablesConnectedToBox;
-import flow.nointernet.customer._TellCustomerAllOkWithFiberCnx;
-import flow.nointernet.fiberbox.FiberLedGreenStable;
-import flow.nointernet.postLedChecks._ReadRXValues;
-import flow.nointernet.vti.CheckContractorVTI;
-import flow.nointernet.vti.IconStatusBoxManagement;
-import flow.salttv._InstallSpeedTestAplleTV;
-import flow.salttv.IsTVServicesActiveVTI;
-import flow.salttv.ProblemSolved;
-import flow.salttv._InstallSpeedTestAplleTV;
-import flow.salttv._OpenSaltTVApp;
-import flow.stability.HasAppleTV;
-import flow.stability._OpenSpeedTest;
-import flow.stability._SelectSaltServer;
-import flow.swapcable.SwapFiberCable;
-import flow.swapcable._InputShipingAdress;
-import flow.wifi.WifiOnInDashboard;
+import flow.installation._EnsureCorrectPortPlug;
 import haxe.Http;
 import js.Browser;
 import js.html.Location;
@@ -35,18 +17,15 @@ import layout.History;
 import layout.Login;
 import layout.SaltColor;
 import utils.XapiTracker;
-//import lrs.vendors.LearninLocker;
 import openfl.Assets;
 import openfl.display.Sprite;
-//import process.ActionAdress;
 import process.Triplet;
 import salt.Agent;
 import salt.Customer;
 import utils.Mail.MailReciepient;
 import utils.Csv;
 import utils.VersionTracker;
-//import xapi.activities.TrueFalseDefinition;
-//import openfl.text.TextFormat;
+
 typedef BasicFormat =
 {
 	var font:String;
@@ -85,10 +64,6 @@ class Main extends Sprite
 	public static var BASIC_FMT:BasicFormat = {font:BASIC_FONT, size:16};
 	public static var META_FMT:BasicFormat = {font:TITLE_FONT, size:16};
 	public static var INTERACTION_FMT:BasicFormat = {font:TITLE_FONT, size:20};
-	//public static var TECH_LOW:MailReciepient = {to:"fiber.tech.qtool.low@salt.ch", fullName:"FIBER_LOW_TECH"};
-	//public static var TECH_HIGH:MailReciepient = {to:"fiber.tech.qtool@salt.ch", fullName:"FIBER_TECH"};
-
-	//public static var FIX_511:Ticket = {domain:'FIX', number:'511',queue:'FIBER_WRONG_OTO_SO', desc:'5.Technical 1.Optical connection / OTO 1.Wrong OTO connected', email:'fiber.tech.qtool@salt.ch'};
 
 	public static var VERSION:String;
 	public static var VERSION_TRACKER:VersionTracker;
@@ -126,18 +101,18 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
+		
 		adminFile = new Csv(Assets.getText("assets/data/admins.txt"),",",false);
 		//trace(adminFile);
 		COOKIE = new FlxSave();
 		COOKIE.bind("nointernet-20200421.user");
-		//LRS = new LearninLocker("https://qast.test.salt.ch/data/xAPI", "7220703c1ebc99bffa69dedb25b36200c2be5b85", "d0812cafc803e7e676f571faf2526240318f844c");
-		//LRS.testConnection();
-		//LRS.httpData.add(onLRSdata);
+
 		LOCATION = Browser.location;
 		track =  new XapiTracker();
 		DEBUG = LOCATION.origin.indexOf("qook.test.salt.ch") > -1;
 		VERSION_TRACKER = new VersionTracker( LOCATION.origin + LOCATION.pathname+ "php/version/index.php");
 		THEME = DARK_THEME;
+		
 		
 		Main.customer = new Customer();
 		tongue.init("fr-FR",
@@ -149,33 +124,15 @@ class Main extends Sprite
 		}
 				   );
 		#if debug
-		//var data = Assets.getText("assets/data/20200402_CycleTimeExpectedNextWeek_BB.csv");
-		//var csv:Csv = new Csv(data, ";", false);
-
-		//trace(data);
-		//trace(csv.fields);
-		//trace(csv.grid);
-		//trace(csv.dict);
 		Main.user = new Agent();
-		//addChild(new FlxGame(1400, 880, SwapFiberCable, 1, 30, 30, true, true));
-		addChild(new FlxGame(1400, 880, CheckContractorVTI, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _InputShipingAdress, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, IsTVServicesActiveVTI, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, IsAppleTVvisibleOnTVScreen, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _RemoveAllCablesConnectedToBox, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, WifiOnInDashboard, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _OpenSaltTVApp, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _SelectSaltServer, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _OpenSpeedTest, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, Test, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, CheckContractorVTI, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, _CreateAppleIDorBypass, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _ReadRXValues, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, FiberLedGreenStable, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _RebootAppleTV, 1, 30, 30, true, true));
-		//trace(VERSION);
-		//CHECK_NEW_VERSION();
+		addChild(new FlxGame(1400, 880, _EnsureCorrectPortPlug, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
 		#else
-		//trace("Prod");
+
 		if ( DEBUG )
 		{
 			//trace(Browser.navigator.appCodeName);

@@ -7,6 +7,7 @@ import flixel.input.mouse.FlxMouseEventManager;
 import flixel.math.FlxPoint;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import layout.ClosableSubState;
 import layout.HitoryItem;
 import layout.SaltColor;
 
@@ -14,7 +15,7 @@ import layout.SaltColor;
  * ...
  * @author bbaudry
  */
-class DataView extends FlxSubState
+class DataView extends ClosableSubState
 {
 	var stack:FlxTypedGroup<FlxText>;
 	var padding:Int;

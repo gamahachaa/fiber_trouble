@@ -17,7 +17,7 @@ class Intro extends Triplet
 	{
 		
 		Process.INIT();
-		trace(Main.user.isAdmin);
+		//trace(Main.user.isAdmin);
 		
 		//trace("WTF"); 
 		var next = new CheckContractorVTI();
@@ -27,11 +27,12 @@ class Intro extends Triplet
 		
 		
  		super.create();
-		#if !debug
+		//details.tf.htmlText = "<h1>YA</h1><b>yo</b><br/><a>yiiii</a>";
+		//#if !debug
 		Main.VERSION_TRACKER.scriptChangedSignal.add(onNewVersion);
 		Main.VERSION_TRACKER.request();
 		openSubState(new CheckUpdateSub(Main.THEME.bg));
-		#end
+		//#end
 			
 	}
 	

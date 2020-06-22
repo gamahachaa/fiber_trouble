@@ -7,7 +7,7 @@ import process.Descision;
  * ...
  * @author bb
  */
-class TestWithAnotherLanDevice extends Action 
+class _TestWithAnotherLanDevice extends Action 
 {
 
 	override public function create()

@@ -13,8 +13,8 @@ class _FiberCableByStore extends Action
 	override public function create():Void
 	{
 
-		//this._nextProcesses = [new _AddMemoVti()]; // CORONA exception
-		this._nextProcesses = [new IsShipingToAnotherAdress()];
+		this._nextProcesses = [new _AddMemoVti()]; // CORONA exception
+		//this._nextProcesses = [new IsShipingToAnotherAdress()];
 		super.create();
 	}
 

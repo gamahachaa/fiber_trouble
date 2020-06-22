@@ -28,7 +28,7 @@ class LanConnectionOK extends Descision
 
 		if (Main.HISTORY.isInHistory("flow.lan.TestWithAppleTV", Yes) && !Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
 		{
-			this._nextNoProcesses = [new TestWithAnotherLanDevice()];
+			this._nextNoProcesses = [new _TestWithAnotherLanDevice()];
 		}
 		else if (Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
 		{

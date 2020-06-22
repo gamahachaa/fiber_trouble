@@ -9,7 +9,7 @@
 	<!-- <file id="data" value="more_data.tsv"/> -->
 	<!-- <file id="data" value="flow.txt"/> -->
     
-        <file id="data" value="flow_fr.txt"/>
+    <file id="data" value="flow_fr.txt"/>
 	<file id="data" value="flow_it.txt"/>
 	<file id="data" value="flow_de.txt"/>
 	<file id="data" value="flow_en.txt"/>
@@ -46,10 +46,10 @@
 	<file id="data" value="installation-activation_en.txt"/>
 
 <!-- nointernet -->
-    <file id="data" value="nointernet_fr.txt"/>
-    <file id="data" value="nointernet_it.txt"/>
-	<file id="data" value="nointernet_de.txt"/>
-	<file id="data" value="nointernet_en.txt"/>
+    <!--<file id="data" value="nointernet_fr.txt"/>-->
+    <!--<file id="data" value="nointernet_it.txt"/>-->
+	<!--<file id="data" value="nointernet_de.txt"/>-->
+	<!--<file id="data" value="nointernet_en.txt"/>-->
 <!-- TV -->
 	<file id="data" value="salttv_fr.txt"/>
 	<file id="data" value="salttv_it.txt"/>

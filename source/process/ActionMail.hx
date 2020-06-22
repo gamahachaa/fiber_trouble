@@ -113,7 +113,9 @@ class ActionMail extends Action
 		{
 			t += i.processTitle + " :: " + i.iteractionTitle + (i.values==null? "": i.values.toString()) + "\n" ;
 		}
+		#if debug
 		trace(t);
+		#end
 		return t;
 	}
 	function prepareCycleTime()

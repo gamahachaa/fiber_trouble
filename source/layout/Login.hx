@@ -9,6 +9,8 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
+import flow.Intro;
+import flow.TutoTree;
 //import openfl.text.TextField;
 //import openfl.text.TextFieldType;
 
@@ -68,7 +70,7 @@ class Login extends FlxState
 			{
 				Main.user.mainLanguage = lang;
 			}
-			moveOn(); // launch APPbbaudry
+			moveOn(true); // launch APPbbaudry
 		}
 		else
 		{
@@ -251,11 +253,12 @@ class Login extends FlxState
 		}
 		#end
 	}
-	function moveOn()
+	function moveOn(?old:Bool=false)
 	{
 		Main.setUpSystemDefault(true);
 		Main.track.setActor();
-		Main.tongue.init(Main.user.mainLanguage, ()->(FlxG.switchState(new TutoTree()) ) );
+		var next = old ? new Intro():new TutoTree();
+		Main.tongue.init(Main.user.mainLanguage, ()->(FlxG.switchState( next )) );
 	}
 	function onSubmit()
 	{

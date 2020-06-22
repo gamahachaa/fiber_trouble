@@ -59,37 +59,25 @@ class Mail
 		errorSignal = new FlxTypedSignal<Dynamic->Void>();
 		//params = new Map<Parameters,String>();
 		params = new Map<Parameters,Dynamic>();
-		//setSubject(mailSubject, currentProcess);
-
-		//trace(params.get(subject));
-		//trace(params.get(body));
+		setStyle();
+		
 		#if debug
-		params.set(to_email, "superofficetest@salt.ch"); // Test on cs-sit.test
+		//params.set(to_email, "superofficetest@salt.ch"); // Test on cs-sit.test
+		params.set(to_email, "bruno.baudry@salt.ch");
 
 		//params.set(to_email, ticket.email); // Test on SO prod cs.salt.ch
 		#else
 		if (Main.DEBUG)
 		{
-			params.set(to_email, ticket.email);
-			//params.set(to_email, "Giuliano.Rappazzo@salt.ch");
-			//params.set(to_email, "bruno.baudry@salt.ch");
-			//params.set(to_full_name, "Giuliano Rappazzo");
-			//params.set(to_full_name, "Bruno Baudry");
-			params.set(cc_email, '${Main.user.iri},Fiber.TechSupport@salt.ch,Giuliano.Rappazzo@salt.ch');
-			
-			//params.set(bcc_email, "qook@salt.ch");
-			//params.set(bcc_full_name, "qook");
-			//params.set(cc_full_name, (Main.user.sirName + " " + Main.user.firstName) );
+			params.set(to_email, "bruno.baudry@salt.ch");
 		}
 		else
 		{
 			params.set(to_email, ticket.email);
-			//params.set(to_full_name, to.fullName);
-
-			params.set(cc_email, '${Main.user.iri},Fiber.TechSupport@salt.ch,Giuliano.Rappazzo@salt.ch');
-			//params.set(cc_full_name, (Main.user.sirName + " " + Main.user.firstName) );
+			params.set(cc_email, '${Main.user.iri}');
+			params.set(bcc_email, "qook@salt.ch");
 		}
-		params.set(bcc_email, "qook@salt.ch");
+		
 		//params.set(bcc_full_name, "qook");
 		#end
 		//params.set(subject, '[${Main.customer.iri}] $mailSubject' );
@@ -101,6 +89,21 @@ class Mail
 		http.onError = onError;
 		http.onStatus = onStatus;
 		//trace(Browser.location.origin + Browser.location.pathname+ "php/mail/index.php" );
+	}
+	function setStyle()
+	{
+		var b = '<style type="text/css">';
+		b += 'table {border-collapse: collapse;}';
+		b += '@font-face {font-family: "Superior"; src: url("http://intranet.salt.ch/static/fonts/superior/SuperiorTitle-Black.woff") format("woff"); font-weight: normal;}';
+		b += '@font-face {font-family: "Univers"; src: url("http://intranet.salt.ch/static/fonts/univers/ecf89914-1896-43f6-a0a0-fe733d1db6e7.woff") format("woff"); font-weight: normal;}';
+		b += 'h3,h4,h5,h5 {color: #65a63c;}';
+		b += 'body, table, td, li, span, h3,h4,h5,h5  {font-family: "Univers", Arial, Helvetica, sans-serif !important;}';
+		b += 'h2{color: #000000; font-family: "Superior" !important;}';
+		b += 'li{font-size: 11pt !important; padding-top:8px !important;  margin-top:8px !important;}';
+		b += 'li em{font-size: 9pt !important;}';
+		b += '</style>';
+		//http://intranet.salt.ch/static/fonts/superior/SuperiorTitle-Black.woff
+		params.set(body, b);
 	}
 	function setSubject()
 	{
@@ -119,22 +122,24 @@ class Mail
 
 	public function send(memo:String= "")
 	{
+		
 		setSubject();
 		buildCustomerBody(memo);
 		buildHistoryBody();
 		buildAgentBody();
+		params.set(body, "<body>" + params.get(body) + "</body>" );
 		for (key => value in params)
 		{
 			http.setParameter(Std.string(key), value);
-			#if debug
-			trace(key, value);
-			#end
+			if (Main.DEBUG) trace(key, value);
 		}
 		// do not create ticket in training mode
 		if (Main.user.canDispach)
 		{
 			#if debug
 			trace("testing");
+			trace(params.get(body));
+			
 			#else
 			http.request(true);
 			#end
@@ -147,7 +152,7 @@ class Mail
 	function buildCustomerBody(memo:String= "")
 	{
 		var  b = params.exists(body)?params.get(body):"";
-		var bodyList = "";
+		//var bodyList = "";
 		#if debug
 		trace(Main.customer);
 		#end
@@ -155,12 +160,14 @@ class Mail
 		{
 			//b += '<h1>$_mailSubject</h1>';
 			if (memo != "") b += '<p>$memo</p>';
-			b += '<h2>CONTRACTOR: ${Main.customer.iri} ';
+			b += '<h2>Contractor: ${Main.customer.iri} ';
 			b += 'VoIP: ${Main.customer.voIP}';
 			b += '</h2>';
+			if(Main.customer.contract.owner.name !="")
+				b += '<h3>${Main.customer.contract.owner.name}</h3>';
 			if (Main.customer.shipingAdress != null && Main.customer.shipingAdress._zip != "")
 			{
-				b += "<h3>Shiping Adress :</h3>";
+				//b += "<h4>Adress :</h4>";
 				b += "<p>";
 				if (Main.customer.shipingAdress._co != "")
 				{
@@ -192,8 +199,13 @@ class Mail
 		//bodyList += '<li>: ${Main.user.mobile} </li>';
 		bodyList += '<li>${Main.user.company} | ${Main.user.department} | ${Main.user.division} | ${Main.user.workLocation} </li>';
 		bodyList += '<li>Script version : ${Main.VERSION} </li>';
+		if (Main.customer.contract.owner == null){
+			var userAgent = Browser.navigator.userAgent;
+			bodyList += '<li>a1a3e0cc-c512-4935-9ca1-0ca2746a0fa2</li>';
+			bodyList += '<li>$userAgent</li>';
+		}
 
-		b += '<h4>Troubleshot in ${Main.user.mainLanguage} by:</h4><ul>$bodyList</ul>';
+		b += '<h5>Troubleshot in ${Main.user.mainLanguage} by:</h5><ul>$bodyList</ul>';
 		params.set(body, b);
 
 	}
@@ -203,23 +215,27 @@ class Mail
 		var bodyList = "";
 		var start:Date = Main.HISTORY.getFirst().start;
 		var end:Date = Main.HISTORY.getLast().start;
+		var isEnglish = Main.user.mainLanguage == "en-GB";
 		for (i in Main.HISTORY.history)
 		{
 			bodyList += "<li>";
-			bodyList += '${i.processTitle} : <strong>${i.iteractionTitle}</strong>';
+			bodyList += getItInEnglsh(i);
 			if (i.values != null) {
 				
 				bodyList += i.values.toString();
 			}
-			bodyList += "<br/><em>";
-			if(Main.user.mainLanguage != "en-GB") bodyList += getItInEnglsh(i);
-			bodyList += "</em></li>";
+			if(!isEnglish){
+				bodyList += "<br/><em>";
+				bodyList += '${i.processTitle} : <strong>${i.iteractionTitle}</strong>';
+				bodyList += "</em>";
+			}
+			bodyList += "</li>";
 			//bodyList += Main.tongue.get("$"+i.processName + "_TITLE","data") + " : " + Main.tongue.get(i.processName,"data")}:${i.interaction}</li>';
 			
 		}
 		
 		bodyList += "<li><strong>"+_currentProcess.question.text +"</strong></li>";
-		b += '<h3>Start: ${start.toString()}</h3><ol>$bodyList</ol><h3>End: ${end.toString()}</h3>';
+		b += '<h4>Start: ${start.toString()}</h4><ol>$bodyList</ol><h4>End: ${end.toString()}</h4>';
 		params.set(body, b);
 	}
 	
@@ -245,8 +261,11 @@ class Mail
 		}	
 		
 		s += Main.tongue.get("$" + i.processName + "_TITLE", "data") + " : " + interactionEN;
-		
+		#if debug
+		Main.tongue.init("fr-FR");
+		#else
 		Main.tongue.init(Main.user.mainLanguage);
+		#end
 		return s;
 	}
 	function onStatus(s:Int)

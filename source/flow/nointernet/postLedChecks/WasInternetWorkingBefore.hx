@@ -11,7 +11,7 @@ class WasInternetWorkingBefore extends Descision
 		//this._nextYesProcesses = [new _ReadRXValues()];
 		
 
-		if (Main.HISTORY.isInHistory("flow.nointernet.fiberbox.NormalRxValues", No) )
+		if (Main.HISTORY.isInHistory("flow.nointernet.fiberbox.NormalRxValues", No) ||Main.HISTORY.isInHistory("flow.nointernet.fiberbox.NormalRxValues", Yes))
 		{
 			this._nextYesProcesses = [new FiberCableChanged()];
 			this._nextNoProcesses = [new FiberCableChanged()];

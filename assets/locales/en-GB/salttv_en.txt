@@ -8,7 +8,7 @@ $flow.salttv._ConnectAppleTVtoOneGhz	Ask the customer to verify on the back of t
 $flow.salttv._CreateAppleIDorBypass	1. Select SWITZERLAND as country.<N>2. Connect the Apple TV to the Fiber Box to enable <Q>Zero sign in<QR>.<N>3. Skip the Apple ID input step.<N>4. Select Salt as TV provider						
 $flow.salttv._CreateSOTicketSaltTV	A ticket [541] will be automatically generated upon advancing to the next step. Do not manually create one (SuperOffice). A copy of the content will be sent to your mailbox.	Automatic ticket creation [541] in SuperOffice					
 $flow.salttv._InstallSaltTV	You will find in the Qoof document <Q>YouTube<Q> tutorials for customer with or without existing Apple ID.	Download and install the Salt Tv app					https://qoof.salt.ch/de/customer-process/configure/manage_appletv_salttv/salttv/salttv_download_tipps_and_tricks
-$flow.salttv._InstallSpeedTestAplleTV	Available in the App Store on the <Q>Home<Q> screen 	Download and install the Speedtest app					
+$flow.salttv._InstallSpeedTestAplleTV	Available in the App Store on the <Q>Home<Q> screen 	Download and install the app Speedtest on the AppleTV					https://www.speedtest.net/en/apps/appletv
 $flow.salttv._MakeSurePowerCableWellPlugged	Make sure the Power cable is well plugged in.<N>Change the wall socket if needed.	Is the Power cable plugged in properly?	tv/powercablepluggedin	Cable OK			
 $flow.salttv._QuitAndRelaunchSaltTV	Press the <Q>Home<Q> button twice quickly.<N>Swipe left or right on the Touch surface of the Siri Remote to navigate to the Salt TV app.<N>Swipe up on the Touch surface of the Siri Remote to force the Salt TV app to quit.<N>Press the menu button to return to the <Q>Home<Q> screen and restart the Salt TV app.	Restart the Salt TV app					https://support.apple.com/en-gb/guide/tv/atvbbcec4f4e/tvos
 $flow.salttv._RebootAppleTV	Go to:<N><T>- Settings<N><T>- System<N><T>- Restart.	Reboot the Apple TV					https://support.apple.com/en-us/HT201836
@@ -25,4 +25,4 @@ $flow.salttv.WhatAppleTVcnxType	What connection type does the customer have?	How
 $flow.salttv.WhiteLightLids	If powered properly the LED is steady and white 	Is the white LED (status light) on the Apple TV switched on? 	tv/statusled	Yes, white	Other		https://support.apple.com/en-gb/guide/tv/atvba38a4135/tvos
 $flow.salttv._OpenSaltTVApp		Open the Salt TV App					
 $flow.salttv._LogInWithSwissAppleID		Sign in with a Swiss Apple TV account					
-$flow.salttv._ConnectAppleTVtoTheLAN		Connecter l'AppleTV an LAN					
+$flow.salttv._ConnectAppleTVtoTheLAN		Connect the AppleTV via LAN					

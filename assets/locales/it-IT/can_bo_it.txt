@@ -1,0 +1,17 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
+$test							
+$bo.IsElligibleAtNewAdress	Applicare i costi	La fibra è disponibile al nuovo indirizzo?		Sì, CHF 49.95 di costi	No, CHF 99.95 di costi		
+$bo._SendCancelationConfirm		Inviare la conferma di annullamento					
+$bo._SendReimbursmentForm		Inviare il template SO per la richiesta di rimborso					
+$bo._CreateTicketFiveFiveOne		Creazione automatica del ticket 5.5.1					
+$bo.IsBoxAlreadySent		Il Box è già partito?					
+$bo._RequestPartnerCancelation		Annullare presso il partner					https://qoof.salt.ch/fr/knowledge/admin/contract/handle_cancellation_termination_relocation_back_office#annulation-r%C3%A9siliation-d%E2%80%99une-commande-qui-n%E2%80%99est-pas-termin%C3%A9e-com
+$bo._ChargeNoticePeriodAndETF	RC restanti = RC x mesi di preavviso	Fatturare ETF + RC restanti					
+$bo._RefundAndWaveETF		Rimborsare e annullare ETF					
+$bo.HowWasOrderMade		Come è stata effettuata la vendita?		Porta a porta o Telesales	Altro		
+$bo._CancelContractForTechReasons		Annullare il contratto per ragioni tecniche					
+$bo.IsOrderFullfiled		L'ordine è stato finalizzato		Finalizzato	Non ancora 		
+$bo._AskCustomerReturnBox		Chiedere al cliente di riportare il Box in un Salt Store					
+$bo._CancelContractChangeOwner		Annullare il contratto/ Cambiamento di titolare					
+$bo._RelocationProcess		Seguire la procedura di trasloco					https://qoof.salt.ch/fr/knowledge/admin/contract/handle_cancellation_termination_relocation_back_office#d%C3%A9m%C3%A9nagements
+$bo.WhichSOTicket		Quale ticket tratti?		2.1.6 (Move)	2.1.13 (Death)	2.1.5 (Termination)	

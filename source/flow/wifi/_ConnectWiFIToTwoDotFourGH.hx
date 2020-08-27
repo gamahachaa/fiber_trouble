@@ -1,7 +1,8 @@
 package flow.wifi;
 
+import flow.stability._OpenSpeedTest;
 import flow.stability._SelectSaltServer;
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...
@@ -12,7 +13,7 @@ class _ConnectWiFIToTwoDotFourGH extends Action
 
 	override public function create()
 	{
-		this._nextProcesses = [new _SelectSaltServer()];
+		this._nextProcesses = [new _OpenSpeedTest()];
 		super.create();
 	}
 	

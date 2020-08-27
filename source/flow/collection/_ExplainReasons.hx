@@ -1,7 +1,7 @@
 package flow.collection;
 
 import flixel.addons.ui.FlxInputText;
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...

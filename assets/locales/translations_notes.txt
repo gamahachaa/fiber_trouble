@@ -1,14 +1,4 @@
-
-//////////////////// ALL
-$flow.all.customer.IsSlowOrKaput	Rien ne fonctionne : Ne marche pas du tout<N>Les téléchargements prennent plus de temps qu'espéré : Lent<N>Parfois le streaming s'arrète un temps, ou bien des pages chargent vite, puis restent bloquées :  Coupures	Quel problème rencontrez vous ?		C'est lent	Ne marche pas du tout	Coupures intermittentes	
-$flow.all.customer.LanOrWiFi	En fonction du type de connexion utilisé par le client. 	Quand le problème arrive, à quoi l'appareil est connecté en LAN ou WiFi ?		WiFi	LAN	LES DEUX	
-$flow.all.customer.WhithWhichDevice	Selectionner <LQ>Any device<RQ> si c'est avec tous les appareils	Avec quel type d'appareil avez vous ce souci ?			
-
-/////////// stability
-$flow.stability._SelectSaltServer
 $flow.stability.HasAppleTV
-$flow.stability._SelectSaltServer
-
-//////////////// Wifi lan
-$flow.wifi._ConnectWiFIToFiveGH	Aider le client à appairer son appareil sur le réseau WiFi 5Ghz<N>Cliquer sur le lien ci dessous pour trouver les àtapes à suivre selon l'appareil	Veuillez vous connecter au réseau WiFi 5Ghz de la Box					https://www.salt.ch/device-help/?page=topic/wifi/wifi-configuration/device
-$flow.wifi._ConnectWiFIToTwoDotFourGH	Aider le client à appairer son appareil sur le réseau WiFi 2.4Ghz<N>Cliquer sur le lien ci dessous pour trouver les àtapes à suivre selon l'appareil	Veuillez vous connecter au réseau WiFi 2.4Ghz de la Box					https://www.salt.ch/device-help/?page=topic/wifi/wifi-configuration/device
+$flow.stability.HasWifiDevice
+$flow.stability.IsAnyServiceImpactedForNormalUse (DE/EN)
+$flow.salttv._InstallSpeedTestAplleTV

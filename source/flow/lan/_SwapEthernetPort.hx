@@ -1,7 +1,7 @@
 package flow.lan;
 
 import flow.lan.CanCheckWithAppleTVorOtherDevice;
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...

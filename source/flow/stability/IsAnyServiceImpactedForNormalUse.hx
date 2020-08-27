@@ -1,18 +1,34 @@
 package flow.stability;
 
+import flow.nointernet.postLedChecks._ReadRXValues;
 import tstool.process.Descision;
+import tstool.process.DescisionMultipleInput;
 
 /**
  * ...
  * @author bb
  */
-class IsAnyServiceImpactedForNormalUse extends Descision 
+class IsAnyServiceImpactedForNormalUse extends DescisionMultipleInput 
 {
-
-	public function new() 
+	
+	public function new ()
 	{
-		super();
-		
+		super(
+		[{
+			ereg: new EReg("[\\s\\S]*","i"),
+			input:{
+				width:250,
+				prefix:"Service not usable",
+				position: [bottom, left]
+			}
+		}]
+		);
+	}
+	override public function create()
+	{
+		this._nextNoProcesses = [new _AddMemoVti()];
+		this._nextYesProcesses = [new _ReadRXValues()];
+		super.create();
 	}
 	
 }

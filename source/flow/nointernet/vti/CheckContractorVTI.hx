@@ -5,15 +5,15 @@ import flow.activation.IsFiberOrMultisurf;
 import flow.equipment.IsWhishDateWayAhead;
 import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
 import flow.nointernet.so.IsTicketOpened;
-import salt.Balance;
-import salt.Contractor;
-import salt.Role;
-import utils.VTIdataParser;
+import tstool.salt.Balance;
+import tstool.salt.Contractor;
+import tstool.salt.Role;
+import tstool.utils.VTIdataParser;
 //import layout.UIInputTf;
 import lime.math.Rectangle;
-import process.DescisionMultipleInput;
+import tstool.process.DescisionMultipleInput;
 import Main;
-import utils.XapiTracker;
+import tstool.utils.XapiTracker;
 
 /**
  * ...
@@ -21,10 +21,7 @@ import utils.XapiTracker;
  */
 class CheckContractorVTI extends DescisionMultipleInput
 {
-	var parser:utils.VTIdataParser;
-	//var contractorEreg:EReg;
-	//var vtiContractorUI:UIInputTf;
-	//var inputs:Array<UIInputTf>;
+	var parser:tstool.utils.VTIdataParser;
 
 	public function new()
 	{
@@ -35,15 +32,16 @@ class CheckContractorVTI extends DescisionMultipleInput
 					input:{
 						width:150,
 						prefix:"Contractor ID",
-						position: bottom
+						position: [bottom, left]
 					}
 				},
 				{
 					ereg: new EReg("^41\\d{9}$","i"),
 					input:{
+						buddy: "Contractor ID",
 						width:150,
 						prefix:"VoIP Number",
-						position:right
+						position:[top, right]
 					}
 				},
 			]
@@ -54,8 +52,10 @@ class CheckContractorVTI extends DescisionMultipleInput
 	
 	function onVtiAccountParsed(profile:Map<String, Map<String, String>>):Void 
 	{
-		//trace("onVtiAccountParsed");
-		//trace(profile);
+		#if debug
+			trace("onVtiAccountParsed");
+			trace(profile);
+		#end
 		if (!profile.exists("meta") || !profile.exists("plan")) return;
 		else 
 		Main.customer.contract = new Contractor(
@@ -70,6 +70,9 @@ class CheckContractorVTI extends DescisionMultipleInput
 			profile.exists("owner")? StringTools.trim(profile.get("owner").get("vtiOwnerEmailValidated").toLowerCase()) == "ok":false,
 			profile.exists("balance")?new Balance( profile.get("balance").get("vtiBalance"), profile.get("balance").get("vtiOverdue"), profile.get("balance").get("vtiOverdueDate")):null
 		);
+		#if debug
+			trace(Main.customer);
+		#end
 		multipleInputs.inputs.get("Contractor ID").inputtextfield.text = Main.customer.contract.contractorID;
 		multipleInputs.inputs.get("VoIP Number").inputtextfield.text = Main.customer.contract.voip;
 		
@@ -92,19 +95,25 @@ class CheckContractorVTI extends DescisionMultipleInput
 			if (Main.HISTORY.isInHistory("flow.Intro", No))
 			{
 				Main.track.setActivity("tv");
+				//this._nextYesProcesses = [new HasCustomerLEXnetworkIssue()];
+				this._nextYesProcesses = [new ActivationDone()];
 			}
 			else if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", No))
 			{
 				Main.track.setActivity("no-internet");
+				//this._nextYesProcesses = [new HasCustomerLEXnetworkIssue()];
+				this._nextYesProcesses =  [new ActivationDone()];
+				//this._nextYesProcesses = [new HasCustomerLEXnetworkIssue()];
 			}
 			else if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes) || Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid))
 			{
 				Main.track.setActivity("slow-internet");
+				this._nextYesProcesses = [new IsTicketOpened()];
 			}
 			else{
 				Main.track.setActivity("");
 			}
-			this._nextYesProcesses = [new HasCustomerLEXnetworkIssue()];
+			
 		}
 		this._nextNoProcesses = [new IsFiberOrMultisurf()];
 
@@ -146,7 +155,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 	override function validateYes()
 	{
 		#if debug
-		//return true;
+		return true;
 		trace("validateYes");
 		#end
 		//if (Main.DEBUG && Main.user.isAdmin) return true;

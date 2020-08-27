@@ -2,7 +2,7 @@ package flow.nointernet.customer;
 
 import flow.nointernet.postLedChecks.WasInternetWorkingBefore;
 import flow.swapcable.SwapFiberCable;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

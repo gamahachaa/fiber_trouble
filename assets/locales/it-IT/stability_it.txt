@@ -1,5 +1,7 @@
 FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
 $test							
+$flow.stability.WasREbootDone		Testiamo insieme le velocità di connessione.<N>Cominciamo con un reboot della box.		Reboot fa	Reboot non fa		
+$flow.stability.HasWifiDevice	Per questa serie di test è importante testare tutte le possibili configurazioni	Proveremo a fare i test di velocità con un dispositivo WiFi, <N> ne ha uno?					
 $flow.stability._WhatToolItOccursWith		Con quale tipo di apparecchio?					
 $flow.stability._WhitWhatKindOfSite		Con quale tipo di sito?		Svizzera	Internazionale	Tutti	
 $flow.stability._AtWhatTimeDoesItOccurs		In quale fascia oraria avviene questo?					
@@ -9,10 +11,10 @@ $flow.stability._BadOutstandingFlows	Riavvio Box<N>Seguire la sequenza dei LED p
 $flow.stability._CNXallGooodMan	Vedi Qoof: <Q>Argomentario - Percezione della lentezza della connessione<Q>.	La connessione funziona normalmente					https://qoof.salt.ch/knowledge/technical/wording_tips/wording_poor_internet_speed
 $flow.stability._OpenSpeedTest	<T>- dall'Apple TV nelle app<N><T>- Dal browser di un computer via LAN : https://salt.speedtest.net<N><T>- Su un apparecchio mobile aprendo l'app<N><T>- Su un apparecchio mobile aprendo https://salt.speedtest.net da un navigatore web 	Aprire Speedtest sul suo apparecchio			
 $flow.stability._RedoTestAndWthOtherNTW	2,4 Ghz <-> 5 Ghz	Rifare i test sull'altra rete WiFi					
-$flow.stability._SelectSaltServer	Premere il tasto GO al centro dello schermo<N>Pazientate ~30s, il tempo che<N>si facciano i calcoli<N>Ripetere una o due volte	Selezionare il server Salt	flow/stability/-SelectSaltServer				
-$flow.stability.LanOrWiFi	In base al tipo di connessione utilizzato dal cliente.	Quando si verifica il problema, a cosa è collegato il dispositivo?		WiFi	LAN		
+$flow.stability._SelectSaltServer	Premere il tasto GO al centro dello schermo<N>Pazientate ~30s, il tempo che<N>si facciano i calcoli<N>Ripetere una o due volte<N><T> - <b>device<b> = Il modello preciso del dispositivo (expl iPad 5° generazione o Huawei P9 )<N><T>- <b>downlaod<b>- <b>downlaod<b> = Il valore DOWNLOAD<N><T>- <b>upload<b> = Il valore UPLOAD	Selezionare il server Salt	flow/stability/-SelectSaltServer				
 $flow.stability.ValuesOverEighty	Valori sopra 80 Mbps = la connessione funziona perfettamente	Valori di DOWNLOAD superiori o uguali a 80 Mbps?					https://qoof.salt.ch/fr/customer-process/getstarted/test_internet/test_upload_and_download_speed#en-lan
 $flow.stability.ValuesOverTwenty	Valori sopra 20 Mbps = la connessione funziona perfettamente	Valori di DOWNLOAD superiori o uguali a 20 Mbps?					https://qoof.salt.ch/fr/customer-process/getstarted/test_internet/test_upload_and_download_speed#en-wifi
 $flow.stability._CreateSOTechModemSpeed	Un ticket [525] sarà automaticamente generato al passaggio alla tappa successiva. Non creare un ticket manualmente (SuperOffice). Una copia del contenuto sarà inviata alla tua casella di posta elettronica.<N><N>Informare che:<N><T>- un ticket tecnico sarà trasmesso al nostro servizio tecnico per un'analisi approfondita.<N><T>- potremmo contattarlo.<N><T>- <em>il Box deve restare alimentato (230 V) e collegato (SFP, fibra, OTO) durante tutta la durata di vita del ticket.<em>	Creazione automatica del ticket [525] in SuperOffice					
 $flow.stability.HasLANDevice		Può collegare un apparecchio via LAN ? 					
-$flow.stability.HasAppleTV		Testiamo insieme le sue velocità di connessione.<N>Ha una Apple TV ?					
+$flow.stability.HasAppleTV	È preferibile effettuare prima un test con una connessione LAN.<N>Serve per paragonare le velocità<N><N>Successivamente verranno effettuati i test sulle reti WiFi da 2,4Ghz e 5Ghz	Qual è la sua configurazione?		AppleTV e IDApple Svizzera	Nessuna AppleTV	AppleTV ma nessun IDApple Svizzera	
+$flow.stability.IsAnyServiceImpactedForNormalUse	Esempi<N><T>- Interruzione dello streaming video<N><T>- Impossibile utilizzare un'applicazione di social network<N><T>- Interruzione delle telefonate<N><T>- Pagine web che non si aprono mai<N><T>- Ecc... <N><N>Se il cliente non ha problemi ad utilizzare i servizi normalmente, <N>ma secondo lui dovrebbe andare più veloce (perché la pubblicità dice 10 Gbit/s), rispondere <em>NON</em>.<N>Dicendo <em>SÌ</em> verrà creato un ticket.	Il problema della stabilità le impedisce di utilizzare un servizio in modo normale?					

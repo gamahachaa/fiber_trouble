@@ -2,10 +2,10 @@ package flow.nointernet.postLedChecks;
 
 import flow.installation._EnsureNoLanLoop;
 import flow.nointernet.so.tckets._SwapBox;
-import flow.nointernet.customer.FiberCableChanged;
-import layout.UIInputTfCore;
+//import flow.nointernet.customer.FiberCableChanged;
+//import tstool.layout.UIInputTfCore;
 //import process.DescisionInput;
-import process.DescisionMultipleInput;
+import tstool.process.DescisionMultipleInput;
 
 
 class IsSerialNumberCorrect extends DescisionMultipleInput
@@ -19,7 +19,7 @@ class IsSerialNumberCorrect extends DescisionMultipleInput
 			input:{
 				width:150,
 				prefix:"Serial N°",
-				position:bottom
+				position:[bottom, left]
 			}
 	}]);
 		//super(150, "Serial N°",~/^(SFAA)?[0-9]{8}$/gi);

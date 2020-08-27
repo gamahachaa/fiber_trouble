@@ -1,12 +1,13 @@
 package flow.stability;
+import tstool.layout.History;
 
 import flixel.FlxG;
 import flow.salttv._ConnectAppleTVtoOneGhz;
 import flow.wifi._ConnectWiFIToFiveGH;
 import flow.wifi._ConnectWiFIToTwoDotFourGH;
-import layout.History.Snapshot;
-import process.Action;
-import process.ActionMultipleInput;
+import tstool.layout.History.Snapshot;
+import tstool.process.Action;
+import tstool.process.ActionMultipleInput;
 
 /**
  * ...
@@ -22,29 +23,32 @@ class _SelectSaltServer extends ActionMultipleInput
 		devicePrefix = "device";
 		downloadPrefix = "download";
 		uploadPrefix = "upload";
+		
 		super([
 		{
 			ereg:~/[a-z0-9][\s\S]*$/i,
 			input:{
 				width:200,
 				prefix:devicePrefix,
-				position:bottom
+				position:[bottom, left]
 			}
 		},
 		{
 			ereg:~/^\d{1,4}(\.\d{1,2})?$/,
 			input:{
+				buddy:devicePrefix,
 				width:100,
 				prefix:downloadPrefix,
-				position: bottom
+				position: [bottom, left]
 			}
 		},
 		{
 			ereg:~/^\d{1,4}(\.\d{1,2})?$/,
 			input:{
+				buddy:downloadPrefix,
 				width:100,
 				prefix:uploadPrefix,
-				position: right
+				position: [top, right]
 			}
 
 		}
@@ -53,20 +57,34 @@ class _SelectSaltServer extends ActionMultipleInput
 	}
 	override public function create():Void
 	{
-		
+		//var previous:Snapshot = Main.HISTORY.getLast();
+		//switch (previous.processName)
+		//{
+			//case "flow.stability.HasLANDevice":
+				//this._titleTxt += " (LAN speedtest)";
+			//case "flow.wifi._ConnectWiFIToFiveGH":
+				//this._titleTxt += " (WiFi 5Ghz speedtest)";
+			//case "flow.wifi._ConnectWiFIToTwoDotFourGH":
+				//this._titleTxt += " (WiFi 2.4Ghz speedtest)";
+			//case "flow.stability._OpenSpeedTest":
+			//default:
+		//}
 		if (!Main.HISTORY.isInHistory("flow.wifi._ConnectWiFIToFiveGH", Next) && !Main.HISTORY.isInHistory("flow.wifi._ConnectWiFIToTwoDotFourGH", Next)){
-			this._titleTxt += " (LAN speedtest)";
+			this._titleTxt += " (LAN test)";
 		}
 		else if (Main.HISTORY.isInHistory("flow.wifi._ConnectWiFIToFiveGH", Next) && !Main.HISTORY.isInHistory("flow.wifi._ConnectWiFIToTwoDotFourGH", Next)){
-			this._titleTxt += " (WiFi 5Ghz speedtest)";
+			this._titleTxt += " (WiFi 5Ghz test)";
 		}
 		else if (Main.HISTORY.isInHistory("flow.wifi._ConnectWiFIToFiveGH", Next) && Main.HISTORY.isInHistory("flow.wifi._ConnectWiFIToTwoDotFourGH", Next)){
-			this._titleTxt += " (WiFi 2.4Ghz speedtest)";
+			this._titleTxt += " (WiFi 2.4Ghz test)";
 		}
 		
 		super.create();
 		//FlxG.stage.focus = multipleInputs.first.inputtextfield;
-		
+		if (!Main.HISTORY.isInHistory("flow.stability._SelectSaltServer", Next) && Main.HISTORY.isInHistory("flow.stability.HasAppleTV", Yes))
+		{
+			this.multipleInputs.inputs.get(devicePrefix).inputtextfield.text = "AppleTV";
+		}
 	}
 	override public function onClick()
 	{
@@ -118,7 +136,8 @@ class _SelectSaltServer extends ActionMultipleInput
 			}
 			else if (Main.HISTORY.isInHistory("flow.stability.HasAppleTV", Yes) || Main.HISTORY.isInHistory("flow.stability.HasLANDevice", Yes))
 			{
-				this._nextProcesses = [new _ConnectWiFIToFiveGH()];
+				//this._nextProcesses = [new _ConnectWiFIToFiveGH()];
+				this._nextProcesses = [new HasWifiDevice()];
 			}
 
 			super.onClick();

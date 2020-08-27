@@ -1,6 +1,6 @@
 package flow.escalation;
 
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...

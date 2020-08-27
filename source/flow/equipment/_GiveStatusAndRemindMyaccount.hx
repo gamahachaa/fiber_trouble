@@ -1,7 +1,7 @@
 package flow.equipment;
 
-import flow.all.vti._AddMemoVti;
-import process.Action;
+import flow._AddMemoVti;
+import tstool.process.Action;
 
 /**
  * ...
@@ -12,7 +12,7 @@ class _GiveStatusAndRemindMyaccount extends Action
 
 override public function create()
 	{
-		this._nextProcesses = [new _AddMemoVti()];
+		this._nextProcesses = [new flow._AddMemoVti()];
 		super.create();
 	}
 }

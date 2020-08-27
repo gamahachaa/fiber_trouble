@@ -1,7 +1,7 @@
 package flow.powercable;
 
 import flow.nointernet.fiberbox._RebootBox;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

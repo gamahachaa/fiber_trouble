@@ -1,9 +1,9 @@
 package flow.stability;
 
-import flow.all.vti._AddMemoVti;
+import flow._AddMemoVti;
 import flow.nointernet.postLedChecks._ReadRXValues;
 import flow.salttv._QuitAndRelaunchSaltTV;
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...
@@ -20,7 +20,8 @@ class _CNXallGooodMan extends Action
 			this._nextProcesses = [new _QuitAndRelaunchSaltTV()];
 		}
 		else
-			this._nextProcesses = [new _AddMemoVti()];
+			this._nextProcesses = [new IsAnyServiceImpactedForNormalUse()];
+			//this._nextProcesses = [new flow._AddMemoVti()];
 		//this._nextProcesses = [new _ReadRXValues()];
 		super.create();
 	}

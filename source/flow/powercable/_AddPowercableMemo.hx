@@ -1,7 +1,7 @@
 package flow.powercable;
 
 import flow.End;
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...
@@ -12,7 +12,7 @@ class _AddPowercableMemo extends Action
 
 	override public function create()
 	{
-		this._nextProcesses = [ new End()];
+		this._nextProcesses = [ new flow.End()];
 		super.create();
 	}
 	

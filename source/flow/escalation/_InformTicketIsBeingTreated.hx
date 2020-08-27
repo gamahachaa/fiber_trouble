@@ -1,7 +1,7 @@
 package flow.escalation;
 
 import flow.escalation.IsMifiNeeded;
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...

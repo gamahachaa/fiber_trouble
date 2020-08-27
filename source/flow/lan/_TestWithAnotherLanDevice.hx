@@ -1,7 +1,7 @@
 package flow.lan;
 
-import process.Action;
-import process.Descision;
+import tstool.process.Action;
+import tstool.process.Descision;
 
 /**
  * ...

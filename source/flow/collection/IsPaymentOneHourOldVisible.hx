@@ -1,7 +1,7 @@
 package flow.collection;
 
 import flow.nointernet.vti.IconStatusBoxManagement;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

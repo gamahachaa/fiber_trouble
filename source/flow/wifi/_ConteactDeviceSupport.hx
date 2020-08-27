@@ -1,6 +1,7 @@
 package flow.wifi;
 
-import process.Action;
+import flow.Intro;
+import tstool.process.Action;
 
 /**
  * ...
@@ -14,7 +15,7 @@ class _ConteactDeviceSupport extends Action
 		//this._titleTxt = "Contacter le support technique de l'appareil";
 		//this._detailTxt = "";
 		//this._illustration = "box/box_reset";
-		this._nextProcesses = [new Intro()];
+		this._nextProcesses = [new flow.Intro()];
 		super.create();
 	}
 

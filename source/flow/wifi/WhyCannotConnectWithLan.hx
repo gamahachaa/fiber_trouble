@@ -1,7 +1,7 @@
 package flow.wifi;
 
 import flow.lan.ConnectedViaSwitch;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

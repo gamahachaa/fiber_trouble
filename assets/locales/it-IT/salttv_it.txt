@@ -8,7 +8,7 @@ $flow.salttv._ConnectAppleTVtoOneGhz	Chiedere al cliente di verificare sul retro
 $flow.salttv._CreateAppleIDorBypass	1. Scegliere SVIZZERA come paese<N>2. Collegare l'Apple TV al Fiber Box per permettere <Q>Zero sign in<Q>.<N>3. Passare alla tappa di inserimento dell'Apple ID<N>4. Selezionare Salt come operatore TV 	Collegare l'Apple TV al Fiber Box per installare automaticamente Salt TV 					
 $flow.salttv._CreateSOTicketSaltTV	Un ticket [541] sarà automaticamente generato al passaggio alla tappa successiva. Non creare un ticket manualmente (SuperOffice). Una copia del contenuto sarà inviata alla tua casella di posta elettronica.	Creazione automatica del ticket [541] in SuperOffice.					
 $flow.salttv._InstallSaltTV	Nel documento Qoof troverete dei tutorial <Q>YouTube<Q> per i clienti con o senza Apple ID.	Scaricare e installare l'app Salt TV					https://qoof.salt.ch/fr/customer-process/configure/manage_appletv_salttv/salttv/salttv_download_tipps_and_tricks
-$flow.salttv._InstallSpeedTestAplleTV	Disponibile nell'App Store alla pagina <Q>Home<Q> 	Scaricare e installare l'app Speedtest					
+$flow.salttv._InstallSpeedTestAplleTV	Disponibile nell'App Store alla pagina <Q>Home<Q> 	Scaricare e installare l'app Speedtest sull'Apple TV<N>E collegarsi alla LAN					https://www.speedtest.net/fr/apps/appletv
 $flow.salttv._MakeSurePowerCableWellPlugged	Verificare che il cavo di alimentazione sia ben inserito.<N>Cambiare presa murale se necessario.	Il cavo di alimentazione è ben inserito?	tv/powercablepluggedin	Cavo OK			
 $flow.salttv._QuitAndRelaunchSaltTV	Premere rapidamente due volte sul tasto <Q>Home<Q><N>Trascinare il dito verso sinistra o destra sulla superficie Touch del telecomando Siri Remote per accedere a Salt TV.<N>Trascinare il dito sulla superficie Touch del telecomando Siri Remote verso l'alto per forzare la chiusura dell'app Salt TV.<N>Premere il tasto Menu per tornare alla schermata <Q>Home<Q> poi riaprire l'app Salt TV.	Riaprire l'app Salt TV					https://support.apple.com/it-it/guide/tv/atvbbcec4f4e/tvos
 $flow.salttv._RebootAppleTV	Andare su: <N><T>- Impostazioni<N><T>- Sistema<N><T>- Riavvia	Riavviare l'Apple TV					https://support.apple.com/it-it/HT201836
@@ -24,5 +24,5 @@ $flow.salttv.ProblemSolved	Il cliente conferma che tutti i canali funzionano cor
 $flow.salttv.WhatAppleTVcnxType	Qual è il tipo di connessione del cliente? 	Com'è collegata l'Apple TV al Fiber Box ?		LAN	WiFi		
 $flow.salttv.WhiteLightLids	Se l'alimentazione è corretta, il LED è stabile e bianco	Il LED bianco (luce di stato) dell'Apple TV è acceso? 	tv/statusled	Sì, bianco	Altro		https://support.apple.com/it-it/guide/tv/atvba38a4135/tvos
 $flow.salttv._OpenSaltTVApp		Aprire l'app Salt TV					
-$flow.salttv._LogInWithSwissAppleID		Effettuare il login con un account Apple TV Svizzera					
+$flow.salttv._LogInWithSwissAppleID		Effettuare il login con un account AppleTV Svizzera					
 $flow.salttv._ConnectAppleTVtoTheLAN		Connecter l'AppleTV an LAN					

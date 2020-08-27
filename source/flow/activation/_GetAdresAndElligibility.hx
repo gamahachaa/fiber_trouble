@@ -1,6 +1,6 @@
 package flow.activation;
 
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...

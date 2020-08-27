@@ -1,9 +1,9 @@
 package flow.equipment;
 
 import flow.End;
-import flow.all.vti._AddMemoVti;
-import process.ActionMail;
-import salt.SOTickets;
+import flow._AddMemoVti;
+import tstool.process.ActionMail;
+import tstool.salt.SOTickets;
 
 /**
  * ...

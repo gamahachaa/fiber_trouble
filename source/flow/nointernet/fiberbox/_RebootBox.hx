@@ -1,6 +1,6 @@
 package flow.nointernet.fiberbox;
 
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...

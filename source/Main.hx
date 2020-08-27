@@ -9,22 +9,33 @@ import flixel.text.FlxText.FlxTextFormat;
 import flixel.text.FlxText.FlxTextFormatMarkerPair;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
+import flow.Intro;
+import flow.TutoTree;
 import flow.installation._EnsureCorrectPortPlug;
+import flow.nointernet.customer.FiberCableChanged;
+import flow.nointernet.fiberbox.NormalRxValues;
+import flow.nointernet.vti.CheckContractorVTI;
+import flow.salttv.IsImageJerky;
+import flow.stability._AtWhatTimeDoesItOccurs;
+import flow.stability._SelectSaltServer;
+import flow.swapcable._InputShipingAdress;
 import haxe.Http;
 import js.Browser;
 import js.html.Location;
-import layout.History;
-import layout.Login;
-import layout.SaltColor;
-import utils.XapiTracker;
+import tstool.layout.History;
+import tstool.layout.Login;
+import tstool.layout.SaltColor;
+import tstool.utils.Mail;
+import tstool.utils.Translator;
+import tstool.utils.XapiTracker;
 import openfl.Assets;
 import openfl.display.Sprite;
-import process.Triplet;
-import salt.Agent;
-import salt.Customer;
-import utils.Mail.MailReciepient;
-import utils.Csv;
-import utils.VersionTracker;
+import tstool.process.Triplet;
+import tstool.salt.Agent;
+import tstool.salt.Customer;
+//import tstool.utils.Mail.MailReciepient;
+import tstool.utils.Csv;
+import tstool.utils.VersionTracker;
 
 typedef BasicFormat =
 {
@@ -52,18 +63,20 @@ typedef Ticket =
 class Main extends Sprite
 {
 	public static var HISTORY:History = new History();
-	public static var tongue:FireTongue = new FireTongue();
+	//public static var tongue:FireTongue = new FireTongue();
+	public static var tongue:Translator = new Translator("index.xml");
 	public static var user:Agent;
 	public static var customer:Customer;
 	public static var track:XapiTracker;
 	static inline var TITLE_FONT:String = "assets/fonts/Lato-Black.ttf";
 	static inline var BASIC_FONT:String = "assets/fonts/Lato-Regular.ttf";
+	public static inline var MAIL_WRAPPER_URL:String = "php/mail/index.php";
 
-	public static var adminFile:utils.Csv;
+	public static var adminFile:tstool.utils.Csv;
 	public static var TITLE_FMT:BasicFormat = {font:TITLE_FONT, size:24};
 	public static var BASIC_FMT:BasicFormat = {font:BASIC_FONT, size:16};
 	public static var META_FMT:BasicFormat = {font:TITLE_FONT, size:16};
-	public static var INTERACTION_FMT:BasicFormat = {font:TITLE_FONT, size:20};
+	public static var INTERACTION_FMT:BasicFormat = {font:TITLE_FONT, size:18};
 
 	public static var VERSION:String;
 	public static var VERSION_TRACKER:VersionTracker;
@@ -115,7 +128,7 @@ class Main extends Sprite
 		
 		
 		Main.customer = new Customer();
-		tongue.init("fr-FR",
+		tongue.initialize("fr-FR",
 					function()
 		{
 			#if debug
@@ -126,11 +139,18 @@ class Main extends Sprite
 		#if debug
 		Main.user = new Agent();
 		//addChild(new FlxGame(1400, 880, Test, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, FiberCableChanged, 1, 30, 30, true, true));
+		addChild(new FlxGame(1400, 880, NormalRxValues, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, CheckContractorVTI, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _CreateAppleIDorBypass, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, IsImageJerky, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
-		addChild(new FlxGame(1400, 880, _EnsureCorrectPortPlug, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, _InputShipingAdress, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, _SelectSaltServer, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, _AtWhatTimeDoesItOccurs, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, _EnsureCorrectPortPlug, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));f182ca80-7b7c-43e9-a68b-59e5f9433cb6
 		#else
 
 		if ( DEBUG )
@@ -175,6 +195,12 @@ class Main extends Sprite
 		FlxG.mouse.useSystemCursor = block;
 		FlxG.keys.preventDefaultKeys = block ? [FlxKey.BACKSPACE, FlxKey.TAB] : [FlxKey.TAB];
 		//FlxG.keys.preventDefaultKeys = [FlxKey.TAB];
+	}
+    static public function MOVE_ON(?old:Bool=false)
+	{
+		setUpSystemDefault(true);
+		track.setActor();
+		tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new flow.Intro():new flow.TutoTree() )) );
 	}
 
 }

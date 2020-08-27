@@ -1,7 +1,8 @@
 package flow.nointernet.so.tckets;
 
-import process.ActionMail;
-import salt.SOTickets;
+import flow.End;
+import tstool.process.ActionMail;
+import tstool.salt.SOTickets;
 
 class _SwapBox extends ActionMail {
 	public function new() 
@@ -11,7 +12,7 @@ class _SwapBox extends ActionMail {
 	}
     override public function create():Void
 	{
-		this._nextProcesses = [new End()];
+		this._nextProcesses = [new flow.End()];
 		super.create();
 	}
 }

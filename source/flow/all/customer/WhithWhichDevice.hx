@@ -14,7 +14,7 @@ class WhithWhichDevice extends ActionDropDown
 	{
 		super([
 			new StrNameLabel("", "Select ..."),
-			new StrNameLabel("mobile", "Mobile"),
+			new StrNameLabel("mobile", "Mobile/Tablet"),
 			new StrNameLabel("computer", "Computer"),
 			new StrNameLabel("game", "Game console"),
 			new StrNameLabel("appleTV", "Apple TV"),
@@ -33,6 +33,9 @@ class WhithWhichDevice extends ActionDropDown
 	{
 		if (choice != "")
 		{
+			#if debug
+				trace(choice);
+			#end
 			if (choice == "mobile") this._nextProcesses = [new IsSlowOrKaput()];
 			super.onClick();
 		}

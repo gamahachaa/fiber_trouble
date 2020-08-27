@@ -1,6 +1,6 @@
 package kornok;
 
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...

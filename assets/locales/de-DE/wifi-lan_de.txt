@@ -22,7 +22,7 @@ $flow.wifi.WifiVisibleByAppleTV	(Das LAN-Kabel zuvor vom AppleTV trennen.)<N><N>
 $flow.wifi.WifiVisibleOnDevice		Ist WiFi auf dem Gerät sichtbar?					
 $flow.wifi._MoveCloseUnplugRepeater		Sich der Box nähern und sicherstellen, dass kein WiFi-Repeaters in Reichweite ist.	box/getClose				
 $flow.lan.TestWithAppleTV		Mit dem AppleTV in LAN testen					
-$flow.wifi._ConnectWiFIToFiveGH		Mit dem 5Gz-Netzwerk verbinden					
-$flow.wifi._ConnectWiFIToTwoDotFourGH		Mit dem 2.4Gz-Netzwerk verbinden					
+$flow.wifi._ConnectWiFIToFiveGH	Dem Kunden helfen, sein Gerät mit dem WiFi 5 Ghz-Netzwerk zu verbinden.<N>Unter dem folgenden Link sind die Schritte aufgeführt, die je nach Gerät zu befolgen sind.	Verbindung mit dem 5 Ghz WiFi-Netzwerk der Box herstellen.					https://www.salt.ch/device-help/?page=topic/wifi/wifi-configuration/device
+$flow.wifi._ConnectWiFIToTwoDotFourGH	Dem Kunden helfen, sein Gerät mit dem WiFi 2,4 Ghz-Netzwerk zu verbinden.<N>Unter dem folgenden Link sind die Schritte aufgeführt, die je nach Gerät zu befolgen sind.	Verbindung mit dem 2,4 Ghz WiFi-Netzwerk der Box herstellen.					https://www.salt.ch/device-help/?page=topic/wifi/wifi-configuration/device
 $flow.wifi.WhyCannotConnectWithLan		Wieso kann keine Verbindung zum LAN hergestellt werden?		Hat kein LAN-Gerät	LAN funktioniert nicht		
 $flow.lan._TestWithAnotherLanDevice		Versuchen Sie es mit einem anderen Gerät im LAN					

@@ -3,7 +3,7 @@ package flow.wifi;
 import flow.lan._CreateLanIssueTicket;
 import flow.wifi._RestartDevice;
 import flow.wifi.WiFiPasswordAccepted;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

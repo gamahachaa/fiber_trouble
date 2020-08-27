@@ -1,7 +1,7 @@
 package flow.installation;
 
 import flow.nointernet.so.tckets._WrongOTO;
-import process.Descision;
+import tstool.process.Descision;
 
 class IsOTOidAligned extends Descision {
     override public function create():Void

@@ -1,7 +1,7 @@
 package flow.powercable;
 
-import flow.all.vti._AddMemoVti;
-import process.Descision;
+import flow._AddMemoVti;
+import tstool.process.Descision;
 
 /**
  * ...

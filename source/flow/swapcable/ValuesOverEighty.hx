@@ -1,6 +1,6 @@
 package flow.stability;
 
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

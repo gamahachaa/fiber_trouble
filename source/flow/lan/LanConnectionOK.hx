@@ -1,11 +1,11 @@
 package flow.lan;
 
 import flow.all.fiberbox._LoopResetFiberBox;
-import flow.all.vti._AddMemoVti;
+import flow._AddMemoVti;
 import flow.lan._CreateLanIssueTicket;
 import flow.wifi.WifiOnInDashboard;
 import flow.wifi._CreateTicketWifiIssue;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

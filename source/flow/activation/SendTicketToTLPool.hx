@@ -1,6 +1,7 @@
 package flow.activation;
 
-import process.Action;
+import flow.End;
+import tstool.process.Action;
 
 /**
  * ...
@@ -14,7 +15,7 @@ class SendTicketToTLPool extends Action
 		/**
 		 * @todo illustration
 		 */
-		this._nextProcesses = [new End()];
+		this._nextProcesses = [new flow.End()];
 		super.create();
 	}
 	

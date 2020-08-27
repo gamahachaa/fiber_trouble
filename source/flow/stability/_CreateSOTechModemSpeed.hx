@@ -1,8 +1,8 @@
 package flow.stability;
 
-import flow.all.vti._AddMemoVti;
-import process.ActionMail;
-import salt.SOTickets;
+import flow._AddMemoVti;
+import tstool.process.ActionMail;
+import tstool.salt.SOTickets;
 /**
  * ...
  * @author bb
@@ -15,7 +15,7 @@ class _CreateSOTechModemSpeed extends ActionMail
 	}
 	override public function create():Void
 	{
-		this._nextProcesses = [new _AddMemoVti()];
+		this._nextProcesses = [new flow._AddMemoVti()];
 		super.create();
 	}
 }

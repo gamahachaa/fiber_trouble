@@ -1,9 +1,11 @@
 package flow.swapcable;
 
 //import process.ActionAdress;
-import process.ActionMultipleInput;
-import process.DescisionMultipleInput;
-import salt.Adress;
+import flixel.FlxSubState;
+//import tstool.process.ActionMultipleInput;
+import tstool.process.DescisionMultipleInput;
+import tstool.salt.Adress;
+
 
 /**
  * ...
@@ -21,43 +23,47 @@ class _InputShipingAdress extends DescisionMultipleInput
 					{
 						width:200,
 						prefix: (Main.customer.contract.owner == null ?"": Main.customer.contract.owner.name )+ " c/o",
-						position:bottom
+						position: [bottom, left]
 					}
 				},
 				{
 					ereg:~/.{2,}/ig,
 					input:
 					{
+						buddy: (Main.customer.contract.owner == null ?"": Main.customer.contract.owner.name )+ " c/o",
 						width:200,
 						prefix:"street",
-						position:bottom
+						position:[bottom, left]
 					}
 				},
 				{
 					ereg:~/\d+\w?/g,
 					input:
 					{
+						buddy: "street",
 						width:50,
 						prefix:"n°",
-						position:right
+						position:[top, right]
 					}
 				},
 				{
 					ereg:~/^\d{4}$/g,
 					input:
 					{
+						buddy: "street",
 						width:50,
 						prefix:"zip",
-						position:right
+						position:[bottom, left]
 					}
 				},
 				{
 					ereg:~/\w+[a-z 0-9.éàèüöäâêô!ï()\/\-']+/i,
 					input:
 					{
-						width:140,
+						buddy: "zip",
+						width:140, 
 						prefix:"city",
-						position:right
+						position:[top, right]
 					}
 				}
 			]
@@ -97,5 +103,13 @@ class _InputShipingAdress extends DescisionMultipleInput
 			);
 			super.onYesClick();
 		}
+	}
+	override public function onNoClick():Void
+	{
+		super.onNoClick();
+	}
+	override public function validateNo():Bool
+	{
+		return true;
 	}
 }

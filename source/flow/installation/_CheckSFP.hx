@@ -2,7 +2,7 @@ package flow.installation;
 
 import flow.nointernet.customer.FiberCableIsSalt;
 import flow.nointernet.postLedChecks.WasInternetWorkingBefore;
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...

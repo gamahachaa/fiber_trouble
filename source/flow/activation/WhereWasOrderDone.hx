@@ -1,6 +1,6 @@
 package flow.activation;
-import layout.UIInputTfCore;
-import process.DescisionMultipleInput;
+//import tstool.layout.UIInputTfCore;
+import tstool.process.DescisionMultipleInput;
 
 /**
  * ...
@@ -8,7 +8,7 @@ import process.DescisionMultipleInput;
  */
 class WhereWasOrderDone extends DescisionMultipleInput 
 {
-
+	
 	public function new() 
 	{
 		//super(280, "Store");
@@ -18,7 +18,7 @@ class WhereWasOrderDone extends DescisionMultipleInput
 			input:{
 				width:200,
 				prefix:"Store name",
-				position:bottom
+				position:[bottom, left]
 			}
 		}
 		]);

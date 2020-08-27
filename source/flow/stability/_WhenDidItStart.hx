@@ -9,10 +9,23 @@ import tstool.process.ActionMultipleInput;
 class _WhenDidItStart extends ActionMultipleInput 
 {
 
-	public function new(inputs:Array<ValidatedInputs>) 
+	public function new() 
 	{
-		super(inputs);
-		
+		super([
+		{
+			ereg:~/[\s\S]*$/i,
+			input:{
+				width:200,
+				prefix:"Start date",
+				position:[bottom, left]
+			}
+		}
+		]);
+	}
+	override public function create():Void
+	{
+		this._nextProcesses = [ new _AtWhatTimeDoesItOccurs()];
+		super.create();
 	}
 	
 }

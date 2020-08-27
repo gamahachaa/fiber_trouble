@@ -1,7 +1,7 @@
 package flow.swapcable;
 
 
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

@@ -1,7 +1,7 @@
 package flow.nointernet.postLedChecks;
 
 import flow.nointernet.customer.FiberCableChanged;
-import process.Descision;
+import tstool.process.Descision;
 
 class WasInternetWorkingBefore extends Descision
 {

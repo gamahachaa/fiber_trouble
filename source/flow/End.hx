@@ -1,6 +1,7 @@
 package flow;
 
-import process.Action;
+import flow.Intro;
+import tstool.process.Action;
 
 /**
  * ...
@@ -11,7 +12,7 @@ class End extends Action
 
 	override public function create():Void
 	{
-		this._nextProcesses = [new Intro()];
+		this._nextProcesses = [new flow.Intro()];
 		super.create();
 		Main.track.setResolution();
 		Main.track.send();

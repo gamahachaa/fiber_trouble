@@ -2,7 +2,7 @@ package kornok;
 
 import kornok.CQuoiSaRace;
 import kornok.EstCeQuillAUnFrere;
-import process.Action;
+import tstool.process.Action;
 
 
 /**

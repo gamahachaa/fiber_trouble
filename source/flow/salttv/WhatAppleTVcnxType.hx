@@ -1,6 +1,9 @@
 package flow.salttv;
 
-import process.Descision;
+import flow.stability.HasAppleTV;
+import flow.stability.HasLANDevice;
+import flow.stability.WasREbootDone;
+import tstool.process.Descision;
 
 /**
  * ...
@@ -11,8 +14,14 @@ class WhatAppleTVcnxType extends Descision
 
 	override public function create()
 	{
-		this._nextNoProcesses = [ new _InstallSpeedTestAplleTV()];
+		if (Main.HISTORY.isInHistory("flow.salttv.HasAppleAccount", Yes))
+		{
+			this._nextNoProcesses = [ new _InstallSpeedTestAplleTV() ];
+		}
+		else
+			this._nextNoProcesses = [ new WasREbootDone()];
 		this._nextYesProcesses = [ new _ConnectAppleTVtoOneGhz()];
+		
 		super.create();
 	}
 }

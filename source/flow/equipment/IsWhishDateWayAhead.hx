@@ -1,6 +1,6 @@
 package flow.equipment;
 
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

@@ -5,7 +5,7 @@ import flow.nointernet.customer.FiberCableChanged;
 import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.so.tckets._SwapBox;
 import flow.stability._CreateSOTechModemSpeed;
-import process.TripletMultipleInput;
+import tstool.process.TripletMultipleInput;
 
 
 class _ReadRXValues extends TripletMultipleInput
@@ -19,7 +19,7 @@ class _ReadRXValues extends TripletMultipleInput
 			input:{
 				width:100,
 				prefix:"RX",
-				position:bottom
+				position:[bottom, left]
 			}
 		}]);
 	}

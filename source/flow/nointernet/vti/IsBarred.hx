@@ -2,7 +2,7 @@ package flow.nointernet.vti;
 
 import flow.collection._VerifyCollectionStep;
 import flow.nointernet.customer.ConnectionType;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

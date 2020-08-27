@@ -1,11 +1,13 @@
 package flow.nointernet.customer;
 
 
+import flow.lan.ConnectedViaSwitch;
 import flow.salttv.IsAppleTVvisibleOnTVScreen;
-import flow.salttv._InstallSpeedTestAplleTV;
-import flow.stability.HasAppleTV;
-import flow.stability._OpenSpeedTest;
-import process.Action;
+//import flow.salttv._InstallSpeedTestAplleTV;
+//import flow.stability.HasAppleTV;
+//import flow.stability._OpenSpeedTest;
+import flow.wifi.WifiOnInDashboard;
+import tstool.process.Action;
 
 /**
  * ...
@@ -21,16 +23,21 @@ class _TellCustomerAllOkWithFiberCnx extends Action
 		}
 		else if (Main.HISTORY.isInHistory("flow.Intro", Yes))
 		{
-			if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes) || Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid))
+			//var h = Main.HISTORY.findStepsInHistory("flow.all.customer.WhithWhichDevice", 1, true);
+			//if( h[0].values[0] == "mobile" || Main.HISTORY.isInHistory("flow.all.customer.LanOrWiFi", Yes) || )
+			if (Main.HISTORY.isInHistory("flow.all.customer.LanOrWiFi", Yes))
 			{
-				// slow internet
-				//this._nextProcesses = [new _OpenSpeedTest()];
-				//this._nextProcesses = [new _InstallSpeedTestAplleTV()];
-				this._nextProcesses = [new HasAppleTV()];
+				//WiFI
+				this._nextProcesses = [new WifiOnInDashboard()];
+				
 			}
 			else{
-				this._nextProcesses = [new ConnectionType()];
+				//LAN
+				//this._nextProcesses = [new HasAppleTV()];
+				this._nextProcesses = [new ConnectedViaSwitch()];
 			}
+			
+				
 		}
 		super.create();
 	}

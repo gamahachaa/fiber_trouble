@@ -1,7 +1,7 @@
 package flow.swapcable;
 
-import flow.all.vti._AddMemoVti;
-import process.Action;
+import flow._AddMemoVti;
+import tstool.process.Action;
 
 /**
  * ...
@@ -13,8 +13,8 @@ class _FiberCableByStore extends Action
 	override public function create():Void
 	{
 
-		this._nextProcesses = [new _AddMemoVti()]; // CORONA exception
-		//this._nextProcesses = [new IsShipingToAnotherAdress()];
+		//this._nextProcesses = [new flow._AddMemoVti()]; 
+		this._nextProcesses = [new _FiberCableByPost()];
 		super.create();
 	}
 

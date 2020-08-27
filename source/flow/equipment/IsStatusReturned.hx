@@ -1,7 +1,7 @@
 package flow.equipment;
 
-import process.Action;
-import process.Descision;
+//import tstool.process.Action;
+import tstool.process.Descision;
 
 /**
  * ...
@@ -13,7 +13,8 @@ class IsStatusReturned extends Descision
 	override public function create()
 	{
 		this._nextNoProcesses = [new WasParcelInRothenbug()];
-		this._nextYesProcesses = [new _AddNoteVtiCustDidNotFecthParcel()];
+		//this._nextYesProcesses = [new _AddNoteVtiCustDidNotFecthParcel()];
+		this._nextYesProcesses = [new IsVTILaposteSendBoxMsgVisible()];
 		super.create();
 	}
 	

@@ -1,21 +1,21 @@
 package flow.all.customer;
 
 import flow.nointernet.vti.CheckContractorVTI;
-
-import tstool.process.Descision;
+import tstool.process.Triplet;
 
 /**
  * ...
  * @author ...
  */
-class LanOrWiFi extends Descision 
+class LanOrWiFi extends Triplet 
 {
 
 	override public function create():Void
 	{
-
-		this._nextNoProcesses = [new CheckContractorVTI()];
-		this._nextYesProcesses = [ new CheckContractorVTI()];
+		var next = new IsSlowOrKaput();
+		this._nextNoProcesses = [ next ];
+		this._nextYesProcesses = [ next ];
+		this._nextMidProcesses = [ next ];
 		super.create();
 	}
 	

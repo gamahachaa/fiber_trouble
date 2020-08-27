@@ -1,5 +1,5 @@
 package flow.nointernet.fiberbox;
-import process.Descision;
+import tstool.process.Descision;
 import flow.nointernet.postLedChecks.WasInternetWorkingBefore;
 
 class WhatIsFiberLEDStatus extends Descision{

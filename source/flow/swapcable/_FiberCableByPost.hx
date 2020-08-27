@@ -1,8 +1,8 @@
 package flow.swapcable;
 
-import flow.all.vti._AddMemoVti;
-import process.ActionMail;
-import salt.SOTickets;
+import flow._AddMemoVti;
+import tstool.process.ActionMail;
+import tstool.salt.SOTickets;
 /**
  * ...
  * @author ...
@@ -16,7 +16,7 @@ class _FiberCableByPost extends ActionMail
 	}
 	override public function create():Void
 	{
-		this._nextProcesses = [new _AddMemoVti()];
+		this._nextProcesses = [new flow._AddMemoVti()];
 		super.create();
 	}
 	

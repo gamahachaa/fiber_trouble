@@ -3,7 +3,7 @@ package flow.nointernet.fiberbox;
 import flow.installation.OTOPlugDamagedNotClicking;
 //import flow.installation._EnsureCorrectPortPlug;
 //import process.Descision;
-import process.Triplet;
+import tstool.process.Triplet;
 // import flow.nointernet.customer._TellCustomerAllOkWithFiberCnx;
 
 /**

@@ -2,7 +2,7 @@ package flow.wifi;
 
 import flow.wifi._CreateTicketWifiIssue;
 import flow.wifi._SwitchOnWifiFromAdminConsole;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

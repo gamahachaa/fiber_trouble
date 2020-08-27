@@ -2,7 +2,7 @@ package flow.installation;
 
 //import flow.nointernet.postLedChecks.WasInternetWorkingBefore;
 //import ;
-import process.Action;
+import tstool.process.Action;
 
 class _EnsureNoLanLoop extends Action {
     override public function create():Void

@@ -9,10 +9,13 @@ import tstool.process.Triplet;
 class _WhitWhatKindOfSite extends Triplet 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		var next = new _WhatToolItOccursWith();
+		this._nextNoProcesses = [next];
+		this._nextYesProcesses = [next];
+		this._nextMidProcesses= [next];
+		super.create();
 	}
 	
 }

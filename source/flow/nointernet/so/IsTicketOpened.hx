@@ -4,8 +4,10 @@ import flow.equipment.IsWhishDateWayAhead;
 import flow.escalation.IsTechTicket;
 import flow.nointernet.vti.ActivationDone;
 import flow.nointernet.vti.IconStatusBoxManagement;
+import flow.stability.HasAppleTV;
+import flow.stability.WasREbootDone;
 //import flow.nointernet.vti.IsBarred;
-import process.Descision;
+import tstool.process.Descision;
 
 
 /**
@@ -20,13 +22,13 @@ class IsTicketOpened extends Descision
 		this._nextYesProcesses = [new IsTechTicket()];
 		if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes)|| Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid))
 		{
-			this._nextNoProcesses =  [new IconStatusBoxManagement()];
+			this._nextNoProcesses =  [new WasREbootDone()];
 		}
 		else if (Main.HISTORY.isInHistory("flow.Intro", Mid)){
 			this._nextNoProcesses =  [new IsWhishDateWayAhead()];
 		}
 		else{
-			this._nextNoProcesses =  [new ActivationDone()];
+			this._nextNoProcesses =  [new IconStatusBoxManagement()];
 		}
 		super.create();
 	}

@@ -2,7 +2,7 @@ package flow.lan;
 
 import flow.lan.ConnectDirectToFiberbox;
 import flow.lan._RemoveAllCablesConnectedToBox;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

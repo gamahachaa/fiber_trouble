@@ -1,8 +1,8 @@
 package flow.nointernet.so.tckets;
 
 import flow.all.customer._SendTechMail;
-import process.ActionMail;
-import salt.SOTickets;
+import tstool.process.ActionMail;
+import tstool.salt.SOTickets;
 class _WrongOTO extends ActionMail
 {
 	public function new() 

@@ -132,7 +132,7 @@ class Main extends Sprite
 					function()
 		{
 			#if debug
-			trace(tongue.get("$flow.nointernet.vti.CheckContractorVTI_UI1", "meta"));
+			//trace(tongue.get("$flow.nointernet.vti.CheckContractorVTI_UI1", "meta"));
 			#end
 		}
 				   );
@@ -140,7 +140,8 @@ class Main extends Sprite
 		Main.user = new Agent();
 		//addChild(new FlxGame(1400, 880, Test, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, FiberCableChanged, 1, 30, 30, true, true));
-		addChild(new FlxGame(1400, 880, NormalRxValues, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, NormalRxValues, 1, 30, 30, true, true));
+		addChild(new FlxGame(1400, 880, _EnsureCorrectPortPlug, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, CheckContractorVTI, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _CreateAppleIDorBypass, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));

@@ -1,4 +1,0 @@
-$flow.stability.HasAppleTV
-$flow.stability.HasWifiDevice
-$flow.stability.IsAnyServiceImpactedForNormalUse (DE/EN)
-$flow.salttv._InstallSpeedTestAplleTV

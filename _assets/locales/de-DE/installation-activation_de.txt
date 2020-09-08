@@ -1,0 +1,15 @@
+﻿FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
+$flow.installation._EnsureCorrectPortPlug	<b>Vor allem, wenn das Kabel gewechselt wurde<b>	Sicherstellen, dass das Glasfaserkabel an den richtigen Port and der OTO-Plug angeschlossen ist	box/oto/Correctplugde				
+$flow.installation._EnsureNoLanLoop	Eine LAN-Schlaufe ist ein Kabel, das von einem Port der Box direkt zu einem anderen Port führt.	Sicherstellen, dass es keine Schlaufen im Kabel vorhanden sind 	box/lanloop				
+$flow.installation.IsOTOidAligned	Den Kunden bitten, die OTO-Nummer laut vorzulesen.	Ist die OTO-Nummer die gleiche wie in VTI?					
+$flow.installation.OTOPlugDamagedNotClicking	Das Glasfaserkabel hält nicht gut in der Steckdose (kein <LQ>click<RQ> hörbar beim Einstecken)	Ist die OTO-Steckdose beschädigt?					
+$flow.installation._CheckSFP	Versuchen Sie, die SFP <b>nicht dazu zu bringen, die SFP zu sehr zu manipulieren<b>. Stellen Sie einfach sicher, dass: <N><T>- Der blaue Hebel ist oben. <N><T>- Die SFP wird ganz nach innen geschoben.	Sicherstellen, dass der SFP das Glasfaserkabel korrekt befestigt	box/sfp/badgood				https://qoof.salt.ch/de/customer-process/use_trouble/internet/led_fiber_off_red#alle-kabel-gem%C3%A4ss-video-anschliessen
+$flow.installation._RemoveMultiplePowerSocket	Wenn die Box an einen Multi-Stecker angeschlossen ist, direkt an die Wandsteckdose anschliessen.<N>Eine andere Wandsteckdose ausprobieren.	Den Anschluss an die Steckdose überprüfen					
+$flow.activation._SendCustomerBAckToStore	Dem Kunden vorschlagen, in den Laden zurückzukehren.<N>Nicht drängen.	Die Details des Stores notieren					https://qoof.salt.ch/de/customer-process/discover/salt_company_info/stores_adress_list
+$flow.activation.SendTicketToTLPool	Der T.L. kontaktiert Fabien und Bart	Informationen sammeln und an den T.L. weiterleiten.					
+$flow.activation.IsFiberOrMultisurf		Handelt es sich um einen Fiber- oder MultiSurf-Vertrag?		Fiber	MultiSurf		
+$flow.activation.WhereWasOrderDone		Wo wurde die Bestellung abgeschlossen?		Online-Bestellung oder Tür-zu-Tür	In einem Store		https://qoom.salt.ch/de/customer-process/discover/salt_company_info/stores_adress_list
+$flow.activation._GetAdresAndElligibility		Adresse und Verfügbarkeit der Glasfaser an der Adresse prüfen					https://qoof.salt.ch/de/customer-process/discover/services/availability_check#in-den-salt-stores-%C3%BCber-den-kundendienst
+$flow.activation.ActivationDoneEnd	"Aufgrund eines technischen Fehlers ist Ihre Bestellung in unseren Systemen verloren gegangen; wir werden Sie in den kommenden Stunden kontaktieren."	Ende	general/end				
+$flow.activation.HaveStoreReciept		Fiber wurde in einem Store erworben.<N>Hat der Kunde den Beleg behalten?		Bestellung im Store	Online Bestellung		
+$flow.installation.IsOtoPortWrong		Verfügt der OTO-Anschluss des Kunden über die VTI-Portnummer?					

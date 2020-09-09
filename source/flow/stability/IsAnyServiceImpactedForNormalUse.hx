@@ -27,7 +27,7 @@ class IsAnyServiceImpactedForNormalUse extends DescisionMultipleInput
 	override public function create()
 	{
 		this._nextNoProcesses = [new _AddMemoVti()];
-		this._nextYesProcesses = [new _ReadRXValues()];
+		this._nextYesProcesses = [new _CreateSOTechModemSpeed()];
 		super.create();
 	}
 	

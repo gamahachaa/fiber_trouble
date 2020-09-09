@@ -1,5 +1,7 @@
 package flow.nointernet.customer;
 
+import flow.installation.IsOTOidAligned;
+import flow.installation.OTOPlugDamagedNotClicking;
 import flow.nointernet.postLedChecks._ReadRXValues;
 import flow.nointernet.so._CreateTicketModemCNX;
 import flow.stability._CreateSOTechModemSpeed;
@@ -36,13 +38,21 @@ class FiberCableChanged extends TripletMultipleInput
 		//this._detailTxt = "";
 		//this._illustration = "";
 		//this._nextYesProcesses = [new _ReadRXValues()];
-		if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes) || Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid)) // Stability
+		/*if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes) || Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid)) // Stability
 		{
 			this._nextMidProcesses = this._nextYesProcesses = [new _CreateSOTechModemSpeed()];
 		}
 		else{
 			this._nextMidProcesses = this._nextYesProcesses = [new _CreateTicketModemCNX()];
-		}
+			
+		}*/
+		/*****************************************
+		 * INSTALLATION
+		/*****************************************/
+		this._nextMidProcesses = this._nextYesProcesses = [new IsOTOidAligned()];
+		/*****************************************
+		 * SWAP CABLE
+		/*****************************************/
 		this._nextNoProcesses = [new SwapFiberCable()];
 		//this._nextNoProcesses = [new FiberCableIsSalt()];SwapFiberCable
 		super.create();

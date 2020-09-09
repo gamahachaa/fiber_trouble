@@ -84,37 +84,24 @@ class CheckContractorVTI extends DescisionMultipleInput
 	override public function create():Void
 	{
 		Main.customer.reset();
-
-		if (Main.HISTORY.isInHistory("flow.Intro", Mid))
-		{
-			this._nextYesProcesses = [new IsWhishDateWayAhead()];
+		
+		if (Main.HISTORY.isInHistory("flow.Intro", Mid)){
 			Main.track.setActivity("equipment");
 		}
-		else
-		{
-			if (Main.HISTORY.isInHistory("flow.Intro", No))
-			{
-				Main.track.setActivity("tv");
-				//this._nextYesProcesses = [new HasCustomerLEXnetworkIssue()];
-				this._nextYesProcesses = [new ActivationDone()];
-			}
-			else if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", No))
-			{
-				Main.track.setActivity("no-internet");
-				//this._nextYesProcesses = [new HasCustomerLEXnetworkIssue()];
-				this._nextYesProcesses =  [new ActivationDone()];
-				//this._nextYesProcesses = [new HasCustomerLEXnetworkIssue()];
-			}
-			else if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes) || Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid))
-			{
-				Main.track.setActivity("slow-internet");
-				this._nextYesProcesses = [new IsTicketOpened()];
-			}
-			else{
-				Main.track.setActivity("");
-			}
-			
+		else if (Main.HISTORY.isInHistory("flow.Intro", No)){
+			Main.track.setActivity("tv");
 		}
+		else if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", No)){
+			Main.track.setActivity("no-internet");
+		}
+		else if (
+			Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes) || Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid)){
+			Main.track.setActivity("slow-internet");
+		}
+		else{
+			Main.track.setActivity("");
+		}			
+		this._nextYesProcesses = [new IsTicketOpened()];
 		this._nextNoProcesses = [new IsFiberOrMultisurf()];
 
 		super.create();

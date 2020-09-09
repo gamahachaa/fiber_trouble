@@ -1,7 +1,9 @@
 package flow.nointernet.vti;
 
 import flow.collection._VerifyCollectionStep;
+import flow.lan.ConnectedViaSwitch;
 import flow.nointernet.customer.ConnectionType;
+import flow.wifi.WifiOnInDashboard;
 import tstool.process.Descision;
 
 /**
@@ -13,12 +15,22 @@ class IsBarred extends Descision
 
 	override public function create():Void
 	{
-		//this._titleTxt = "Est que le client est barré ?";
-		//this._detailTxt = "";
-		//this._illustration = "vti/IsBarred_fr";
-		//this._nextYesProcesses = [new BalanceAmout()];
+		
 		this._nextYesProcesses = [new _VerifyCollectionStep()];
-		this._nextNoProcesses = [new IconStatusBoxManagement()];
+		//this._nextNoProcesses = [new IconStatusBoxManagement()];
+		if (Main.HISTORY.isInHistory("flow.all.customer.LanOrWiFi", Yes))
+		{
+			/******************************
+			 * WIFI
+			/******************************/
+			this._nextNoProcesses = [new WifiOnInDashboard()];
+		}
+		else{
+			/******************************
+			 * LAN and/or WiFi
+			/******************************/
+			this._nextNoProcesses = [new ConnectedViaSwitch()];
+		}
 		super.create();
 	}
 }

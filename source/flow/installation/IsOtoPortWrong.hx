@@ -12,8 +12,7 @@ class IsOtoPortWrong extends Descision
 
 	override public function create()
 	{
-		this._nextNoProcesses = [new  _CreateTicketModemCNX()];
-		this._nextYesProcesses = [new IsOTOidAligned()];
+		this._nextYesProcesses = this._nextNoProcesses = [new OTOPlugDamagedNotClicking()];
 		super.create();
 	}
 	

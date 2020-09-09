@@ -1,5 +1,6 @@
 package flow;
 
+import flow.all.customer._ExplainMainSteps;
 import flow.all.customer.IsSlowOrKaput;
 import flow.all.customer.WhithWhichDevice;
 import flow.nointernet.vti.CheckContractorVTI;
@@ -21,9 +22,9 @@ class Intro extends Triplet
 		//trace(Main.user.isAdmin);
 		
 		//trace("WTF"); 
-		var next = new CheckContractorVTI();
-		//this._nextYesProcesses = [new IsSlowOrKaput()];
-		this._nextYesProcesses = [new WhithWhichDevice()];
+		var next = new _ExplainMainSteps();
+		this._nextYesProcesses = [new IsSlowOrKaput()];
+		//this._nextYesProcesses = [new WhithWhichDevice()];
 		this._nextNoProcesses = [ next ];
 		this._nextMidProcesses = [ next ];
 		

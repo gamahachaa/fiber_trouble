@@ -12,7 +12,7 @@ class LanOrWiFi extends Triplet
 
 	override public function create():Void
 	{
-		var next = new IsSlowOrKaput();
+		var next = new _ExplainMainSteps();
 		this._nextNoProcesses = [ next ];
 		this._nextYesProcesses = [ next ];
 		this._nextMidProcesses = [ next ];

@@ -24,7 +24,7 @@ class WifiOnInDashboard extends Descision
 			this._nextNoProcesses = [new _SwitchOnUsingButton(), new _CreateLanIssueTicket()];
 		}
 		else
-			this._nextNoProcesses = [new _SwitchOnUsingButton(), new _LoopResetFiberBox(), new CanConnectToBoxWithLAN(), new _CreateTicketWifiIssue()];
+			this._nextNoProcesses = [new _SwitchOnUsingButton(), new _LoopResetFiberBox(), new _CreateTicketWifiIssue()];
 		this._nextYesProcesses = [new _MoveCloseUnplugRepeater()];
 		//this._nextYesProcesses = [new UnplugLanAppleTV()];
 		//this._nextYesProcesses = [];

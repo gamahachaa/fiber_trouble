@@ -1,0 +1,31 @@
+package flow.tv.sound;
+
+import tstool.process.ActionMultipleInput;
+import tstool.process.DescisionMultipleInput;
+
+/**
+ * ...
+ * @author bb
+ */
+class StoreCustomersSetup extends ActionMultipleInput 
+{
+
+	public function new ()
+	{
+		super(
+		[{
+			ereg: new EReg("[\\s\\S]*","i"),
+			input:{
+				width:250,
+				prefix:"Set up",
+				position: [bottom, left]
+			}
+		}]
+		);
+	}
+	override public function create()
+	{
+		this._nextProcesses = [new AppleTVSoundSetup()];
+		super.create();
+	}
+}

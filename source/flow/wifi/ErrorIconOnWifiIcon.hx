@@ -17,7 +17,7 @@ class ErrorIconOnWifiIcon extends Descision
 		//this._titleTxt = "Erreur sur l'Icone du WiFi ?";
 		//this._detailTxt = "";
 		//this._illustration = "";
-		this._nextYesProcesses = [new _LoopResetFiberBox(), new _CreateTicketWifiIssue()];
+		//this._nextYesProcesses = [new _CreateTicketWifiIssue()];
 		if (Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
 		{
 			this._nextNoProcesses = [new _CreateLanIssueTicket()];

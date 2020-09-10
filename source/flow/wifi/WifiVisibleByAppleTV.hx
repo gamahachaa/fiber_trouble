@@ -19,12 +19,21 @@ class WifiVisibleByAppleTV extends Descision
 		//this._detailTxt = "(Débrancher le câble LAN de l'AppleTV au préalable)";
 		//this._illustration = "";
 		this._nextYesProcesses = [new WifiVisibleOnDevice()];
-		if (Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
+		var resetDone = Main.HISTORY.isInHistory("flow.all.fiberbox._LoopResetFiberBox", Yes);
+		if (resetDone )
 		{
-			this._nextNoProcesses = [new _CreateLanIssueTicket()];
+			if (Main.HISTORY.isInHistory("flow.lan.flow.lan.OkToTryWifi", Yes))
+			{
+				this._nextNoProcesses = [new _CreateLanIssueTicket()];
+			}
+			else
+				this._nextNoProcesses = [new _CreateTicketWifiIssue()];
 		}
-		else
-			this._nextNoProcesses = [new _LoopResetFiberBox(),new _CreateTicketWifiIssue()];
+		else{
+			var wva = new WifiVisibleByAppleTV();
+			this._nextNoProcesses = [new _LoopResetFiberBox(wva, wva)];
+		}
+		
 		super.create();
 	}
 

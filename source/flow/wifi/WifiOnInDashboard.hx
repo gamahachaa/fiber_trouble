@@ -25,7 +25,9 @@ class WifiOnInDashboard extends Descision
 		}
 		else
 			this._nextNoProcesses = [new _SwitchOnUsingButton(), new _LoopResetFiberBox(), new _CreateTicketWifiIssue()];
-		this._nextYesProcesses = [new _MoveCloseUnplugRepeater()];
+		//var wva = new WifiVisibleByAppleTV();
+		var wvd = new WifiVisibleOnDevice();
+		this._nextYesProcesses = [new _MoveCloseUnplugRepeater(wvd,wvd)];
 		//this._nextYesProcesses = [new UnplugLanAppleTV()];
 		//this._nextYesProcesses = [];
 		//this._nextNoProcesses = [];

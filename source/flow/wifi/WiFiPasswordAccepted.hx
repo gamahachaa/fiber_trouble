@@ -18,12 +18,20 @@ class WiFiPasswordAccepted extends Descision
 		//this._detailTxt = "";
 		//this._illustration = "";
 		this._nextYesProcesses = [new ErrorIconOnWifiIcon()];
-		if (Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
+		var resetDone = Main.HISTORY.isInHistory("flow.all.fiberbox._LoopResetFiberBox", Yes);
+		if (resetDone )
 		{
-			this._nextNoProcesses = [new _CreateLanIssueTicket()];
+			if (Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
+			{
+				this._nextNoProcesses = [new _CreateLanIssueTicket()];
+			}
+			else
+				this._nextNoProcesses = [new _CreateTicketWifiIssue()];
 		}
-		else
-			this._nextNoProcesses = [new _LoopResetFiberBox(new WifiVisibleOnDevice(),new WifiVisibleOnDevice()),new _CreateTicketWifiIssue()];
+		else{
+			var wvd = new WifiVisibleOnDevice();
+			this._nextNoProcesses = [new _LoopResetFiberBox(wvd,wvd),new _CreateTicketWifiIssue()];
+		}
 		super.create();
 	}
 

@@ -17,13 +17,14 @@ class ErrorIconOnWifiIcon extends Descision
 		//this._titleTxt = "Erreur sur l'Icone du WiFi ?";
 		//this._detailTxt = "";
 		//this._illustration = "";
-		//this._nextYesProcesses = [new _CreateTicketWifiIssue()];
+		this._nextNoProcesses = [new _CanSeeGoogle()];
+		
 		if (Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
 		{
-			this._nextNoProcesses = [new _CreateLanIssueTicket()];
+			this._nextYesProcesses = [new _CreateLanIssueTicket()];
 		}
 		else
-			this._nextNoProcesses = [new _CreateTicketWifiIssue()];
+			this._nextYesProcesses = [new _CreateTicketWifiIssue()];
 		super.create();
 	}
 

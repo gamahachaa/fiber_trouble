@@ -109,38 +109,7 @@ rem add new JS MAP
     "put -nopreservetime *.js.map" ^
     "exit"
 rem ADD FONTS
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.193.14.13/ -hostkey=""ssh-rsa 2048 wS00k9P56QO60lm1NS8bO+nPtjNA0htnzu/XzCyhfQg=""" ^
-    "lcd %ASSETSDIR%fonts" ^
-    "cd /home/qook/app/qook/%serverFolderName%/assets/fonts" ^
-    "put -nopreservetime *.ttf" ^
-    "exit"
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.193.14.13/ -hostkey=""ssh-rsa 2048 wS00k9P56QO60lm1NS8bO+nPtjNA0htnzu/XzCyhfQg=""" ^
-    "lcd %ASSETSDIR%fonts" ^
-    "cd /home/qook/app/qook/%serverFolderName%/assets/fonts" ^
-    "put -nopreservetime *.eot" ^
-    "exit"
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.193.14.13/ -hostkey=""ssh-rsa 2048 wS00k9P56QO60lm1NS8bO+nPtjNA0htnzu/XzCyhfQg=""" ^
-    "lcd %ASSETSDIR%fonts" ^
-    "cd /home/qook/app/qook/%serverFolderName%/assets/fonts" ^
-    "put -nopreservetime *.woff" ^
-    "exit"
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.193.14.13/ -hostkey=""ssh-rsa 2048 wS00k9P56QO60lm1NS8bO+nPtjNA0htnzu/XzCyhfQg=""" ^
-    "lcd %ASSETSDIR%fonts" ^
-    "cd /home/qook/app/qook/%serverFolderName%/assets/fonts" ^
-    "put -nopreservetime *.svg" ^
-    "exit"
+
 rem ------------------- LOCALES ---------------------
 rem "C:\_mesProgs\WinSCP\WinSCP.com" ^
 rem  /log="%cd%\WinSCP.log" /ini=nul ^
@@ -239,38 +208,7 @@ rem add new JS MAP
     "put -nopreservetime *.js.map" ^
     "exit"
 rem ADD FONTS
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
-    "lcd %ASSETSDIR%fonts" ^
-    "cd /home/qook/app/entry_point_qook/%serverFolderName%/assets/fonts" ^
-    "put -nopreservetime *.ttf" ^
-    "exit"
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
-    "lcd %ASSETSDIR%fonts" ^
-    "cd /home/qook/app/entry_point_qook/%serverFolderName%/assets/fonts" ^
-    "put -nopreservetime *.eot" ^
-    "exit"
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
-    "lcd %ASSETSDIR%fonts" ^
-    "cd /home/qook/app/entry_point_qook/%serverFolderName%/assets/fonts" ^
-    "put -nopreservetime *.woff" ^
-    "exit"
-"C:\_mesProgs\WinSCP\WinSCP.com" ^
-  /log="%cd%\WinSCP.log" /ini=nul ^
-  /command ^
-    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
-    "lcd %ASSETSDIR%fonts" ^
-    "cd /home/qook/app/entry_point_qook/%serverFolderName%/assets/fonts" ^
-    "put -nopreservetime *.svg" ^
-    "exit"
+
 rem index
 "C:\_mesProgs\WinSCP\WinSCP.com" ^
   /log="%cd%\WinSCP.log" /ini=nul ^

@@ -10,10 +10,11 @@ import tstool.process.DescisionLoop;
  */
 class _MoveCloseUnplugRepeater extends DescisionLoop
 {
+	/*
 	override public function new( ?nextYes:Process, ?nextNo:Process)
 	{
 		super(nextYes,nextNo);
 		//_next = next;
 	}
-	
+	*/
 }

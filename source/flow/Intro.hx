@@ -29,11 +29,11 @@ class Intro extends Triplet
 		this._nextMidProcesses = [ next ];
 		
  		super.create();
-		#if !debug
+		//#if !debug
 		Main.VERSION_TRACKER.scriptChangedSignal.add(onNewVersion);
 		Main.VERSION_TRACKER.request();
 		openSubState(new CheckUpdateSub(Main.THEME.bg));
-		#end
+		//#end
 			
 	}
 	

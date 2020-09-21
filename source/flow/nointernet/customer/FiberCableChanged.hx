@@ -1,11 +1,12 @@
 package flow.nointernet.customer;
 
 import flow.installation.IsOTOidAligned;
-import flow.installation.OTOPlugDamagedNotClicking;
-import flow.nointernet.postLedChecks._ReadRXValues;
 import flow.nointernet.so._CreateTicketModemCNX;
-import flow.stability._CreateSOTechModemSpeed;
-import tstool.process.DescisionMultipleInput;
+//import flow.installation.OTOPlugDamagedNotClicking;
+//import flow.nointernet.postLedChecks._ReadRXValues;
+//import flow.nointernet.so._CreateTicketModemCNX;
+//import flow.stability._CreateSOTechModemSpeed;
+//import tstool.process.DescisionMultipleInput;
 import tstool.process.TripletMultipleInput;
 //import flow.nointernet.so._CreateTicketModemCNX;
 import flow.swapcable.SwapFiberCable;
@@ -49,11 +50,11 @@ class FiberCableChanged extends TripletMultipleInput
 		/*****************************************
 		 * INSTALLATION
 		/*****************************************/
-		this._nextMidProcesses = this._nextYesProcesses = [new IsOTOidAligned()];
+		this._nextMidProcesses = this._nextYesProcesses = [new _CreateTicketModemCNX()];
 		/*****************************************
 		 * SWAP CABLE
 		/*****************************************/
-		this._nextNoProcesses = [new SwapFiberCable()];
+		this._nextNoProcesses = [new IsOTOidAligned()];
 		//this._nextNoProcesses = [new FiberCableIsSalt()];SwapFiberCable
 		super.create();
 	}

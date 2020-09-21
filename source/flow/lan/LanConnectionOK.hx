@@ -23,16 +23,28 @@ class LanConnectionOK extends Descision
 		/*************************************************/
 		if (Main.HISTORY.isInHistory("flow.wifi.CanConnectToBoxWithLAN", Yes) || Main.HISTORY.isInHistory("flow.wifi.CanConnectToBoxWithLAN", No) && Main.HISTORY.isInHistory("flow.all.customer.LanOrWiFi", Yes))
 		{
-			/************************************
-			 * WiFi Not visible on Dashboard
-			/***********************************/
+			/********************************************************************
+			 * WiFi Not visible on Dashboard (all ready went though WiFi steps)
+			/*******************************************************************/
 			this._nextYesProcesses = [new _CreateTicketWifiIssue()];
 		}
 		else{
-			/********************************
-			 * LAN issue
-			/********************************/
-			this._nextYesProcesses = [new _AddMemoVti()];
+			
+			if (Main.HISTORY.isInHistory("flow.all.customer.LanOrWiFi", Mid))
+			{
+				/*******************************************************************
+				* BOTH issue 
+				/******************************************************************/
+
+				//this._nextYesProcesses = [new WifiOnInDashboard()];
+				this._nextYesProcesses = [new LetsCheckYourWiFi()];
+			}
+			else{
+				/*******************************************************************
+				* LAN issue 
+				/******************************************************************/
+				this._nextYesProcesses = [new _AddMemoVti()];
+			}
 		}
 		
 		
@@ -75,38 +87,7 @@ class LanConnectionOK extends Descision
 			//this._nextNoProcesses.push( new _CreateTicketWifiIssue());
 			this._nextNoProcesses.push( new OkToTryWifi());
 		}
-		/*
-		if (Main.HISTORY.isInHistory("flow.all.fiberbox._LoopResetFiberBox", Next))
-		{
-			//this._nextNoProcesses = [new _CreateLanIssueTicket()];
-				this._nextNoProcesses = [new WifiOnInDashboard()];
-		}
-		else
-			this._nextYesProcesses = [new _AddMemoVti()];
-		//this._nextNoProcesses = [new _CreateLanIssueTicket()];
-
-		if (Main.HISTORY.isInHistory("flow.lan.TestWithAppleTV", Yes) && !Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
-		{
-			this._nextNoProcesses = [new _TestWithAnotherLanDevice()];
-		}
-		else if (Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
-		{
-			if (Main.HISTORY.isInHistory("flow.wifi.WhyCannotConnectWithLan", No))
-			{
-				// came from WiFi Issue
-				this._nextNoProcesses = [new _CreateTicketWifiIssue()];
-			}
-			else if (Main.HISTORY.isInHistory("flow.all.fiberbox._LoopResetFiberBox", Next))
-			{
-				//this._nextNoProcesses = [new _CreateLanIssueTicket()];
-				this._nextNoProcesses = [new WifiOnInDashboard()];
-			}
-			else
-				this._nextNoProcesses = [new _LoopResetFiberBox()];
-		}
-		else
-			this._nextNoProcesses = [new _SwapEthernetCable(), new _SwapEthernetPort(), new TestWithAppleTV()];
-			*/
+		
 		super.create();
 	}
 

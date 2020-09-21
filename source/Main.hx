@@ -11,13 +11,14 @@ import flixel.util.FlxColor;
 import flixel.util.FlxSave;
 import flow.Intro;
 import flow.TutoTree;
+import flow._MajorUpdate;
 import flow.installation._EnsureCorrectPortPlug;
 import flow.nointernet.customer.FiberCableChanged;
 import flow.nointernet.fiberbox.NormalRxValues;
 import flow.nointernet.vti.CheckContractorVTI;
-import flow.salttv.IsImageJerky;
-import flow.stability._AtWhatTimeDoesItOccurs;
-import flow.stability._SelectSaltServer;
+//import flow.salttv.IsImageJerky;
+//import flow.stability._AtWhatTimeDoesItOccurs;
+//import flow.stability._SelectSaltServer;
 import flow.swapcable._InputShipingAdress;
 import haxe.Http;
 import js.Browser;
@@ -144,7 +145,8 @@ class Main extends Sprite
 		//addChild(new FlxGame(1400, 880, _EnsureCorrectPortPlug, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, CheckContractorVTI, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _CreateAppleIDorBypass, 1, 30, 30, true, true));
-		addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
+		addChild(new FlxGame(1400, 880, _MajorUpdate, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, IsImageJerky, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _InputShipingAdress, 1, 30, 30, true, true));
@@ -201,7 +203,8 @@ class Main extends Sprite
 	{
 		setUpSystemDefault(true);
 		track.setActor();
-		tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new flow.Intro():new flow.TutoTree() )) );
+		//tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new flow.Intro():new flow.TutoTree() )) );
+		tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new _MajorUpdate():new flow.TutoTree() )) );
 	}
 
 }

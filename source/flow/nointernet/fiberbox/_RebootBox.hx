@@ -10,6 +10,7 @@ import tstool.process.Process;
  */
 class _RebootBox extends DescisionLoop
 {
+	/*
 	override public function new( ?nextYes:Process, ?nextNo:Process)
 	{
 		super(nextYes,nextNo);
@@ -21,5 +22,5 @@ class _RebootBox extends DescisionLoop
 		//this._nextProcesses = [new FiberLedOff()];
 		super.create();
 	}
-	
+	*/
 }

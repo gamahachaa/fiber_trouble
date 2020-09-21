@@ -18,13 +18,7 @@ class ErrorIconOnWifiIcon extends Descision
 		//this._detailTxt = "";
 		//this._illustration = "";
 		this._nextNoProcesses = [new _CanSeeGoogle()];
-		
-		if (Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
-		{
-			this._nextYesProcesses = [new _CreateLanIssueTicket()];
-		}
-		else
-			this._nextYesProcesses = [new _CreateTicketWifiIssue()];
+		this._nextYesProcesses = [new _CreateTicketWifiIssue()];
 		super.create();
 	}
 

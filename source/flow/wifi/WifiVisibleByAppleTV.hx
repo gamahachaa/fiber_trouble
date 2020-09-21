@@ -22,12 +22,7 @@ class WifiVisibleByAppleTV extends Descision
 		var resetDone = Main.HISTORY.isInHistory("flow.all.fiberbox._LoopResetFiberBox", Yes);
 		if (resetDone )
 		{
-			if (Main.HISTORY.isInHistory("flow.lan.flow.lan.OkToTryWifi", Yes))
-			{
-				this._nextNoProcesses = [new _CreateLanIssueTicket()];
-			}
-			else
-				this._nextNoProcesses = [new _CreateTicketWifiIssue()];
+			this._nextNoProcesses = [new _CreateTicketWifiIssue()];
 		}
 		else{
 			var wva = new WifiVisibleByAppleTV();

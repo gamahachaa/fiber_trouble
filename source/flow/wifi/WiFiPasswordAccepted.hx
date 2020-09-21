@@ -21,12 +21,7 @@ class WiFiPasswordAccepted extends Descision
 		var resetDone = Main.HISTORY.isInHistory("flow.all.fiberbox._LoopResetFiberBox", Yes);
 		if (resetDone )
 		{
-			if (Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
-			{
-				this._nextNoProcesses = [new _CreateLanIssueTicket()];
-			}
-			else
-				this._nextNoProcesses = [new _CreateTicketWifiIssue()];
+			this._nextNoProcesses = [new _CreateTicketWifiIssue()];
 		}
 		else{
 			var wvd = new WifiVisibleOnDevice();

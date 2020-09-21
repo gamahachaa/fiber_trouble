@@ -33,7 +33,7 @@ rem echo %1
 
 if "%1"=="" goto :dead
 if "%1"=="debug" goto :test
-if "%1"=="release" goto :release
+if "%1"=="release" goto :test
 rem echo %1
 
 :test

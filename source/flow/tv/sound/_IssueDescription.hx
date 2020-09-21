@@ -25,7 +25,7 @@ class _IssueDescription extends ActionMultipleInput
 	}
 	override public function create()
 	{
-		this._nextProcesses = [];
+		this._nextProcesses = [new _HowFerquent()];
 		super.create();
 	}
 }

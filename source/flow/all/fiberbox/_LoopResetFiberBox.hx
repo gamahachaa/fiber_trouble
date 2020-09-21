@@ -10,11 +10,11 @@ import tstool.process.Process;
  */
 class _LoopResetFiberBox extends DescisionLoop
 {
-	//var _next:Process;
+	/*
 	override public function new( ?nextYes:Process, ?nextNo:Process)
 	{
 		super(nextYes,nextNo);
 		//_next = next;
 	}
-
+*/
 }

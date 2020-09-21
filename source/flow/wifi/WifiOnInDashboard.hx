@@ -14,23 +14,11 @@ class WifiOnInDashboard extends Descision
 {
 	override public function create():Void
 	{
-		//this.prepareForIteration(this);
-		//this._titleTxt = "Est-ce-que les 2 WiFi sont verts dans sur le dashboard ?";
-		//this._detailTxt = "Contrairement à cette image les icones du WiFi doivent être vertes";
-		//this._illustration = "vti/WifiOnInDashboard";
-		//this._nextNoProcesses = [new SwitchOnUsingButton(), new ResetFiberBox(), new WifiButtonBroken()];
-		if (Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
-		{
-			this._nextNoProcesses = [new _SwitchOnUsingButton(), new _CreateLanIssueTicket()];
-		}
-		else
-			this._nextNoProcesses = [new _SwitchOnUsingButton(), new _LoopResetFiberBox(), new _CreateTicketWifiIssue()];
-		//var wva = new WifiVisibleByAppleTV();
+
+		this._nextNoProcesses = [new _SwitchOnUsingButton(), Main.HISTORY.findStepsInHistory("flow.all.fiberbox._LoopResetFiberBox").length>0?  new _CreateTicketWifiIssue(): new _LoopResetFiberBox(), new _CreateTicketWifiIssue()];
+		
 		var wvd = new WifiVisibleOnDevice();
 		this._nextYesProcesses = [new _MoveCloseUnplugRepeater(wvd,wvd)];
-		//this._nextYesProcesses = [new UnplugLanAppleTV()];
-		//this._nextYesProcesses = [];
-		//this._nextNoProcesses = [];
 		super.create();
 	}
 }

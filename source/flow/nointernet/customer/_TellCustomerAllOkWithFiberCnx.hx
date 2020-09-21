@@ -2,7 +2,7 @@ package flow.nointernet.customer;
 
 
 import flow.lan.ConnectedViaSwitch;
-import flow.salttv.IsAppleTVvisibleOnTVScreen;
+import flow.tv.hardware.IsAppleTVvisibleOnTVScreen;
 //import flow.salttv._InstallSpeedTestAplleTV;
 //import flow.stability.HasAppleTV;
 //import flow.stability._OpenSpeedTest;

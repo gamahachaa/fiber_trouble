@@ -18,11 +18,7 @@ class WifiVisibleOnDevice extends Descision
 	{
 		this._nextYesProcesses = [new WiFiPasswordAccepted()];
 		var nextNoFour:Process = null;
-		if (Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
-		{
-			nextNoFour = new _CreateLanIssueTicket();
-		}
-		else if (Main.HISTORY.isInHistory("flow.wifi.WifiVisibleByAppleTV", Yes))
+		if (Main.HISTORY.isInHistory("flow.wifi.WifiVisibleByAppleTV", Yes))
 		{
 			nextNoFour = new _ConteactDeviceSupport();
 			//this._nextNoProcesses = [new _RestartDevice(),new _ResetWifiParams(), new _ConteactDeviceSupport() ];

@@ -33,7 +33,8 @@ class IsTicketOpened extends Descision
 			 * TV
 			/************************************/
 			
-			this._nextNoProcesses = [new WhatIStheTVIssue()];
+			this._nextNoProcesses = [new WhatIStheTVIssue()]; // old
+			//this._nextNoProcesses = [new WhatIStheTVIssue()]; // new
 		}
 		else if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", No))
 		{
@@ -48,7 +49,11 @@ class IsTicketOpened extends Descision
 			 * STABILITY
 			/******************************************/
 			Main.track.setActivity("slow-internet");
-			this._nextNoProcesses = [new flow.wifi._MoveCloseUnplugRepeater(new _TestSpeed(), new _TestSpeed())];
+			if(!Main.HISTORY.isInHistory("flow.all.customer.LanOrWiFi", No))
+				this._nextNoProcesses = [new flow.wifi._MoveCloseUnplugRepeater(new _TestSpeed(), new _TestSpeed())];
+			else{
+				this._nextNoProcesses = [new _TestSpeed()];
+			}
 		}
 		else {
 			Main.track.setActivity("");

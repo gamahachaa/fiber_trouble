@@ -1,7 +1,7 @@
 package flow.stability;
 
 
-import flow.salttv._CreateSOTicketSaltTV;
+import flow.tv._CreateSOTicketSaltTV;
 import tstool.process.Descision;
 import tstool.process.Process;
 import tstool.process.Triplet;
@@ -11,7 +11,7 @@ import tstool.process.Triplet;
  */
 class _RedoTestWithAnotherDevice extends Triplet 
 {
-	var nextNo:Array<Process>;
+	
 	override public function new()
 	{
 		super();
@@ -19,7 +19,7 @@ class _RedoTestWithAnotherDevice extends Triplet
 	}
 	override public function create()
 	{
-		nextNo = null;
+		var nextNo:Array<Process>= null;
 		if (Main.HISTORY.isInHistory("flow.Intro", No))
 		{
 			nextNo = [new _CreateSOTicketSaltTV()];

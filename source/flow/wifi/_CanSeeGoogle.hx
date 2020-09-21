@@ -27,14 +27,10 @@ class _CanSeeGoogle extends TripletMultipleInput
 		}
 	override public function create()
 	{
-		if (Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
-		{
-			this._nextYesProcesses = this._nextMidProcesses = this._nextNoProcesses = [new _CreateLanIssueTicket()];
-		}
-		else{
-			this._nextMidProcesses = this._nextNoProcesses = [new _CreateTicketWifiIssue()];
-			this._nextYesProcesses = [ new _ConteactDeviceSupport() ];
-		}
+
+		this._nextMidProcesses = this._nextNoProcesses = [new _CreateTicketWifiIssue()];
+		this._nextYesProcesses = [ new _ConteactDeviceSupport() ];
+		
 		super.create();
 	}
 	override public function onMidClick():Void

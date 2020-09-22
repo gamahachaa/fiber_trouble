@@ -12,8 +12,8 @@ class _TestSpeed extends Descision
 {
 	override public function create()
 	{
-		this._nextNoProcesses = [ new _RebootBox(new _RedoTestWithAnotherDevice(),new _RedoTestWithAnotherDevice())];
-		this._nextYesProcesses = [new _ShareAdviceOptimalWifi()];
+		this._nextYesProcesses = [ new _RebootBox(new _RedoTestWithAnotherDevice(),new _RedoTestWithAnotherDevice())];
+		this._nextNoProcesses = [new _ShareAdviceOptimalWifi()];
 		super.create();
 	}
 	

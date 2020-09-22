@@ -12,6 +12,7 @@ import flixel.util.FlxSave;
 import flow.Intro;
 import flow.TutoTree;
 import flow._MajorUpdate;
+import flow.all.customer._ExplainMainSteps;
 import flow.installation._EnsureCorrectPortPlug;
 import flow.nointernet.customer.FiberCableChanged;
 import flow.nointernet.fiberbox.NormalRxValues;
@@ -145,7 +146,9 @@ class Main extends Sprite
 		//addChild(new FlxGame(1400, 880, _EnsureCorrectPortPlug, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, CheckContractorVTI, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _CreateAppleIDorBypass, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, _ExplainMainSteps, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
+		
 		//addChild(new FlxGame(1400, 880, _MajorUpdate, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, IsImageJerky, 1, 30, 30, true, true));
 		addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));

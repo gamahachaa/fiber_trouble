@@ -32,8 +32,11 @@ class Intro extends Triplet
 		//#if !debug
 		Main.VERSION_TRACKER.scriptChangedSignal.add(onNewVersion);
 		Main.VERSION_TRACKER.request();
+		#if debug
+		trace("Showing the new version if any");
+		#else
 		openSubState(new CheckUpdateSub(Main.THEME.bg));
-		//#end
+		#end
 			
 	}
 	

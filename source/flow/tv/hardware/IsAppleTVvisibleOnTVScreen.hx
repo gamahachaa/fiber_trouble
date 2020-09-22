@@ -27,7 +27,7 @@ class IsAppleTVvisibleOnTVScreen extends Descision
 			/*******************************/
 			new _MakeSurePowerCableWellPlugged();
 		}
-		this._nextNoProcesses = [new _MakeSurePowerCableWellPlugged(), new _CheckHDMIcnx(), new _RepairProcess()];
+		this._nextNoProcesses = [nextNo];
 		this._nextYesProcesses = [new IsSaltIconVisibleOnAppleTV()];
 		super.create();
 	}

@@ -146,10 +146,11 @@ class Main extends Sprite
 		//addChild(new FlxGame(1400, 880, CheckContractorVTI, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _CreateAppleIDorBypass, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
-		addChild(new FlxGame(1400, 880, _MajorUpdate, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, _MajorUpdate, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, IsImageJerky, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
+		addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _InputShipingAdress, 1, 30, 30, true, true));
+		setUpSystemDefault(true);
 		//addChild(new FlxGame(1400, 880, _SelectSaltServer, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _AtWhatTimeDoesItOccurs, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _EnsureCorrectPortPlug, 1, 30, 30, true, true));

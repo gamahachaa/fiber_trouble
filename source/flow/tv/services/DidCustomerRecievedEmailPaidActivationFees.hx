@@ -9,10 +9,11 @@ import tstool.process.Descision;
 class DidCustomerRecievedEmailPaidActivationFees extends Descision 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextNoProcesses = [ new DoesWantTVNow()];
+		this._nextYesProcesses = [new _ChangeBasicPackage()];
+		super.create();
 	}
 	
 }

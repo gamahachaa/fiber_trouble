@@ -53,7 +53,7 @@ class ProblemSolved extends Descision
 			/***********************/
 			new _CheckIfAppNeedsUpdate();
 		}
-		//this._nextNoProcesses = [new _CheckIfAppNeedsUpdate(), new _RebootAppleTV(), new _ResetAppleTV(), new _CreateSOTicketSaltTV()];
+		this._nextNoProcesses = [nextNo];
 		this._nextYesProcesses = [new flow._AddMemoVti()];
 		super.create();
 	}

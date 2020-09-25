@@ -1,5 +1,6 @@
 package flow.tv.sound;
 
+import flow.tv.app._QuitAndRelaunchSaltTV;
 import tstool.process.DescisionMultipleInput;
 
 /**
@@ -24,8 +25,9 @@ class IsSameIssueWithOtherApps extends DescisionMultipleInput
 	}
 	override public function create()
 	{
-		this._nextYesProcesses = [ ];
-		this._nextNoProcesses = [];
+		var next = new _QuitAndRelaunchSaltTV();
+		this._nextYesProcesses = [ next ];
+		this._nextNoProcesses = [ next ];
 		super.create();
 	}
 	/****************************

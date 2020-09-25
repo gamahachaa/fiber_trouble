@@ -1,5 +1,7 @@
 package flow.tv.services;
 
+import flow._AddMemoVti;
+import flow.tv.app._QuitAndRelaunchSaltTV;
 import tstool.process.Descision;
 
 /**
@@ -8,11 +10,11 @@ import tstool.process.Descision;
  */
 class IsSaltTVWorkingNow extends Descision 
 {
-
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextNoProcesses = [new _QuitAndRelaunchSaltTV()];
+		this._nextYesProcesses = [new _AddMemoVti()];
+		super.create();
 	}
 	
 }

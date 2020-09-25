@@ -17,6 +17,7 @@ import flow.installation._EnsureCorrectPortPlug;
 import flow.nointernet.customer.FiberCableChanged;
 import flow.nointernet.fiberbox.NormalRxValues;
 import flow.nointernet.vti.CheckContractorVTI;
+import flow.tv.sound._AppleTVSoundSetup;
 //import flow.salttv.IsImageJerky;
 //import flow.stability._AtWhatTimeDoesItOccurs;
 //import flow.stability._SelectSaltServer;
@@ -152,6 +153,7 @@ class Main extends Sprite
 		//addChild(new FlxGame(1400, 880, _MajorUpdate, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, IsImageJerky, 1, 30, 30, true, true));
 		addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, _AppleTVSoundSetup, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _InputShipingAdress, 1, 30, 30, true, true));
 		setUpSystemDefault(true);
 		//addChild(new FlxGame(1400, 880, _SelectSaltServer, 1, 30, 30, true, true));

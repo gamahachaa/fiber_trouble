@@ -11,7 +11,7 @@ class HasAppleId extends Descision
 	{
 		//this._nextNoProcesses = [new _CreateAppleIDorBypass()];
 		this._nextNoProcesses = [new CanCreateAppleAccount()];
-		this._nextYesProcesses = [new _LogInWithSwissAppleID()];
+		this._nextYesProcesses = [new HasSwissAppleID()];
 		super.create();
 	}
 }

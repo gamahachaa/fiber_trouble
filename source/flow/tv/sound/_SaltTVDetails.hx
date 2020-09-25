@@ -25,6 +25,7 @@ class _SaltTVDetails extends ActionMultipleInput
 		{
 			ereg: new EReg("[\\s\\S]*","i"),
 			input:{
+				buddy:"Channels impacted", 
 				width:250,
 				prefix:"Program name",
 				position: [top, right]
@@ -33,6 +34,7 @@ class _SaltTVDetails extends ActionMultipleInput
 		{
 			ereg: new EReg("[\\s\\S]*","i"),
 			input:{
+				buddy:"Channels impacted",
 				width:250,
 				prefix:"Time and date (01.01.1999)",
 				position: [bottom, left]

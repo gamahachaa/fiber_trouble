@@ -1,5 +1,6 @@
 package flow.tv.services;
 
+import flow._AddMemoVti;
 import tstool.process.ActionMail;
 import tstool.salt.SOTickets;
 
@@ -10,10 +11,14 @@ import tstool.salt.SOTickets;
 class _CreateTicketTwoOneFive extends ActionMail 
 {
 
-	public function new(ticket:SOTickets) 
-	{
-		super(ticket);
-		
-	}
+	public function new() 
+		{
+			super(SOTickets.FIX_215);
+		}
+		override public function create():Void
+		{
+			this._nextProcesses = [new _AddMemoVti()];
+			super.create();
+		}
 	
 }

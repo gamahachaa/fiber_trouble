@@ -16,7 +16,7 @@ class _StoreCustomersSetup extends ActionMultipleInput
 		[{
 			ereg: new EReg("[\\s\\S]*","i"),
 			input:{
-				width:250,
+				width:900,
 				prefix:"Set up",
 				position: [bottom, left]
 			}

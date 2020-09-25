@@ -24,6 +24,7 @@ class _AppleTVSoundSetup extends ActionMultipleInput
 		{
 			ereg: new EReg("[\\s\\S]*","i"),
 			input:{
+				buddy:"Audio Output",
 				width:250,
 				prefix:"Audio Format",
 				position: [top, right]
@@ -32,6 +33,7 @@ class _AppleTVSoundSetup extends ActionMultipleInput
 		{
 			ereg: new EReg("[\\s\\S]*","i"),
 			input:{
+				buddy:"Audio Output",
 				width:250,
 				prefix:"Reduce Loud Sound",
 				position: [bottom, left]
@@ -40,6 +42,7 @@ class _AppleTVSoundSetup extends ActionMultipleInput
 		{
 			ereg: new EReg("[\\s\\S]*","i"),
 			input:{
+				buddy:"Reduce Loud Sound",
 				width:250,
 				prefix:"Audio Mode",
 				position: [top, right]

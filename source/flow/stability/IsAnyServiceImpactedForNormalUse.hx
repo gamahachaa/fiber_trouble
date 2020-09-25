@@ -15,7 +15,7 @@ class IsAnyServiceImpactedForNormalUse extends DescisionMultipleInput
 	{
 		super(
 		[{
-			ereg: new EReg("[\\s\\S]*","i"),
+			ereg: new EReg("[a-zA-Z]+[\\s\\S]*","i"),
 			input:{
 				width:250,
 				prefix:"Service not usable",
@@ -30,5 +30,11 @@ class IsAnyServiceImpactedForNormalUse extends DescisionMultipleInput
 		this._nextYesProcesses = [new _CreateSOTechModemSpeed()];
 		super.create();
 	}
-	
+	override public function onYesClick()
+	{
+		if (validateYes())
+		{
+			super.onYesClick();
+		}
+	}
 }

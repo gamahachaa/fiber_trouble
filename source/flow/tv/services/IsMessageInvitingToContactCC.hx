@@ -11,8 +11,8 @@ class IsMessageInvitingToContactCC extends Descision
 {
 	override public function create()
 	{
-		this._nextNoProcesses = [ new IsBarringVisible() ];
-		this._nextYesProcesses = [ new IsTVServicesActiveVTI(), new _QuitAndRelaunchSaltTV() ];
+		this._nextNoProcesses = [ new _QuitAndRelaunchSaltTV() ];
+		this._nextYesProcesses = [ new IsTVServicesActiveVTI() ];
 		super.create();
 	}
 }

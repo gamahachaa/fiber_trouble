@@ -1,8 +1,8 @@
 package flow.installation;
 
-import flow.nointernet.customer.FiberCableIsSalt;
+//import flow.nointernet.customer.FiberCableIsSalt;
 import flow.nointernet.fiberbox._RebootBox;
-import flow.nointernet.postLedChecks.WasInternetWorkingBefore;
+//import flow.nointernet.postLedChecks.WasInternetWorkingBefore;
 import flow.powercable.LedPowerOn;
 import tstool.process.Action;
 

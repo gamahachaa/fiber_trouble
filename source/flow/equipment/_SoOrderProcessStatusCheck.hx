@@ -13,7 +13,8 @@ class _SoOrderProcessStatusCheck extends ActionMail
 
 	public function new() 
 		{
-			super(SOTickets.FIX_416);
+			//super(SOTickets.FIX_416);
+			super(SOTickets.FIX_415);
 		}
 		override public function create():Void
 		{

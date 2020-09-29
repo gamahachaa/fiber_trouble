@@ -27,7 +27,7 @@ class FiberCableChanged extends TripletMultipleInput
 				ereg: new EReg("^1[0-9]{7}$","i"),
 				input:{
 					width:200,
-					prefix:"SO 5.2.6 ticket ID",
+					prefix:"SO swap cable ticket ID",
 					position:[bottom, left]
 				}
 			}
@@ -63,6 +63,13 @@ class FiberCableChanged extends TripletMultipleInput
 		if (validateYes())
 		{
 			super.onYesClick();
+		}
+	}
+	override public function onMidClick():Void
+	{
+		if (validateMid())
+		{
+			super.onMidClick();
 		}
 	}
 	override public function validateNo():Bool

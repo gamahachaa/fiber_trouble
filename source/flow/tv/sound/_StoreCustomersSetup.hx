@@ -18,6 +18,7 @@ class _StoreCustomersSetup extends ActionMultipleInput
 			input:{
 				width:900,
 				prefix:"Set up",
+				debug: "Lots of equipment",
 				position: [bottom, left]
 			}
 		}]

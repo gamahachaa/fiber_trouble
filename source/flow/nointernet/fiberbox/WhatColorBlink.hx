@@ -1,5 +1,6 @@
 package flow.nointernet.fiberbox;
 
+import flow.nointernet.postLedChecks.IsSerialNumberCorrect;
 import tstool.process.Descision;
 
 /**
@@ -9,10 +10,11 @@ import tstool.process.Descision;
 class WhatColorBlink extends Descision 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextNoProcesses = [new IsSerialNumberCorrect()];
+		this._nextYesProcesses = [new IsSerialNumberCorrect()];
+		super.create();
 	}
 	
 }

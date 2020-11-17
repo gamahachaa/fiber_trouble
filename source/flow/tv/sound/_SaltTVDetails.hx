@@ -19,6 +19,7 @@ class _SaltTVDetails extends ActionMultipleInput
 			input:{
 				width:250,
 				prefix:"Channels impacted",
+				debug:"Channels impacted...",
 				position: [bottom, left]
 			}
 		},
@@ -28,6 +29,7 @@ class _SaltTVDetails extends ActionMultipleInput
 				buddy:"Channels impacted", 
 				width:250,
 				prefix:"Program name",
+				debug:"Program name ...",
 				position: [top, right]
 			}
 		},
@@ -36,6 +38,7 @@ class _SaltTVDetails extends ActionMultipleInput
 			input:{
 				buddy:"Channels impacted",
 				width:250,
+				debug:"01.01.2020 @ 00h",
 				prefix:"Time and date (01.01.1999)",
 				position: [bottom, left]
 			}

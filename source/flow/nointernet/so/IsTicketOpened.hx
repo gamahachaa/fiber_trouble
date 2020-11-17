@@ -20,15 +20,9 @@ class IsTicketOpened extends Descision
 	{
 		this._nextYesProcesses = [new IsTechTicket()];
 		next = new _TestSpeed();
-		if (Main.HISTORY.isInHistory("flow.Intro", Mid))
-		{
-			/***************************************
-			 * Equipment
-			/***************************************/
-			this._nextNoProcesses = [new IsWhishDateWayAhead()];
-			
-		}
-		else if (Main.HISTORY.isInHistory("flow.Intro", No))
+		
+		
+		if (Main.HISTORY.isInHistory("flow.Intro", No))
 		{
 			/************************************
 			 * TV

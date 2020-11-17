@@ -18,6 +18,7 @@ class _AppleTVSoundSetup extends ActionMultipleInput
 			input:{
 				width:250,
 				prefix:"Audio Output",
+				debug:"Audio Output",
 				position: [bottom, left]
 			}
 		},
@@ -26,6 +27,7 @@ class _AppleTVSoundSetup extends ActionMultipleInput
 			input:{
 				buddy:"Audio Output",
 				width:250,
+				debug:"Audio Format",
 				prefix:"Audio Format",
 				position: [top, right]
 			}
@@ -35,6 +37,7 @@ class _AppleTVSoundSetup extends ActionMultipleInput
 			input:{
 				buddy:"Audio Output",
 				width:250,
+				debug:"Reduce Loud Sound",
 				prefix:"Reduce Loud Sound",
 				position: [bottom, left]
 			}
@@ -44,6 +47,7 @@ class _AppleTVSoundSetup extends ActionMultipleInput
 			input:{
 				buddy:"Reduce Loud Sound",
 				width:250,
+				debug:"Audio Mode",
 				prefix:"Audio Mode",
 				position: [top, right]
 			}

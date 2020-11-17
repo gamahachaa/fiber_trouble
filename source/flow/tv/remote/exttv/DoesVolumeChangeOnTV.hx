@@ -9,10 +9,10 @@ import tstool.process.Descision;
 class DoesVolumeChangeOnTV extends Descision 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextNoProcesses = [new WantsToPairRemoteWithTV()];
+		this._nextYesProcesses = [ new ChekSaltTVKNownBugs()];
+		super.create();
 	}
-	
 }

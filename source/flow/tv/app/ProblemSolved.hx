@@ -2,6 +2,7 @@ package flow.tv.app;
 import flow.tv._CreateSOTicketSaltTV;
 import flow.tv.install._ResetAppleTV;
 import tstool.process.Descision;
+import tstool.process.Process;
 
 /**
  * ...
@@ -13,45 +14,43 @@ class ProblemSolved extends Descision
 	override public function create()
 	{
 		
-		var nextNo = if (Main.HISTORY.isInHistory("flow.tv.app._CheckIfSaltTVNeedsUpdate", Next))
+		var nextNo:Process = null;
+		if (Main.HISTORY.isProcessInHistory("flow.tv.app._CheckIfAppleTVNeedsUpdate"))
+		{
+			/***********************
+			 * N°4 - ticket
+			/***********************/
+			nextNo = new _CreateSOTicketSaltTV();
+			
+			/*if (Main.HISTORY.isInHistory("flow.tv.WhatIStheTVIssue", Yes))
+			{
+				 nextNo = new WhatAppleTVcnxType();
+			}
+			else{
+			
+				 nextNo = new _CreateSOTicketSaltTV();
+			}*/
+			
+		}
+		else if (Main.HISTORY.isProcessInHistory("flow.tv.app._RebootAppleTV"))
 		{
 			/***********************
 			 * N°3
 			/***********************/
-			if (Main.HISTORY.isInHistory("flow.tv.WhatIStheTVIssue", Yes))
-			{
-				/********************************
-				 * Feature Issue
-				/********************************/
-				new WhatAppleTVcnxType();
-			}
-			else{
-				/********************************
-				 * Channel Issue
-				/********************************/
-				new _CreateSOTicketSaltTV();
-			}
-			
+			 nextNo = new _CheckIfAppleTVNeedsUpdate();
 		}
-		else if (Main.HISTORY.isInHistory("flow.tv.app._RebootAppleTV", Next))
+		else if (Main.HISTORY.isProcessInHistory("flow.tv.app._CheckIfSaltTVNeedsUpdate"))
 		{
 			/***********************
 			 * N°2
 			/***********************/
-			new _CheckIfSaltTVNeedsUpdate();
-		}
-		else if (Main.HISTORY.isInHistory("flow.tv.app._CheckIfAppNeedsUpdate", Next))
-		{
-			/***********************
-			 * N°1
-			/***********************/
-			new _RebootAppleTV();
+			 nextNo = new _RebootAppleTV();
 		}
 		else{
 			/***********************
 			 * First time
 			/***********************/
-			new _CheckIfAppNeedsUpdate();
+			 nextNo = new _CheckIfSaltTVNeedsUpdate();
 		}
 		this._nextNoProcesses = [nextNo];
 		this._nextYesProcesses = [new flow._AddMemoVti()];

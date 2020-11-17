@@ -15,7 +15,7 @@ class IsBasicTvPackageVisible extends Descision
 	{
 		//var next = new _CreateSOTicketSaltTV();
 		this._nextNoProcesses = [ new _CreateSOTicketSaltTV() ];
-		this._nextYesProcesses = [ new DidCustomerRecievedEmailPaidActivationFees() ];
+		this._nextYesProcesses = [ new DidCustomerPaidActivationFees() ];
 		super.create();
 	}
 	

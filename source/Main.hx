@@ -4,25 +4,15 @@ import firetongue.CSV;
 import firetongue.FireTongue;
 import flixel.FlxG;
 import flixel.FlxGame;
+import flixel.FlxState;
 import flixel.input.keyboard.FlxKey;
+import flixel.system.FlxAssets;
 import flixel.text.FlxText.FlxTextFormat;
 import flixel.text.FlxText.FlxTextFormatMarkerPair;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
 import flow.Intro;
-import flow.TutoTree;
-import flow._MajorUpdate;
-import flow.all.customer._ExplainMainSteps;
-import flow.installation._EnsureCorrectPortPlug;
-import flow.nointernet.customer.FiberCableChanged;
-import flow.nointernet.fiberbox.NormalRxValues;
-import flow.nointernet.vti.CheckContractorVTI;
-import flow.tv.sound._AppleTVSoundSetup;
-//import flow.salttv.IsImageJerky;
-//import flow.stability._AtWhatTimeDoesItOccurs;
-//import flow.stability._SelectSaltServer;
-import flow.swapcable._InputShipingAdress;
-import haxe.Http;
+
 import js.Browser;
 import js.html.Location;
 import tstool.layout.History;
@@ -67,7 +57,7 @@ class Main extends Sprite
 {
 	public static var HISTORY:History = new History();
 	//public static var tongue:FireTongue = new FireTongue();
-	public static var tongue:Translator = new Translator("index.xml");
+	public static var tongue:Translator = new Translator();
 	public static var user:Agent;
 	public static var customer:Customer;
 	public static var track:XapiTracker;
@@ -76,8 +66,8 @@ class Main extends Sprite
 	public static inline var MAIL_WRAPPER_URL:String = "php/mail/index.php";
 
 	public static var adminFile:tstool.utils.Csv;
-	public static var TITLE_FMT:BasicFormat = {font:TITLE_FONT, size:24};
-	public static var BASIC_FMT:BasicFormat = {font:BASIC_FONT, size:16};
+	public static var TITLE_FMT:BasicFormat = {font:TITLE_FONT, size:20};
+	public static var BASIC_FMT:BasicFormat = {font:BASIC_FONT, size:14};
 	public static var META_FMT:BasicFormat = {font:TITLE_FONT, size:16};
 	public static var INTERACTION_FMT:BasicFormat = {font:TITLE_FONT, size:18};
 
@@ -85,6 +75,7 @@ class Main extends Sprite
 	public static var VERSION_TRACKER:VersionTracker;
 	public static var LOCATION:Location;
 	public static var DEBUG:Bool;
+	public static var LAST_STEP:Class<FlxState> = flow._AddMemoVti;
 	/**
 	 * FORMAT COLOR
 	 * */
@@ -93,8 +84,8 @@ class Main extends Sprite
 		bg: SaltColor.BLACK_PURE,
 		title:SaltColor.WHITE,
 		basic:SaltColor.WHITE,
-		basicStrong:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.ORANGE,true),"<b>"),
-		basicEmphasis:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.ORANGE,false,true),"<em>"),
+	basicStrong:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.TUQUOISE,false),"<b>"),
+		basicEmphasis:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.ORANGE,false),"<em>"),
 		meta:SaltColor.MUSTARD,
 		interaction: SaltColor.WHITE
 
@@ -117,7 +108,7 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		
+		FlxAssets.FONT_DEFAULT =  "Consolas";
 		adminFile = new Csv(Assets.getText("assets/data/admins.txt"),",",false);
 		//trace(adminFile);
 		COOKIE = new FlxSave();
@@ -132,34 +123,24 @@ class Main extends Sprite
 		
 		Main.customer = new Customer();
 		tongue.initialize("fr-FR",
-					function()
-		{
-			#if debug
-			//trace(tongue.get("$flow.nointernet.vti.CheckContractorVTI_UI1", "meta"));
-			#end
-		}
-				   );
+					function(){
+					#if debug
+					//trace(tongue.get("$flow.nointernet.vti.CheckContractorVTI_UI1", "meta"));
+					#end
+				});
 		#if debug
+		trace(FlxG.VERSION);
 		Main.user = new Agent();
-		//addChild(new FlxGame(1400, 880, Test, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, FiberCableChanged, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, NormalRxValues, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _EnsureCorrectPortPlug, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, CheckContractorVTI, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _CreateAppleIDorBypass, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _ExplainMainSteps, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
 		
-		//addChild(new FlxGame(1400, 880, _MajorUpdate, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, IsImageJerky, 1, 30, 30, true, true));
-		addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _AppleTVSoundSetup, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _InputShipingAdress, 1, 30, 30, true, true));
+		
+		addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
+		
+		
+		
+		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
+		
 		setUpSystemDefault(true);
-		//addChild(new FlxGame(1400, 880, _SelectSaltServer, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _AtWhatTimeDoesItOccurs, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _EnsureCorrectPortPlug, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));f182ca80-7b7c-43e9-a68b-59e5f9433cb6
+		
 		#else
 
 		if ( DEBUG )
@@ -209,8 +190,8 @@ class Main extends Sprite
 	{
 		setUpSystemDefault(true);
 		track.setActor();
-		//tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new flow.Intro():new flow.TutoTree() )) );
-		tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new _MajorUpdate():new flow.TutoTree() )) );
+		tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new flow.Intro():new flow.TutoTree() )) );
+		//tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new _MajorUpdate():new flow.TutoTree() )) );
 	}
 
 }

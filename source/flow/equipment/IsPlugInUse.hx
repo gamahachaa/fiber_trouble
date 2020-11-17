@@ -9,10 +9,11 @@ import tstool.process.Descision;
 class IsPlugInUse extends Descision 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextNoProcesses = [ new IsWhishDateWayAhead()];
+		this._nextYesProcesses = [new DidCustomerSendProffCancel()];
+		super.create();
 	}
 	
 }

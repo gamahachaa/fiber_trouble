@@ -1,5 +1,6 @@
 package flow.tv.network;
 
+import flow.tv._CreateSOTicketSaltTV;
 import tstool.process.Action;
 
 /**
@@ -9,10 +10,10 @@ import tstool.process.Action;
 class _TesLanCableWithComputer extends Action 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextProcesses = [ new _CreateSOTicketSaltTV()];
+		super.create();
 	}
 	
 }

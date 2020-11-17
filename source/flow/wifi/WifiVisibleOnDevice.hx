@@ -1,6 +1,6 @@
 package flow.wifi;
 
-import flow.lan._CreateLanIssueTicket;
+//import flow.lan._CreateLanIssueTicket;
 import flow.wifi._RestartDevice;
 import flow.wifi.WiFiPasswordAccepted;
 import tstool.process.Process;
@@ -26,8 +26,8 @@ class WifiVisibleOnDevice extends Descision
 		else{
 			nextNoFour = new _CreateTicketWifiIssue();
 		}
-		this._nextNoProcesses = [new _RestartDevice(),new _ResetWifiParams(), new WifiVisibleByAppleTV(),  nextNoFour ];
+		this._nextNoProcesses = [new _RestartDevice(), new WifiVisibleByAppleTV(),  nextNoFour ];
+		//this._nextNoProcesses = [new _RestartDevice(), new _ResetWifiParams(), new WifiVisibleByAppleTV(),  nextNoFour ];
 		super.create();
 	}
-
 }

@@ -1,5 +1,6 @@
 package flow.tv.services;
 
+import flow._AddMemoVti;
 import tstool.process.DescisionMultipleInput;
 
 /**
@@ -15,8 +16,9 @@ class DoesWantTVNow extends DescisionMultipleInput
 		[{
 			ereg: new EReg("(fr|de|it)","i"),
 			input:{
-				width:30,
-				prefix:"Lang package (fr, de or it)",
+				width:250,
+				prefix:"TV basic package (fr, de or it)",
+				debug: "fr",
 				position: [bottom, left]
 			}
 		}]
@@ -24,8 +26,8 @@ class DoesWantTVNow extends DescisionMultipleInput
 	}
 	override public function create()
 	{
-		this._nextYesProcesses = [];
-		this._nextNoProcesses = [ new _CreateTicketTwoOneFive()];
+		this._nextYesProcesses = [ new _CreateTicketTwoOneFive()];
+		this._nextNoProcesses = [ new _AddMemoVti()];
 		super.create();
 	}
 	/****************************
@@ -38,6 +40,7 @@ class DoesWantTVNow extends DescisionMultipleInput
 			super.onYesClick();
 		}
 	}
+	
 	override public function validateYes():Bool
 	{
 		return true;
@@ -50,10 +53,11 @@ class DoesWantTVNow extends DescisionMultipleInput
 			super.onNoClick();
 		}
 	}
+	*/
 	override public function validateNo():Bool
 	{
 		return true;
 	}
-	*/
+	/**/
 	
 }

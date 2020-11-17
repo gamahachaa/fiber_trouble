@@ -15,7 +15,7 @@ class WifiOnInDashboard extends Descision
 	override public function create():Void
 	{
 
-		this._nextNoProcesses = [new _SwitchOnUsingButton(), Main.HISTORY.findStepsInHistory("flow.all.fiberbox._LoopResetFiberBox").length>0?  new _CreateTicketWifiIssue(): new _LoopResetFiberBox(), new _CreateTicketWifiIssue()];
+		this._nextNoProcesses = [new _SwitchOnUsingButton(), Main.HISTORY.findStepsInHistory("flow.all.fiberbox._LoopResetFiberBox").length>0?  new _CreateTicketWifiIssue(): new _LoopResetFiberBox(), new CanConnectToBoxWithLAN()];
 		
 		var wvd = new WifiVisibleOnDevice();
 		this._nextYesProcesses = [new _MoveCloseUnplugRepeater(wvd,wvd)];

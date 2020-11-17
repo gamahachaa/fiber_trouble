@@ -1,18 +1,23 @@
 package flow.equipment;
 
-import tstool.process.Descision;
+
+import flow._AddMemoVti;
+import tstool.process.Triplet;
 
 /**
  * ...
  * @author bb
  */
-class DidCustomerSendProffCancel extends Descision 
+class DidCustomerSendProffCancel extends Triplet 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		var next = new _SoPluginUseInfo();
+		this._nextNoProcesses = [ new _AddMemoVti()];
+		this._nextYesProcesses = [next];
+		this._nextMidProcesses= [next];
+		super.create();
 	}
 	
 }

@@ -19,6 +19,7 @@ class _ReadRXValues extends TripletMultipleInput
 			input:{
 				width:100,
 				prefix:"RX",
+				debug:"-12",
 				position:[bottom, left]
 			}
 		}]);

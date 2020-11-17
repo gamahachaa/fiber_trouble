@@ -2,6 +2,7 @@ package flow.lan;
 
 import flow.wifi.WifiOnInDashboard;
 import tstool.process.Descision;
+import tstool.process.Process;
 import tstool.process.Triplet;
 
 /**
@@ -13,9 +14,10 @@ class OkToTryWifi extends Triplet
 
 	override public function create()
 	{
-		this._nextNoProcesses = [new _CreateLanIssueTicket()];
-		this._nextYesProcesses = [ new _CreateLanIssueTicket()];
-		this._nextMidProcesses = [ new _CreateLanIssueTicket()];
+		var n:Array<Process> = [new _CreateLanIssueTicket()];
+		this._nextNoProcesses = n;
+		this._nextYesProcesses = n;
+		this._nextMidProcesses = n;
 		super.create();
 	}
 	

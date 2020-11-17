@@ -14,7 +14,8 @@ class CanExploreMenu extends Descision
 	override public function create()
 	{
 		this._nextNoProcesses = [new IsMessageInvitingToContactCC(), new _QuitAndRelaunchSaltTV()];
-		this._nextYesProcesses = [new WhatIssueWithApp()];
+		//this._nextYesProcesses = [new WhatIssueWithApp()];
+		this._nextYesProcesses = [new ChekSaltTVKNownBugs()];
 		super.create();
 	}
 }

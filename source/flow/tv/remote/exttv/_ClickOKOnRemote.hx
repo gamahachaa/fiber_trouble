@@ -1,5 +1,6 @@
 package flow.tv.remote.exttv;
 
+import flow.tv.ChekSaltTVKNownBugs;
 import tstool.process.Action;
 
 /**
@@ -8,11 +9,9 @@ import tstool.process.Action;
  */
 class _ClickOKOnRemote extends Action 
 {
-
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextProcesses = [ new ChekSaltTVKNownBugs()];
+		super.create();
 	}
-	
 }

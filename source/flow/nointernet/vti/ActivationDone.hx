@@ -15,7 +15,8 @@ class ActivationDone extends Descision
 	override public function create():Void
 	{
 		this._nextYesProcesses = [new HasCustomerLEXnetworkIssue()];
-		this._nextNoProcesses = [new _TroubleShootActivation()];
+		//this._nextNoProcesses = [new _TroubleShootActivation()];
+		this._nextNoProcesses = [new IsWishDatePassed()];
 		super.create();
 	}
 	

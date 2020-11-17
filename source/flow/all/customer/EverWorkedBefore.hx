@@ -9,10 +9,12 @@ import tstool.process.Descision;
 class EverWorkedBefore extends Descision 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		var next2 = new LanOrWiFi();
+		this._nextNoProcesses = [next2];
+		this._nextYesProcesses = [next2];
+		super.create();
 	}
 	
 }

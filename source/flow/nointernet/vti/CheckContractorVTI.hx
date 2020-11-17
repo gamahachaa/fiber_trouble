@@ -2,8 +2,9 @@ package flow.nointernet.vti;
 
 import flixel.FlxG;
 import flow.activation.IsFiberOrMultisurf;
-import flow.equipment.IsWhishDateWayAhead;
-import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
+//import flow.equipment.IsWhishDateWayAhead;
+import flow.equipment.OTOidVisibleInOfferManagement;
+//import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
 import flow.nointernet.so.IsTicketOpened;
 import tstool.salt.Balance;
 import tstool.salt.Contractor;
@@ -31,6 +32,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 					ereg:new EReg("^3\\d{7}$","i"),
 					input:{
 						width:150,
+						debug: "30000000",
 						prefix:"Contractor ID",
 						position: [bottom, left]
 					}
@@ -40,10 +42,21 @@ class CheckContractorVTI extends DescisionMultipleInput
 					input:{
 						buddy: "Contractor ID",
 						width:150,
+						debug: "41780000000",
 						prefix:"VoIP Number",
 						position:[top, right]
 					}
 				},
+				{
+					ereg: new EReg("^41\\d{9}$","i"),
+					input:{
+						buddy: "Contractor ID",
+						width:150,
+						debug: "41780000000",
+						prefix:"Contact Number",
+						position:[bottom, left]
+					}
+				}
 			]
 		);
 		
@@ -73,8 +86,16 @@ class CheckContractorVTI extends DescisionMultipleInput
 		#if debug
 			trace(Main.customer);
 		#end
+		question.text = question.text + " <em>" + Main.customer.contract.owner.name + "<em>";
+		question.applyMarkup(question.text, [Main.THEME.basicEmphasis]);
+		question.drawFrame();
+		positionThis();
 		multipleInputs.inputs.get("Contractor ID").inputtextfield.text = Main.customer.contract.contractorID;
 		multipleInputs.inputs.get("VoIP Number").inputtextfield.text = Main.customer.contract.voip;
+		multipleInputs.inputs.get("Contact Number").inputtextfield.text = Main.customer.contract.mobile;
+		var p = multipleInputs.positionThis();
+		positionButtons(p);
+		positionBottom(p);
 		
 	}
 	override public function update(elapsed)
@@ -101,7 +122,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 		else{
 			Main.track.setActivity("");
 		}			
-		this._nextYesProcesses = [new IsTicketOpened()];
+		this._nextYesProcesses = [Main.HISTORY.isInHistory("flow.Intro", Mid) ? new OTOidVisibleInOfferManagement() : new IsTicketOpened()];
 		this._nextNoProcesses = [new IsFiberOrMultisurf()];
 
 		super.create();
@@ -118,20 +139,24 @@ class CheckContractorVTI extends DescisionMultipleInput
 			var contractorID = multipleInputs.inputs.get("Contractor ID").getInputedText();
 			//var voipVTI = this.singleInput.uiInput.inputtextfield.text;
 			var voipVTI = multipleInputs.inputs.get("VoIP Number").getInputedText();
+			var contactNB = multipleInputs.inputs.get("Contact Number").getInputedText();
 			var voipSO = "0" + voipVTI.substr(2);
 
 			#if debug
 			Main.customer.iri = contractorID == "" ? "39999999": contractorID;
 			Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
+			Main.customer.contract.mobile == "" ? "41787878673": contactNB;
 			#else
 			if (Main.DEBUG && Main.user.isAdmin)
 			{
 				Main.customer.iri = contractorID == "" ? "39999999": contractorID;
 				Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
+				Main.customer.contract.mobile = contactNB == "" ? "41787878673": contactNB;
 			}
 			else{
 				Main.customer.iri = contractorID;
 				Main.customer.voIP = voipSO;
+				Main.customer.contract.mobile = contactNB;
 			}
 			#end
 			

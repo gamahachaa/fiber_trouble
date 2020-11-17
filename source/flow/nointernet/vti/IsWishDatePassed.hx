@@ -1,5 +1,6 @@
 package flow.nointernet.vti;
 
+import flow._AddMemoVti;
 import tstool.process.Descision;
 
 /**
@@ -9,10 +10,11 @@ import tstool.process.Descision;
 class IsWishDatePassed extends Descision 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextNoProcesses = [ new _AddMemoVti()];
+		this._nextYesProcesses = [ new _SoOrderNotComplete()];
+		super.create();
 	}
 	
 }

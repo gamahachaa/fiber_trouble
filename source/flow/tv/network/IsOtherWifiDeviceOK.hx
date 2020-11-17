@@ -1,18 +1,20 @@
 package flow.tv.network;
 
-import tstool.process.Action;
+import flow.wifi.WifiOnInDashboard;
+import tstool.process.Descision;
 
 /**
  * ...
  * @author bb
  */
-class IsOtherWifiDeviceOK extends Action 
+class IsOtherWifiDeviceOK extends Descision 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextNoProcesses = [ new WifiOnInDashboard()];
+		this._nextYesProcesses = [ new _ForgetWifiOnAppleTV()];
+		super.create();
 	}
 	
 }

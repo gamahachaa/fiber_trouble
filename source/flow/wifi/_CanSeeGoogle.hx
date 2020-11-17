@@ -16,10 +16,11 @@ class _CanSeeGoogle extends TripletMultipleInput
 			//super(280, "Store");
 			super([
 			{
-				ereg: new EReg("^1[0-9]{7}$","i"),
+				ereg: new EReg("^((https|ftp|file)(://))?[A-Za-z0-9+&@#/%?=~_|!:,.;-]*[A-Za-z0-9+&@#/%=~_|-]$","i"),
 				input:{
 					width:400,
 					prefix:"URL(s) not working",
+					debug:"https://zoomquilt.org/",
 					position:[bottom, left]
 				}
 			}

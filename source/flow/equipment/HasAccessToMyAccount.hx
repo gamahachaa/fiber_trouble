@@ -1,5 +1,6 @@
 package flow.equipment;
 
+import flow._AddMemoVti;
 import tstool.process.Descision;
 
 /**
@@ -9,10 +10,11 @@ import tstool.process.Descision;
 class HasAccessToMyAccount extends Descision 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextNoProcesses = [ new _SoOTOGivenByCustomer()];
+		this._nextYesProcesses = [ new _AddMemoVti()];
+		super.create();
 	}
 	
 }

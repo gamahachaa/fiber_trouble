@@ -22,7 +22,8 @@ class _InputShipingAdress extends DescisionMultipleInput
 					input:
 					{
 						width:200,
-						prefix: (Main.customer.contract.owner == null ?"": Main.customer.contract.owner.name )+ " c/o",
+						prefix: (Main.customer.contract.owner == null ?"": Main.customer.contract.owner.name ) + " c/o",
+						debug: "chez Ernest & Bart",
 						position: [bottom, left]
 					}
 				},
@@ -33,6 +34,7 @@ class _InputShipingAdress extends DescisionMultipleInput
 						buddy: (Main.customer.contract.owner == null ?"": Main.customer.contract.owner.name )+ " c/o",
 						width:200,
 						prefix:"street",
+						debug: "Sesame",
 						position:[bottom, left]
 					}
 				},
@@ -43,6 +45,7 @@ class _InputShipingAdress extends DescisionMultipleInput
 						buddy: "street",
 						width:50,
 						prefix:"n°",
+						debug: "69",
 						position:[top, right]
 					}
 				},
@@ -53,6 +56,7 @@ class _InputShipingAdress extends DescisionMultipleInput
 						buddy: "street",
 						width:50,
 						prefix:"zip",
+						debug: "2502",
 						position:[bottom, left]
 					}
 				},
@@ -63,6 +67,7 @@ class _InputShipingAdress extends DescisionMultipleInput
 						buddy: "zip",
 						width:140, 
 						prefix:"city",
+						debug: "Montcuq",
 						position:[top, right]
 					}
 				}
@@ -87,7 +92,7 @@ class _InputShipingAdress extends DescisionMultipleInput
 	}
 	override public function onYesClick():Void
 	{
-		if (validate())
+		if (validateYes())
 		{
 			Main.customer.shipingAdress = new Adress(
 				this.multipleInputs.inputs.get("street").getInputedText(),

@@ -18,6 +18,7 @@ class _IssueDescription extends ActionMultipleInput
 			input:{
 				width:400,
 				prefix:"Description",
+				debug:"Description...",
 				position: [bottom, left]
 			}
 		}]

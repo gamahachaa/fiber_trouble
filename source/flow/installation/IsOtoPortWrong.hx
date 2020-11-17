@@ -1,6 +1,6 @@
 package flow.installation;
 
-import flow.nointernet.so._CreateTicketModemCNX;
+//import flow.nointernet.so._CreateTicketModemCNX;
 import tstool.process.Descision;
 
 /**

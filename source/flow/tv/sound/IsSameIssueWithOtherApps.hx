@@ -18,6 +18,7 @@ class IsSameIssueWithOtherApps extends DescisionMultipleInput
 			input:{
 				width:250,
 				prefix:"List other apps",
+				debug: "Lots otf other apps",
 				position: [bottom, left]
 			}
 		}]

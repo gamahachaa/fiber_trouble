@@ -14,8 +14,8 @@ class LetsCheckYourWiFi extends Descision
 
 	override public function create()
 	{
-		this._nextNoProcesses = [new _AddMemoVti()];
-		this._nextYesProcesses = [new WifiOnInDashboard()];
+		this._nextYesProcesses = [new _AddMemoVti()];
+		this._nextNoProcesses = [new WifiOnInDashboard()];
 		super.create();
 	}
 }

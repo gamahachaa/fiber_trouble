@@ -18,6 +18,7 @@ class WhereWasOrderDone extends DescisionMultipleInput
 			input:{
 				width:200,
 				prefix:"Store name",
+				debug: "Store grindenwald, Gel !",
 				position:[bottom, left]
 			}
 		}

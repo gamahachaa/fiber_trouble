@@ -43,6 +43,7 @@
 	<haxelib name="firetongue" />
 	<haxelib name="hscript" />
 	<haxelib name="tstool" />
+	<haxelib name="uglifyjs" unless="debug"/>
 	<!--<haxelib name="uglifyjs" />-->
 	
 	<!--<haxelib name="xapi" />-->
@@ -70,6 +71,7 @@
 	
 	<!-- ______________________________ Haxedefines _____________________________ -->
 	<haxeflag name="-D" value="haxeJSON" />
+	<haxeflag name="-dce" value="full" />
 	<!--Enable the Flixel core recording system-->
 	<!--<haxedef name="FLX_RECORD" />-->
 	
@@ -101,6 +103,8 @@
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 
 	<haxedef name="haxeJSON" />
+	<!--<library path="./export/html5/bin/howl.js" />-->
+	<!--<dependency name="howl.js" if="html5" />-->
 	<!-- _________________________________ Custom _______________________________ -->
 	
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->

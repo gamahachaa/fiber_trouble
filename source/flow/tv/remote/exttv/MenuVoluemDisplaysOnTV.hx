@@ -1,5 +1,6 @@
 package flow.tv.remote.exttv;
 
+import flow.tv.ChekSaltTVKNownBugs;
 import tstool.process.Descision;
 
 /**
@@ -9,10 +10,11 @@ import tstool.process.Descision;
 class MenuVoluemDisplaysOnTV extends Descision 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextNoProcesses =  [new _PressMenuAndOK(), new ChekSaltTVKNownBugs() ];
+		this._nextYesProcesses = [new _ClickOKOnRemote()];
+		super.create();
 	}
 	
 }

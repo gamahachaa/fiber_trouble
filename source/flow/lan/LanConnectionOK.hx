@@ -55,32 +55,26 @@ class LanConnectionOK extends Descision
 		this._nextNoProcesses = [new _SwapEthernetCable(), new _SwapEthernetPort()];
 		
 		
-		if (Main.HISTORY.isInHistory("flow.lan.TestWithAppleTV", Next) && !Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Next))
+		
+		if (!Main.HISTORY.isProcessInHistory("flow.lan.TestWithAppleTV") )
+		{
+			this._nextNoProcesses.push( new TestWithAppleTV() );
+		}
+		/*else if (!Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Yes) || !Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", No))
 		{
 			this._nextNoProcesses.push( new _TestWithAnotherLanDevice() );
-		}
-		else if(!Main.HISTORY.isInHistory("flow.lan.TestWithAppleTV", Next))
-			this._nextNoProcesses.push( new TestWithAppleTV() );
-		
-		
-		if (!Main.HISTORY.isInHistory("flow.all.fiberbox._LoopResetFiberBox", Next))
+		}*/
+		else if (!Main.HISTORY.isProcessInHistory("flow.all.fiberbox._LoopResetFiberBox"))
 		{
 			this._nextNoProcesses.push( new _LoopResetFiberBox() );
 		}
 		
-		if (Main.HISTORY.isInHistory("flow.wifi.CanConnectToBoxWithLAN", Yes) || Main.HISTORY.isInHistory("flow.wifi.CanConnectToBoxWithLAN", No) && Main.HISTORY.isInHistory("flow.all.customer.LanOrWiFi", Yes))
+		else if (Main.HISTORY.isProcessInHistory("flow.wifi.CanConnectToBoxWithLAN"))
 		{
 			/******************************************
-			 * WiFi Not visible on Dashboard WiFi issue
+			 * WiFi issue
 			/*****************************************/
 			this._nextNoProcesses.push( new _CreateTicketWifiIssue());
-		}
-		else if (Main.HISTORY.isInHistory("flow.wifi.CanConnectToBoxWithLAN", Yes) || Main.HISTORY.isInHistory("flow.wifi.CanConnectToBoxWithLAN", No) && !Main.HISTORY.isInHistory("flow.all.customer.LanOrWiFi", Yes))
-		{
-			/*******************************************
-			 * Lan issue or Both and WiFi tested
-			/*******************************************/
-			this._nextNoProcesses.push( new _CreateTicketModemCNX());
 		}
 		else{
 			

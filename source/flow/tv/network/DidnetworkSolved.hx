@@ -1,5 +1,7 @@
 package flow.tv.network;
 
+import flow._AddMemoVti;
+import flow.tv.CanExploreMenu;
 import tstool.process.Descision;
 
 /**
@@ -9,10 +11,11 @@ import tstool.process.Descision;
 class DidnetworkSolved extends Descision 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextNoProcesses = [ new _TesLanCableWithComputer()];
+		this._nextYesProcesses = [new CanExploreMenu()];
+		super.create();
 	}
 	
 }

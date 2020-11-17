@@ -17,6 +17,7 @@ class _WhenDidItStart extends ActionMultipleInput
 			input:{
 				width:200,
 				prefix:"Start date",
+				debug:"Start date ...",
 				position:[bottom, left]
 			}
 		}

@@ -17,6 +17,7 @@ class _HowFerquent extends ActionMultipleInput
 			input:{
 				width:250,
 				prefix:"Frequency",
+				debug:"all the time",
 				position: [bottom, left]
 			}
 		}]

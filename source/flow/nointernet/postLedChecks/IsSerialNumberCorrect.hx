@@ -19,6 +19,7 @@ class IsSerialNumberCorrect extends DescisionMultipleInput
 			input:{
 				width:150,
 				prefix:"Serial N°",
+				debug: "SFAA12345678",
 				position:[bottom, left]
 			}
 	}]);

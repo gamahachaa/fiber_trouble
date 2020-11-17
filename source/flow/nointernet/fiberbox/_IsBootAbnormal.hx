@@ -15,8 +15,9 @@ class _IsBootAbnormal extends Triplet
 
 	override public function create()
 	{
-		this._nextNoProcesses = [new IsSerialNumberCorrect()];
-		this._nextYesProcesses = [new _SwapBox()];
+		this._nextNoProcesses = [new WhatColorBlink()];
+		this._nextYesProcesses = [new WhichWeirdBoot()];
+		//this._nextYesProcesses = [new _SwapBox()];
 		this._nextMidProcesses= [new SwapFiberCable()];
 		super.create();
 	}

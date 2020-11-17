@@ -25,7 +25,7 @@ class WifiVisibleByAppleTV extends Descision
 			this._nextNoProcesses = [new _CreateTicketWifiIssue()];
 		}
 		else{
-			var wva = new WifiVisibleByAppleTV();
+			var wva = new WifiVisibleOnDevice();
 			this._nextNoProcesses = [new _LoopResetFiberBox(wva, wva)];
 		}
 		

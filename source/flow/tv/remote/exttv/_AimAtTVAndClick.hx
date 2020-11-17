@@ -9,10 +9,10 @@ import tstool.process.Action;
 class _AimAtTVAndClick extends Action 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextProcesses = [new MenuVoluemDisplaysOnTV()];
+		super.create();
 	}
 	
 }

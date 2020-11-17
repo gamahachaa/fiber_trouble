@@ -9,10 +9,11 @@ import tstool.process.Descision;
 class HowConnected extends Descision 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextNoProcesses = [new _EnsureLanCableWellPlugged()];
+		this._nextYesProcesses = [new IsOtherWifiDeviceOK()];
+		super.create();
 	}
 	
 }

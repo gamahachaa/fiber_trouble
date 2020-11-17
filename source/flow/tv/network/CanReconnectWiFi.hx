@@ -1,5 +1,7 @@
 package flow.tv.network;
 
+import flow._AddMemoVti;
+
 import tstool.process.Descision;
 
 /**
@@ -9,10 +11,11 @@ import tstool.process.Descision;
 class CanReconnectWiFi extends Descision 
 {
 
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextNoProcesses = [ new CanCheckWithLan()];
+		this._nextYesProcesses = [ new _AddMemoVti()];
+		super.create();
 	}
 	
 }

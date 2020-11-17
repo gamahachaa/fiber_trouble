@@ -15,7 +15,7 @@ class _PaymentSearch extends Action
 		// this._titleTxt = "Lancer une recherche de paiement";
 		// this._detailTxt = "";
 		// this._illustration = "";
-		this._nextProcesses = [ new IconStatusBoxManagement()];
+		this._nextProcesses = [ new _AddMemoVti()];
 		//this._nextProcesses = [ new _YouWillBeInformed()];
 		super.create();
 	}

@@ -21,6 +21,7 @@ class NormalRxValues extends DescisionMultipleInput
 			input:{
 				width:100,
 				prefix:"VTI RX",
+				debug: "-12",
 				position:[bottom, left]
 			}
 		}]);

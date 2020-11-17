@@ -13,7 +13,7 @@ class _PressMenuAndPlus extends Action
 
 	override public function create()
 	{
-		this._nextProcesses = [new DoesAppleTVLedBlinks( new IsAppleTVvisibleOnTVScreen(), new _RepairProcess() )];
+		this._nextProcesses = [new DoesAppleTVLedBlinks( new _AdviceOnSiriRemoteUSage(), new _RepairProcess() )];
 		super.create();
 	}
 }

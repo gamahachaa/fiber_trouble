@@ -1,5 +1,6 @@
 package flow.tv.network;
 
+import flow.tv._CreateSOTicketSaltTV;
 import tstool.process.Descision;
 
 /**
@@ -8,11 +9,10 @@ import tstool.process.Descision;
  */
 class CanCheckWithLan extends Descision 
 {
-
-	public function new() 
+	override public function create()
 	{
-		super();
-		
+		this._nextNoProcesses = [ new _CreateSOTicketSaltTV()];
+		this._nextYesProcesses = [ new _EnsureLanCableWellPlugged()];
+		super.create();
 	}
-	
 }

@@ -60,10 +60,13 @@ class Main extends Sprite
 	public static var tongue:Translator = new Translator();
 	public static var user:Agent;
 	public static var customer:Customer;
+
 	public static var track:XapiTracker;
+	
 	static inline var TITLE_FONT:String = "assets/fonts/Lato-Black.ttf";
 	static inline var BASIC_FONT:String = "assets/fonts/Lato-Regular.ttf";
 	public static inline var MAIL_WRAPPER_URL:String = "php/mail/index.php";
+	public static inline var LIB_FOLDER:String = "/";
 
 	public static var adminFile:tstool.utils.Csv;
 	public static var TITLE_FMT:BasicFormat = {font:TITLE_FONT, size:20};
@@ -84,7 +87,7 @@ class Main extends Sprite
 		bg: SaltColor.BLACK_PURE,
 		title:SaltColor.WHITE,
 		basic:SaltColor.WHITE,
-	basicStrong:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.TUQUOISE,false),"<b>"),
+		basicStrong:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.TUQUOISE,false),"<b>"),
 		basicEmphasis:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.ORANGE,false),"<em>"),
 		meta:SaltColor.MUSTARD,
 		interaction: SaltColor.WHITE

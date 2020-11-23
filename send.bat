@@ -3,7 +3,7 @@
 @echo off
 
 if "%1"=="" goto :dead
-if "%1"=="debug" goto :dead
+if "%1"=="debug" goto :publication
 if "%1"=="release" goto :publication
 
 :publication
@@ -32,7 +32,9 @@ rem --------- ^ is the escape char for batch !!! --------------
 set "HOWL_TARGET=^<link rel="shortcut icon" type="image/png" href="./favicon.png"^>"
 set "HOWL=^<script type="text/javascript" src="./howl.js"^>^</script^>
 rem DELETE  ------------------------------------------------------------------------------------------------------------------------------
+rem if "%1"=="debug" goto :next
 del /F %FILESDELETE%
+:next
 rem REPLACE META LINK TO JS FILES  ------------------------------------------------------------------------------------------------------------------------------
 powershell -Command "Rename-Item -Path "%BINDIR%/index.html" -NewName tmp.html"
 powershell -Command "Rename-Item -Path "%BINDIR%/index_howl.html" -NewName index.html"
@@ -41,18 +43,18 @@ powershell -Command "Rename-Item -Path "%BINDIR%/tmp.html" -NewName index_howl.h
 rem powershell -Command "(gc %BINDIR%/index.html) -replace '%HOWL_TARGET%', '%HOWL_TARGET%\n%HOWL%' | Out-File -encoding UTF8 %BINDIR%/index.html"
 rem powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptName%' | Out-File -encoding UTF8 %BINDIR%/index.html"
 
-if "%1"=="debug" goto :notminified
-
-powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptNameMin%' | Out-File -encoding UTF8 %BINDIR%/index.html"
-powershell -Command "Add-Content %cd%\version_prod.txt '%fullstamp%'"
-if "%1"=="release" goto :continue
-
-:notminified
-
+if "%1"=="release" goto :minify
 powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptName%' | Out-File -encoding UTF8 %BINDIR%/index.html"
 
+if "%1"=="debug" goto :follow
+rem min 
 
-:continue
+:minify
+powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptNameMin%' | Out-File -encoding UTF8 %BINDIR%/index.html"
+
+rem REENAME JS FILES  ------------------------------------------------------------------------------------------------------------------------------
+
+:follow
 
 powershell -Command "(gc %BINDIR%/index.html) -replace 'background: #000000;', 'background: #4c4d4d;' | Out-File -encoding UTF8 %BINDIR%/index.html"
 rem REENAME JS FILES  ------------------------------------------------------------------------------------------------------------------------------
@@ -69,7 +71,7 @@ rem echo %1
  
 
 if "%1"=="" goto :dead
-if "%1"=="debug" goto :dead
+if "%1"=="debug" goto :test
 if "%1"=="release" goto :release
 
 rem echo %1

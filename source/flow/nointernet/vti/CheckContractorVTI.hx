@@ -2,6 +2,7 @@ package flow.nointernet.vti;
 
 import flixel.FlxG;
 import flow.activation.IsFiberOrMultisurf;
+import tstool.process.Process;
 //import flow.equipment.IsWhishDateWayAhead;
 import flow.equipment.OTOidVisibleInOfferManagement;
 //import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
@@ -62,7 +63,30 @@ class CheckContractorVTI extends DescisionMultipleInput
 		
 		this.yesValidatedSignal.add(canITrack);
 	}
-	
+	function setReminder()
+	{
+		//081 304 10 13
+			var voip = Main.customer.voIP.split("");
+			voip.insert(8, " ");
+			voip.insert(6, " ");
+			voip.insert(3, " ");
+			
+			var displayVoip = voip.join("");
+			var owner = Main.customer.contract.owner == null? "": Main.customer.contract.owner.name == null?"":Main.customer.contract.owner.name;
+			var mobile = Main.customer.contract.mobile == "" ? "": "(" + Main.customer.contract.mobile + ")";
+			var iri  = Main.customer.iri == "" ? "" : "(" + Main.customer.iri + ")";
+			//Process.STORAGE.set("reminder", '$displayVoip $iri\n$owner $mobile' );
+			Process.STORAGE.set("CONTRACTOR", iri );
+			Process.STORAGE.set("VOIP", displayVoip );
+			Process.STORAGE.set("OWNER", owner );
+			Process.STORAGE.set("CONTACT", mobile );
+			
+
+			/**
+			 * @TODO keep clipboard trick to fill clipboard with data
+			 */
+			//Browser.document.addEventListener("copy", function(e){e.clipboardData.setData('text/plain', Main.customer.voIP);e.preventDefault();});
+	}
 	function onVtiAccountParsed(profile:Map<String, Map<String, String>>):Void 
 	{
 		#if debug
@@ -159,7 +183,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 				Main.customer.contract.mobile = contactNB;
 			}
 			#end
-			
+			setReminder();
 			super.onYesClick();
 		}
 		

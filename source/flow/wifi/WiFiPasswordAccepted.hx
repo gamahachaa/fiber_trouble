@@ -14,9 +14,9 @@ class WiFiPasswordAccepted extends Descision
 
 	override public function create():Void
 	{
-		//this._titleTxt = "Le mot de passe WiFi est accepté ?";
-		//this._detailTxt = "";
-		//this._illustration = "";
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
 		this._nextYesProcesses = [new ErrorIconOnWifiIcon()];
 		var resetDone = Main.HISTORY.isInHistory("flow.all.fiberbox._LoopResetFiberBox", Yes);
 		if (resetDone )

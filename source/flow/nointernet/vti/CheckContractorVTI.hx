@@ -129,7 +129,9 @@ class CheckContractorVTI extends DescisionMultipleInput
 	override public function create():Void
 	{
 		Main.customer.reset();
-		
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
 		if (Main.HISTORY.isInHistory("flow.Intro", Mid)){
 			Main.track.setActivity("equipment");
 		}

@@ -26,6 +26,9 @@ class _ReadRXValues extends TripletMultipleInput
 	}
 	override public function create():Void
 	{
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
 		if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes) || Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid)) // Stability
 		{
 			this._nextYesProcesses = [new _CreateSOTechModemSpeed()];

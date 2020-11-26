@@ -17,7 +17,9 @@ class IsBarred extends Descision
 	{
 		
 		this._nextYesProcesses = [new _VerifyCollectionStep()];
-		//this._nextNoProcesses = [new IconStatusBoxManagement()];
+				/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
 		if (Main.HISTORY.isInHistory("flow.all.customer.LanOrWiFi", Yes))
 		{
 			/******************************

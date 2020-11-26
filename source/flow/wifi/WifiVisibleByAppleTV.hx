@@ -14,10 +14,9 @@ class WifiVisibleByAppleTV extends Descision
 
 	override public function create():Void
 	{
-		//this.prepareForIteration(this);
-		//this._titleTxt = "Le WiFi est visible par l'apple TV ?";
-		//this._detailTxt = "(Débrancher le câble LAN de l'AppleTV au préalable)";
-		//this._illustration = "";
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
 		this._nextYesProcesses = [new WifiVisibleOnDevice()];
 		var resetDone = Main.HISTORY.isInHistory("flow.all.fiberbox._LoopResetFiberBox", Yes);
 		if (resetDone )

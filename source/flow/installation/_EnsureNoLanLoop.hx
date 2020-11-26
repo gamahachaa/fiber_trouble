@@ -11,7 +11,9 @@ import tstool.process.Process;
 class _EnsureNoLanLoop extends Action {
     override public function create():Void
         {
-            //this._nextProcesses = [new _EnsureCorrectPortPlug()];
+            /**
+			* @todo String to Class<Process> / isInHistory
+			*/
 			var next:Process;
 			if (Main.HISTORY.isInHistory("flow.nointernet.customer.FiberCableChanged", No))
 			{

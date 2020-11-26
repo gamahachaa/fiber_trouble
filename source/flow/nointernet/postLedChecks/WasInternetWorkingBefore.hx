@@ -7,9 +7,9 @@ class WasInternetWorkingBefore extends Descision
 {
 	override public function create()
 	{
-		//this._titleTxt = "Aucne valeur RX et icon Rouge ?";
-		//this._nextYesProcesses = [new _ReadRXValues()];
-		
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
 
 		if (Main.HISTORY.isInHistory("flow.nointernet.fiberbox.NormalRxValues", No) ||Main.HISTORY.isInHistory("flow.nointernet.fiberbox.NormalRxValues", Yes))
 		{

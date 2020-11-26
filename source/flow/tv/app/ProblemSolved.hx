@@ -1,6 +1,6 @@
 package flow.tv.app;
 import flow.tv._CreateSOTicketSaltTV;
-import flow.tv.install._ResetAppleTV;
+//import flow.tv.install._ResetAppleTV;
 import tstool.process.Descision;
 import tstool.process.Process;
 
@@ -13,7 +13,10 @@ class ProblemSolved extends Descision
 
 	override public function create()
 	{
-		
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
+
 		var nextNo:Process = null;
 		if (Main.HISTORY.isProcessInHistory("flow.tv.app._CheckIfAppleTVNeedsUpdate"))
 		{
@@ -22,14 +25,6 @@ class ProblemSolved extends Descision
 			/***********************/
 			nextNo = new _CreateSOTicketSaltTV();
 			
-			/*if (Main.HISTORY.isInHistory("flow.tv.WhatIStheTVIssue", Yes))
-			{
-				 nextNo = new WhatAppleTVcnxType();
-			}
-			else{
-			
-				 nextNo = new _CreateSOTicketSaltTV();
-			}*/
 			
 		}
 		else if (Main.HISTORY.isProcessInHistory("flow.tv.app._RebootAppleTV"))

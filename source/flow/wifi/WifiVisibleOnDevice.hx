@@ -16,6 +16,9 @@ class WifiVisibleOnDevice extends Descision
 
 	override public function create():Void
 	{
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
 		this._nextYesProcesses = [new WiFiPasswordAccepted()];
 		var nextNoFour:Process = null;
 		if (Main.HISTORY.isInHistory("flow.wifi.WifiVisibleByAppleTV", Yes))

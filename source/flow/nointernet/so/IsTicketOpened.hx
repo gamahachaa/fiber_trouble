@@ -21,6 +21,9 @@ class IsTicketOpened extends Descision
 		this._nextYesProcesses = [new IsTechTicket()];
 		next = new _TestSpeed();
 		
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
 		
 		if (Main.HISTORY.isInHistory("flow.Intro", No))
 		{

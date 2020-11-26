@@ -79,6 +79,7 @@ class Main extends Sprite
 	public static var LOCATION:Location;
 	public static var DEBUG:Bool;
 	public static var LAST_STEP:Class<FlxState> = flow._AddMemoVti;
+	public static var LANGS = ["fr-FR","de-DE","en-GB","it-IT"];
 	/**
 	 * FORMAT COLOR
 	 * */

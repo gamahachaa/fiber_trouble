@@ -18,6 +18,9 @@ class LanConnectionOK extends Descision
 
 	override public function create():Void
 	{
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
 		/*************************************************
 		 * LAN OK
 		/*************************************************/
@@ -55,15 +58,14 @@ class LanConnectionOK extends Descision
 		this._nextNoProcesses = [new _SwapEthernetCable(), new _SwapEthernetPort()];
 		
 		
-		
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
+
 		if (!Main.HISTORY.isProcessInHistory("flow.lan.TestWithAppleTV") )
 		{
 			this._nextNoProcesses.push( new TestWithAppleTV() );
 		}
-		/*else if (!Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", Yes) || !Main.HISTORY.isInHistory("flow.lan.TestWithAnotherLanDevice", No))
-		{
-			this._nextNoProcesses.push( new _TestWithAnotherLanDevice() );
-		}*/
 		else if (!Main.HISTORY.isProcessInHistory("flow.all.fiberbox._LoopResetFiberBox"))
 		{
 			this._nextNoProcesses.push( new _LoopResetFiberBox() );

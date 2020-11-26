@@ -83,6 +83,9 @@ class BoxLedStatus extends ActionRadios
 		var next:Process;
 		if (validate())
 		{
+			/**
+			 * @todo String to Class<Process> / isInHistory
+			 */
 			if (Main.HISTORY.isInHistory("flow.nointernet.customer.FiberCableChanged", No))
 			{
 				next = new SwapFiberCable();

@@ -19,7 +19,10 @@ class _RedoTestWithAnotherDevice extends Triplet
 	}
 	override public function create()
 	{
-		var nextNo:Array<Process>= null;
+		var nextNo:Array<Process> = null;
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
 		if (Main.HISTORY.isInHistory("flow.Intro", No))
 		{
 			nextNo = [new _CreateSOTicketSaltTV()];

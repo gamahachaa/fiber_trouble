@@ -17,6 +17,9 @@ class _TellCustomerAllOkWithFiberCnx extends Action
 {
 	override public function create():Void
 	{
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
 		if (Main.HISTORY.isInHistory("flow.Intro", No))//TV
 		{
 			this._nextProcesses = [new IsAppleTVvisibleOnTVScreen()];

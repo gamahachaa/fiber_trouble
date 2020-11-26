@@ -17,8 +17,8 @@ class Intro extends Triplet
 {
 	override public function create():Void
 	{
-		
 		Process.INIT();
+		
 		//trace(Main.user.isAdmin);
 		
 		//trace("WTF"); 
@@ -51,5 +51,22 @@ class Intro extends Triplet
 		}
 	}
 	
+	override public function onYesClick():Void
+	{
+		this._nextYesProcesses = [];
+		super.onYesClick();
+	}
 	
+	
+	override public function onNoClick():Void
+	{
+		this._nextNoProcesses = [];
+		super.onNoClick();
+	}
+	
+	override public function onMidClick():Void
+	{
+		this._nextMidProcesses = [];
+		super.onMidClick();
+	}
 }

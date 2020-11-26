@@ -12,6 +12,9 @@ class IsAppleTVvisibleOnTVScreen extends Descision
 
 	override public function create()
 	{
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
 		var nextNo = 
 		if (Main.HISTORY.isInHistory("flow.tv.hardware._MakeSurePowerCableWellPlugged", Next ))
 		{

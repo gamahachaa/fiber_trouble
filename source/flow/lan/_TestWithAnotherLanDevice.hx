@@ -14,6 +14,10 @@ class _TestWithAnotherLanDevice extends Descision
 	override public function create()
 	{
 		this._nextYesProcesses = [new LanConnectionOK()];
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
+
 		if (Main.HISTORY.isInHistory("flow.wifi.CanConnectToBoxWithLAN", Yes) || Main.HISTORY.isInHistory("flow.wifi.CanConnectToBoxWithLAN", No) && Main.HISTORY.isInHistory("flow.all.customer.LanOrWiFi", Yes))
 		{
 			

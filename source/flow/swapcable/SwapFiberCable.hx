@@ -1,7 +1,7 @@
 package flow.swapcable;
 
 
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...
@@ -18,7 +18,7 @@ class SwapFiberCable extends Descision
 		//this._buttonNoTxt = "Post";
 		//this._illustration = "";
 		this._nextYesProcesses = [new _FiberCableByStore()];
-		this._nextNoProcesses = [new IsShipingToAnotherAdress()];
+		this._nextNoProcesses = [new _InputShipingAdress()];
 		super.create();
 	}
 

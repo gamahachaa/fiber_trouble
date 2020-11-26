@@ -1,17 +1,20 @@
 package flow.wifi;
-import process.Action;
+//import sys.io.Process;
+import tstool.process.Process;
+import tstool.process.Action;
+import tstool.process.DescisionLoop;
 
 /**
  * ...
  * @author bb
  */
-class _MoveCloseUnplugRepeater extends Action
+class _MoveCloseUnplugRepeater extends DescisionLoop
 {
-
-	override public function create()
+	/*
+	override public function new( ?nextYes:Process, ?nextNo:Process)
 	{
-		this._nextProcesses = [new WifiVisibleByAppleTV()];
-		super.create();
+		super(nextYes,nextNo);
+		//_next = next;
 	}
-	
+	*/
 }

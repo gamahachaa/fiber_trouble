@@ -1,8 +1,8 @@
 package flow.escalation;
 
 import flow.escalation._SendMifiMail;
-import process.Action;
-import process.Descision;
+import tstool.process.Action;
+import tstool.process.Descision;
 
 /**
  * ...

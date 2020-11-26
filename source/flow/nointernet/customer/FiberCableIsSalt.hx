@@ -1,7 +1,8 @@
 package flow.nointernet.customer;
 
-import flow.nointernet.postLedChecks.WasInternetWorkingBefore;
-import process.Descision;
+//import flow.nointernet.postLedChecks.WasInternetWorkingBefore;
+import flow.swapcable.SwapFiberCable;
+import tstool.process.Descision;
 
 /**
  * ...
@@ -16,8 +17,8 @@ class FiberCableIsSalt extends Descision
 		//this._detailTxt = "";
 		//this._illustration = "";
 		//this._nextYesProcesses = [new LedPowerOn()];
-		this._nextYesProcesses = [new WasInternetWorkingBefore()];
-		this._nextNoProcesses = [new FiberCableChanged()];
+		this._nextYesProcesses = [new SwapFiberCable()];
+		this._nextNoProcesses = [new SwapFiberCable()];
 		super.create();
 	}
 

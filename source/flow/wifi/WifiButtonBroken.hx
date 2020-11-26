@@ -2,7 +2,7 @@ package flow.wifi;
 
 import flow.wifi._SwitchOnWifiFromAdminConsole;
 import flow.wifi.CanConnectToBoxWithLAN;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

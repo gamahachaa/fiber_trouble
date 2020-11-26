@@ -1,5 +1,6 @@
 package flow;
 
+import flow.TutoTree;
 import flixel.FlxG;
 import flow.nointernet.vti.CheckContractorVTI;
 import flow.wifi.WifiOnInDashboard;
@@ -9,15 +10,15 @@ import haxe.crypto.Base64;
 import haxe.ds.StringMap;
 import haxe.io.Bytes;
 import js.html.UnknownElement;
-import process.Action;
-import process.Process;
+import tstool.process.Action;
+import tstool.process.Process;
 
 class TutoOne extends Action
 {
 	override public function create():Void
 	{
 		Process.INIT();
-		this._nextProcesses = [new TutoTree()];
+		this._nextProcesses = [new flow.TutoTree()];
 		super.create();
 		this.details.text = Main.user.firstName + ",\n\n" + this._detailTxt;
 	}

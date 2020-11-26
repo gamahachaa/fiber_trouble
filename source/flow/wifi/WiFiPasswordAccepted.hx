@@ -1,8 +1,9 @@
 package flow.wifi;
 
+import flow.lan._CreateLanIssueTicket;
 import flow.wifi._CreateTicketWifiIssue;
 import flow.all.fiberbox._LoopResetFiberBox;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...
@@ -13,11 +14,19 @@ class WiFiPasswordAccepted extends Descision
 
 	override public function create():Void
 	{
-		//this._titleTxt = "Le mot de passe WiFi est accepté ?";
-		//this._detailTxt = "";
-		//this._illustration = "";
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
 		this._nextYesProcesses = [new ErrorIconOnWifiIcon()];
-		this._nextNoProcesses = [new _LoopResetFiberBox(new WifiVisibleOnDevice()),new _CreateTicketWifiIssue()];
+		var resetDone = Main.HISTORY.isInHistory("flow.all.fiberbox._LoopResetFiberBox", Yes);
+		if (resetDone )
+		{
+			this._nextNoProcesses = [new _CreateTicketWifiIssue()];
+		}
+		else{
+			var wvd = new WifiVisibleOnDevice();
+			this._nextNoProcesses = [new _LoopResetFiberBox(wvd,wvd),new _CreateTicketWifiIssue()];
+		}
 		super.create();
 	}
 

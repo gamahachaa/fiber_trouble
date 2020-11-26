@@ -1,6 +1,6 @@
 package flow.lan;
 
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...

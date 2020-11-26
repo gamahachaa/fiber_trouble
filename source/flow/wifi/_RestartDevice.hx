@@ -1,7 +1,7 @@
 package flow.wifi;
 
 import flow.wifi._ResetWifiParams;
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...

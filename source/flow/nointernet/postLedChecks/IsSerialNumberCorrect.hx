@@ -1,20 +1,34 @@
 package flow.nointernet.postLedChecks;
 
-
 import flow.installation._EnsureNoLanLoop;
 import flow.nointernet.so.tckets._SwapBox;
-import flow.nointernet.customer.FiberCableChanged;
-import process.DescisionInput;
+//import flow.nointernet.customer.FiberCableChanged;
+//import tstool.layout.UIInputTfCore;
+//import process.DescisionInput;
+import tstool.process.DescisionMultipleInput;
 
-class IsSerialNumberCorrect extends DescisionInput {
+
+class IsSerialNumberCorrect extends DescisionMultipleInput
+{
 	public function new()
 	{
-		super(150, "Serial N° : SFAA...",~/^(SFAA)?[0-9]{8}$/gi);
+		super(
+		[
+		{
+			ereg: new EReg("^(SFAA)?[0-9]{8}$","gi"),
+			input:{
+				width:150,
+				prefix:"Serial N°",
+				debug: "SFAA12345678",
+				position:[bottom, left]
+			}
+	}]);
+		//super(150, "Serial N°",~/^(SFAA)?[0-9]{8}$/gi);
 	}
-    override public function create()
-        {
-            this._nextYesProcesses = [new _EnsureNoLanLoop()];
-            this._nextNoProcesses = [new _SwapBox()];
-            super.create();
-        }
+	override public function create()
+	{
+		this._nextYesProcesses = [new _EnsureNoLanLoop()];
+		this._nextNoProcesses = [new _SwapBox()];
+		super.create();
+	}
 }

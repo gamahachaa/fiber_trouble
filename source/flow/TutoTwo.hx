@@ -1,6 +1,7 @@
 package flow;
 
-import process.Action;
+import TutoTree;
+import tstool.process.Action;
 
 class TutoTwo extends Action
 {

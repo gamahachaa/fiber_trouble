@@ -1,7 +1,7 @@
 package flow.all.customer;
 
-import flow.all.vti._AddMemoVti;
-import process.Action;
+import flow._AddMemoVti;
+import tstool.process.Action;
 
 /**
  * ...
@@ -15,7 +15,7 @@ class _SendTechMail extends Action
 		//this._titleTxt = "Envoyer un email";
 		//this._detailTxt = "";
 		//this._illustration = "";
-		this._nextProcesses = [new _AddMemoVti()];
+		this._nextProcesses = [new flow._AddMemoVti()];
 		super.create();
 	}
 }

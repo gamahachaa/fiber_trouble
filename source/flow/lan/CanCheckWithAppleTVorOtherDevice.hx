@@ -1,7 +1,7 @@
 package flow.lan;
 
 import flow.lan._CreateLanIssueTicket;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

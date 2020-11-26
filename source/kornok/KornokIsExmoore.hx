@@ -2,7 +2,7 @@ package kornok;
 
 import kornok.Faux;
 import kornok.Vrai;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

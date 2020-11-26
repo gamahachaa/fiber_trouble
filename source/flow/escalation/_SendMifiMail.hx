@@ -1,7 +1,7 @@
 package flow.escalation;
 
-import flow.all.vti._AddMemoVti;
-import process.Action;
+import flow._AddMemoVti;
+import tstool.process.Action;
 
 /**
  * ...

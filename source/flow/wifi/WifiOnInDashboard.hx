@@ -1,10 +1,10 @@
 package flow.wifi;
 
 import flow.all.fiberbox._LoopResetFiberBox;
+//import flow.lan._CreateLanIssueTicket;
 import flow.wifi._SwitchOnUsingButton;
 import flow.wifi.CanConnectToBoxWithLAN;
-import flow.wifi.WifiVisibleByAppleTV;
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...
@@ -14,16 +14,14 @@ class WifiOnInDashboard extends Descision
 {
 	override public function create():Void
 	{
-		//this.prepareForIteration(this);
-		//this._titleTxt = "Est-ce-que les 2 WiFi sont verts dans sur le dashboard ?";
-		//this._detailTxt = "Contrairement à cette image les icones du WiFi doivent être vertes";
-		//this._illustration = "vti/WifiOnInDashboard";
-		//this._nextNoProcesses = [new SwitchOnUsingButton(), new ResetFiberBox(), new WifiButtonBroken()];
-		this._nextNoProcesses = [new _SwitchOnUsingButton(), new _LoopResetFiberBox(), new CanConnectToBoxWithLAN(), new _CreateTicketWifiIssue()];
-		this._nextYesProcesses = [new _MoveCloseUnplugRepeater()];
-		//this._nextYesProcesses = [new UnplugLanAppleTV()];
-		//this._nextYesProcesses = [];
-		//this._nextNoProcesses = [];
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
+
+		this._nextNoProcesses = [new _SwitchOnUsingButton(), Main.HISTORY.findStepsInHistory("flow.all.fiberbox._LoopResetFiberBox").length>0?  new _CreateTicketWifiIssue(): new _LoopResetFiberBox(), new CanConnectToBoxWithLAN()];
+		
+		var wvd = new WifiVisibleOnDevice();
+		this._nextYesProcesses = [new _MoveCloseUnplugRepeater(wvd,wvd)];
 		super.create();
 	}
 }

@@ -1,6 +1,6 @@
 package flow.collection;
 
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...

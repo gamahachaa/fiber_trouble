@@ -7,7 +7,7 @@
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
 	<!--<app preloader="flixel.system.FlxPreloader" />-->
-	<app preloader="layout.SaltPreloader" />
+	<app preloader="tstool.layout.SaltPreloader" />
 	
 	<!--Minimum without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->
 	<set name="SWF_VERSION" value="11.8" />
@@ -33,6 +33,7 @@
 	<assets path="assets" />
 	
 	<!-- _______________________________ Libraries ______________________________ -->
+	<haxelib name="csv" />
 	<haxelib name="lime" />
 	<!--<set name="next"/>-->
 	<haxelib name="flixel" />
@@ -41,8 +42,15 @@
 
 	<haxelib name="firetongue" />
 	<haxelib name="hscript" />
-	<haxelib name="xapi" />
-	<haxelib name="lrs" />
+	<haxelib name="tstool" />
+	<haxelib name="uglifyjs" unless="debug"/>
+	<!--<haxelib name="uglifyjs" />-->
+	
+	<!--<haxelib name="xapi" />-->
+	<!--<haxelib name="lrs" />-->
+	<!--<haxelib name="msignal" />-->
+	<!--<haxelib name="thx.core" />-->
+
 	<!--<haxelib name="ldap" />-->
 	
 	<!--<haxelib name="openfl" />-->
@@ -62,7 +70,8 @@
 	<!--<haxelib name="nape" />-->
 	
 	<!-- ______________________________ Haxedefines _____________________________ -->
-	
+	<haxeflag name="-D" value="haxeJSON" />
+	<haxeflag name="-dce" value="full" />
 	<!--Enable the Flixel core recording system-->
 	<!--<haxedef name="FLX_RECORD" />-->
 	
@@ -93,7 +102,9 @@
 	<!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 
-	
+	<haxedef name="haxeJSON" />
+	<!--<library path="./export/html5/bin/howl.js" />-->
+	<!--<dependency name="howl.js" if="html5" />-->
 	<!-- _________________________________ Custom _______________________________ -->
 	
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->

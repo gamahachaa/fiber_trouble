@@ -1,8 +1,8 @@
 package kornok;
 
 import kornok.KornokIsExmoore;
-import process.Action;
-import process.Process;
+import tstool.process.Action;
+import tstool.process.Process;
 
 /**
  * ...

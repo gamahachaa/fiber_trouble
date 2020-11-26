@@ -1,6 +1,6 @@
 package flow.collection;
 
-import process.Descision;
+import tstool.process.Descision;
 
 /**
  * ...

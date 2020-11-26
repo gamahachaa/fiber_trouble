@@ -2,105 +2,226 @@ package flow.nointernet.vti;
 
 import flixel.FlxG;
 import flow.activation.IsFiberOrMultisurf;
-import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
+import tstool.process.Process;
+//import flow.equipment.IsWhishDateWayAhead;
+import flow.equipment.OTOidVisibleInOfferManagement;
+//import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
 import flow.nointernet.so.IsTicketOpened;
-import layout.UIInputTf;
-import process.DescisionInput;
+import tstool.salt.Balance;
+import tstool.salt.Contractor;
+import tstool.salt.Role;
+import tstool.utils.VTIdataParser;
+//import layout.UIInputTf;
+import lime.math.Rectangle;
+import tstool.process.DescisionMultipleInput;
+import Main;
+import tstool.utils.XapiTracker;
 
 /**
  * ...
  * @author
  */
-class CheckContractorVTI extends DescisionInput
+class CheckContractorVTI extends DescisionMultipleInput
 {
-	var contractorEreg:EReg;
-	var vtiContractorUI:UIInputTf;
-	var inputs:Array<UIInputTf>;
+	var parser:tstool.utils.VTIdataParser;
 
 	public function new()
 	{
-		var regY:EReg = ~/^41\d{9}$/i;
-		//super(270, "VoIP N°");
-		inputs = [];
-		super(150, "VoIP N°",regY);
+		super(
+			[
+				{
+					ereg:new EReg("^3\\d{7}$","i"),
+					input:{
+						width:150,
+						debug: "30000000",
+						prefix:"Contractor ID",
+						position: [bottom, left]
+					}
+				},
+				{
+					ereg: new EReg("^41\\d{9}$","i"),
+					input:{
+						buddy: "Contractor ID",
+						width:150,
+						debug: "41780000000",
+						prefix:"VoIP Number",
+						position:[top, right]
+					}
+				},
+				{
+					ereg: new EReg("^41\\d{9}$","i"),
+					input:{
+						buddy: "Contractor ID",
+						width:150,
+						debug: "41780000000",
+						prefix:"Contact Number",
+						position:[bottom, left]
+					}
+				}
+			]
+		);
+		
+		this.yesValidatedSignal.add(canITrack);
+	}
+	function setReminder()
+	{
+		//081 304 10 13
+			var voip = Main.customer.voIP.split("");
+			voip.insert(8, " ");
+			voip.insert(6, " ");
+			voip.insert(3, " ");
+			
+			var displayVoip = voip.join("");
+			var owner = Main.customer.contract.owner == null? "": Main.customer.contract.owner.name == null?"":Main.customer.contract.owner.name;
+			var mobile = Main.customer.contract.mobile == "" ? "": "(" + Main.customer.contract.mobile + ")";
+			var iri  = Main.customer.iri == "" ? "" : "(" + Main.customer.iri + ")";
+			//Process.STORAGE.set("reminder", '$displayVoip $iri\n$owner $mobile' );
+			Process.STORAGE.set("CONTRACTOR", iri );
+			Process.STORAGE.set("VOIP", displayVoip );
+			Process.STORAGE.set("OWNER", owner );
+			Process.STORAGE.set("CONTACT", mobile );
+			
+
+			/**
+			 * @TODO keep clipboard trick to fill clipboard with data
+			 */
+			//Browser.document.addEventListener("copy", function(e){e.clipboardData.setData('text/plain', Main.customer.voIP);e.preventDefault();});
+	}
+	function onVtiAccountParsed(profile:Map<String, Map<String, String>>):Void 
+	{
+		#if debug
+			trace("onVtiAccountParsed");
+			trace(profile);
+		#end
+		if (!profile.exists("meta") || !profile.exists("plan")) return;
+		else 
+		Main.customer.contract = new Contractor(
+			profile.get("meta").exists("vtiContractor")? profile.get("meta").get("vtiContractor"):"",
+			profile.get("plan").exists("vtiVoip")? profile.get("plan").get("vtiVoip"):"",
+			profile.get("plan").exists("vtiFix")? profile.get("plan").get("vtiFix"):"",
+			profile.get("plan").exists("vtiMobile")? profile.get("plan").get("vtiMobile"):"",
+			profile.get("plan").exists("vtiAdress")? profile.get("plan").get("vtiAdress"):"",
+			profile.exists("owner")? new Role(owner,profile.get("owner").get("vtiOwner"),profile.get("owner").get("vtiOwnerEmail")):null,
+			profile.exists("payer")? new Role(payer,profile.get("payer").get("vtiPayer"),profile.get("payer").get("vtiPayerEmail")):null,
+			new Role(user, profile.get("plan").get("vtiUser"), profile.get("plan").get("vtiUserEmail")),
+			profile.exists("owner")? StringTools.trim(profile.get("owner").get("vtiOwnerEmailValidated").toLowerCase()) == "ok":false,
+			profile.exists("balance")?new Balance( profile.get("balance").get("vtiBalance"), profile.get("balance").get("vtiOverdue"), profile.get("balance").get("vtiOverdueDate")):null
+		);
+		#if debug
+			trace(Main.customer);
+		#end
+		question.text = question.text + " <em>" + Main.customer.contract.owner.name + "<em>";
+		question.applyMarkup(question.text, [Main.THEME.basicEmphasis]);
+		question.drawFrame();
+		positionThis();
+		multipleInputs.inputs.get("Contractor ID").inputtextfield.text = Main.customer.contract.contractorID;
+		multipleInputs.inputs.get("VoIP Number").inputtextfield.text = Main.customer.contract.voip;
+		multipleInputs.inputs.get("Contact Number").inputtextfield.text = Main.customer.contract.mobile;
+		var p = multipleInputs.positionThis();
+		positionButtons(p);
+		positionBottom(p);
+		
 	}
 	override public function update(elapsed)
 	{
 		super.update(elapsed);
-		var i = 0;
-		if (FlxG.keys.justReleased.BACKSPACE)
-		{
-			
-			i = whoHasFocus();
-			
-			if(i > -1) inputs[i].clearText();
-		}
-		if (FlxG.keys.justReleased.TAB)
-		{
-			i = whoHasFocus();
-			
-			inputs[i].toggleFocus();
-			inputs[(++i == inputs.length ? 0 : i)].toggleFocus();
-		}
 	}
 	override public function create():Void
 	{
 		Main.customer.reset();
-		vtiContractorUI = new UIInputTf(150, "Contractor ID");
-		
-		contractorEreg = ~/^3\d{7}$/g;
-		vtiContractorUI.addToParent(this, false);
-		//this._nextYesProcesses = [new IsTicketOpened()];
-		this._nextYesProcesses = [new HasCustomerLEXnetworkIssue()];
+		/**
+		 * @todo String to Class<Process> / isInHistory
+		 */
+		if (Main.HISTORY.isInHistory("flow.Intro", Mid)){
+			Main.track.setActivity("equipment");
+		}
+		else if (Main.HISTORY.isInHistory("flow.Intro", No)){
+			Main.track.setActivity("tv");
+		}
+		else if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", No)){
+			Main.track.setActivity("no-internet");
+		}
+		else if (
+			Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes) || Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid)){
+			Main.track.setActivity("slow-internet");
+		}
+		else{
+			Main.track.setActivity("");
+		}			
+		this._nextYesProcesses = [Main.HISTORY.isInHistory("flow.Intro", Mid) ? new OTOidVisibleInOfferManagement() : new IsTicketOpened()];
 		this._nextNoProcesses = [new IsFiberOrMultisurf()];
-		
+
 		super.create();
-		inputs = [this.singleInput.uiInput, vtiContractorUI];
+		parser = new VTIdataParser(account);
+		parser.signal.add( onVtiAccountParsed );
+		//inputs = [this.singleInput.uiInput, vtiContractorUI];
 	}
 	override public function onYesClick():Void
 	{
-		var cID = vtiContractorUI.getInputedText();
-		var voipVTI = this.singleInput.uiInput.inputtextfield.text;
-		var voipSO = "0" + voipVTI.substr(2);
-		
-		#if debug
-			Main.customer.iri = cID == "" ? "39999999": cID;
+		//var contractorID = vtiContractorUI.getInputedText();
+		if (validateYes())
+		{
+			this.parser.destroy();
+			var contractorID = multipleInputs.inputs.get("Contractor ID").getInputedText();
+			//var voipVTI = this.singleInput.uiInput.inputtextfield.text;
+			var voipVTI = multipleInputs.inputs.get("VoIP Number").getInputedText();
+			var contactNB = multipleInputs.inputs.get("Contact Number").getInputedText();
+			var voipSO = "0" + voipVTI.substr(2);
+
+			#if debug
+			Main.customer.iri = contractorID == "" ? "39999999": contractorID;
 			Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
-		#else
-			Main.customer.iri = cID;
-			Main.customer.voIP = voipSO;
-		#end
-		super.onYesClick();
-	}
-	override public function setStyle()
-	{
-		super.setStyle();
-		vtiContractorUI.setStyle();
+			Main.customer.contract.mobile == "" ? "41787878673": contactNB;
+			#else
+			if (Main.DEBUG && Main.user.isAdmin)
+			{
+				Main.customer.iri = contractorID == "" ? "39999999": contractorID;
+				Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
+				Main.customer.contract.mobile = contactNB == "" ? "41787878673": contactNB;
+			}
+			else{
+				Main.customer.iri = contractorID;
+				Main.customer.voIP = voipSO;
+				Main.customer.contract.mobile = contactNB;
+			}
+			#end
+			setReminder();
+			super.onYesClick();
+		}
+		
 	}
 	override function validateYes()
 	{
-		if (!contractorEreg.match( vtiContractorUI.getInputedText() ) )
+		#if debug
+		return true;
+		trace("validateYes");
+		#end
+		//if (Main.DEBUG && Main.user.isAdmin) return true;
+		if (false) return true;
+		else
 		{
-			//vtiContractorUI._labelValidator = Main.tongue.get("$" + this._name + "_YES", "validators");
-			vtiContractorUI.blink(true);
-			return false;
-		}
-		else{
+			#if debug
+			//return true;
+			trace("validateYes");
+			#end
 			return super.validateYes();
 		}
 	}
-	override function positionThis()
+	override function validateNo()
 	{
-		super.positionThis();
-		vtiContractorUI.positionMe(this.singleInput.uiInput.inputtextfield, 4, bottom);
+		return true;
 	}
-	function whoHasFocus():Int
+
+	function canITrack(go:Bool)
 	{
-		for (i in 0...inputs.length )
+		if (go)
 		{
-			
-			if (inputs[i].hasFocus()) return i;
+			Main.track.setVerb("initialized");
+			Main.track.setStatementRef(null);
+			Main.track.setCustomer();
+			Main.track.send();
+			Main.track.setVerb("resolved");
 		}
-		return -1;
+
 	}
 }

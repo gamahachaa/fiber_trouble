@@ -1,0 +1,1114 @@
+var x ='
+
+    Home
+    Contacts
+    Tickets
+    Contractors
+    Offer
+
+    All 
+
+PRODEN theme rollerBruno 
+logoSalt.png 
+30001047
+Mr. PUPIN Thierry
+Healtcheck
+Salt Fiber
+41212180513
++  Show/Hide all
+Service name 	STATUS 	Main Information 	Issues 	Repair tools	
+CRM 		
+
+    Contractor number: 30001047
+    Customer status: BILLABLE
+    Order status: ACTIVE
+
+	The offer is active. 	
+TV 		
+
+    Username: tpupin
+    Call raw result: +  See
+
+    {
+        "status": "DISABLED",
+        "login": "tpupin"
+    }
+
+    TV Serial number(s):
+        C07WC50VJ1WF (ZSO undefined)
+    Packages:
+
+	The user is disabled 	
+
+    Activate TV user
+
+VOD 		
+
+    Username: tpupin
+    Call raw result: +  See
+
+    {
+        "status": "DISABLED",
+        "login": "tpupin"
+    }
+
+	The user is disabled 	
+
+    Activate VOD user
+
+Selfcare 		
+
+    Username: tpupin
+    Call raw result: +  See
+
+    {
+        "status": "OK",
+        "login": "tpupin",
+        "lastConnectionDate": null
+    }
+
+		
+Voice 		
+
+    VoIP number: 41212180513
+    Private VoIP IP: 10.110.112.14
+    Infos dans TecRep: +  See
+
+    [
+        {
+            "id": 2100691,
+            "number": "41212180513",
+            "status": "ASSIGNED",
+            "indicatif": 21,
+            "user_contract_id": 77727122,
+            "operator_id": 175
+        }
+    ]
+
+    Infos dans OpenCell: +  See
+
+    {
+        "actionStatus": {
+            "status": "SUCCESS"
+        },
+        "access": {
+            "code": "41212180513",
+            "subscription": "77727122",
+            "startDate": 1522886400000
+        }
+    }
+
+    Infos dans Cirpack: +  See
+
+    {
+        "success": "true",
+        "location_id": 55860,
+        "username": "XXX",
+        "name": "Thierry Pupin",
+        "language": "FR",
+        "main_phone_number": "+41212180513",
+        "trid": "40081",
+        "serialnr_box": "SFAA81204444",
+        "profile_id": 1
+    }
+
+    Infos sur l’IP vlan voix dans TecRep et Cirpack: +  See
+
+    {
+        "Tecrep": {
+            "success": true,
+            "message": null,
+            "publicAddresses": [],
+            "privateAddresses": [
+                {
+                    "id": 568465,
+                    "lexId": "69STF",
+                    "oltNumber": 1,
+                    "type": "ONTMGMT",
+                    "ipAddress": "10.103.112.14",
+                    "routerSN": "SFAA81204444",
+                    "status": "USED"
+                },
+                {
+                    "id": 572529,
+                    "lexId": "69STF",
+                    "oltNumber": 1,
+                    "type": "VOIP",
+                    "ipAddress": "10.110.112.14",
+                    "routerSN": "SFAA81204444",
+                    "status": "USED"
+                },
+                {
+                    "id": 576593,
+                    "lexId": "69STF",
+                    "oltNumber": 1,
+                    "type": "IPTV",
+                    "ipAddress": "10.118.112.14",
+                    "routerSN": "SFAA81204444",
+                    "status": "USED"
+                }
+            ],
+            "publicV6Addresses": [
+                {
+                    "id": 290754,
+                    "ipV6": "2a04:ee41:83:d009::\/64",
+                    "routerSN": "SFAA81204444",
+                    "customerId": "77727122",
+                    "status": "USED",
+                    "subnetId": 1304
+                }
+            ]
+        },
+        "CirPack": {
+            "status": "OK",
+            "ipv4": "10.110.112.14",
+            "trid": "40082",
+            "success": "true"
+        }
+    }
+
+    Barring status (in Cirpack): +  See
+
+    {
+        "result": {
+            "suspended": "false",
+            "trid": "40080",
+            "success": "true",
+            "main_phone_number": "+41212180513",
+            "outbound_profile_id": 1
+        }
+    }
+
+    Telephony service config in Cirpack: +  See
+
+    {
+        "trid": "40083",
+        "cwh": "off",
+        "cfb": "off",
+        "acr": "off",
+        "main_phone_number": "+41212180513",
+        "cfnr_timeout": 5,
+        "cfb_number": "unset",
+        "dc": "off",
+        "cfu": "off",
+        "cfnr": "off",
+        "cfu_number": "unset",
+        "cfnr_number": "unset",
+        "aab": "off",
+        "clir": "off",
+        "success": "true"
+    }
+
+		
+Fiber FLL 		
+fllRecordId
+24390
+otoId
+B.110.780.587.2
+otoPortId
+2
+routerSerialNumber
+SFAA81204444
+oldRouterSerialNumber
+SFAA80504004
+lexId
+69STF
+oltName
+01
+oltBoard
+1
+ponPort
+0
+breakoutCableId
+KP100314-C0001
+fiberNumber
+6
+status
+IN_USE
+odfId
+OHDF 1.99
+option82
+VD_9209-69STF-OLT1:1304 xgspon ng2:1/1/6
+oltObject
+VD_9209-69STF-OLT1:1-1-6
+ontConfigurationFilename
+VD_9209_69STF_OLT1_1_1_6.cfg
+svlan
+1304
+oldFllRecordId
+comment
+lastModification
+1558427136000
+crossConnexion
+customerId
+77727122
+		
+IPs 		
+
+    Public ID: 77727122
+
+    Public IP v6:
+    2a04:ee41:83:d009::/64
+    Serial number: SFAA81204444
+    Status: USED
+    Subnet ID: 1304
+
+    No Public IP v4 address has been defined
+
+    Private IP’s:
+    10.103.112.14
+    Type: ONTMGMT
+    Status: USED
+
+    10.110.112.14
+    Type: VOIP
+    Status: USED
+
+    10.118.112.14
+    Type: IPTV
+    Status: USED
+
+		
+DHCP 		
+
+    OTO-ID: B.110.780.587.2
+    Option 82: VD_9209-69STF-OLT1:1304 xgspon ng2:1/1/6
+    ONT file name: VD_9209_69STF_OLT1_1_1_6.cfg
+    Call raw result: +  See
+
+                                        {
+        "success": true,
+        "message": null,
+        "result": {
+            "success": false,
+            "message": null,
+            "dhcp4SubnetId": 1304,
+            "ipv4Address": "10.103.112.14",
+            "dhcpIdentifier": "VD_9209-69STF-OLT1:1304 xgspon ng2:1\/1\/6",
+            "configFile": "\/config\/VD_9209_69STF_OLT1_1_1_6.cfg",
+            "hwMacaddress": "946AB093AFC1",
+            "leaseLifetime": 80400,
+            "leaseExpire": "2020-05-26 03:14:30"
+        }
+    }
+                                
+
+		
+ONT Config TFTP 		
+
+    File name : VD_9209_69STF_OLT1_1_1_6.cfg
+    Last modification : 11/05/2020 07:26
+    File content :
+    +  See
+
+    ARC_WAN_1_Enable=1
+    ARC_WAN_1_VLAN_Tagging=1
+    ARC_WAN_1_VLAN_Id=30
+    ARC_WAN_1_VLAN_P_Bit=1
+    ARC_WAN_1_IP4_Proto=static
+    ARC_WAN_1_IP4_Addr=10.118.112.14
+    ARC_WAN_1_IP4_Netmask=255.255.240.0
+    ARC_WAN_1_IP4_Gateway=10.118.112.1
+    ARC_WAN_1_IP4_Addr_Alias=
+    ARC_WAN_1_IP4_Netmask_Alias=
+    ARC_WAN_1_IP4_DNS_Auto=0
+    ARC_WAN_1_IP4_DNS_Static1=213.55.128.100
+    ARC_WAN_1_MTU=9600
+    ARC_WAN_1_IP6_Proto=static
+    ARC_WAN_1_IP6_StaticPrefixLen=128
+    ARC_WAN_1_IP6_StaticGateway=FE80::1304
+    ARC_WAN_1_IP6_DNS_Auto=0
+    ARC_LAN_0_IP6_StaticPrefix=2A04:EE41:83:D009
+    ARC_LAN_0_IP6_DNS_Mode=0
+    ARC_LAN_0_IP6_DNS_Static1=2a04:ee42:53::1
+    ARC_LAN_0_IP6_DNS_Static2=2a04:ee42:1::11
+    ARC_WAN_2_Enable=1
+    ARC_WAN_2_VLAN_Tagging=1
+    ARC_WAN_2_VLAN_Id=40
+    ARC_WAN_2_VLAN_P_Bit=4
+    ARC_WAN_2_IP4_Proto=static
+    ARC_WAN_2_IP4_Addr=10.110.112.14
+    ARC_WAN_2_IP4_Netmask=255.255.240.0
+    ARC_WAN_2_IP4_Gateway=10.110.112.1
+    ARC_WAN_2_IP4_DNS_Auto=0
+    ARC_WAN_2_IP4_DNS_Static1=213.55.128.100
+    ARC_WAN_2_MTU=9600
+    ARC_WAN_DefaultRouteIdx=1
+    ARC_VO_MGCP_ACCNT_NUM=1
+    ARC_VO_MGCP_ACCNT_0_CallAgentDomain=10.8.147.1
+    ARC_VO_MGCP_ACCNT_0_CallAgentPort=2427
+    ARC_VO_MGCP_ACCNT_0_EndPointName=AALN
+    ARC_FW_TFTP_IP=10.8.156.31
+    ARC_FW_TFTP_Path=/firmwareR01B_IPV6
+    ARC_ROUTE_STATIC_IP4_0_DstIP=10.8.156.0
+    ARC_ROUTE_STATIC_IP4_0_DstNetmaskLen=24
+    ARC_ROUTE_STATIC_IP4_0_Enable=1
+    ARC_ROUTE_STATIC_IP4_0_NextHop=10.103.112.1
+    ARC_ROUTE_STATIC_IP4_0_ViaIf=wan0
+    ARC_ROUTE_STATIC_IP4_1_DstIP=10.8.147.1
+    ARC_ROUTE_STATIC_IP4_1_DstNetmaskLen=32
+    ARC_ROUTE_STATIC_IP4_1_Enable=1
+    ARC_ROUTE_STATIC_IP4_1_NextHop=10.110.112.1
+    ARC_ROUTE_STATIC_IP4_1_ViaIf=wan0
+    ARC_UI_LOGIN_1_Password=7fa2457cab0bae7b9f52282a355a80a04f19423c7b8585abe2c7649f7507da4197987fdb222493846bd92ae80f48a6ba84c66426f0c27061ef4d92d8053e7b91
+
+		
+OLT (nokia/huawei) 		
+
+    Provider: NOKIA
+    Raw call result: +  See
+
+    {
+        "provider": "NOKIA",
+        "nokiaConfiguration": {
+            "apcServiceEntry": [
+                {
+                    "objectName": "VD_9209-69STF-OLT1:1-1-6",
+                    "templateName": "Stack-triple-play-VEIP",
+                    "version": 1,
+                    "instanceLabel": null,
+                    "tags": [],
+                    "operationInitiator": "unknown\/unknownUser",
+                    "timeStamp": "20190704090010.4Z",
+                    "state": null,
+                    "suspendstate": "ACTIVE",
+                    "argument": [
+                        {
+                            "name": "Private_IP_HSI_IPTV",
+                            "value": "10.118.112.14"
+                        },
+                        {
+                            "name": "l2StaticSubnetMask",
+                            "value": "FFFF:FFFF:FFFF:FFFF:0:0:0:0"
+                        },
+                        {
+                            "name": "ontVeipPortQosProfiles_BandwidthProfileUsQueue3",
+                            "value": "TYPE2_AIR_010M"
+                        },
+                        {
+                            "name": "ontVeipPortQosProfiles_BandwidthProfileUsQueue0",
+                            "value": "TYPE3_BWD_10GB"
+                        },
+                        {
+                            "name": "Public_IP_HSI_IPTV",
+                            "value": "2a04:ee41:83:d009::"
+                        },
+                        {
+                            "name": "channelPair_Preferred",
+                            "value": "1-1-1-1"
+                        },
+                        {
+                            "name": "ontVeipPortQosProfiles_BandwidthProfileUsQueue2",
+                            "value": "TYPE2_AIR_002M"
+                        },
+                        {
+                            "name": "ontVeipPortQosProfiles_BandwidthProfileUsQueue1",
+                            "value": "TYPE3_BWD_100M"
+                        },
+                        {
+                            "name": "qos_QosParams_SchedulerProfile",
+                            "value": "UNI_10GB"
+                        },
+                        {
+                            "name": "ontSerialNumber",
+                            "value": "SFAA81204444"
+                        },
+                        {
+                            "name": "Private_IP_VoIP",
+                            "value": "10.110.112.14"
+                        }
+                    ]
+                }
+            ],
+            "endOfReply": true,
+            "any": []
+        }
+    }
+
+		
+Router 		
+
+    Call raw result: +  See
+
+    {
+        "idStatus": 142272818,
+        "eventdate": "2020-05-25 06:03:20.0",
+        "reachable": true,
+        "tempCpu": 54,
+        "tempTransceiver": 56.562,
+        "uptime": 3984032,
+        "statusWanmgt": true,
+        "statusWanhsi": true,
+        "statusWanvoip": true,
+        "statusVoiceReg": true,
+        "nberDectHandset": 0,
+        "statusWifi24g": true,
+        "statusWifi5g": true,
+        "cpuUsage": 0,
+        "usedMemory": 289,
+        "statusFwupgrade": false,
+        "version": "v1.01.20 build54",
+        "leaseExpiration": "2020-05-26 03:14:30.0",
+        "snTecrep": "SFAA81204444",
+        "snBox": "SFAA81204444",
+        "rx": -16.27,
+        "tx": 5.14,
+        "remoteManagement": false
+    }
+
+    SEE_HISTORY: +  See
+
+		Manage router box Update status
+
+    Billing Account information
+    Bill information
+    Customer events’ log
+    Documentation
+    Offer management
+    Tickets
+    Tickets to solve
+    Letters
+    Provisioning orders
+    POM Process
+
+Powered by vtiger CRM 6.5.0.v3.1.0.R9S7-11  © 2004 - 2020   |  | 
+';
+
+
+
+
+
+    Accueil
+    Contacts
+    Tickets
+    Contractors
+    Offer
+
+    Tout 
+
+PRODFR theme rollerBruno 
+logoSalt.png 
+30001047
+Mr. PUPIN Thierry
+Dashboard santé
+Salt Fiber
+41212180513
++  Tout afficher/cacher
+Nom du service 	Statut 	Informations principales 	Problèmes 	Outils de réparation	
+CRM 		
+
+    N° Contractant: 30001047
+    Statut client: BILLABLE
+    Status de l'offre: ACTIVE
+
+	L'offre est active. 	
+TV 		
+
+    Nom d'utilisateur: tpupin
+    Résultat de l'appel non formaté: +  Voir
+
+    {
+        "status": "DISABLED",
+        "login": "tpupin"
+    }
+
+    Numéro(s) de série TV:
+        C07WC50VJ1WF (ZSO status indéfini)
+    Packages:
+
+	l'utilisateur est désactivé 	
+
+    Activer l'utilisateur TV
+
+VOD 		
+
+    Nom d'utilisateur: tpupin
+    Résultat de l'appel non formaté: +  Voir
+
+    {
+        "status": "DISABLED",
+        "login": "tpupin"
+    }
+
+	l'utilisateur est désactivé 	
+
+    Activer l'utilisateur VOD
+
+Selfcare 		
+
+    Nom d'utilisateur: tpupin
+    Résultat de l'appel non formaté: +  Voir
+
+    {
+        "status": "OK",
+        "login": "tpupin",
+        "lastConnectionDate": null
+    }
+
+		
+Voice 		
+
+    Numéro VoIP: 41212180513
+    IP Privée VoIP: 10.110.112.14
+    Infos dans TecRep: +  Voir
+
+    [
+        {
+            "id": 2100691,
+            "number": "41212180513",
+            "status": "ASSIGNED",
+            "indicatif": 21,
+            "user_contract_id": 77727122,
+            "operator_id": 175
+        }
+    ]
+
+    Infos dans OpenCell: +  Voir
+
+    {
+        "actionStatus": {
+            "status": "SUCCESS"
+        },
+        "access": {
+            "code": "41212180513",
+            "subscription": "77727122",
+            "startDate": 1522886400000
+        }
+    }
+
+    Infos dans Cirpack: +  Voir
+
+    {
+        "main_phone_number": "+41212180513",
+        "profile_id": 1,
+        "serialnr_box": "SFAA81204444",
+        "trid": "40829",
+        "success": "true",
+        "location_id": 55860,
+        "language": "FR",
+        "name": "Thierry Pupin",
+        "username": "XXX"
+    }
+
+    Infos sur l'IP vlan voix dans TecRep et Cirpack: +  Voir
+
+    {
+        "Tecrep": {
+            "success": true,
+            "message": null,
+            "publicAddresses": [],
+            "privateAddresses": [
+                {
+                    "id": 568465,
+                    "lexId": "69STF",
+                    "oltNumber": 1,
+                    "type": "ONTMGMT",
+                    "ipAddress": "10.103.112.14",
+                    "routerSN": "SFAA81204444",
+                    "status": "USED"
+                },
+                {
+                    "id": 572529,
+                    "lexId": "69STF",
+                    "oltNumber": 1,
+                    "type": "VOIP",
+                    "ipAddress": "10.110.112.14",
+                    "routerSN": "SFAA81204444",
+                    "status": "USED"
+                },
+                {
+                    "id": 576593,
+                    "lexId": "69STF",
+                    "oltNumber": 1,
+                    "type": "IPTV",
+                    "ipAddress": "10.118.112.14",
+                    "routerSN": "SFAA81204444",
+                    "status": "USED"
+                }
+            ],
+            "publicV6Addresses": [
+                {
+                    "id": 290754,
+                    "ipV6": "2a04:ee41:83:d009::\/64",
+                    "routerSN": "SFAA81204444",
+                    "customerId": "77727122",
+                    "status": "USED",
+                    "subnetId": 1304
+                }
+            ]
+        },
+        "CirPack": {
+            "status": "OK",
+            "trid": "40830",
+            "ipv4": "10.110.112.14",
+            "success": "true"
+        }
+    }
+
+    Status du Barring (de Cirpack): +  Voir
+
+    {
+        "result": {
+            "suspended": "false",
+            "trid": "40828",
+            "success": "true",
+            "main_phone_number": "+41212180513",
+            "outbound_profile_id": 1
+        }
+    }
+
+    Config. des services de téléphonie (de Cirpack): +  Voir
+
+    {
+        "dc": "off",
+        "cfu": "off",
+        "cfnr_number": "unset",
+        "aab": "off",
+        "cfu_number": "unset",
+        "cfnr": "off",
+        "clir": "off",
+        "success": "true",
+        "cwh": "off",
+        "trid": "40831",
+        "acr": "off",
+        "cfb": "off",
+        "cfnr_timeout": 5,
+        "main_phone_number": "+41212180513",
+        "cfb_number": "unset"
+    }
+
+		
+Fiber FLL 		
+fllRecordId
+24390
+otoId
+B.110.780.587.2
+otoPortId
+2
+routerSerialNumber
+SFAA81204444
+oldRouterSerialNumber
+SFAA80504004
+lexId
+69STF
+oltName
+01
+oltBoard
+1
+ponPort
+0
+breakoutCableId
+KP100314-C0001
+fiberNumber
+6
+status
+IN_USE
+odfId
+OHDF 1.99
+option82
+VD_9209-69STF-OLT1:1304 xgspon ng2:1/1/6
+oltObject
+VD_9209-69STF-OLT1:1-1-6
+ontConfigurationFilename
+VD_9209_69STF_OLT1_1_1_6.cfg
+svlan
+1304
+oldFllRecordId
+comment
+lastModification
+1558427136000
+crossConnexion
+customerId
+77727122
+		
+IPs 		
+
+    Id public: 77727122
+
+    IPv6 publiques:
+    2a04:ee41:83:d009::/64
+    Serial number: SFAA81204444
+    Status: USED
+    ID du sous-réseau: 1304
+
+    Aucune IP v4 publique de définie
+
+    IPs private:
+    10.103.112.14
+    Type: ONTMGMT
+    Status: USED
+
+    10.110.112.14
+    Type: VOIP
+    Status: USED
+
+    10.118.112.14
+    Type: IPTV
+    Status: USED
+
+		
+DHCP 		
+
+    OTO-ID: B.110.780.587.2
+    Option 82: VD_9209-69STF-OLT1:1304 xgspon ng2:1/1/6
+    Nom du fichier ONT: VD_9209_69STF_OLT1_1_1_6.cfg
+    Résultat de l'appel non formaté: +  Voir
+
+                                        {
+        "success": true,
+        "message": null,
+        "result": {
+            "success": false,
+            "message": null,
+            "dhcp4SubnetId": 1304,
+            "ipv4Address": "10.103.112.14",
+            "dhcpIdentifier": "VD_9209-69STF-OLT1:1304 xgspon ng2:1\/1\/6",
+            "configFile": "\/config\/VD_9209_69STF_OLT1_1_1_6.cfg",
+            "hwMacaddress": "946AB093AFC1",
+            "leaseLifetime": 80400,
+            "leaseExpire": "2020-05-26 08:49:29"
+        }
+    }
+                                
+
+		
+ONT Config TFTP 		
+
+    Nom du fichier : VD_9209_69STF_OLT1_1_1_6.cfg
+    Dernière modification : 11/05/2020 07:26
+    Contenu du fichier :
+    +  Voir
+
+    ARC_WAN_1_Enable=1
+    ARC_WAN_1_VLAN_Tagging=1
+    ARC_WAN_1_VLAN_Id=30
+    ARC_WAN_1_VLAN_P_Bit=1
+    ARC_WAN_1_IP4_Proto=static
+    ARC_WAN_1_IP4_Addr=10.118.112.14
+    ARC_WAN_1_IP4_Netmask=255.255.240.0
+    ARC_WAN_1_IP4_Gateway=10.118.112.1
+    ARC_WAN_1_IP4_Addr_Alias=
+    ARC_WAN_1_IP4_Netmask_Alias=
+    ARC_WAN_1_IP4_DNS_Auto=0
+    ARC_WAN_1_IP4_DNS_Static1=213.55.128.100
+    ARC_WAN_1_MTU=9600
+    ARC_WAN_1_IP6_Proto=static
+    ARC_WAN_1_IP6_StaticPrefixLen=128
+    ARC_WAN_1_IP6_StaticGateway=FE80::1304
+    ARC_WAN_1_IP6_DNS_Auto=0
+    ARC_LAN_0_IP6_StaticPrefix=2A04:EE41:83:D009
+    ARC_LAN_0_IP6_DNS_Mode=0
+    ARC_LAN_0_IP6_DNS_Static1=2a04:ee42:53::1
+    ARC_LAN_0_IP6_DNS_Static2=2a04:ee42:1::11
+    ARC_WAN_2_Enable=1
+    ARC_WAN_2_VLAN_Tagging=1
+    ARC_WAN_2_VLAN_Id=40
+    ARC_WAN_2_VLAN_P_Bit=4
+    ARC_WAN_2_IP4_Proto=static
+    ARC_WAN_2_IP4_Addr=10.110.112.14
+    ARC_WAN_2_IP4_Netmask=255.255.240.0
+    ARC_WAN_2_IP4_Gateway=10.110.112.1
+    ARC_WAN_2_IP4_DNS_Auto=0
+    ARC_WAN_2_IP4_DNS_Static1=213.55.128.100
+    ARC_WAN_2_MTU=9600
+    ARC_WAN_DefaultRouteIdx=1
+    ARC_VO_MGCP_ACCNT_NUM=1
+    ARC_VO_MGCP_ACCNT_0_CallAgentDomain=10.8.147.1
+    ARC_VO_MGCP_ACCNT_0_CallAgentPort=2427
+    ARC_VO_MGCP_ACCNT_0_EndPointName=AALN
+    ARC_FW_TFTP_IP=10.8.156.31
+    ARC_FW_TFTP_Path=/firmwareR01B_IPV6
+    ARC_ROUTE_STATIC_IP4_0_DstIP=10.8.156.0
+    ARC_ROUTE_STATIC_IP4_0_DstNetmaskLen=24
+    ARC_ROUTE_STATIC_IP4_0_Enable=1
+    ARC_ROUTE_STATIC_IP4_0_NextHop=10.103.112.1
+    ARC_ROUTE_STATIC_IP4_0_ViaIf=wan0
+    ARC_ROUTE_STATIC_IP4_1_DstIP=10.8.147.1
+    ARC_ROUTE_STATIC_IP4_1_DstNetmaskLen=32
+    ARC_ROUTE_STATIC_IP4_1_Enable=1
+    ARC_ROUTE_STATIC_IP4_1_NextHop=10.110.112.1
+    ARC_ROUTE_STATIC_IP4_1_ViaIf=wan0
+    ARC_UI_LOGIN_1_Password=7fa2457cab0bae7b9f52282a355a80a04f19423c7b8585abe2c7649f7507da4197987fdb222493846bd92ae80f48a6ba84c66426f0c27061ef4d92d8053e7b91
+
+		
+OLT (nokia/huawei) 		
+
+    Fournisseur: NOKIA
+    Résultat non formatté de l'appel: +  Voir
+
+    {
+        "provider": "NOKIA",
+        "nokiaConfiguration": {
+            "apcServiceEntry": [
+                {
+                    "objectName": "VD_9209-69STF-OLT1:1-1-6",
+                    "templateName": "Stack-triple-play-VEIP",
+                    "version": 1,
+                    "instanceLabel": null,
+                    "tags": [],
+                    "operationInitiator": "unknown\/unknownUser",
+                    "timeStamp": "20190704090010.4Z",
+                    "state": null,
+                    "suspendstate": "ACTIVE",
+                    "argument": [
+                        {
+                            "name": "Private_IP_HSI_IPTV",
+                            "value": "10.118.112.14"
+                        },
+                        {
+                            "name": "l2StaticSubnetMask",
+                            "value": "FFFF:FFFF:FFFF:FFFF:0:0:0:0"
+                        },
+                        {
+                            "name": "ontVeipPortQosProfiles_BandwidthProfileUsQueue3",
+                            "value": "TYPE2_AIR_010M"
+                        },
+                        {
+                            "name": "ontVeipPortQosProfiles_BandwidthProfileUsQueue0",
+                            "value": "TYPE3_BWD_10GB"
+                        },
+                        {
+                            "name": "Public_IP_HSI_IPTV",
+                            "value": "2a04:ee41:83:d009::"
+                        },
+                        {
+                            "name": "channelPair_Preferred",
+                            "value": "1-1-1-1"
+                        },
+                        {
+                            "name": "ontVeipPortQosProfiles_BandwidthProfileUsQueue2",
+                            "value": "TYPE2_AIR_002M"
+                        },
+                        {
+                            "name": "ontVeipPortQosProfiles_BandwidthProfileUsQueue1",
+                            "value": "TYPE3_BWD_100M"
+                        },
+                        {
+                            "name": "qos_QosParams_SchedulerProfile",
+                            "value": "UNI_10GB"
+                        },
+                        {
+                            "name": "ontSerialNumber",
+                            "value": "SFAA81204444"
+                        },
+                        {
+                            "name": "Private_IP_VoIP",
+                            "value": "10.110.112.14"
+                        }
+                    ]
+                }
+            ],
+            "endOfReply": true,
+            "any": []
+        }
+    }
+
+		
+Router 		
+
+    Résultat de l'appel non formaté: +  Voir
+
+    {
+        "idStatus": 142272818,
+        "eventdate": "2020-05-25 06:03:20.0",
+        "reachable": true,
+        "tempCpu": 54,
+        "tempTransceiver": 56.562,
+        "uptime": 3984032,
+        "statusWanmgt": true,
+        "statusWanhsi": true,
+        "statusWanvoip": true,
+        "statusVoiceReg": true,
+        "nberDectHandset": 0,
+        "statusWifi24g": true,
+        "statusWifi5g": true,
+        "cpuUsage": 0,
+        "usedMemory": 289,
+        "statusFwupgrade": false,
+        "version": "v1.01.20 build54",
+        "leaseExpiration": "2020-05-26 03:14:30.0",
+        "snTecrep": "SFAA81204444",
+        "snBox": "SFAA81204444",
+        "rx": -16.27,
+        "tx": 5.14,
+        "remoteManagement": false
+    }
+
+    SEE_HISTORY: +  Voir
+
+		Gérer la box Actualiser status
+
+    Informations contractant
+    Informations facturation
+    Vie du client
+    Documentation
+    Gestion de l'offre
+    Tickets
+    Tickets à résoudre
+    Lettres
+    Ordres de provisioning
+    Processus POM
+
+Powered by vtiger CRM 6.5.0.v3.1.0.R9S7-11  © 2004 - 2020   |  | 
+
+
+----------------------------------------------------------------------
+
+
+    Accueil
+    Contacts
+    Tickets
+    Contractors
+    Offer
+
+    Tout 
+
+PRODFR theme rollerBruno 
+logoSalt.png 
+30001047
+Mr. PUPIN Thierry
+Owner
+Catégorie du client
+CONSUMER
+Classification
+CUSTOMER 
+Owner
+Mr. Pupin Thierry
+Nationalité
+FR
+Numéro de piece d'identité
+019602628-5
+Type de pièce d'identité
+B Permit
+Email
+thierrypl@gmail.com
+Validation de l'adresse email
+Ok
+Payeur
+Payeur
+Mr. Pupin Thierry
+Mode de paiement
+DIRECT_DEBIT_BANK
+Référence de paiement
+CH720024324319175240W
+Mode de réception de la facture
+EMAIL
+Email
+Thierry.Pupin@salt.ch
+Validation de l'adresse email
+Ok
+Solde courant
+Balance
+39,95 CHF
+Balance non soldée
+0,00 CHF
+En retard depuis
+2020-05-28
+Status de la collection
+OUT
+Etat de la collection
+Offre : Salt Fiber
+Numéro de VoIP
+41212180513
+Utilisateur Ligne
+Mr. Pupin Thierry
+Adresse
+17 rue des Terreaux, 1003 Lausanne
+Téléphone Fixe
+41787878814
+Mobile Number
+41787878814
+Email
+thierrypl@gmail.com
+
+    Informations contractant
+    Informations facturation
+    Vie du client
+    Documentation
+    Gestion de l'offre
+    Tickets
+    Tickets à résoudre
+    Lettres
+    Ordres de provisioning
+    Processus POM
+
+Powered by vtiger CRM 6.5.0.v3.1.0.R9S7-11  © 2004 - 2020   |  | 
+----------------
+
+
+
+    Home
+    Contacts
+    Tickets
+    Contractors
+    Offer
+
+    All 
+
+PRODEN theme rollerBruno 
+logoSalt.png 
+31075039
+Ms. AVYÜZEN Hüsniye
+Owner
+Customer category
+CONSUMER
+Classification
+CUSTOMER 
+Owner
+Ms. Avyüzen Hüsniye
+ID Nationality
+CH
+ID Number
+C7555150
+ID Type
+ID card
+Email
+alev.avyuezen@gmx.ch
+Email validation
+Ok
+Payer
+Payer
+Ms. Avyüzen Hüsniye
+Payment method
+POST_OFFICE_PAYMENT
+Payment reference
+Invoice delivery method
+POST
+Email
+alev.avyuezen@gmx.ch
+Current Balance
+Balance
+0,00 CHF
+Overdue balance
+0,00 CHF
+Overdue date
+–
+Collection Status
+OUT
+Collection State
+Abo : Salt Fiber
+VoIP Number
+41612299679
+User of the line
+Ms. Avyüzen Hüsniye
+Address
+9 Julia Gauss-Strasse, 4056 Basel
+Fixed number
+41774329604
+Mobile Number
+41774329604
+Email
+alev.avyuezen@gmx.ch
+
+    Billing Account information
+    Bill information
+    Customer events' log
+    Documentation
+    Offer management
+    Tickets
+    Tickets to solve
+    Letters
+    Provisioning orders
+    POM Process
+
+Powered by vtiger CRM 6.5.0.v3.1.0.R9S7-11  © 2004 - 2020   |  | 

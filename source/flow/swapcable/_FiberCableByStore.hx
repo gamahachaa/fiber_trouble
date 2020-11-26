@@ -1,20 +1,23 @@
 package flow.swapcable;
 
-import flow.all.vti._AddMemoVti;
-import process.Action;
+import flow._AddMemoVti;
+import tstool.process.Action;
+import tstool.process.ActionMail;
+import tstool.salt.SOTickets;
 
 /**
  * ...
  * @author ...
  */
-class _FiberCableByStore extends Action
+class _FiberCableByStore extends ActionMail
 {
-
+	public function new() 
+	{
+		super(SOTickets.FIX_712, true);
+	}
 	override public function create():Void
 	{
-
-		//this._nextProcesses = [new _AddMemoVti()]; // CORONA exception
-		this._nextProcesses = [new IsShipingToAnotherAdress()];
+		this._nextProcesses = [new flow._AddMemoVti()];
 		super.create();
 	}
 

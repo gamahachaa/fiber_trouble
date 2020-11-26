@@ -1,35 +1,35 @@
 package;
 
+import firetongue.CSV;
 import firetongue.FireTongue;
 import flixel.FlxG;
 import flixel.FlxGame;
+import flixel.FlxState;
 import flixel.input.keyboard.FlxKey;
+import flixel.system.FlxAssets;
 import flixel.text.FlxText.FlxTextFormat;
 import flixel.text.FlxText.FlxTextFormatMarkerPair;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
 import flow.Intro;
-import flow.nointernet.customer._TellCustomerAllOkWithFiberCnx;
-import flow.nointernet.fiberbox.FiberLedGreenStable;
-import flow.nointernet.postLedChecks._ReadRXValues;
-import flow.nointernet.vti.CheckContractorVTI;
-import flow.nointernet.vti.IconStatusBoxManagement;
-import flow.salttv.IsTVServicesActiveVTI;
-import flow.swapcable.SwapFiberCable;
-import flow.swapcable._InputShipingAdress;
-import haxe.Http;
+
 import js.Browser;
 import js.html.Location;
-import layout.History;
-import layout.Login;
-import layout.SaltColor;
+import tstool.layout.History;
+import tstool.layout.Login;
+import tstool.layout.SaltColor;
+import tstool.utils.Mail;
+import tstool.utils.Translator;
+import tstool.utils.XapiTracker;
+import openfl.Assets;
 import openfl.display.Sprite;
-import process.ActionAdress;
-import process.Triplet;
-import salt.Agent;
-import salt.Customer;
-import utils.Mail.MailReciepient;
-//import openfl.text.TextFormat;
+import tstool.process.Triplet;
+import tstool.salt.Agent;
+import tstool.salt.Customer;
+//import tstool.utils.Mail.MailReciepient;
+import tstool.utils.Csv;
+import tstool.utils.VersionTracker;
+
 typedef BasicFormat =
 {
 	var font:String;
@@ -45,7 +45,8 @@ typedef ThemeColor =
 	var interaction:FlxColor;
 	var bg:FlxColor;
 }
-typedef Ticket = {
+typedef Ticket =
+{
 	var domain:String;
 	var number:String;
 	var queue:String;
@@ -55,30 +56,30 @@ typedef Ticket = {
 class Main extends Sprite
 {
 	public static var HISTORY:History = new History();
-	public static var tongue:FireTongue = new FireTongue();
+	//public static var tongue:FireTongue = new FireTongue();
+	public static var tongue:Translator = new Translator();
 	public static var user:Agent;
 	public static var customer:Customer;
+
+	public static var track:XapiTracker;
+	
 	static inline var TITLE_FONT:String = "assets/fonts/Lato-Black.ttf";
 	static inline var BASIC_FONT:String = "assets/fonts/Lato-Regular.ttf";
-	
-	public static var TITLE_FMT:BasicFormat = {font:TITLE_FONT, size:24};
-	public static var BASIC_FMT:BasicFormat = {font:BASIC_FONT, size:16};
+	public static inline var MAIL_WRAPPER_URL:String = "php/mail/index.php";
+	public static inline var LIB_FOLDER:String = "/";
+
+	public static var adminFile:tstool.utils.Csv;
+	public static var TITLE_FMT:BasicFormat = {font:TITLE_FONT, size:20};
+	public static var BASIC_FMT:BasicFormat = {font:BASIC_FONT, size:14};
 	public static var META_FMT:BasicFormat = {font:TITLE_FONT, size:16};
-	public static var INTERACTION_FMT:BasicFormat = {font:TITLE_FONT, size:20};
-	public static var TECH_LOW:MailReciepient = {to:"fiber.tech.qtool.low@salt.ch", fullName:"FIBER_LOW_TECH"};
-	public static var TECH_HIGH:MailReciepient = {to:"fiber.tech.qtool@salt.ch", fullName:"FIBER_TECH"};
-	
-	public static var FIX_511:Ticket = {domain:'FIX', number:'511',queue:'FIBER_WRONG_OTO_SO', desc:'5.Technical 1.Optical connection / OTO 1.Wrong OTO connected', email:'fiber.tech.qtool@salt.ch'};
-	public static var FIX_521:Ticket = {domain:'FIX', number:'521',queue:'FIBER_TECH_SO', desc:'5.Technical 2.Modem - Router 1.Modem connection', email:'fiber.tech.qtool@salt.ch'};
-	public static var FIX_321:Ticket = {domain:'FIX', number:'321',queue:'FIBER_FINANCIAL_SO', desc:'3.Billing 2.Compensation 1.*Request for Compensation', email:'fiber.tech.qtool@salt.ch'};
-	public static var FIX_522:Ticket = {domain:'FIX', number:'522',queue:'FIBER_LOW_PRIO_TECH_SO', desc:'5.Technical 2.Modem - Router 2.Problème de Wifi / Wlan', email:'fiber.tech.qtool.low@salt.ch'};
-	public static var FIX_523:Ticket = {domain:'FIX', number:'523',queue:'FIBER_TECH_SO', desc:'5.Technical 2.Modem - Router 3.Box Swap Request (under condition)', email:'fiber.tech.qtool@salt.ch'};
-	public static var FIX_526:Ticket = {domain:'FIX', number:'526',queue:'FIBER_PARTS_REQUEST_SO', desc:'5.Technical 2.Modem - Router 6.New Fibre Cable request (send by post)', email:'fiber.tech.qtool@salt.ch'};
-	public static var FIX_541:Ticket = {domain:'FIX', number:'541',queue:'FIBER_LOW_PRIO_TECH_SO', desc:'5.Technical 4.TV and Video Services 1.Salt TV problem', email:'fiber.tech.qtool.low@salt.ch'};
+	public static var INTERACTION_FMT:BasicFormat = {font:TITLE_FONT, size:18};
 
 	public static var VERSION:String;
-	static var scriptFileVersion:String;
+	public static var VERSION_TRACKER:VersionTracker;
 	public static var LOCATION:Location;
+	public static var DEBUG:Bool;
+	public static var LAST_STEP:Class<FlxState> = flow._AddMemoVti;
+	public static var LANGS = ["fr-FR","de-DE","en-GB","it-IT"];
 	/**
 	 * FORMAT COLOR
 	 * */
@@ -87,8 +88,8 @@ class Main extends Sprite
 		bg: SaltColor.BLACK_PURE,
 		title:SaltColor.WHITE,
 		basic:SaltColor.WHITE,
-		basicStrong:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.ORANGE,true),"<b>"),
-		basicEmphasis:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.ORANGE,false,true),"<em>"),
+		basicStrong:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.TUQUOISE,false),"<b>"),
+		basicEmphasis:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.ORANGE,false),"<em>"),
 		meta:SaltColor.MUSTARD,
 		interaction: SaltColor.WHITE
 
@@ -107,89 +108,94 @@ class Main extends Sprite
 
 	public static var COOKIE: FlxSave;
 	public static var THEME:ThemeColor;
-
+	//public static var LRS:LearninLocker;
 	public function new()
 	{
 		super();
-		LOCATION = Browser.location;
+		FlxAssets.FONT_DEFAULT =  "Consolas";
+		adminFile = new Csv(Assets.getText("assets/data/admins.txt"),",",false);
+		//trace(adminFile);
+		COOKIE = new FlxSave();
+		COOKIE.bind("nointernet-20200421.user");
 
+		LOCATION = Browser.location;
+		track =  new XapiTracker();
+		DEBUG = LOCATION.origin.indexOf("qook.test.salt.ch") > -1;
+		VERSION_TRACKER = new VersionTracker( LOCATION.origin + LOCATION.pathname+ "php/version/index.php");
 		THEME = DARK_THEME;
+		
+		
 		Main.customer = new Customer();
-		tongue.init("fr-FR",
-					function()
-		{
-			#if debug
-			trace(tongue.get("$flow.nointernet.vti.CheckContractorVTI_UI1", "meta"));
-			#end
-		}
-				   );
+		tongue.initialize("fr-FR",
+					function(){
+					#if debug
+					//trace(tongue.get("$flow.nointernet.vti.CheckContractorVTI_UI1", "meta"));
+					#end
+				});
 		#if debug
+		trace(FlxG.VERSION);
 		Main.user = new Agent();
-		//addChild(new FlxGame(1400, 880, SwapFiberCable, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, CheckContractorVTI, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _InputShipingAdress, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, IsTVServicesActiveVTI, 1, 30, 30, true, true));
+		
+		
 		addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _ReadRXValues, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, FiberLedGreenStable, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _RebootAppleTV, 1, 30, 30, true, true));
-		//trace(VERSION);
-		CHECK_NEW_VERSION();
+		
+		
+		
+		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
+		
+		setUpSystemDefault(true);
+		
 		#else
-		//trace("Prod");
+
+		if ( DEBUG )
+		{
+			//trace(Browser.navigator.appCodeName);
+			//trace(Browser.navigator.appName);
+			//trace(Browser.navigator.appVersion);
+			//trace(Browser.navigator.buildID);
+			//trace(Browser.navigator.permissions);
+			//trace(Browser.navigator.platform);
+			//trace(Browser.navigator.plugins);
+			//trace(Browser.navigator.product);
+			//trace(Browser.navigator.productSub);
+			//trace(Browser.navigator.userAgent);
+			//trace(Browser.navigator.vendor);
+			//trace(Browser.navigator.vendorSub);
+
+		}
+		if (Browser.navigator.userAgent.indexOf("Firefox") == -1)
+		{
+			Browser.window.alert("I know your browser is the best on this planet\n\n.But this tool is only fully tested with Firefox...\n\nIt should work with all major browsers but we cannot guarantee all functionalities @100%. \n\nThanks you to acknowledge this.");
+		}
+
 		addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
 
 		#end
-		setUpSystemDefault();
+		//
+	}
+
+	public function onLRSdata(data:String)
+	{
+		trace(data);
 	}
 
 	static public function TOGGLE_MAIN_STYLE()
 	{
 		THEME = THEME == WHITE_THEME ? DARK_THEME: WHITE_THEME;
 	}
-	static public function CHECK_NEW_VERSION()
-	{
-		var reg = ~/^\.\/nointernet_(\d{8}_\d{6}).js$/;
-		var versionTracker = new Http(LOCATION.origin + LOCATION.pathname+ "php/version/index.php");
-		scriptFileVersion = Browser.document.getElementsByTagName("script")[0].attributes.getNamedItem('src').nodeValue;
-		#if debug
-		trace(scriptFileVersion);
-		trace(reg.match(scriptFileVersion));
-		#end
-		versionTracker.async = true;
-		versionTracker.onData = function(data:String)
-		{
-			if (reg.match(scriptFileVersion))
-			{
-				VERSION = reg.matched(1);
-				if (data > VERSION)
-				{
-					#if debug
-					trace('update $VERSION to $data');
-					#end
-					Browser.alert(tongue.get("$needUpdate_UI1", "meta"));
-				}
-				else
-				{
-					#if debug
-					trace('current version $VERSION is aligned with $data');
-					#end
-				}
-			}
-			else
-			{
-				trace(scriptFileVersion + " JS Script doesn't match version format ");
-			}
-
-		};
-		versionTracker.request();
-	}
-	function setUpSystemDefault()
+	static public function setUpSystemDefault(?block:Bool = false )
 	{
 		FlxG.sound.soundTrayEnabled = false;
-		FlxG.mouse.useSystemCursor = true;
-		FlxG.keys.preventDefaultKeys = [FlxKey.BACKSPACE, FlxKey.TAB];
+		FlxG.mouse.useSystemCursor = block;
+		FlxG.keys.preventDefaultKeys = block ? [FlxKey.BACKSPACE, FlxKey.TAB] : [FlxKey.TAB];
 		//FlxG.keys.preventDefaultKeys = [FlxKey.TAB];
+	}
+    static public function MOVE_ON(?old:Bool=false)
+	{
+		setUpSystemDefault(true);
+		track.setActor();
+		tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new flow.Intro():new flow.TutoTree() )) );
+		//tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new _MajorUpdate():new flow.TutoTree() )) );
 	}
 
 }

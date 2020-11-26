@@ -1,6 +1,8 @@
 package flow.nointernet.fiberbox;
 
+import flow.Intro;
 import process.*;
+import tstool.process.Action;
 
 /**
  * ...
@@ -14,7 +16,7 @@ class _SpeedAndStability extends Action
 		//this._titleTxt = "Valeurs RX hors norme ?";
 		//this._detailTxt = "Suivre procedure Speed et stabiltté";
 		//this._illustration = "";
-		this._nextProcesses = [new Intro()];
+		this._nextProcesses = [new flow.Intro()];
 		super.create();
 	}
 }

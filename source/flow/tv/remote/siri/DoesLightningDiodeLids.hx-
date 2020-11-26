@@ -1,0 +1,18 @@
+package flow.tv.remote.siri;
+
+import flow.tv.remote.DoesAppleTVLedBlinks;
+import tstool.process.Descision;
+
+/**
+ * ...
+ * @author bb
+ */
+class DoesLightningDiodeLids extends Descision 
+{
+	override public function create()
+	{
+		this._nextNoProcesses = [new _RechargeSiriRemote()];
+		this._nextYesProcesses = [new DoesAppleTVLedBlinks()];
+		super.create();
+	}
+}

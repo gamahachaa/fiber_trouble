@@ -1,9 +1,9 @@
 package flow.nointernet.fiberbox;
 
-import flow.installation._EnsureNoLanLoop;
+//import flow.installation._EnsureNoLanLoop;
 import flow.nointernet.postLedChecks.IsSerialNumberCorrect;
 import flow.nointernet.postLedChecks._ReadRXValues;
-import process.Descision;
+import tstool.process.Descision;
 import flow.nointernet.customer.FiberCableChanged;
 //import flow.nointernet.customer._TellCustomerAllOkWithFiberCnx;
 

@@ -1,7 +1,8 @@
 package flow.collection;
 
+import flow._AddMemoVti;
 import flow.nointernet.vti.IconStatusBoxManagement;
-import process.Action;
+import tstool.process.Action;
 
 /**
  * ...
@@ -15,7 +16,7 @@ class ManuallyUnblock extends Action
 		//this._titleTxt = "Débloque manuellement les services TV";
 		//this._detailTxt = "";
 		//this._illustration = "";
-		this._nextProcesses = [ new IconStatusBoxManagement()];
+		this._nextProcesses = [ new _AddMemoVti()];
 		super.create();
 	}
 	

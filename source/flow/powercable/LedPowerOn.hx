@@ -1,7 +1,6 @@
 package flow.powercable;
 
 import flow.nointernet.fiberbox._IsBootAbnormal;
-import flow.nointernet.fiberbox._RebootBox;
 import flow.nointernet.so.tckets._SwapBox;
 import tstool.process.Descision;
 

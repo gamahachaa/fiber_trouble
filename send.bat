@@ -3,7 +3,7 @@
 @echo off
 
 if "%1"=="" goto :dead
-if "%1"=="debug" goto :publication
+if "%1"=="debug" goto :dead
 if "%1"=="release" goto :publication
 
 :publication
@@ -71,7 +71,7 @@ rem echo %1
  
 
 if "%1"=="" goto :dead
-if "%1"=="debug" goto :test
+if "%1"=="debug" goto :dead
 if "%1"=="release" goto :release
 
 rem echo %1

@@ -163,7 +163,6 @@ class CheckContractorVTI extends DescisionMultipleInput
 		{
 			this.parser.destroy();
 			var contractorID = multipleInputs.inputs.get("Contractor ID").getInputedText();
-			//var voipVTI = this.singleInput.uiInput.inputtextfield.text;
 			var voipVTI = multipleInputs.inputs.get("VoIP Number").getInputedText();
 			var contactNB = multipleInputs.inputs.get("Contact Number").getInputedText();
 			var voipSO = "0" + voipVTI.substr(2);
@@ -190,7 +189,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 		}
 		
 	}
-	override function validateYes()
+	/*override function validateYes()
 	{
 		#if debug
 		return true;
@@ -206,7 +205,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 			#end
 			return super.validateYes();
 		}
-	}
+	}*/
 	override function validateNo()
 	{
 		return true;

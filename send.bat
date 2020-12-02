@@ -2,19 +2,21 @@
 
 @echo off
 
-set DEV=0
+set DEV=1
 
 if %DEV%==1 (
 	echo "DEV=%DEV%"
 	if "%1"=="" goto :dead
 	if "%1"=="debug" goto :dead
 	if "%1"=="release" goto :publication
+	goto :dead
 )
 else(
 	echo "DEV=%DEV%"
 	if "%1"=="" goto :dead
 	if "%1"=="debug" goto :publication
 	if "%1"=="release" goto :publication
+	goto :dead
 )
 :publication
 

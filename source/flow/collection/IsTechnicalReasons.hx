@@ -9,14 +9,15 @@ import tstool.process.Descision;
 class IsTechnicalReasons extends Descision 
 {
 
-	override public function create():Void
-	{
-		//this._titleTxt = "Le paiement n'a pas pu être fait pour des raison techniques ?";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextNoProcesses = [new _Pay()];
-		this._nextYesProcesses = [new _ExplainReasons()];
-		super.create();
-	}
 	
+	override public function onYesClick():Void
+	{
+		this._nexts = [{step: _ExplainReasons, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _Pay, params: []}];
+		super.onNoClick();
+	}
 }

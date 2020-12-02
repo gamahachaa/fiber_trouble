@@ -12,11 +12,9 @@ import tstool.process.Descision;
 class WifiVisibleByAppleTV extends Descision
 {
 
-	override public function create():Void
+	/*override public function create():Void
 	{
-		/**
-		 * @todo String to Class<Process> / isInHistory
-		 */
+
 		this._nextYesProcesses = [new WifiVisibleOnDevice()];
 		var resetDone = Main.HISTORY.isInHistory("flow.all.fiberbox._LoopResetFiberBox", Yes);
 		if (resetDone )
@@ -29,6 +27,29 @@ class WifiVisibleByAppleTV extends Descision
 		}
 		
 		super.create();
+	}*/
+	override public function onYesClick():Void
+	{
+		//this._nextYesProcesses = [new ErrorIconOnWifiIcon()];
+		this._nexts = [{step:WifiVisibleOnDevice}];
+		super.onYesClick();
 	}
-
+	override public function onNoClick():Void
+	{
+		if ( Main.HISTORY.isClassInteractionInHistory(_LoopResetFiberBox,Yes) )
+		{
+			this._nexts = [{step: _CreateTicketWifiIssue}];
+		}
+		else{
+			//var wva = new WifiVisibleOnDevice();
+			//this._nextNoProcesses = [new _LoopResetFiberBox(wva, wva)];
+			this._nexts = [{
+				step: _LoopResetFiberBox,
+				params:[
+					{step:WifiVisibleOnDevice}, 
+					{step:WifiVisibleOnDevice}]
+			}];
+		}
+		super.onNoClick();
+	}
 }

@@ -15,9 +15,9 @@ class _CreateSOTicketSaltTV extends ActionMail
 	{
 		super(SOTickets.FIX_541);
 	}
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new flow._AddMemoVti()];
-		super.create();
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onClick();
 	}
 }

@@ -9,12 +9,14 @@ import tstool.process.Descision;
  */
 class WhyCannotConnectWithLan extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new ConnectedViaSwitch()];
-		this._nextYesProcesses = [new _CreateTicketWifiIssue()];
-		super.create();
+		this._nexts = [{step: _CreateTicketWifiIssue, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: ConnectedViaSwitch, params: []}];
+		super.onNoClick();
+	}
 }

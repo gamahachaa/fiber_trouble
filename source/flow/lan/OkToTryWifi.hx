@@ -11,14 +11,22 @@ import tstool.process.Triplet;
  */
 class OkToTryWifi extends Triplet 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		var n:Array<Process> = [new _CreateLanIssueTicket()];
-		this._nextNoProcesses = n;
-		this._nextYesProcesses = n;
-		this._nextMidProcesses = n;
-		super.create();
+		this._nexts = [{step: _CreateLanIssueTicket, params: []}];
+		super.onYesClick();
 	}
 	
+	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _CreateLanIssueTicket, params: []}];
+		super.onNoClick();
+	}
+	
+	override public function onMidClick():Void
+	{
+		this._nexts = [{step: _CreateLanIssueTicket, params: []}];
+		super.onMidClick();
+	}
 }

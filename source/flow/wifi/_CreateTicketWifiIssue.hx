@@ -12,15 +12,11 @@ class _CreateTicketWifiIssue extends ActionMail
 {
 	public function new() 
 	{
-		//super("5.2.2 :: Technical - Modem-Router - Probléme de Wifi / Wlan", Main.TECH_LOW);
 		super(SOTickets.FIX_522);
-		
-		//mail.setSubject(,this);
 	}
-	override public function create():Void
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _SendTechMail()];
-		super.create();
-
+		this._nexts = [{step: _SendTechMail, params: []}];
+		super.onClick();
 	}
 }

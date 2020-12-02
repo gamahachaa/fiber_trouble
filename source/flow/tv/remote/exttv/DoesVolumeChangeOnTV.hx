@@ -8,11 +8,14 @@ import tstool.process.Descision;
  */
 class DoesVolumeChangeOnTV extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new WantsToPairRemoteWithTV()];
-		this._nextYesProcesses = [ new ChekSaltTVKNownBugs()];
-		super.create();
+		this._nexts = [{step: ChekSaltTVKNownBugs, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: WantsToPairRemoteWithTV, params: []}];
+		super.onNoClick();
 	}
 }

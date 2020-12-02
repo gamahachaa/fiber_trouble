@@ -9,13 +9,10 @@ import tstool.process.Action;
 class _RemoveAllCablesConnectedToBox extends Action
 {
 
-	override public function create():Void
+	
+	override public function onClick():Void
 	{
-		//this._titleTxt = "Retirer tous les autres câbles";
-		//this._detailTxt = "Et refaire les tests";
-		//this._illustration = "";
-		this._nextProcesses = [new LanConnectionOK()];
-		super.create();
+		this._nexts = [{step: LanConnectionOK, params: []}];
+		super.onClick();
 	}
-
 }

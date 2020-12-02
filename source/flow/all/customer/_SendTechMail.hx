@@ -9,13 +9,9 @@ import tstool.process.Action;
  */
 class _SendTechMail extends Action 
 {
-
-	override public function create():Void
+	override public function onClick():Void
 	{
-		//this._titleTxt = "Envoyer un email";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextProcesses = [new flow._AddMemoVti()];
-		super.create();
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onClick();
 	}
 }

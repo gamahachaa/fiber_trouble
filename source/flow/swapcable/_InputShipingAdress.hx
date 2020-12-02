@@ -76,11 +76,10 @@ class _InputShipingAdress extends DescisionMultipleInput
 	}
 	override public function create()
 	{
-		//this._nextProcesses = [new _FiberCableByPost()];
-		this._nextNoProcesses = [new _FiberCableByPost()];
-		this._nextYesProcesses = [ new _FiberCableByPost()];
+		/**
+		 * @KEEP
+		 */
 		super.create();
-		//trace(Main.customer);
 		if (Main.customer.contract.address!= null)
 		{
 			multipleInputs.inputs.get("street").inputtextfield.text = Main.customer.contract.address._street;
@@ -100,17 +99,14 @@ class _InputShipingAdress extends DescisionMultipleInput
 				this.multipleInputs.inputs.get("zip").getInputedText(),
 				this.multipleInputs.inputs.get("city").getInputedText(),
 				this.multipleInputs.inputs.get((Main.customer.contract.owner == null ?"": Main.customer.contract.owner.name )+ " c/o").getInputedText()
-				//streetUI.getInputedText(),
-				//numStreetUI.getInputedText(),
-				//zipUI.getInputedText(),
-				//cityUI.getInputedText(),
-				//careOfUI.getInputedText()
 			);
+			this._nexts = [{step: _FiberCableByPost, params: []}];
 			super.onYesClick();
 		}
 	}
 	override public function onNoClick():Void
 	{
+		this._nexts = [{step: _FiberCableByPost, params: []}];
 		super.onNoClick();
 	}
 	override public function validateNo():Bool

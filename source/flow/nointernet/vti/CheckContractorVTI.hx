@@ -1,7 +1,8 @@
 package flow.nointernet.vti;
 
-import flixel.FlxG;
+//import flixel.FlxG;
 import flow.activation.IsFiberOrMultisurf;
+import flow.all.customer.IsSlowOrKaput;
 import tstool.process.Process;
 //import flow.equipment.IsWhishDateWayAhead;
 import flow.equipment.OTOidVisibleInOfferManagement;
@@ -12,10 +13,10 @@ import tstool.salt.Contractor;
 import tstool.salt.Role;
 import tstool.utils.VTIdataParser;
 //import layout.UIInputTf;
-import lime.math.Rectangle;
+//import lime.math.Rectangle;
 import tstool.process.DescisionMultipleInput;
 import Main;
-import tstool.utils.XapiTracker;
+//import tstool.utils.XapiTracker;
 
 /**
  * ...
@@ -129,38 +130,19 @@ class CheckContractorVTI extends DescisionMultipleInput
 	override public function create():Void
 	{
 		Main.customer.reset();
-		/**
-		 * @todo String to Class<Process> / isInHistory
-		 */
-		if (Main.HISTORY.isInHistory("flow.Intro", Mid)){
-			Main.track.setActivity("equipment");
-		}
-		else if (Main.HISTORY.isInHistory("flow.Intro", No)){
-			Main.track.setActivity("tv");
-		}
-		else if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", No)){
-			Main.track.setActivity("no-internet");
-		}
-		else if (
-			Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes) || Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid)){
-			Main.track.setActivity("slow-internet");
-		}
-		else{
-			Main.track.setActivity("");
-		}			
-		this._nextYesProcesses = [Main.HISTORY.isInHistory("flow.Intro", Mid) ? new OTOidVisibleInOfferManagement() : new IsTicketOpened()];
-		this._nextNoProcesses = [new IsFiberOrMultisurf()];
-
+		prepareXAPIMainActivity();
+			
 		super.create();
 		parser = new VTIdataParser(account);
 		parser.signal.add( onVtiAccountParsed );
-		//inputs = [this.singleInput.uiInput, vtiContractorUI];
 	}
+	
 	override public function onYesClick():Void
 	{
 		//var contractorID = vtiContractorUI.getInputedText();
 		if (validateYes())
 		{
+			this._nexts = [{step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid) ? OTOidVisibleInOfferManagement : IsTicketOpened }];
 			this.parser.destroy();
 			var contractorID = multipleInputs.inputs.get("Contractor ID").getInputedText();
 			var voipVTI = multipleInputs.inputs.get("VoIP Number").getInputedText();
@@ -189,23 +171,13 @@ class CheckContractorVTI extends DescisionMultipleInput
 		}
 		
 	}
-	/*override function validateYes()
+
+	override public function onNoClick():Void
 	{
-		#if debug
-		return true;
-		trace("validateYes");
-		#end
-		//if (Main.DEBUG && Main.user.isAdmin) return true;
-		if (false) return true;
-		else
-		{
-			#if debug
-			//return true;
-			trace("validateYes");
-			#end
-			return super.validateYes();
-		}
-	}*/
+		this._nexts = [{step: IsFiberOrMultisurf, params: []}];
+		super.onNoClick();
+	}
+
 	override function validateNo()
 	{
 		return true;
@@ -223,4 +195,25 @@ class CheckContractorVTI extends DescisionMultipleInput
 		}
 
 	}
+	
+	function prepareXAPIMainActivity()
+	{
+		if (Main.HISTORY.isClassInteractionInHistory(Intro, Mid)){
+			Main.track.setActivity("equipment");
+		}
+		else if (Main.HISTORY.isClassInteractionInHistory(Intro, No)){
+			Main.track.setActivity("tv");
+		}
+		else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No)){
+			Main.track.setActivity("no-internet");
+		}
+		else if (Main.HISTORY.isClassInteractionInHistory(flow.all.customer.IsSlowOrKaput, Yes) || Main.HISTORY.isClassInteractionInHistory(flow.all.customer.IsSlowOrKaput, Mid))
+		{
+			Main.track.setActivity("slow-internet"); 
+		}
+		else{
+			Main.track.setActivity("");
+		}		
+	}
+	
 }

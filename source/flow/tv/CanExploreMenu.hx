@@ -10,12 +10,14 @@ import tstool.process.Descision;
  */
 class CanExploreMenu extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new IsMessageInvitingToContactCC(), new _QuitAndRelaunchSaltTV()];
-		//this._nextYesProcesses = [new WhatIssueWithApp()];
-		this._nextYesProcesses = [new ChekSaltTVKNownBugs()];
-		super.create();
+		this._nexts = [{step: ChekSaltTVKNownBugs, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: IsMessageInvitingToContactCC}, {step: _QuitAndRelaunchSaltTV}];
+		super.onNoClick();
 	}
 }

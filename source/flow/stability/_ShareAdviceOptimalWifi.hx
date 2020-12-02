@@ -7,11 +7,9 @@ import tstool.process.Action;
  */
 class _ShareAdviceOptimalWifi extends Action
 {
-
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new IsAnyServiceImpactedForNormalUse()];
-		super.create();
+		this._nexts = [{step: IsAnyServiceImpactedForNormalUse, params: []}];
+		super.onClick();
 	}
-	
 }

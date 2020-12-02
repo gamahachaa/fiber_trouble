@@ -2,9 +2,6 @@ package flow.nointernet.postLedChecks;
 
 import flow.installation._EnsureNoLanLoop;
 import flow.nointernet.so.tckets._SwapBox;
-//import flow.nointernet.customer.FiberCableChanged;
-//import tstool.layout.UIInputTfCore;
-//import process.DescisionInput;
 import tstool.process.DescisionMultipleInput;
 
 
@@ -25,10 +22,14 @@ class IsSerialNumberCorrect extends DescisionMultipleInput
 	}]);
 		//super(150, "Serial N°",~/^(SFAA)?[0-9]{8}$/gi);
 	}
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextYesProcesses = [new _EnsureNoLanLoop()];
-		this._nextNoProcesses = [new _SwapBox()];
-		super.create();
+		this._nexts = [{step: _EnsureNoLanLoop, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _SwapBox, params: []}];
+		super.onNoClick();
 	}
 }

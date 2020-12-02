@@ -10,9 +10,10 @@ class _WrongOTO extends ActionMail
 		//super("5.1.1 :: Technical - Optical connection / OTO - Wrong OTO connected", Main.TECH_HIGH);
 		super(SOTickets.FIX_511);
 	}
-	override public function create():Void
+	
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _SendTechMail()];
-		super.create();
+		this._nexts = [{step: _SendTechMail, params: []}];
+		super.onClick();
 	}
 }

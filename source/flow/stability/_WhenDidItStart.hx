@@ -23,10 +23,10 @@ class _WhenDidItStart extends ActionMultipleInput
 		}
 		]);
 	}
-	override public function create():Void
-	{
-		this._nextProcesses = [ new _AtWhatTimeDoesItOccurs()];
-		super.create();
-	}
 	
+	override public function onClick():Void
+	{
+		this._nexts = [{step: _AtWhatTimeDoesItOccurs, params: []}];
+		super.onClick();
+	}
 }

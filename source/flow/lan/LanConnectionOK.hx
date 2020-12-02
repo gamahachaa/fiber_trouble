@@ -15,76 +15,57 @@ import tstool.process.Process;
  */
 class LanConnectionOK extends Descision
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		/**
-		 * @todo String to Class<Process> / isInHistory
-		 */
-		/*************************************************
-		 * LAN OK
-		/*************************************************/
-		if (Main.HISTORY.isInHistory("flow.wifi.CanConnectToBoxWithLAN", Yes) || Main.HISTORY.isInHistory("flow.wifi.CanConnectToBoxWithLAN", No) && Main.HISTORY.isInHistory("flow.all.customer.LanOrWiFi", Yes))
+		var next:Class<Process> = if (
+						Main.HISTORY.isClassInteractionInHistory(flow.wifi.CanConnectToBoxWithLAN, Yes) || Main.HISTORY.isClassInteractionInHistory(flow.wifi.CanConnectToBoxWithLAN, No) 
+						&& Main.HISTORY.isClassInteractionInHistory(flow.all.customer.LanOrWiFi, Yes))
 		{
 			/********************************************************************
 			 * WiFi Not visible on Dashboard (all ready went though WiFi steps)
 			/*******************************************************************/
-			this._nextYesProcesses = [new _CreateTicketWifiIssue()];
+			_CreateTicketWifiIssue;
 		}
 		else{
 			
-			if (Main.HISTORY.isInHistory("flow.all.customer.LanOrWiFi", Mid))
+			if (Main.HISTORY.isClassInteractionInHistory(flow.all.customer.LanOrWiFi, Mid))
 			{
 				/*******************************************************************
 				* BOTH issue 
 				/******************************************************************/
-
-				//this._nextYesProcesses = [new WifiOnInDashboard()];
-				this._nextYesProcesses = [new LetsCheckYourWiFi()];
+				LetsCheckYourWiFi;
 			}
 			else{
 				/*******************************************************************
 				* LAN issue 
 				/******************************************************************/
-				this._nextYesProcesses = [new _AddMemoVti()];
+				_AddMemoVti;
 			}
 		}
-		
-		
-		/*************************************************
-		 * LAN NOK
-		/*************************************************/
-		
-		this._nextNoProcesses = [new _SwapEthernetCable(), new _SwapEthernetPort()];
-		
-		
-		/**
-		 * @todo String to Class<Process> / isInHistory
-		 */
-
-		if (!Main.HISTORY.isProcessInHistory("flow.lan.TestWithAppleTV") )
+		this._nexts = [{step: next, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		if (!Main.HISTORY.isClassInHistory(flow.lan.TestWithAppleTV) )
 		{
-			this._nextNoProcesses.push( new TestWithAppleTV() );
+			this._nexts.push( {step: TestWithAppleTV} );
 		}
-		else if (!Main.HISTORY.isProcessInHistory("flow.all.fiberbox._LoopResetFiberBox"))
+		else if (!Main.HISTORY.isClassInHistory(flow.all.fiberbox._LoopResetFiberBox))
 		{
-			this._nextNoProcesses.push( new _LoopResetFiberBox() );
+			this._nexts.push( {step: _LoopResetFiberBox} );
 		}
 		
-		else if (Main.HISTORY.isProcessInHistory("flow.wifi.CanConnectToBoxWithLAN"))
+		else if (Main.HISTORY.isClassInHistory(flow.wifi.CanConnectToBoxWithLAN))
 		{
 			/******************************************
 			 * WiFi issue
 			/*****************************************/
-			this._nextNoProcesses.push( new _CreateTicketWifiIssue());
+			this._nexts.push( {step: _CreateTicketWifiIssue});
 		}
 		else{
-			
-			//this._nextNoProcesses.push( new _CreateTicketWifiIssue());
-			this._nextNoProcesses.push( new OkToTryWifi());
+			this._nexts.push( {step: OkToTryWifi});
 		}
-		
-		super.create();
+		super.onNoClick();
 	}
-
 }

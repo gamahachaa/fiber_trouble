@@ -8,15 +8,14 @@ import tstool.process.Descision;
  */
 class PayedAlready extends Descision 
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "Le client dit avoir déjà payé ?";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextYesProcesses = [ new MoreThanFiveDaysAgo()];
-		this._nextNoProcesses = [ new ForgotToPay()];
-		super.create();
+		this._nexts = [{step: MoreThanFiveDaysAgo, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: ForgotToPay, params: []}];
+		super.onNoClick();
+	}
 }

@@ -9,12 +9,14 @@ import tstool.process.Descision;
  */
 class MenuVoluemDisplaysOnTV extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses =  [new _PressMenuAndOK(), new ChekSaltTVKNownBugs() ];
-		this._nextYesProcesses = [new _ClickOKOnRemote()];
-		super.create();
+		this._nexts = [{step: _ClickOKOnRemote, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _PressMenuAndOK},{step: ChekSaltTVKNownBugs}];
+		super.onNoClick();
+	}
 }

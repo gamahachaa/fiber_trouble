@@ -10,11 +10,14 @@ import tstool.process.Descision;
  */
 class HasCustomerLEXnetworkIssue extends Descision 
 {
-	override public function create()
+	override public function onYesClick():Void
 	{
-		//this._nextNoProcesses = [new IsTicketOpened()];
-		this._nextNoProcesses = [new FiberCableChanged()];
-		this._nextYesProcesses = [new flow._AddMemoVti()];
-		super.create();
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: FiberCableChanged, params: []}];
+		super.onNoClick();
 	}
 }

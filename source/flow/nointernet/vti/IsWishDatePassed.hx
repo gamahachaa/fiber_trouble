@@ -9,12 +9,14 @@ import tstool.process.Descision;
  */
 class IsWishDatePassed extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [ new _AddMemoVti()];
-		this._nextYesProcesses = [ new _SoOrderNotComplete()];
-		super.create();
+		this._nexts = [{step: _SoOrderNotComplete, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onNoClick();
+	}
 }

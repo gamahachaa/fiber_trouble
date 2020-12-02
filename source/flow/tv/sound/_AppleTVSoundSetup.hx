@@ -56,9 +56,23 @@ class _AppleTVSoundSetup extends ActionMultipleInput
 		]
 		);
 	}
-	override public function create()
+	
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _SaltTVDetails()];
-		super.create();
+		if (validate())
+		{
+			this._nexts = [{step: _SaltTVDetails, params: []}];
+			super.onClick();
+		}
 	}
+	
+	/****************************
+	* Needed only for validation
+	*****************************/
+	/*
+	override public function validate():Bool
+	{
+		return true;
+	}
+	*/
 }

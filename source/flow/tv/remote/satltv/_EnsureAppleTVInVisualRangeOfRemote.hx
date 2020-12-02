@@ -9,12 +9,9 @@ import tstool.process.Descision;
  */
 class _EnsureAppleTVInVisualRangeOfRemote extends Action 
 {
-
-	override public function create()
+	override public function onClick():Void
 	{
-		
-		this._nextProcesses = [new DoesRedLedBlinksOnRemoteWhenPressed()];
-		super.create();
+		this._nexts = [{step: DoesRedLedBlinksOnRemoteWhenPressed, params: []}];
+		super.onClick();
 	}
-	
 }

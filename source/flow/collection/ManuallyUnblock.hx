@@ -1,7 +1,6 @@
 package flow.collection;
 
 import flow._AddMemoVti;
-import flow.nointernet.vti.IconStatusBoxManagement;
 import tstool.process.Action;
 
 /**
@@ -10,14 +9,9 @@ import tstool.process.Action;
  */
 class ManuallyUnblock extends Action 
 {
-
-	override public function create():Void
+	override public function onClick():Void
 	{
-		//this._titleTxt = "Débloque manuellement les services TV";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextProcesses = [ new _AddMemoVti()];
-		super.create();
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onClick();
 	}
-	
 }

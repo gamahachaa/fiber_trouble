@@ -8,12 +8,14 @@ import tstool.process.Descision;
  */
 class WantToChangeToSwiss extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [ new _ResetAppleTV()];
-		this._nextYesProcesses = [new _HowToChangeAppleIDtoSwiss()];
-		super.create();
+		this._nexts = [{step: _HowToChangeAppleIDtoSwiss, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _ResetAppleTV, params: []}];
+		super.onNoClick();
+	}
 }

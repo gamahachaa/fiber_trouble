@@ -8,12 +8,14 @@ import tstool.process.Descision;
  */
 class IsWhishDateWayAhead extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [ new IsPOMOrderPhaseAccepted() ];
-		this._nextYesProcesses = [new _ExplainToWait()];
-		super.create();
+		this._nexts = [{step: _ExplainToWait, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: IsPOMOrderPhaseAccepted, params: []}];
+		super.onNoClick();
+	}
 }

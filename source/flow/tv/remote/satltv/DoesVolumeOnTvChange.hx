@@ -9,12 +9,14 @@ import tstool.process.Descision;
  */
 class DoesVolumeOnTvChange extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new WasThePurchaseDoneLessThanOnYearAgo()];
-		this._nextYesProcesses = [new IsAppleTVvisibleOnTVScreen()];
-		super.create();
+		this._nexts = [{step: IsAppleTVvisibleOnTVScreen, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: WasThePurchaseDoneLessThanOnYearAgo, params: []}];
+		super.onNoClick();
+	}
 }

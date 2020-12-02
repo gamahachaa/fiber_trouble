@@ -11,23 +11,27 @@ import tstool.process.Descision;
  */
 class WiFiPasswordAccepted extends Descision
 {
-
-	override public function create():Void
+	
+	override public function onYesClick():Void
 	{
-		/**
-		 * @todo String to Class<Process> / isInHistory
-		 */
-		this._nextYesProcesses = [new ErrorIconOnWifiIcon()];
-		var resetDone = Main.HISTORY.isInHistory("flow.all.fiberbox._LoopResetFiberBox", Yes);
-		if (resetDone )
+		this._nexts = [{step:ErrorIconOnWifiIcon}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		if (Main.HISTORY.isClassInteractionInHistory( _LoopResetFiberBox, Yes) )
 		{
-			this._nextNoProcesses = [new _CreateTicketWifiIssue()];
+			this._nexts = [{step: _CreateTicketWifiIssue }];
 		}
 		else{
-			var wvd = new WifiVisibleOnDevice();
-			this._nextNoProcesses = [new _LoopResetFiberBox(wvd,wvd),new _CreateTicketWifiIssue()];
+			this._nexts = [{
+				step: _LoopResetFiberBox,
+				params:[
+					{step:WifiVisibleOnDevice}, 
+					{step:WifiVisibleOnDevice}]
+			}];
 		}
-		super.create();
+		super.onNoClick();
 	}
 
 }

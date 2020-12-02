@@ -9,9 +9,9 @@ import tstool.process.Action;
  */
 class _ClickOKOnRemote extends Action 
 {
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [ new ChekSaltTVKNownBugs()];
-		super.create();
+		this._nexts = [{step: ChekSaltTVKNownBugs, params: []}];
+		super.onClick();
 	}
 }

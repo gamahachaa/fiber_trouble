@@ -10,10 +10,14 @@ import tstool.process.Action;
 class _ExplainMainSteps extends Action 
 {
 
-	override public function create()
+	/*override public function create()
 	{
 		this._nextProcesses = [ new CheckContractorVTI()];
 		super.create();
+	}*/
+	override public function onClick():Void
+	{
+		this._nexts = [{step: CheckContractorVTI, params: []}];
+		super.onClick();
 	}
-	
 }

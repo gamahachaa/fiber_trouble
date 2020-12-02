@@ -8,11 +8,9 @@ import tstool.process.Action;
  */
 class _ParcelIsBackToSalt extends Action 
 {
-
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [ new _SoOrderLogisticsEquipment()];
-		super.create();
+		this._nexts = [{step: _SoOrderLogisticsEquipment, params: []}];
+		super.onClick();
 	}
-	
 }

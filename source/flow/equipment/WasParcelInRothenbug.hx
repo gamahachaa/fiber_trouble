@@ -8,12 +8,14 @@ import tstool.process.Descision;
  */
 class WasParcelInRothenbug extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new IsStatusDelivered()];
-		this._nextYesProcesses = [new IsVTILaposteSendBoxMsgVisible()];
-		super.create();
+		this._nexts = [{step: IsVTILaposteSendBoxMsgVisible, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: IsStatusDelivered, params: []}];
+		super.onNoClick();
+	}
 }

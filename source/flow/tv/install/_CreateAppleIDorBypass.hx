@@ -8,9 +8,10 @@ import tstool.process.Action;
  */
 class _CreateAppleIDorBypass extends Action
 {
-	override public function create()
+	
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _OpenSaltTVApp()];
-		super.create();
+		this._nexts = [{step: _OpenSaltTVApp, params: []}];
+		super.onClick();
 	}
 }

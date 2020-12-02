@@ -24,9 +24,23 @@ class _IssueDescription extends ActionMultipleInput
 		}]
 		);
 	}
-	override public function create()
+	
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _HowFerquent()];
-		super.create();
+		if (validate())
+		{
+			this._nexts = [{step: _HowFerquent, params: []}];
+			super.onClick();
+		}
 	}
+	
+	/****************************
+	* Needed only for validation
+	*****************************/
+	/*
+	override public function validate():Bool
+	{
+		return true;
+	}
+	*/
 }

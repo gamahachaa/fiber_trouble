@@ -10,12 +10,14 @@ import tstool.process.Descision;
  */
 class AreIconsMovingOnScreenWhenNavigating extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new _SteupSaltTVRemoteWithRegularTV()];
-		this._nextYesProcesses = [new _OpenSaltTVApp()];
-		super.create();
+		this._nexts = [{step: _OpenSaltTVApp, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _SteupSaltTVRemoteWithRegularTV, params: []}];
+		super.onNoClick();
+	}
 }

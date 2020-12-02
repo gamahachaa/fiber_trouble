@@ -4,20 +4,17 @@ import flow.lan._CreateLanIssueTicket;
 import tstool.process.Descision;
 
 /**
- * ...
+ * @todo ARCHIVE
  * @author ...
  */
 class CanCheckWithAppleTVorOtherDevice extends Descision
 {
 
-	override public function create():Void
-	{
-		//this._titleTxt = "Est-il possible d'essayer avec un autre appareil ?";
-		//this._detailTxt = "Si l'AppleTV est dipo, essayer avec sinon un autre appareil en LAN.";
-		//this._illustration = "";
-		this._nextYesProcesses = [new LanConnectionOK ()];
-		this._nextNoProcesses = [new _CreateLanIssueTicket()];
-		super.create();
-	}
+	//override public function create():Void
+	//{
+		//this._nextYesProcesses = [new LanConnectionOK ()];
+		//this._nextNoProcesses = [new _CreateLanIssueTicket()];
+		//super.create();
+	//}
 
 }

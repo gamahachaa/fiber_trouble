@@ -4,12 +4,12 @@ import flixel.addons.ui.StrNameLabel;
 import tstool.process.ActionDropDown;
 
 /**
- * ...
+ * @todo ARCHIVE
  * @author bb
  */
 class WhithWhichDevice extends ActionDropDown 
 {
-
+	/*
 	public function new() 
 	{
 		super([
@@ -41,4 +41,5 @@ class WhithWhichDevice extends ActionDropDown
 		}
 		
 	}
+	*/
 }

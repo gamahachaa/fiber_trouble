@@ -10,15 +10,13 @@ import tstool.salt.SOTickets;
  */
 class _SoPluginUseInfo extends ActionMail 
 {
-
-	
 	public function new() 
 	{
 		super(SOTickets.FIX_412);
 	}
-	override public function create():Void
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _AddMemoVti()];
-		super.create();
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onClick();
 	}
 }

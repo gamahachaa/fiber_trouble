@@ -5,17 +5,17 @@ import flow.installation.OTOPlugDamagedNotClicking;
 import tstool.process.Descision;
 
 /**
- * ...
+ * @todo ARCHIVE
  * @author bb
  */
 class FiberLedOff extends Descision 
 {
 
-	override public function create()
-	{
-		this._nextNoProcesses = [new FiberLedGreenStable()];
-		this._nextYesProcesses = [new OTOPlugDamagedNotClicking()];
-		super.create();
-	}
+	//override public function create()
+	//{
+		//this._nextNoProcesses = [new FiberLedGreenStable()];
+		//this._nextYesProcesses = [new OTOPlugDamagedNotClicking()];
+		//super.create();
+	//}
 	
 }

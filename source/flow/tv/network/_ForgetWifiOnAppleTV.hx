@@ -8,11 +8,9 @@ import tstool.process.Action;
  */
 class _ForgetWifiOnAppleTV extends Action 
 {
-
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new CanReconnectWiFi()];
-		super.create();
+		this._nexts = [{step: CanReconnectWiFi, params: []}];
+		super.onClick();
 	}
-	
 }

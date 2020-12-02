@@ -5,18 +5,15 @@ import process.*;
 import tstool.process.Action;
 
 /**
- * ...
+ * @todo ARCHIVE
  * @author ...
  */
 class _SpeedAndStability extends Action 
 {
 
-	override public function create():Void
-	{
-		//this._titleTxt = "Valeurs RX hors norme ?";
-		//this._detailTxt = "Suivre procedure Speed et stabiltté";
-		//this._illustration = "";
-		this._nextProcesses = [new flow.Intro()];
-		super.create();
-	}
+	//override public function create():Void
+	//{
+		//this._nextProcesses = [new flow.Intro()];
+		//super.create();
+	//}
 }

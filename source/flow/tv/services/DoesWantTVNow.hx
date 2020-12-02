@@ -24,34 +24,31 @@ class DoesWantTVNow extends DescisionMultipleInput
 		}]
 		);
 	}
-	override public function create()
-	{
-		this._nextYesProcesses = [ new _CreateTicketTwoOneFive()];
-		this._nextNoProcesses = [ new _AddMemoVti()];
-		super.create();
-	}
-	/****************************
-	* Needed for validation
-	*****************************
+	
 	override public function onYesClick():Void
 	{
-		if (validateYes())
-		{
+		if (validateYes()){
+			this._nexts = [{step: _CreateTicketTwoOneFive, params: []}];
 			super.onYesClick();
+		}	
+	}
+	override public function onNoClick():Void
+	{
+		if (validateNo()){
+			this._nexts = [{step: _AddMemoVti, params: []}];
+			super.onNoClick();
 		}
 	}
-	
+	/*
 	override public function validateYes():Bool
 	{
 		return true;
 	}
-	
-	override public function onNoClick():Void
+	*/
+	/*
+	override public function validateNo():Bool
 	{
-		if (validateNo())
-		{
-			super.onNoClick();
-		}
+		return true;
 	}
 	*/
 	override public function validateNo():Bool

@@ -46,9 +46,14 @@ class _SaltTVDetails extends ActionMultipleInput
 		]
 		);
 	}
-	override public function create()
+	//override public function create()
+	//{
+		//this._nextProcesses = [new _IssueDescription()];
+		//super.create();
+	//}
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _IssueDescription()];
-		super.create();
+		this._nexts = [{step: _IssueDescription, params: []}];
+		super.onClick();
 	}
 }

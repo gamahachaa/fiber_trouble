@@ -1,6 +1,5 @@
 package flow.collection;
 
-import flow.nointernet.vti.IconStatusBoxManagement;
 import tstool.process.Action;
 
 /**
@@ -9,14 +8,9 @@ import tstool.process.Action;
  */
 class _InformUsualPaymentDelays extends Action 
 {
-
-	override public function create():Void
+	override public function onClick():Void
 	{
-		//this._titleTxt = "Informer le client des déalis habituels";
-		//this._detailTxt = "Selon la méthode choisie\n les paiements peuvent mettre 5 jours à arriver.";
-		//this._illustration = "";
-		this._nextProcesses = [new IconStatusBoxManagement()];
-		super.create();
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onClick();
 	}
-	
 }

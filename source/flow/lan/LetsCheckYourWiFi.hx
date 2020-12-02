@@ -11,11 +11,14 @@ import tstool.process.Descision;
  */
 class LetsCheckYourWiFi extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextYesProcesses = [new _AddMemoVti()];
-		this._nextNoProcesses = [new WifiOnInDashboard()];
-		super.create();
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: WifiOnInDashboard, params: []}];
+		super.onNoClick();
 	}
 }

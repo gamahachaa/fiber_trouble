@@ -80,71 +80,68 @@ class BoxLedStatus extends ActionRadios
 	
 	override public function onClick():Void
 	{
-		var next:Process;
+		var next:Class<Process> = null;
 		if (validate())
 		{
-			/**
-			 * @todo String to Class<Process> / isInHistory
-			 */
-			if (Main.HISTORY.isInHistory("flow.nointernet.customer.FiberCableChanged", No))
-			{
-				next = new SwapFiberCable();
+			var powerLED = status.get(POWER_TITLE);
+			var fiberLED = status.get(FIBER_TITLE);
+			var wwwLED = status.get(WWW_TITLE);
+			var rearLanLED = status.get(LAN_TITLE);
+			var wlanLED = status.get(WLAN_TITLE);
+			var wpsLED = status.get(WPS_TITLE);
+			var phoneLED = status.get(PHONE_TITLE);
+			
+			next = if (Main.HISTORY.isClassInteractionInHistory(flow.nointernet.customer.FiberCableChanged, No)){
+				SwapFiberCable;
 			}
-			else
-			{
-				next = new _CreateTicketModemCNX();
+			else{
+				_CreateTicketModemCNX;
 			}
-			if (status.get(POWER_TITLE) == _off && status.get(FIBER_TITLE) == _off && status.get(WWW_TITLE) == _off )
-			{
-				this._nextProcesses = [new _SwapBox()];
+			
+			next = if (powerLED == _off && fiberLED == _off && wwwLED == _off ){
+				_SwapBox;
 			}
-			else if (status.get(POWER_TITLE) == _greenStable )
-			{
-				if (status.get(FIBER_TITLE) == _redStable)
-				{
-					if (status.get(LAN_TITLE) == _allGreen)
-					{
-						this._nextProcesses = [new _SwapBox()];
+			else if (powerLED == _greenStable ){
+				if (fiberLED == _redStable){
+					if (rearLanLED == _allGreen){
+						_SwapBox;
 					}
-					else
-					{
-						this._nextProcesses = [next];
-					}
-				}
-				else if (status.get(FIBER_TITLE) ==  _greenStable)
-				{
-					if (status.get(WWW_TITLE) ==  _greenStable)
-						this._nextProcesses = [new IsBoxReachable()];
-					else
-					{
-						this._nextProcesses = [new IsSerialNumberCorrect()];
+					else{
+						next;
 					}
 				}
-				else if (status.get(FIBER_TITLE) ==  _greenBlink)
-				{
-					this._nextProcesses = [new IsSerialNumberCorrect()];
+				else if (fiberLED ==  _greenStable){
+					if (wwwLED ==  _greenStable)
+						IsBoxReachable;
+					else{
+						IsSerialNumberCorrect;
+					}
 				}
-				else
-				{
-					this._nextProcesses = [next];
+				else if (fiberLED ==  _greenBlink){
+					IsSerialNumberCorrect;
+				}
+				else{
+					next;
 				}
 			}
 			else if (
-				status.get(POWER_TITLE) == _blink &&
-				( status.get(FIBER_TITLE) == _greenBlink || status.get(FIBER_TITLE) == _redBlink  ) &&
-				status.get(WWW_TITLE) == _blink &&
-				status.get(WLAN_TITLE) == _blink &&
-				status.get(WPS_TITLE) == _blink &&
-				( status.get(PHONE_TITLE) == _greenBlink || status.get(PHONE_TITLE) == _blueBlink )
-			)
-			{
-				this._nextProcesses = [new _SwapBox()];
+				powerLED == _blink &&
+				( fiberLED == _greenBlink || fiberLED == _redBlink  ) &&
+				wwwLED == _blink &&
+				wlanLED == _blink &&
+				wpsLED == _blink &&
+				( phoneLED == _greenBlink || phoneLED == _blueBlink )
+			){
+				_SwapBox;
 			}
-			else
-			{
-				this._nextProcesses = [next];
+			else{
+				next;
 			}
+			this._nexts = [{step: next, params: []}];
+			//trace("flow.nointernet.fiberbox.BoxLedStatus::onClick::this._nexts", this._nexts );
+			super.onClick();
 		}
-		super.onClick();
+		
 	}
+	
 }

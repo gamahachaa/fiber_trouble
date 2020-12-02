@@ -8,9 +8,10 @@ import tstool.process.Action;
  */
 class _OpenAppleStore extends Action 
 {
-	override public function create()
+	
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new CanSeeSaltTVOnAppleStore()];
-		super.create();
+		this._nexts = [{step: CanSeeSaltTVOnAppleStore, params: []}];
+		super.onClick();
 	}
 }

@@ -9,12 +9,14 @@ import tstool.process.Descision;
  */
 class WantsToPairRemoteWithTV extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new ChekSaltTVKNownBugs()];
-		this._nextYesProcesses = [new _PressMenuAndOK()];
-		super.create();
+		this._nexts = [{step: _PressMenuAndOK, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: ChekSaltTVKNownBugs, params: []}];
+		super.onNoClick();
+	}
 }

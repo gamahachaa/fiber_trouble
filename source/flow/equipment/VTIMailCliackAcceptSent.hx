@@ -9,12 +9,14 @@ import tstool.process.Descision;
  */
 class VTIMailCliackAcceptSent extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new HasCustomerEmailAddress()];
-		this._nextYesProcesses = [new _SendParcelTrackingByEmail()];
-		super.create();
+		this._nexts = [{step: _SendParcelTrackingByEmail, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: HasCustomerEmailAddress, params: []}];
+		super.onNoClick();
+	}
 }

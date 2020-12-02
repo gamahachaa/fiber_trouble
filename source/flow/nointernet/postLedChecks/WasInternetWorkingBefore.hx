@@ -2,14 +2,14 @@ package flow.nointernet.postLedChecks;
 
 import flow.nointernet.customer.FiberCableChanged;
 import tstool.process.Descision;
-
+/**
+ * @todo ARCHIVE
+ */
 class WasInternetWorkingBefore extends Descision
 {
-	override public function create()
+	/*
+	 override public function create()
 	{
-		/**
-		 * @todo String to Class<Process> / isInHistory
-		 */
 
 		if (Main.HISTORY.isInHistory("flow.nointernet.fiberbox.NormalRxValues", No) ||Main.HISTORY.isInHistory("flow.nointernet.fiberbox.NormalRxValues", Yes))
 		{
@@ -21,8 +21,6 @@ class WasInternetWorkingBefore extends Descision
 			this._nextNoProcesses = [new _ReadRXValues()];
 		}
 
-		//this._nextNoProcesses = [new _ReadSerialNumber()];
-		//flow.nointernet.fiberbox.NormalRxValues
 		if (Main.HISTORY.isInHistory("flow.nointernet.fiberbox.FiberLedGreenStable", Mid) )
 		{
 			this._nextNoProcesses = [new IsSerialNumberCorrect()];
@@ -31,4 +29,5 @@ class WasInternetWorkingBefore extends Descision
 
 		super.create();
 	}
+	*/
 }

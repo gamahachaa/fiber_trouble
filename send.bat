@@ -2,10 +2,20 @@
 
 @echo off
 
-if "%1"=="" goto :dead
-if "%1"=="debug" goto :dead
-if "%1"=="release" goto :publication
+set DEV=0
 
+if %DEV%==1 (
+	echo "DEV=%DEV%"
+	if "%1"=="" goto :dead
+	if "%1"=="debug" goto :dead
+	if "%1"=="release" goto :publication
+)
+else(
+	echo "DEV=%DEV%"
+	if "%1"=="" goto :dead
+	if "%1"=="debug" goto :publication
+	if "%1"=="release" goto :publication
+)
 :publication
 
 rem PREPARE DATESTAMP ------------------------------------------------------------------------------------------------------------------------------
@@ -42,13 +52,13 @@ powershell -Command "Rename-Item -Path "%BINDIR%/tmp.html" -NewName index_howl.h
 
 rem powershell -Command "(gc %BINDIR%/index.html) -replace '%HOWL_TARGET%', '%HOWL_TARGET%\n%HOWL%' | Out-File -encoding UTF8 %BINDIR%/index.html"
 rem powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptName%' | Out-File -encoding UTF8 %BINDIR%/index.html"
+if %DEV%==1 (
+	if "%1"=="release" goto :minify
+	powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptName%' | Out-File -encoding UTF8 %BINDIR%/index.html"
 
-if "%1"=="release" goto :minify
-powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptName%' | Out-File -encoding UTF8 %BINDIR%/index.html"
-
-if "%1"=="debug" goto :follow
-rem min 
-
+	if "%1"=="debug" goto :follow
+	rem min 
+)
 :minify
 powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptNameMin%' | Out-File -encoding UTF8 %BINDIR%/index.html"
 
@@ -68,11 +78,20 @@ rem powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.min.js.map" -N
 
 rem echo %1
 
- 
+if "%DEV%==1(
+	echo "FTP DEV=%DEV%"
+	if "%1"=="" goto :dead
+	if "%1"=="debug" goto :dead
+	if "%1"=="release" goto :test
+)
+else(
+	echo "FTP DEV=%DEV%"
+	if "%1"=="" goto :dead
+	if "%1"=="debug" goto :test
+	if "%1"=="release" goto :test
+)
 
-if "%1"=="" goto :dead
-if "%1"=="debug" goto :dead
-if "%1"=="release" goto :release
+
 
 rem echo %1
 

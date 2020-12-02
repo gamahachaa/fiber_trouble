@@ -12,6 +12,8 @@ import flixel.text.FlxText.FlxTextFormatMarkerPair;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
 import flow.Intro;
+import flow.nointernet.customer.FiberCableChanged;
+import flow.tv.remote.satltv.IsAppleTVFourthGen;
 
 import js.Browser;
 import js.html.Location;
@@ -137,7 +139,8 @@ class Main extends Sprite
 		Main.user = new Agent();
 		
 		
-		addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
+		addChild(new FlxGame(1400, 880, IsAppleTVFourthGen, 1, 30, 30, true, true));
 		
 		
 		

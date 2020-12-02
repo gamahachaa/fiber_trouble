@@ -8,12 +8,14 @@ import tstool.process.Descision;
  */
 class IsPOMOrderPhaseAccepted extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new _SoOrderProcessStatusCheck()];
-		this._nextYesProcesses = [new VtiTrackParcelVisible()];
-		super.create();
+		this._nexts = [{step: VtiTrackParcelVisible, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _SoOrderProcessStatusCheck, params: []}];
+		super.onNoClick();
+	}
 }

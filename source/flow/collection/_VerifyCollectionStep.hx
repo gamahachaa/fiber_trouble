@@ -8,14 +8,9 @@ import tstool.process.Action;
  */
 class _VerifyCollectionStep extends Action 
 {
-
-	override public function create():Void
+	override public function onClick():Void
 	{
-		//this._titleTxt = "Verifier l'étape de collection ainsi que les raisons";
-		//this._detailTxt = "Dans :";
-		//this._detailTxt += "- VTI\nCC Dashboard";
-		this._nextProcesses = [new IsSaltMistake()];
-		super.create();
+		this._nexts = [{step: IsSaltMistake, params: []}];
+		super.onClick();
 	}
-	
 }

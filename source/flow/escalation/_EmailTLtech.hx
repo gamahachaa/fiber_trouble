@@ -8,14 +8,9 @@ import tstool.process.Action;
  */
 class _EmailTLtech extends Action 
 {
-
-	override public function create():Void
+	override public function onClick():Void
 	{
-		//this._titleTxt = "Email PEDRO";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextProcesses = [new _InformUpmostPrio()];
-		super.create();
+		this._nexts = [{step: _InformUpmostPrio, params: []}];
+		super.onClick();
 	}
-	
 }

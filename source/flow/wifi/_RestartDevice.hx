@@ -1,6 +1,4 @@
 package flow.wifi;
-
-import flow.wifi._ResetWifiParams;
 import tstool.process.Action;
 
 /**
@@ -9,15 +7,9 @@ import tstool.process.Action;
  */
 class _RestartDevice extends Action 
 {
-
-	override public function create():Void
+	override public function onClick():Void
 	{
-		//this._titleTxt = "Rebooter l'appareil";
-		//this._detailTxt = "(reset box)";
-		//this._illustration = "box/box_reset";
-		//this._illustration = "box/box_reset";
-		this._nextProcesses = [new WifiVisibleOnDevice()];
-		super.create();
+		this._nexts = [{step: WifiVisibleOnDevice, params: []}];
+		super.onClick();
 	}
-	
 }

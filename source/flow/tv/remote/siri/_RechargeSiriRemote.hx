@@ -8,11 +8,9 @@ import tstool.process.Action;
  */
 class _RechargeSiriRemote extends Action 
 {
-
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _GetCloseToAppleTV()];
-		super.create();
+		this._nexts = [{step: _GetCloseToAppleTV, params: []}];
+		super.onClick();
 	}
-	
 }

@@ -16,9 +16,9 @@ class _CreateLanIssueTicket extends ActionMail
 		super(SOTickets.FIX_521);
 		//mail.setSubject("LanIssue", this);
 	}
-	override public function create():Void
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _SendTechMail()];
-		super.create();
+		this._nexts = [{step: _SendTechMail, params: []}];
+		super.onClick();
 	}
 }

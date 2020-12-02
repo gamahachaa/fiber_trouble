@@ -6,12 +6,12 @@ import flow.nointernet.so.tckets._SwapBox;
 import tstool.process.ActionDropDown;
 
 /**
- * ...
+ * @todo ARCHIVE
  * @author bb
  */
 class WhichWeirdBoot extends ActionDropDown 
 {
-	public function new() 
+	/*public function new() 
 	{
 		super([
 			new StrNameLabel("", "Select ..."),
@@ -27,5 +27,5 @@ class WhichWeirdBoot extends ActionDropDown
 		this._nextProcesses = [new _SwapBox()];
 		super.create();
 	}
-	
+	*/
 }

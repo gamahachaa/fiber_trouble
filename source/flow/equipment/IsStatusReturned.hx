@@ -9,13 +9,14 @@ import tstool.process.Descision;
  */
 class IsStatusReturned extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new WasParcelInRothenbug()];
-		//this._nextYesProcesses = [new _AddNoteVtiCustDidNotFecthParcel()];
-		this._nextYesProcesses = [new IsVTILaposteSendBoxMsgVisible()];
-		super.create();
+		this._nexts = [{step: IsVTILaposteSendBoxMsgVisible, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: WasParcelInRothenbug, params: []}];
+		super.onNoClick();
+	}
 }

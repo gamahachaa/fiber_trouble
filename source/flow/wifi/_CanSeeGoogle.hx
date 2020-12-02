@@ -12,32 +12,26 @@ import tstool.process.TripletMultipleInput;
 class _CanSeeGoogle extends TripletMultipleInput 
 {
 	public function new() 
-		{
-			//super(280, "Store");
-			super([
-			{
-				ereg: new EReg("^((https|ftp|file)(://))?[A-Za-z0-9+&@#/%?=~_|!:,.;-]*[A-Za-z0-9+&@#/%=~_|-]$","i"),
-				input:{
-					width:400,
-					prefix:"URL(s) not working",
-					debug:"https://zoomquilt.org/",
-					position:[bottom, left]
-				}
-			}
-			]);
-		}
-	override public function create()
 	{
-
-		this._nextMidProcesses = this._nextNoProcesses = [new _CreateTicketWifiIssue()];
-		this._nextYesProcesses = [ new _ConteactDeviceSupport() ];
-		
-		super.create();
+		//super(280, "Store");
+		super([
+		{
+			ereg: new EReg("^((https|ftp|file)(://))?[A-Za-z0-9+&@#/%?=~_|!:,.;-]*[A-Za-z0-9+&@#/%=~_|-]$","i"),
+			input:{
+				width:400,
+				prefix:"URL(s) not working",
+				debug:"https://zoomquilt.org/",
+				position:[bottom, left]
+			}
+		}
+		]);
 	}
+	
 	override public function onMidClick():Void
 	{
 		if (validateMid())
 		{
+			this._nexts = [{step: _CreateTicketWifiIssue, params: []}];
 			super.onMidClick();
 		}
 	}
@@ -49,4 +43,17 @@ class _CanSeeGoogle extends TripletMultipleInput
 	{
 		return true;
 	}
+	
+	
+	override public function onYesClick():Void
+	{
+		this._nexts = [{step: _ConteactDeviceSupport, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _CreateTicketWifiIssue, params: []}];
+		super.onNoClick();
+	}
+	
 }

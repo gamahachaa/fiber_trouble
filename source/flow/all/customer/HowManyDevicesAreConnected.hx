@@ -3,16 +3,14 @@ package flow.all.customer;
 import flixel.addons.ui.StrNameLabel;
 import flow.nointernet.vti.CheckContractorVTI;
 import tstool.process.ActionDropDown;
-//import tstool.process.Descision;
-//import tstool.process.DescisionDropDown;
 
 /**
- * ...
+ * @todo ARCHIVE
  * @author bb
  */
 class HowManyDevicesAreConnected extends ActionDropDown 
 {
-
+	/*
 	public function new() 
 	{
 		super([
@@ -23,11 +21,12 @@ class HowManyDevicesAreConnected extends ActionDropDown
 			new StrNameLabel("10plus", "10 +")
 		]);
 		
-	}
+	}*/
+	/*
 	override public function create()
 	{
 		this._nextProcesses = [new CheckContractorVTI()];
 		super.create();
-	}
+	}*/
 	
 }

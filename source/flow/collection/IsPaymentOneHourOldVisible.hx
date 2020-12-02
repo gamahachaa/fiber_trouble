@@ -1,6 +1,5 @@
 package flow.collection;
 
-import flow.nointernet.vti.IconStatusBoxManagement;
 import tstool.process.Descision;
 
 /**
@@ -9,15 +8,14 @@ import tstool.process.Descision;
  */
 class IsPaymentOneHourOldVisible extends Descision 
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "Un paiement datant de plus d'une heure est visible dans VTI ?";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextYesProcesses = [ new ManuallyUnblock()];
-		this._nextNoProcesses = [ new _InformUsualPaymentDelays()];
-		super.create();
+		this._nexts = [{step: ManuallyUnblock, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _InformUsualPaymentDelays, params: []}];
+		super.onNoClick();
+	}
 }

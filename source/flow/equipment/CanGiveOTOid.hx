@@ -24,12 +24,7 @@ class CanGiveOTOid extends DescisionMultipleInput
 		}]
 		);
 	}
-	override public function create()
-	{
-		this._nextYesProcesses = [new HasAccessToMyAccount()];
-		this._nextNoProcesses = [new _SoOrderProcessStatusCheck()];
-		super.create();
-	}
+	
 	/****************************
 	* Needed for validation
 	*****************************/
@@ -37,25 +32,18 @@ class CanGiveOTOid extends DescisionMultipleInput
 	{
 		if (validateYes())
 		{
+			this._nexts = [{step: HasAccessToMyAccount, params: []}];
 			super.onYesClick();
 		}
 	}
-	/*
-	override public function validateYes():Bool
-	{
-		return true;
-	}*/
-	/*
-	override public function onNoClick():Void
-	{
-		if (validateNo())
-		{
-			super.onNoClick();
-		}
-	}*/
 	override public function validateNo():Bool
 	{
 		return true;
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _SoOrderProcessStatusCheck, params: []}];
+		super.onNoClick();
 	}
 	/**/
 }

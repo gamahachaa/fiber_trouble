@@ -18,11 +18,9 @@ class _CreateTicketModemCNX extends ActionMail
 		super(SOTickets.FIX_521);
 	}
 	
-	override public function create():Void
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _SendTechMail()];
-		super.create();
-		
-		
+		this._nexts = [{step: _SendTechMail, params: []}];
+		super.onClick();
 	}
 }

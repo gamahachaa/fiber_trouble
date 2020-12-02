@@ -8,12 +8,14 @@ import tstool.process.Descision;
  */
 class IsPlugInUse extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [ new IsWhishDateWayAhead()];
-		this._nextYesProcesses = [new DidCustomerSendProffCancel()];
-		super.create();
+		this._nexts = [{step: DidCustomerSendProffCancel, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: IsWhishDateWayAhead, params: []}];
+		super.onNoClick();
+	}
 }

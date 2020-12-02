@@ -11,12 +11,20 @@ import tstool.process.Triplet;
  */
 class IsBarringVisible extends Triplet 
 {
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new IsBasicTvPackageVisible()];
-		this._nextYesProcesses = [new _ActivateTVServicesVTI()];
-		this._nextMidProcesses = [new _VerifyCollectionStep()]; //Collection
-		super.create();
+		this._nexts = [{step: _ActivateTVServicesVTI, params: []}];
+		super.onYesClick();
+	}	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: IsBasicTvPackageVisible, params: []}];
+		super.onNoClick();
 	}
 	
+	override public function onMidClick():Void
+	{
+		this._nexts = [{step: _VerifyCollectionStep, params: []}];
+		super.onMidClick();
+	}
 }

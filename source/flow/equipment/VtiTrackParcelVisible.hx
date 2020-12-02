@@ -8,12 +8,14 @@ import tstool.process.Descision;
  */
 class VtiTrackParcelVisible extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new _SoOrderLogisticsEquipment()];
-		this._nextYesProcesses = [new DidCustomerRecievedEmail()];
-		super.create();
+		this._nexts = [{step: DidCustomerRecievedEmail, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _SoOrderLogisticsEquipment, params: []}];
+		super.onNoClick();
+	}
 }

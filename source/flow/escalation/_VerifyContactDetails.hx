@@ -9,13 +9,14 @@ import tstool.process.Action;
 class _VerifyContactDetails extends Action 
 {
 
-	override public function create():Void
+	//override public function create():Void
+	//{
+		//this._nextProcesses = [ new _AddEscalationMemo()];
+		//super.create();
+	//}
+	override public function onClick():Void
 	{
-		//this._titleTxt = "Vérifier les données du client et faites le confirmer ces derniers";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextProcesses = [ new _AddEscalationMemo()];
-		super.create();
+		this._nexts = [{step: _AddEscalationMemo, params: []}];
+		super.onClick();
 	}
-	
 }

@@ -9,14 +9,14 @@ import tstool.process.Descision;
 class IsBillChallenged extends Descision 
 {
 
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "Est-ce que le client remet en cause la facture ?";
-		//this._detailTxt = "Ou aussi les frais de rappel ?";
-		//this._illustration = "";
-		this._nextYesProcesses = [ new _ExplainReasons()];
-		this._nextNoProcesses = [ new IsTechnicalReasons()];
-		super.create();
+		this._nexts = [{step: _ExplainReasons, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: IsTechnicalReasons, params: []}];
+		super.onNoClick();
+	}
 }

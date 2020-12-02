@@ -8,11 +8,14 @@ import tstool.process.Descision;
  */
 class IsSaltIconVisibleOnAppleTV extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new _OpenAppleStore()];
-		this._nextYesProcesses = [ new _OpenSaltTVApp()];
-		super.create();
+		this._nexts = [{step: _OpenSaltTVApp, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _OpenAppleStore, params: []}];
+		super.onNoClick();
 	}
 }

@@ -8,10 +8,9 @@ import tstool.process.Action;
  */
 class _TellCustToGoToPost extends Action 
 {
-
-override public function create()
-{
-	this._nextProcesses = [new _SoOrderLogisticsEquipment()];
-	super.create();
-}
+	override public function onClick():Void
+	{
+		this._nexts = [{step: _SoOrderLogisticsEquipment, params: []}];
+		super.onClick();
+	}
 }

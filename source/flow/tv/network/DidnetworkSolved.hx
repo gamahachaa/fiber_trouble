@@ -10,12 +10,14 @@ import tstool.process.Descision;
  */
 class DidnetworkSolved extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [ new _TesLanCableWithComputer()];
-		this._nextYesProcesses = [new CanExploreMenu()];
-		super.create();
+		this._nexts = [{step: CanExploreMenu, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _TesLanCableWithComputer, params: []}];
+		super.onNoClick();
+	}
 }

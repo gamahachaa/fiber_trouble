@@ -13,12 +13,20 @@ import tstool.process.Descision;
  */
 class WichRemote extends Descision 
 {
-
-	override public function create()
+	
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new _EnsureAppleTVInVisualRangeOfRemote()];
-		//this._nextYesProcesses = [new DoesLightningDiodeLids()];
-		this._nextYesProcesses = [new DoesAppleTVLedBlinks(new _AdviceOnSiriRemoteUSage(), new _RechargeSiriRemote())];
-		super.create();
+		this._nexts = [{
+			step: DoesAppleTVLedBlinks,
+			params: [
+				{step: _AdviceOnSiriRemoteUSage},
+				{step: _RechargeSiriRemote}]
+		}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _EnsureAppleTVInVisualRangeOfRemote}];
+		super.onNoClick();
 	}
 }

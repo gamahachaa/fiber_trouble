@@ -7,11 +7,14 @@ import tstool.process.Descision;
  */
 class HasAppleId extends Descision
 {
-	override public function create()
+	override public function onYesClick():Void
 	{
-		//this._nextNoProcesses = [new _CreateAppleIDorBypass()];
-		this._nextNoProcesses = [new CanCreateAppleAccount()];
-		this._nextYesProcesses = [new HasSwissAppleID()];
-		super.create();
+		this._nexts = [{step: HasSwissAppleID, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: CanCreateAppleAccount, params: []}];
+		super.onNoClick();
 	}
 }

@@ -7,13 +7,13 @@ import flow.nointernet.customer._TellCustomerAllOkWithFiberCnx;
 import tstool.process.DescisionMultipleInput;
 //import tstool.layout.UIInputTfCore;
 /**
- * ...
+ * @todo ARCHIVE
  * @author ...
  Changesd title to "RX values are normal ?"
  */
 class NormalRxValues extends DescisionMultipleInput
 {
-	public function new() 
+	/*public function new() 
 	{
 		super([
 		{
@@ -25,8 +25,8 @@ class NormalRxValues extends DescisionMultipleInput
 				position:[bottom, left]
 			}
 		}]);
-	}
-	override public function create()
+	}*/
+	/*override public function create()
 	{
 		this._nextNoProcesses = [new OTOPlugDamagedNotClicking()];
 		this._nextYesProcesses = [new _TellCustomerAllOkWithFiberCnx()];
@@ -52,5 +52,5 @@ class NormalRxValues extends DescisionMultipleInput
 			return false;
 		}
 		return true;
-	}
+	}*/
 }

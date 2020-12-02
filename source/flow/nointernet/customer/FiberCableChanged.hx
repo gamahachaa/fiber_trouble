@@ -5,6 +5,7 @@ import flow.nointernet.fiberbox.BoxLedStatus;
 import flow.nointernet.fiberbox._RebootBox;
 import flow.nointernet.so._CreateTicketModemCNX;
 import tstool.layout.History.Interactions;
+import tstool.process.Process;
 import tstool.process.TripletMultipleInput;
 
 /**
@@ -29,23 +30,24 @@ class FiberCableChanged extends TripletMultipleInput
 			}
 			]);
 		}
-	override public function create():Void
-	{
-		/*****************************************
-		 * INSTALLATION
-		/*****************************************/
-		//this._nextMidProcesses = this._nextYesProcesses = [new _CreateTicketModemCNX()];
-		var nextafterreboot = new BoxLedStatus();
-		this._nextMidProcesses = this._nextYesProcesses = [new _RebootBox(nextafterreboot,nextafterreboot)];
-		//this._nextMidProcesses = this._nextYesProcesses = [new _RebootBox()];
-		
-		/*****************************************
-		 * SWAP CABLE
-		/*****************************************/
-		this._nextNoProcesses = [new IsOTOidAligned()];
-		//this._nextNoProcesses = [new FiberCableIsSalt()];SwapFiberCable
-		super.create();
-	}
+	//override public function create():Void
+	//{
+		///*****************************************
+		 //* INSTALLATION
+		///*****************************************/
+		////this._nextMidProcesses = this._nextYesProcesses = [new _CreateTicketModemCNX()];
+		////var nextafterreboot = new BoxLedStatus();
+		//var nextafterreboot:ProcessContructor = {step:BoxLedStatus};
+		//this._nextMidProcesses = this._nextYesProcesses = [new _RebootBox(nextafterreboot,nextafterreboot)];
+		////this._nextMidProcesses = this._nextYesProcesses = [new _RebootBox()];
+		//
+		///*****************************************
+		 //* SWAP CABLE
+		///*****************************************/
+		//this._nextNoProcesses = [new IsOTOidAligned()];
+		////this._nextNoProcesses = [new FiberCableIsSalt()];SwapFiberCable
+		//super.create();
+	//}
 	override function pushToHistory( buttonTxt:String, interactionType:Interactions,?values:Map<String,Dynamic>= null)
 	{
 		var ticket = multipleInputs.inputs.get("SO swap cable ticket ID").getInputedText() ;
@@ -55,6 +57,7 @@ class FiberCableChanged extends TripletMultipleInput
 	{
 		if (validateYes())
 		{
+			this._nexts = [{step: _RebootBox, params: [{step: BoxLedStatus},{step: BoxLedStatus}]}];
 			super.onYesClick();
 		}
 		else multipleInputs.inputs.get("SO swap cable ticket ID").blink(true);
@@ -63,9 +66,16 @@ class FiberCableChanged extends TripletMultipleInput
 	{
 		if (validateMid())
 		{
+			this._nexts = [{step: _RebootBox, params: [{step: BoxLedStatus},{step: BoxLedStatus}]}];
 			super.onMidClick();
 		}
 		else multipleInputs.inputs.get("SO swap cable ticket ID").blink(true);
+	}
+	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: IsOTOidAligned, params: []}];
+		super.onNoClick();
 	}
 	override public function validateNo():Bool
 	{

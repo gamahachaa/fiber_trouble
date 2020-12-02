@@ -11,12 +11,12 @@ import tstool.process.Descision;
  */
 class ConnectionType extends Descision
 {
-
+	/*
 	override public function create():Void
 	{
 		this._nextYesProcesses = [new ConnectedViaSwitch()];
 		this._nextNoProcesses = [new WifiOnInDashboard()];
 		super.create();
 	}
-
+	*/
 }

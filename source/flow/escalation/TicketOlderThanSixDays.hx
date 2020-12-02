@@ -8,16 +8,14 @@ import tstool.process.Descision;
  */
 class TicketOlderThanSixDays extends Descision 
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "Le ticket est vieux de 6 jours ou plus ?";
-		//this._detailTxt = "";
-			//
-		//this._illustration = "";
-		this._nextYesProcesses = [ new _EscalateTicket()];
-		this._nextNoProcesses = [ new _InformTicketIsBeingTreated()];
-		super.create();
+		this._nexts = [{step: _EscalateTicket, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _InformTicketIsBeingTreated, params: []}];
+		super.onNoClick();
+	}
 }

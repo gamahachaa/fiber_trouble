@@ -12,14 +12,14 @@ class _SoOrderProcessStatusCheck extends ActionMail
 {
 
 	public function new() 
-		{
-			//super(SOTickets.FIX_416);
-			super(SOTickets.FIX_415);
-		}
-		override public function create():Void
-		{
-			this._nextProcesses = [new flow._AddMemoVti()];
-			super.create();
-		}
+	{
+		super(SOTickets.FIX_415);
+	}
+		
+	override public function onClick():Void
+	{
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onClick();
+	}	
 	
 }

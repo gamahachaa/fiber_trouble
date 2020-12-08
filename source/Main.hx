@@ -1,7 +1,7 @@
 package;
 
-import firetongue.CSV;
-import firetongue.FireTongue;
+//import firetongue.CSV;
+//import firetongue.FireTongue;
 import flixel.FlxG;
 import flixel.FlxGame;
 import flixel.FlxState;
@@ -12,20 +12,21 @@ import flixel.text.FlxText.FlxTextFormatMarkerPair;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
 import flow.Intro;
-import flow.nointernet.customer.FiberCableChanged;
-import flow.tv.remote.satltv.IsAppleTVFourthGen;
+import flow.tv.remote.satltv._EnsureAppleTVInVisualRangeOfRemote;
+//import flow.nointernet.customer.FiberCableChanged;
+//import flow.tv.remote.satltv.IsAppleTVFourthGen;
 
 import js.Browser;
 import js.html.Location;
 import tstool.layout.History;
 import tstool.layout.Login;
 import tstool.layout.SaltColor;
-import tstool.utils.Mail;
+//import tstool.utils.Mail;
 import tstool.utils.Translator;
 import tstool.utils.XapiTracker;
 import openfl.Assets;
 import openfl.display.Sprite;
-import tstool.process.Triplet;
+//import tstool.process.Triplet;
 import tstool.salt.Agent;
 import tstool.salt.Customer;
 //import tstool.utils.Mail.MailReciepient;
@@ -140,7 +141,7 @@ class Main extends Sprite
 		
 		
 		//addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
-		addChild(new FlxGame(1400, 880, IsAppleTVFourthGen, 1, 30, 30, true, true));
+		addChild(new FlxGame(1400, 880, _EnsureAppleTVInVisualRangeOfRemote, 1, 30, 30, true, true));
 		
 		
 		

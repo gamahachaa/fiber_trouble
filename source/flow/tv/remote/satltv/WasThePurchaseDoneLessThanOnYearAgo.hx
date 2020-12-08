@@ -12,12 +12,12 @@ class WasThePurchaseDoneLessThanOnYearAgo extends Descision
 {
 	override public function onYesClick():Void
 	{
-		this._nexts = [{step: _GoToStoreToReplace, params: []}];
+		this._nexts = [{step: _NeedToBuyOneNew, params: []}];
 		super.onYesClick();
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _NeedToBuyOneNew, params: []}];
+		this._nexts = [{step: _GoToStoreToReplace, params: []}];
 		super.onNoClick();
 	}
 }

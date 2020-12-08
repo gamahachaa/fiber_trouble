@@ -43,8 +43,8 @@
 	<haxelib name="firetongue" />
 	<haxelib name="hscript" />
 	<haxelib name="tstool" />
-	<haxelib name="uglifyjs" unless="debug"/>
-	<!--<haxelib name="uglifyjs" />-->
+	<!--<haxelib name="uglifyjs" unless="debug"/>-->
+	<haxelib name="uglifyjs" />
 	
 	<!--<haxelib name="xapi" />-->
 	<!--<haxelib name="lrs" />-->

@@ -3,23 +3,22 @@
 @echo off
 
 set DEV=1
-
+echo "START"
 if %DEV%==1 (
-	echo "DEV=%DEV%"
 	if "%1"=="" goto :dead
 	if "%1"=="debug" goto :dead
 	if "%1"=="release" goto :publication
-	goto :dead
-)
-else(
-	echo "DEV=%DEV%"
+) ELSE ( 
+	echo "YEAH0"
 	if "%1"=="" goto :dead
+	echo "YEAH1"
 	if "%1"=="debug" goto :publication
+	echo "YEAH2"
 	if "%1"=="release" goto :publication
-	goto :dead
 )
-:publication
 
+:publication
+echo "STEP1"
 rem PREPARE DATESTAMP ------------------------------------------------------------------------------------------------------------------------------
 for /f "tokens=2 delims==" %%a in ('wmic OS Get localdatetime /value') do set "dt=%%a"
 set "YY=%dt:~2,2%" & set "YYYY=%dt:~0,4%" & set "MM=%dt:~4,2%" & set "DD=%dt:~6,2%"
@@ -54,19 +53,25 @@ powershell -Command "Rename-Item -Path "%BINDIR%/tmp.html" -NewName index_howl.h
 
 rem powershell -Command "(gc %BINDIR%/index.html) -replace '%HOWL_TARGET%', '%HOWL_TARGET%\n%HOWL%' | Out-File -encoding UTF8 %BINDIR%/index.html"
 rem powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptName%' | Out-File -encoding UTF8 %BINDIR%/index.html"
+echo "STEP2"
 if %DEV%==1 (
 	if "%1"=="release" goto :minify
 	powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptName%' | Out-File -encoding UTF8 %BINDIR%/index.html"
-
 	if "%1"=="debug" goto :follow
-	rem min 
+) ELSE (
+	echo "SKIPPED"
 )
+
+echo "STEP3"
 :minify
 powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptNameMin%' | Out-File -encoding UTF8 %BINDIR%/index.html"
 
 rem REENAME JS FILES  ------------------------------------------------------------------------------------------------------------------------------
+echo "STEP4"
 
 :follow
+
+echo "STEP5"
 
 powershell -Command "(gc %BINDIR%/index.html) -replace 'background: #000000;', 'background: #4c4d4d;' | Out-File -encoding UTF8 %BINDIR%/index.html"
 rem REENAME JS FILES  ------------------------------------------------------------------------------------------------------------------------------
@@ -80,16 +85,18 @@ rem powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.min.js.map" -N
 
 rem echo %1
 
-if "%DEV%==1(
-	echo "FTP DEV=%DEV%"
+echo "STEP6"
+
+if %DEV%==1 (
 	if "%1"=="" goto :dead
 	if "%1"=="debug" goto :dead
 	if "%1"=="release" goto :test
-)
-else(
-	echo "FTP DEV=%DEV%"
+) ELSE ( 
+	echo "YEAH7"
 	if "%1"=="" goto :dead
+	echo "YEAH8"
 	if "%1"=="debug" goto :test
+	echo "YEAH9"
 	if "%1"=="release" goto :test
 )
 

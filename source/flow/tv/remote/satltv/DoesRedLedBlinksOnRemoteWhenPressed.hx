@@ -18,6 +18,8 @@ class DoesRedLedBlinksOnRemoteWhenPressed extends Descision
 	}
 	override public function onNoClick():Void
 	{
+		trace("flow.tv.remote.satltv.DoesRedLedBlinksOnRemoteWhenPressed::onNoClick +++++++++");
+		trace(Main.HISTORY.getClassIterations(DoesRedLedBlinksOnRemoteWhenPressed));
 		this._nexts = [{step: _MakeSureBatteriesCoerrectlyInstalled},{step: CanReplaceBatteries},{step: WasThePurchaseDoneLessThanOnYearAgo}];
 		super.onNoClick();
 	}

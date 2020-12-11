@@ -2,7 +2,10 @@ package flow;
 
 import flow.all.customer._ExplainMainSteps;
 import flow.all.customer.IsSlowOrKaput;
+import tstool.layout.UI;
 import tstool.process.CheckUpdateSub;
+//import tstool.layout.UI;
+//import tstool.process.CheckUpdateSub;
 import tstool.process.Process;
 
 import js.Browser;
@@ -15,7 +18,6 @@ class Intro extends Triplet
 	override public function create():Void
 	{
 		Process.INIT();
-	
 		
  		super.create();
 		//#if !debug
@@ -24,7 +26,7 @@ class Intro extends Triplet
 		#if debug
 		trace("Showing the new version if any");
 		#else
-		openSubState(new CheckUpdateSub(Main.THEME.bg));
+		openSubState(new CheckUpdateSub(UI.THEME.bg));
 		#end
 			
 	}

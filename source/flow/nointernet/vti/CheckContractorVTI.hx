@@ -3,6 +3,7 @@ package flow.nointernet.vti;
 //import flixel.FlxG;
 import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;
+import tstool.layout.UI;
 import tstool.process.Process;
 //import flow.equipment.IsWhishDateWayAhead;
 import flow.equipment.OTOidVisibleInOfferManagement;
@@ -112,7 +113,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 			trace(Main.customer);
 		#end
 		question.text = question.text + " <em>" + Main.customer.contract.owner.name + "<em>";
-		question.applyMarkup(question.text, [Main.THEME.basicEmphasis]);
+		question.applyMarkup(question.text, [UI.THEME.basicEmphasis]);
 		question.drawFrame();
 		positionThis();
 		multipleInputs.inputs.get("Contractor ID").inputtextfield.text = Main.customer.contract.contractorID;

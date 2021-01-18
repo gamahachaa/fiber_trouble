@@ -99,7 +99,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 		else 
 		Main.customer.contract = new Contractor(
 			profile.get("meta").exists("vtiContractor")? profile.get("meta").get("vtiContractor"):"",
-			profile.get("plan").exists("vtiVoip")? profile.get("plan").get("vtiVoip"):"",
+			profile.get("plan").exists("vtiVoip")? StringTools.replace(profile.get("plan").get("vtiVoip"), "- ",""):"",
 			profile.get("plan").exists("vtiFix")? profile.get("plan").get("vtiFix"):"",
 			profile.get("plan").exists("vtiMobile")? profile.get("plan").get("vtiMobile"):"",
 			profile.get("plan").exists("vtiAdress")? profile.get("plan").get("vtiAdress"):"",
@@ -149,7 +149,10 @@ class CheckContractorVTI extends DescisionMultipleInput
 			var voipVTI = multipleInputs.inputs.get("VoIP Number").getInputedText();
 			var contactNB = multipleInputs.inputs.get("Contact Number").getInputedText();
 			var voipSO = "0" + voipVTI.substr(2);
-
+			Main.customer.iri = contractorID;
+			Main.customer.voIP = voipSO;
+			Main.customer.contract.mobile = contactNB;
+			/*
 			#if debug
 			Main.customer.iri = contractorID == "" ? "39999999": contractorID;
 			Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
@@ -162,11 +165,10 @@ class CheckContractorVTI extends DescisionMultipleInput
 				Main.customer.contract.mobile = contactNB == "" ? "41787878673": contactNB;
 			}
 			else{
-				Main.customer.iri = contractorID;
-				Main.customer.voIP = voipSO;
-				Main.customer.contract.mobile = contactNB;
+				
 			}
 			#end
+			*/
 			setReminder();
 			super.onYesClick();
 		}

@@ -43,14 +43,14 @@ class Main extends MainApp
 	public static var HISTORY:History;
 	public static var adminFile:tstool.utils.Csv;
 	public static var tongue:Translator;
-	public static var user:Agent;
+	//public static var user:Agent;
 	public static var customer:Customer;
 	public static var track:XapiTracker;
 	public static var VERSION:String;
 	public static var VERSION_TRACKER:VersionTracker;
 	public static var LOCATION:Location;
 	public static var DEBUG:Bool;
-	public static var COOKIE: FlxSave;
+	//public static var COOKIE: FlxSave;
 	
 	public static var LAST_STEP:Class<FlxState> = flow._AddMemoVti;
 	public static var LANGS = ["fr-FR", "de-DE", "en-GB", "it-IT"];
@@ -59,28 +59,28 @@ class Main extends MainApp
 	public function new()
 	{
 		super({
-				cookie:"nointernet-20200421.user",
+				cookie:"nointernet_20210112.user",
 				scriptName:"nointernet"
 				
 		});
 		LIB_FOLDER = "../trouble/";
-		tongue = translator;
-		COOKIE = save;
-		HISTORY = stack;
-		LOCATION = location;
-		track =  xapiTracker;
-		DEBUG = debug;
-		VERSION_TRACKER = versionTracker;
-		customer = cust;
-		user = agent;
+		tongue = MainApp.translator;
+		//COOKIE = save;
+		HISTORY = MainApp.stack;
+		LOCATION = MainApp.location;
+		track =  MainApp.xapiTracker;
+		DEBUG = MainApp.debug;
+		VERSION_TRACKER = MainApp.versionTracker;
+		customer = MainApp.cust;
+		//user = agent;
 		
 		#if debug
 		//addChild(new FlxGame(1400, 880, IsCompTicketOpened, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, _SelectPP, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, ElligibleForRet, 1, 30, 30, true, true));
 		//addChild(new FlxGame(1400, 880, ActivateInternetEurope, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
-		addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
+		addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
+		//addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
 		#else
 		if (Browser.navigator.userAgent.indexOf("Firefox") == -1)
 		{
@@ -113,7 +113,7 @@ class Main extends MainApp
 		#if !debug
 		Main.track.setActor();
 		#end
-		tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new flow.Intro():new flow.TutoTree() )) );
+		tongue.initialize(MainApp.agent.mainLanguage, ()->(FlxG.switchState( old ? new flow.Intro():new flow.TutoTree() )) );
 		//tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new _MajorUpdate():new flow.TutoTree() )) );
 	}
 

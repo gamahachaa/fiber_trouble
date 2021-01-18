@@ -15,6 +15,7 @@ import tstool.process.TripletMultipleInput;
 //class FiberCableChanged extends DescisionMultipleInput
 class FiberCableChanged extends TripletMultipleInput
 {
+	static inline var label = "SO swap cable ticket ID";
 	public function new() 
 		{
 			//super(280, "Store");
@@ -23,7 +24,7 @@ class FiberCableChanged extends TripletMultipleInput
 				ereg: new EReg("^1[0-9]{7}$","i"),
 				input:{
 					width:200,
-					prefix:"SO swap cable ticket ID",
+					prefix:label,
 					debug:"11234567",
 					position:[bottom, left]
 				}
@@ -50,8 +51,9 @@ class FiberCableChanged extends TripletMultipleInput
 	//}
 	override function pushToHistory( buttonTxt:String, interactionType:Interactions,?values:Map<String,Dynamic>= null)
 	{
-		var ticket = multipleInputs.inputs.get("SO swap cable ticket ID").getInputedText() ;
-		super.pushToHistory( buttonTxt, interactionType, ["SO swap cable ticket ID" => "<a target='_blank' href='http://cs.salt.ch/scripts/ticket.fcgi?_sf=0&action=doScreenDefinition&idString=viewEmail&entryId=" +ticket +"'>"+ticket+"</a>"]);
+		var ticket = multipleInputs.inputs.get(label).getInputedText() ;
+		ticket = StringTools.trim(ticket) == ""?"":"<a target='_blank' href='http://cs.salt.ch/scripts/ticket.fcgi?_sf=0&action=doScreenDefinition&idString=viewEmail&entryId=" + ticket +"'>" + ticket + "</a>";
+		super.pushToHistory( buttonTxt, interactionType, [label => ticket]);
 	}
 	override public function onYesClick():Void
 	{

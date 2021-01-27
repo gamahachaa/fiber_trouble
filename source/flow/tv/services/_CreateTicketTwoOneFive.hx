@@ -1,14 +1,15 @@
 package flow.tv.services;
 
 import flow._AddMemoVti;
-import tstool.process.ActionMail;
+import process.ActionMailNointernet;
+//import tstool.process.ActionMail;
 import tstool.salt.SOTickets;
 
 /**
  * ...
  * @author bb
  */
-class _CreateTicketTwoOneFive extends ActionMail 
+class _CreateTicketTwoOneFive extends ActionMailNointernet 
 {
 
 	public function new() 

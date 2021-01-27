@@ -2,9 +2,11 @@ package flow.nointernet.fiberbox;
 
 //import flixel.addons.ui.FlxUIRadioGroup;
 //import flixel.text.FlxText;
+import flow.nointernet.customer.FiberCableChanged;
 import flow.nointernet.postLedChecks.IsSerialNumberCorrect;
 import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.so.tckets._SwapBox;
+import flow.nointernet.vti.CheckContractorVTI;
 import flow.swapcable.SwapFiberCable;
 import tstool.process.Process;
 //import tstool.layout.RadioTitle;
@@ -19,7 +21,13 @@ import tstool.process.ActionRadios;
 class BoxLedStatus extends ActionRadios
 {
 
+	/***************************************
+	 * COLORS
+	/***************************************/
 	static inline var _off:String = "Off";
+	static inline var _whiteStable:String= "White stable";
+	static inline var _whiteBlink:String = "White Blink";
+	
 	static inline var _greenStable:String= "Green stable";
 	static inline var _greenBlink:String= "Green Blink";
 	static inline var _redBlink:String = "Red Blink";
@@ -28,50 +36,97 @@ class BoxLedStatus extends ActionRadios
 	static inline var _blueBlink:String= "Blue Blink";
 	static inline var _blueStable:String= "Blue stable";
 	static inline var _normal:String= "Normal";
-	static inline var _allGreen:String= "All green";
-	static inline var POWER_TITLE:String = "POWER";
-	static inline var FIBER_TITLE:String = "FIBER";
-	static inline var WWW_TITLE:String = "WWW";
-	static inline var WLAN_TITLE:String = "WLAN";
-	static inline var WPS_TITLE:String = "WPS";
-	static inline var PHONE_TITLE:String = "PHONE";
-	static inline var LAN_TITLE:String = "LAN (REAR)";
+	static inline var _allGreen:String = "All green";
 	
+	/****************************************
+	 * LEDS
+	/****************************************/
+	
+	static inline var POWER_TITLE:String = "1.POWER";
+	static inline var FIBER_TITLE:String = "2.FIBER";
+	static inline var WWW_TITLE:String = "3.WWW";
+	static inline var WLAN_TITLE:String = "4.WLAN";
+	static inline var WPS_TITLE:String = "5.WPS";
+	static inline var PHONE_TITLE:String = "6.PHONE";
+	static inline var LAN_TITLE:String = "7.LAN (REAR)";
+	// Sagem
+	static inline var FIBER_SAGEM_TITLE:String = "2.FIBRE";
+	static inline var INTERNET_TITLE:String = "3.INTERNET";
+	static inline var WIFI_TITLE:String = "5.WIFI";
+	static inline var PHONE_SAGEM_TITLE:String = "4.PHONE";
+	static inline var COMBO_TITLE:String = "6.+(WPS/DECT)";
+	var sagem:Bool;
 
 	public function new ()
 	{
-		super(
+		
+		if (chekcIfSagem())
+		{
+			super(
 			[
-		{
-			title: POWER_TITLE,
-			values: [_off, _greenStable, _blink]
-		},
-		{
-			title: FIBER_TITLE,
-			values: [_off, _greenStable, _redStable, _greenBlink, _redBlink]
-		},
-		{
-			title: WWW_TITLE,
-			values: [_off, _greenStable, _blink]
-		},
-		{
-			title: WLAN_TITLE,
-			values: [_off, _greenStable, _blink]
-		},
-		{
-			title: WPS_TITLE,
-			values: [_off, _greenStable, _blink]
-		},
-		{
-			title: PHONE_TITLE,
-			values: [_off, _greenStable, _greenBlink, _blueStable, _blueBlink]
-		},
-		{
-			title: LAN_TITLE,
-			values: [_normal, _allGreen]
+				{
+					title: POWER_TITLE,
+					values: [_off, _whiteStable, _redBlink]
+				},
+				{
+					title: FIBER_SAGEM_TITLE,
+					values: [_off, _whiteStable, _whiteBlink,_redStable, _redBlink]
+				},
+				{
+					title: INTERNET_TITLE,
+					values: [_off, _whiteStable, _redStable]
+				}
+				,
+				{
+					title: PHONE_SAGEM_TITLE,
+					values: [_off, _whiteStable, _whiteBlink, _redStable]
+				},
+				{
+					title: WIFI_TITLE,
+					values: [_off, _whiteStable]
+				},
+				{
+					title: COMBO_TITLE,
+					values: [_off, _whiteStable]
+				}
+			]);
 		}
-			]
-		);
+		else
+		{
+			super(
+			[
+				{
+					title: POWER_TITLE,
+					values:[_off, _greenStable, _blink]
+				},
+				{
+					title: FIBER_TITLE,
+					values: [_off, _greenStable, _redStable, _greenBlink, _redBlink]
+				},
+				{
+					title: WWW_TITLE,
+					values: [_off, _greenStable, _blink]
+				},
+				{
+					title: WLAN_TITLE,
+					values: [_off, _greenStable, _blink]
+				},
+				{
+					title: WPS_TITLE,
+					values: [_off, _greenStable, _blink]
+				},
+				{
+					title: PHONE_TITLE,
+					values: [_off, _greenStable, _greenBlink, _blueStable, _blueBlink]
+				},
+				{
+					title: LAN_TITLE,
+					values: [_normal, _allGreen]
+				}
+			]);
+		}
+		
+		
 	}
 
 	/****************************
@@ -83,65 +138,107 @@ class BoxLedStatus extends ActionRadios
 		var next:Class<Process> = null;
 		if (validate())
 		{
-			var powerLED = status.get(POWER_TITLE);
-			var fiberLED = status.get(FIBER_TITLE);
-			var wwwLED = status.get(WWW_TITLE);
-			var rearLanLED = status.get(LAN_TITLE);
-			var wlanLED = status.get(WLAN_TITLE);
-			var wpsLED = status.get(WPS_TITLE);
-			var phoneLED = status.get(PHONE_TITLE);
-			
-			next = if (Main.HISTORY.isClassInteractionInHistory(flow.nointernet.customer.FiberCableChanged, No)){
-				SwapFiberCable;
-			}
-			else{
-				_CreateTicketModemCNX;
-			}
-			
-			next = if (powerLED == _off && fiberLED == _off && wwwLED == _off ){
-				_SwapBox;
-			}
-			else if (powerLED == _greenStable ){
-				if (fiberLED == _redStable){
-					if (rearLanLED == _allGreen){
-						_SwapBox;
-					}
-					else{
-						next;
-					}
-				}
-				else if (fiberLED ==  _greenStable){
-					if (wwwLED ==  _greenStable)
-						IsBoxReachable;
-					else{
-						IsSerialNumberCorrect;
-					}
-				}
-				else if (fiberLED ==  _greenBlink){
-					IsSerialNumberCorrect;
-				}
-				else{
-					next;
-				}
-			}
-			else if (
-				powerLED == _blink &&
-				( fiberLED == _greenBlink || fiberLED == _redBlink  ) &&
-				wwwLED == _blink &&
-				wlanLED == _blink &&
-				wpsLED == _blink &&
-				( phoneLED == _greenBlink || phoneLED == _blueBlink )
-			){
-				_SwapBox;
-			}
-			else{
-				next;
-			}
+			next = sagem ? getNextSagem() : getNextArcadyan();
 			this._nexts = [{step: next, params: []}];
 			//trace("flow.nointernet.fiberbox.BoxLedStatus::onClick::this._nexts", this._nexts );
 			super.onClick();
 		}
 		
+	}
+	inline function chekcIfSagem()
+	{
+		if (Main.customer.dataSet != null)
+		{
+			if (Main.customer.dataSet.exists(CheckContractorVTI.CUST_DATA_PRODUCT))
+			{
+				if (Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).exists(CheckContractorVTI.CUST_DATA_PRODUCT_BOX))
+				{
+					return Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).get(CheckContractorVTI.CUST_DATA_PRODUCT_BOX) == CheckContractorVTI.SAGEM;
+				}
+				else return false;
+			}
+			else return false;
+		}
+		else return false;
+	}
+	inline function getNextSagem():Class<Process>
+	{
+		return if (Main.HISTORY.isClassInteractionInHistory(FiberCableChanged, No)){
+			SwapFiberCable;
+		}
+		else{
+			_CreateTicketModemCNX;
+		}
+		
+	}
+	override public function create()
+	{
+		super.create();
+		/**
+		 * @todo remove sagem exception
+		 */
+		if( chekcIfSagem() ) ui.loadIllustrationGraphics("box/led_status/led_status_sagem");
+	}
+	
+	inline function getNextArcadyan():Class<Process>
+	{
+		var next:Class<Process> = null;
+		var powerLED = status.get(POWER_TITLE);
+		var fiberLED = status.get(FIBER_TITLE);
+		
+		var wwwLED = status.get(WWW_TITLE);
+		var rearLanLED = status.get(LAN_TITLE);
+		var wlanLED = status.get(WLAN_TITLE);
+		var wpsLED = status.get(WPS_TITLE);
+		var phoneLED = status.get(PHONE_TITLE);
+		
+		next = if (Main.HISTORY.isClassInteractionInHistory(flow.nointernet.customer.FiberCableChanged, No)){
+			SwapFiberCable;
+		}
+		else{
+			_CreateTicketModemCNX;
+		}
+		
+		next = if (powerLED == _off && fiberLED == _off && wwwLED == _off ){
+			_SwapBox;
+		}
+		else if (powerLED == _greenStable ){
+			if (fiberLED == _redStable){
+				if (rearLanLED == _allGreen){
+					_SwapBox;
+				}
+				else{
+					next;
+				}
+			}
+			else if (fiberLED ==  _greenStable){
+				if (wwwLED ==  _greenStable)
+					IsBoxReachable;
+				else{
+					IsSerialNumberCorrect;
+				}
+			}
+			else if (fiberLED ==  _greenBlink){
+				IsSerialNumberCorrect;
+			}
+			else{
+				next;
+			}
+		}
+		else if (
+			powerLED == _blink &&
+			( fiberLED == _greenBlink || fiberLED == _redBlink  ) &&
+			wwwLED == _blink &&
+			wlanLED == _blink &&
+			wpsLED == _blink &&
+			( phoneLED == _greenBlink || phoneLED == _blueBlink )
+		){
+			_SwapBox;
+		}
+		else{
+			next;
+		}
+		return next;
 	}
 	
 }

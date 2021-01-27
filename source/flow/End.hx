@@ -15,6 +15,7 @@ class End extends Action
 		super.create();
 		Main.track.setResolution();
 		Main.track.send();
+		ui.showHowto(true);
 	}
 	override public function onClick():Void
 	{

@@ -28,7 +28,7 @@ class Intro extends Triplet
 		#else
 		openSubState(new CheckUpdateSub(UI.THEME.bg));
 		#end
-			
+		ui.showHowto(true);
 	}
 	
 	function onNewVersion(needsUpdate:Bool):Void 

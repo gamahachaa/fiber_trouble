@@ -3,18 +3,15 @@ package flow.nointernet.vti;
 //import flixel.FlxG;
 import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;
+import lime.utils.Assets;
 import tstool.layout.UI;
 import tstool.process.Process;
-//import flow.equipment.IsWhishDateWayAhead;
 import flow.equipment.OTOidVisibleInOfferManagement;
-//import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
 import flow.nointernet.so.IsTicketOpened;
 import tstool.salt.Balance;
 import tstool.salt.Contractor;
 import tstool.salt.Role;
 import tstool.utils.VTIdataParser;
-//import layout.UIInputTf;
-//import lime.math.Rectangle;
 import tstool.process.DescisionMultipleInput;
 import Main;
 //import tstool.utils.XapiTracker;
@@ -26,6 +23,11 @@ import Main;
 class CheckContractorVTI extends DescisionMultipleInput
 {
 	var parser:tstool.utils.VTIdataParser;
+	var sagem:String;
+	public static inline var CUST_DATA_PRODUCT:String = "PRODUCTS";
+	public static inline var CUST_DATA_PRODUCT_BOX:String = "BOX";
+	public static inline var SAGEM:String = "Sagem";
+	public static inline var ARCADYAN:String = "Arcadyan";
 
 	public function new()
 	{
@@ -35,7 +37,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 					ereg:new EReg("^3\\d{7}$","i"),
 					input:{
 						width:150,
-						debug: "30000000",
+						debug: "30001047",
 						prefix:"Contractor ID",
 						position: [bottom, left]
 					}
@@ -45,7 +47,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 					input:{
 						buddy: "Contractor ID",
 						width:150,
-						debug: "41780000000",
+						debug: "41212180513",
 						prefix:"VoIP Number",
 						position:[top, right]
 					}
@@ -55,14 +57,14 @@ class CheckContractorVTI extends DescisionMultipleInput
 					input:{
 						buddy: "Contractor ID",
 						width:150,
-						debug: "41780000000",
+						debug: "41787878814",
 						prefix:"Contact Number",
 						position:[bottom, left]
 					}
 				}
 			]
 		);
-		
+		sagem = Assets.getText("assets/data/sagem_fut.txt");
 		this.yesValidatedSignal.add(canITrack);
 	}
 	function setReminder()
@@ -78,7 +80,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 			var mobile = Main.customer.contract.mobile == "" ? "": "(" + Main.customer.contract.mobile + ")";
 			var iri  = Main.customer.iri == "" ? "" : "(" + Main.customer.iri + ")";
 			//Process.STORAGE.set("reminder", '$displayVoip $iri\n$owner $mobile' );
-			Process.STORAGE.set("CONTRACTOR", iri );
+			Process.STORAGE.set("CONTRACTOR", Main.customer.contract.contractorID );
 			Process.STORAGE.set("VOIP", displayVoip );
 			Process.STORAGE.set("OWNER", owner );
 			Process.STORAGE.set("CONTACT", mobile );
@@ -143,32 +145,22 @@ class CheckContractorVTI extends DescisionMultipleInput
 		//var contractorID = vtiContractorUI.getInputedText();
 		if (validateYes())
 		{
-			this._nexts = [{step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid) ? OTOidVisibleInOfferManagement : IsTicketOpened }];
+			this._nexts = [{step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? OTOidVisibleInOfferManagement : IsTicketOpened }];
 			this.parser.destroy();
 			var contractorID = multipleInputs.inputs.get("Contractor ID").getInputedText();
 			var voipVTI = multipleInputs.inputs.get("VoIP Number").getInputedText();
 			var contactNB = multipleInputs.inputs.get("Contact Number").getInputedText();
 			var voipSO = "0" + voipVTI.substr(2);
-			Main.customer.iri = contractorID;
-			Main.customer.voIP = voipSO;
+			var is_sagem = isSagem(contractorID);
+			Main.customer.contract.contractorID = contractorID;
+			Main.customer.contract.voip = voipSO;
+			Main.customer.contract.fix = voipVTI;
+			//Main.customer.voIP = voipSO;
+			Main.customer.iri = is_sagem ? contractorID : voipSO;
 			Main.customer.contract.mobile = contactNB;
-			/*
-			#if debug
-			Main.customer.iri = contractorID == "" ? "39999999": contractorID;
-			Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
-			Main.customer.contract.mobile == "" ? "41787878673": contactNB;
-			#else
-			if (Main.DEBUG && Main.user.isAdmin)
-			{
-				Main.customer.iri = contractorID == "" ? "39999999": contractorID;
-				Main.customer.voIP = voipVTI == "" ? "0200000000": voipSO;
-				Main.customer.contract.mobile = contactNB == "" ? "41787878673": contactNB;
-			}
-			else{
-				
-			}
-			#end
-			*/
+			
+			Main.customer.dataSet.set(CUST_DATA_PRODUCT, [CUST_DATA_PRODUCT_BOX => (is_sagem?SAGEM:ARCADYAN)]);
+			//trace(Main.customer.dataSet.get(CUST_DATA_PRODUCT).get(CUST_DATA_PRODUCT_BOX));
 			setReminder();
 			super.onYesClick();
 		}
@@ -185,7 +177,10 @@ class CheckContractorVTI extends DescisionMultipleInput
 	{
 		return true;
 	}
-
+	function isSagem(contrator:String)
+	{
+		return sagem.indexOf(contrator) >-1;
+	}
 	function canITrack(go:Bool)
 	{
 		if (go)

@@ -1,13 +1,14 @@
 package flow.stability;
 
 import flow._AddMemoVti;
-import tstool.process.ActionMail;
+import process.ActionMailNointernet;
+//import tstool.process.ActionMail;
 import tstool.salt.SOTickets;
 /**
  * ...
  * @author bb
  */
-class _CreateSOTechModemSpeed extends ActionMail 
+class _CreateSOTechModemSpeed extends ActionMailNointernet 
 {
 	public function new() 
 	{

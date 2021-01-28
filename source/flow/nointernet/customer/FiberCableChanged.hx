@@ -1,6 +1,7 @@
 package flow.nointernet.customer;
 
 import flow.installation.IsOTOidAligned;
+import flow.installation._EnsureCorrectPortPlug;
 import flow.nointernet.fiberbox.BoxLedStatus;
 import flow.nointernet.fiberbox._RebootBox;
 import flow.nointernet.so._CreateTicketModemCNX;
@@ -15,7 +16,7 @@ import tstool.process.TripletMultipleInput;
 //class FiberCableChanged extends DescisionMultipleInput
 class FiberCableChanged extends TripletMultipleInput
 {
-	static inline var label = "SO swap cable ticket ID";
+	public static inline var SO_TICKET_NUM = "SO swap cable ticket ID";
 	public function new() 
 		{
 			//super(280, "Store");
@@ -24,7 +25,7 @@ class FiberCableChanged extends TripletMultipleInput
 				ereg: new EReg("^1[0-9]{7}$","i"),
 				input:{
 					width:200,
-					prefix:label,
+					prefix:SO_TICKET_NUM,
 					debug:"11234567",
 					position:[bottom, left]
 				}
@@ -51,27 +52,29 @@ class FiberCableChanged extends TripletMultipleInput
 	//}
 	override function pushToHistory( buttonTxt:String, interactionType:Interactions,?values:Map<String,Dynamic>= null)
 	{
-		var ticket = multipleInputs.inputs.get(label).getInputedText() ;
+		var ticket = multipleInputs.inputs.get(SO_TICKET_NUM).getInputedText() ;
 		ticket = StringTools.trim(ticket) == ""?"":"<a target='_blank' href='http://cs.salt.ch/scripts/ticket.fcgi?_sf=0&action=doScreenDefinition&idString=viewEmail&entryId=" + ticket +"'>" + ticket + "</a>";
-		super.pushToHistory( buttonTxt, interactionType, [label => ticket]);
+		super.pushToHistory( buttonTxt, interactionType, [SO_TICKET_NUM => ticket]);
 	}
 	override public function onYesClick():Void
 	{
 		if (validateYes())
 		{
-			this._nexts = [{step: _RebootBox, params: [{step: BoxLedStatus},{step: BoxLedStatus}]}];
+			//this._nexts = [{step: _RebootBox, params: [{step: BoxLedStatus},{step: BoxLedStatus}]}];
+			this._nexts = [{step: _EnsureCorrectPortPlug}];
 			super.onYesClick();
 		}
-		else multipleInputs.inputs.get("SO swap cable ticket ID").blink(true);
+		else multipleInputs.inputs.get(SO_TICKET_NUM).blink(true);
 	}
 	override public function onMidClick():Void
 	{
 		if (validateMid())
 		{
-			this._nexts = [{step: _RebootBox, params: [{step: BoxLedStatus},{step: BoxLedStatus}]}];
+			//this._nexts = [{step: _RebootBox, params: [{step: BoxLedStatus},{step: BoxLedStatus}]}];
+			this._nexts = [{step: _EnsureCorrectPortPlug}];
 			super.onMidClick();
 		}
-		else multipleInputs.inputs.get("SO swap cable ticket ID").blink(true);
+		else multipleInputs.inputs.get(SO_TICKET_NUM).blink(true);
 	}
 	
 	override public function onNoClick():Void
@@ -96,7 +99,7 @@ class FiberCableChanged extends TripletMultipleInput
 		/**
 		 * @todo Parse real tickets extract from SO
 		 */
-		return switch (multipleInputs.inputs.get("SO swap cable ticket ID").getInputedText())
+		return switch (multipleInputs.inputs.get(SO_TICKET_NUM).getInputedText())
 		{
 			case "11111111" : false;
 			case (Std.parseInt(_) > 10755654 && Std.parseInt(_) < 12999999) => true : true;

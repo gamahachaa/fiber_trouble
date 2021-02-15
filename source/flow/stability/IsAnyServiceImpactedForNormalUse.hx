@@ -26,7 +26,7 @@ class IsAnyServiceImpactedForNormalUse extends DescisionMultipleInput
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _AddMemoVti, params: []}];
+		this._nexts = [{step: _SendSpeedTemplate, params: []}];
 		super.onNoClick();
 	}
 	

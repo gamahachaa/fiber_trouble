@@ -1,14 +1,14 @@
 package process;
 
 import flow.nointernet.vti.CheckContractorVTI;
-import tstool.process.ActionMail;
+import tstool.process.ActionTicket;
 import tstool.salt.SOTickets;
 
 /**
  * ...
  * @author bb
  */
-class ActionMailNointernet extends ActionMail 
+class ActionMailNointernet extends ActionTicket
 {
 
 	public function new(ticket:SOTickets, ?resolved:Bool=false) 

@@ -16,7 +16,8 @@ class _CreateSOTechModemSpeed extends ActionMailNointernet
 	}
 	override public function onClick():Void
 	{
-		this._nexts = [{step: _AddMemoVti, params: []}];
+		//this._nexts = [{step: _AddMemoVti, params: []}];
+		this._nexts = [{step: _SendSpeedTemplate, params: []}];
 		super.onClick();
 	}
 }

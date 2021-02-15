@@ -56,29 +56,26 @@ if %DEV%==1 (
 	powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptName%' | Out-File -encoding UTF8 %BINDIR%/index.html"
 	if "%1"=="debug" goto :follow
 ) ELSE (
-	echo "SKIPPED"
+	if "%1"=="release" goto :minify
+	if "%1"=="debug" goto :EXPORT
 )
 
-echo "MINIFY"
-:minify
-powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptNameMin%' | Out-File -encoding UTF8 %BINDIR%/index.html"
 
-rem REENAME JS FILES  ------------------------------------------------------------------------------------------------------------------------------
+:minify
+echo "MINIFY"
+powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptNameMin%' | Out-File -encoding UTF8 %BINDIR%/index.html"
+powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.min.js" -NewName %newScriptNameMin%"
+
+goto :EXPORT
 
 :follow
 
-
-rem powershell -Command "(gc %BINDIR%/index.html) -replace 'background: #000000;', 'background: #4c4d4d;' | Out-File -encoding UTF8 %BINDIR%/index.html"
-rem REENAME JS FILES  ------------------------------------------------------------------------------------------------------------------------------
 powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.js" -NewName %newScriptName%"
 powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.js.map" -NewName %newMapName%"
 
-powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.min.js" -NewName %newScriptNameMin%"
 
+:EXPORT
 
-rem powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.min.js.map" -NewName %newMapName%"
-
-rem echo %1
 
 if %DEV%==1 (
 	if "%1"=="" goto :dead
@@ -90,9 +87,6 @@ if %DEV%==1 (
 	if "%1"=="release" goto :release
 )
 
-
-
-rem echo %1
 
 :test
 

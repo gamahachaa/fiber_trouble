@@ -7,6 +7,7 @@ import flow.escalation.IsTechTicket;
 import flow.nointernet.fiberbox.IsBoxReachable;
 import flow.stability._TestSpeed;
 import flow.tv.WhatIStheTVIssue;
+import flow.wifi.HaveRepeater;
 import flow.wifi._MoveCloseUnplugRepeater;
 import tstool.process.Descision;
 
@@ -85,11 +86,17 @@ class IsTicketOpened extends Descision
 			/***********************************/
 			this._nexts = [{step: IsBoxReachable, params: []}];
 		}
-		else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, Yes) && Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, Mid))
+		else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, Yes) || Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, Mid))
 		{
+			#if debug
+			//trace("flow.nointernet.so.IsTicketOpened::onNoClick:: STABILITY" );
+			#end
 			/******************************************
 			 * STABILITY
 			/******************************************/
+			#if debug
+			//trace("flow.nointernet.so.IsTicketOpened::onNoClick::Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, No)", Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, No) );
+			#end
 			if (Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, No))
 			{
 				this._nexts = [{step: _TestSpeed, params: []}];
@@ -99,8 +106,8 @@ class IsTicketOpened extends Descision
 				this._nexts = [{
 					step: _MoveCloseUnplugRepeater,
 					params: [
-						{step:_TestSpeed}, 
-						{step:_TestSpeed}
+						{step:HaveRepeater}, 
+						{step:HaveRepeater}
 					]
 			}];
 			}

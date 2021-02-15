@@ -17,6 +17,7 @@ import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.vti.CheckContractorVTI;
 import flow.tv.remote.satltv._EnsureAppleTVInVisualRangeOfRemote;
 import tstool.MainApp;
+import tstool.process.Process;
 //import flow.nointernet.customer.FiberCableChanged;
 //import flow.tv.remote.satltv.IsAppleTVFourthGen;
 
@@ -56,13 +57,14 @@ class Main extends MainApp
 	//public static var COOKIE: FlxSave;
 	
 	public static var LAST_STEP:Class<FlxState> = flow._AddMemoVti;
+	public static inline var START_STEP:Class<Process> = Intro;
 	public static var LANGS = ["fr-FR", "de-DE", "en-GB", "it-IT"];
 	public static inline var INTRO_PIC:String = "default.png";
 	
 	public function new()
 	{
 		super({
-				cookie:"nointernet_20210112.user",
+				cookie:"nointernet_20210205.user",
 				scriptName:"nointernet"
 				
 		});
@@ -75,34 +77,15 @@ class Main extends MainApp
 		DEBUG = MainApp.debug;
 		VERSION_TRACKER = MainApp.versionTracker;
 		customer = MainApp.cust;
-		//user = agent;
 		
-		#if debug
-		//addChild(new FlxGame(1400, 880, IsCompTicketOpened, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, _SelectPP, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, ElligibleForRet, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, ActivateInternetEurope, 1, 30, 30, true, true));
-		addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
-		//addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
-		#else
 		if (Browser.navigator.userAgent.indexOf("Firefox") == -1)
 		{
-			Browser.window.alert("I know your browser is the best on this planet\n\n.But this tool is only fully tested with Firefox...\n\nIt should work with all major browsers but we cannot guarantee all functionalities @100%. \n\nThanks you to acknowledge this.");
+			Browser.window.alert("This tool is only fully tested with Firefox...\n\nSome funcitonalities does not work with your browser " + Browser.navigator.userAgent);
 		}
 		addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
-		#end
 
 	}
 
-	//public function onLRSdata(data:String)
-	//{
-		//trace(data);
-	//}
-
-	//static public function TOGGLE_MAIN_STYLE()
-	//{
-		//THEME = THEME == WHITE_THEME ? DARK_THEME: WHITE_THEME;
-	//}
 	static public function setUpSystemDefault(?block:Bool = false )
 	{
 		FlxG.sound.soundTrayEnabled = false;
@@ -112,12 +95,21 @@ class Main extends MainApp
 	}
     static public function MOVE_ON(?old:Bool=false)
 	{
+		var next:Process;
+		var tuto:Process = new flow.TutoTree();
 		setUpSystemDefault(true);
 		#if !debug
 		Main.track.setActor();
 		#end
-		tongue.initialize(MainApp.agent.mainLanguage, ()->(FlxG.switchState( old ? new flow.Intro():new flow.TutoTree() )) );
-		//tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new _MajorUpdate():new flow.TutoTree() )) );
+		#if debug
+			/**
+			 * USe this  to debug a slide
+			 */
+			next = new flow.Intro();
+		#else
+			next = new Main.START_STEP();
+		#end
+		tongue.initialize(MainApp.agent.mainLanguage, ()->(FlxG.switchState( old ? next : tuto)) );
 	}
 
 }

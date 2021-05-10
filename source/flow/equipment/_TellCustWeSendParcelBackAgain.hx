@@ -8,11 +8,9 @@ import tstool.process.Action;
  */
 class _TellCustWeSendParcelBackAgain extends Action 
 {
-
-override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [ new IsStatusDelivered()];
-		super.create();
+		this._nexts = [{step: IsStatusDelivered, params: []}];
+		super.onClick();
 	}
-	
 }

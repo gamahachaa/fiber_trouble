@@ -8,11 +8,9 @@ import tstool.process.Action;
  */
 class _InformShipmentStatusMyAccount extends Action 
 {
-
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _OpenPostParcelTracking()];
-		super.create();
+		this._nexts = [{step: _OpenPostParcelTracking, params: []}];
+		super.onClick();
 	}
-	
 }

@@ -8,9 +8,10 @@ import tstool.process.Action;
  */
 class _ResetAppleTV extends Action
 {
-	override public function create()
+	
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _CreateAppleIDorBypass() ];
-		super.create();
+		this._nexts = [{step: _CreateAppleIDorBypass, params: []}];
+		super.onClick();
 	}
 }

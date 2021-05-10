@@ -12,28 +12,30 @@ import tstool.process.Triplet;
 class _RedoTestWithAnotherDevice extends Triplet 
 {
 	
-	override public function new()
+	override public function onYesClick():Void
 	{
-		super();
-		
+		this._nexts = [{step: _ShareAdviceOptimalWifi, params: []}];
+		super.onYesClick();
 	}
-	override public function create()
+	override public function onNoClick():Void
 	{
-		var nextNo:Array<Process> = null;
-		/**
-		 * @todo String to Class<Process> / isInHistory
-		 */
-		if (Main.HISTORY.isInHistory("flow.Intro", No))
-		{
-			nextNo = [new _CreateSOTicketSaltTV()];
-		}
-		else{
-			nextNo = [new _CreateSOTechModemSpeed()];
-		}
-		this._nextYesProcesses = [new _ShareAdviceOptimalWifi()];
-		this._nextNoProcesses = nextNo;
-		this._nextMidProcesses = nextNo;
-		super.create();
+		this._nexts = [{step: getNext(), params: []}];
+		super.onNoClick();
 	}
 	
+	override public function onMidClick():Void
+	{
+		this._nexts = [{step: getNext(), params: []}];
+		super.onMidClick();
+	}
+	function getNext():Class<Process>
+	{
+		return if (Main.HISTORY.isClassInteractionInHistory(flow.Intro, No))
+		{
+			_CreateSOTicketSaltTV;
+		}
+		else{
+			_CreateSOTechModemSpeed;
+		}
+	}
 }

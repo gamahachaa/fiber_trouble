@@ -10,15 +10,15 @@ import tstool.process.Descision;
  */
 class BootSequence extends Descision
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "La sequence de boot est elle :?";
-		//this._detailTxt = "\t- Fiber LED RED (steady/blinking),\n\t - Fiber LED GREEN BLINKING,\n WWW OFF,\n Fiber LED OFF";
-		//this._illustration = "";
-		this._nextYesProcesses = [new FiberCableChanged()];
-		this._nextNoProcesses = [new flow._AddMemoVti()];
-		super.create();
+		this._nexts = [{step: FiberCableChanged, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onNoClick();
 	}
 
 }

@@ -8,14 +8,9 @@ import tstool.process.Action;
  */
 class _Pay extends Action
 {
-
-	override public function create():Void
+	override public function onClick():Void
 	{
-		//this._titleTxt = "Le client doit payer les montants en sourfrance.";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextProcesses = [new _InformUsualPaymentDelays()];
-		super.create();
+		this._nexts = [{step: _InformUsualPaymentDelays, params: []}];
+		super.onClick();
 	}
-
 }

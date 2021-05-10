@@ -10,14 +10,22 @@ import tstool.process.Triplet;
  */
 class DidCustomerSendProffCancel extends Triplet 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		var next = new _SoPluginUseInfo();
-		this._nextNoProcesses = [ new _AddMemoVti()];
-		this._nextYesProcesses = [next];
-		this._nextMidProcesses= [next];
-		super.create();
+		this._nexts = [{step: _SoPluginUseInfo, params: []}];
+		super.onYesClick();
 	}
 	
+	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onNoClick();
+	}
+	
+	override public function onMidClick():Void
+	{
+		this._nexts = [{step: _SoPluginUseInfo, params: []}];
+		super.onMidClick();
+	}
 }

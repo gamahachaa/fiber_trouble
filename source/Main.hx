@@ -1,7 +1,7 @@
 package;
 
-import firetongue.CSV;
-import firetongue.FireTongue;
+//import firetongue.CSV;
+//import firetongue.FireTongue;
 import flixel.FlxG;
 import flixel.FlxGame;
 import flixel.FlxState;
@@ -12,177 +12,80 @@ import flixel.text.FlxText.FlxTextFormatMarkerPair;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
 import flow.Intro;
+import flow.nointernet.customer.FiberCableChanged;
+import flow.nointernet.so._CreateTicketModemCNX;
+import flow.nointernet.vti.CheckContractorVTI;
+import flow.tv.remote.satltv._EnsureAppleTVInVisualRangeOfRemote;
+import tstool.MainApp;
+import tstool.process.Process;
+//import flow.nointernet.customer.FiberCableChanged;
+//import flow.tv.remote.satltv.IsAppleTVFourthGen;
 
 import js.Browser;
 import js.html.Location;
 import tstool.layout.History;
 import tstool.layout.Login;
 import tstool.layout.SaltColor;
-import tstool.utils.Mail;
+//import tstool.utils.Mail;
 import tstool.utils.Translator;
 import tstool.utils.XapiTracker;
 import openfl.Assets;
 import openfl.display.Sprite;
-import tstool.process.Triplet;
+//import tstool.process.Triplet;
 import tstool.salt.Agent;
 import tstool.salt.Customer;
 //import tstool.utils.Mail.MailReciepient;
 import tstool.utils.Csv;
 import tstool.utils.VersionTracker;
 
-typedef BasicFormat =
-{
-	var font:String;
-	var size:Int;
-}
-typedef ThemeColor =
-{
-	var title:FlxColor;
-	var basic:FlxColor;
-	var basicStrong:FlxTextFormatMarkerPair;
-	var basicEmphasis:FlxTextFormatMarkerPair;
-	var meta:FlxColor;
-	var interaction:FlxColor;
-	var bg:FlxColor;
-}
-typedef Ticket =
-{
-	var domain:String;
-	var number:String;
-	var queue:String;
-	var desc:String;
-	var email:String;
-}
-class Main extends Sprite
-{
-	public static var HISTORY:History = new History();
-	//public static var tongue:FireTongue = new FireTongue();
-	public static var tongue:Translator = new Translator();
-	public static var user:Agent;
-	public static var customer:Customer;
 
-	public static var track:XapiTracker;
+class Main extends MainApp
+{
+	public static var LIB_FOLDER:String;
+	//public static var MAIL_WRAPPER_URL:String = LIB_FOLDER + "php/mail/index.php";
 	
-	static inline var TITLE_FONT:String = "assets/fonts/Lato-Black.ttf";
-	static inline var BASIC_FONT:String = "assets/fonts/Lato-Regular.ttf";
-	public static inline var MAIL_WRAPPER_URL:String = "php/mail/index.php";
-	public static inline var LIB_FOLDER:String = "/";
-
+	public static var HISTORY:History;
 	public static var adminFile:tstool.utils.Csv;
-	public static var TITLE_FMT:BasicFormat = {font:TITLE_FONT, size:20};
-	public static var BASIC_FMT:BasicFormat = {font:BASIC_FONT, size:14};
-	public static var META_FMT:BasicFormat = {font:TITLE_FONT, size:16};
-	public static var INTERACTION_FMT:BasicFormat = {font:TITLE_FONT, size:18};
-
+	public static var tongue:Translator;
+	//public static var user:Agent;
+	public static var customer:Customer;
+	public static var track:XapiTracker;
 	public static var VERSION:String;
 	public static var VERSION_TRACKER:VersionTracker;
 	public static var LOCATION:Location;
 	public static var DEBUG:Bool;
+	//public static var COOKIE: FlxSave;
+	
 	public static var LAST_STEP:Class<FlxState> = flow._AddMemoVti;
-	public static var LANGS = ["fr-FR","de-DE","en-GB","it-IT"];
-	/**
-	 * FORMAT COLOR
-	 * */
-	public static var DARK_THEME :ThemeColor =
-	{
-		bg: SaltColor.BLACK_PURE,
-		title:SaltColor.WHITE,
-		basic:SaltColor.WHITE,
-		basicStrong:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.TUQUOISE,false),"<b>"),
-		basicEmphasis:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.ORANGE,false),"<em>"),
-		meta:SaltColor.MUSTARD,
-		interaction: SaltColor.WHITE
-
-	};
-	public static var WHITE_THEME :ThemeColor =
-	{
-		bg: SaltColor.WHITE,
-		title:SaltColor.BLACK_PURE,
-		basic:SaltColor.BLACK,
-		basicStrong:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.RED,true),"<b>"),
-		basicEmphasis:new FlxTextFormatMarkerPair(new FlxTextFormat(SaltColor.RED,false,true),"<em>"),
-		meta:SaltColor.TUQUOISE,
-		interaction: SaltColor.DARK_GRAY
-
-	};
-
-	public static var COOKIE: FlxSave;
-	public static var THEME:ThemeColor;
-	//public static var LRS:LearninLocker;
+	public static inline var START_STEP:Class<Process> = Intro;
+	public static var LANGS = ["fr-FR", "de-DE", "en-GB", "it-IT"];
+	public static inline var INTRO_PIC:String = "default.png";
+	
 	public function new()
 	{
-		super();
-		FlxAssets.FONT_DEFAULT =  "Consolas";
-		adminFile = new Csv(Assets.getText("assets/data/admins.txt"),",",false);
-		//trace(adminFile);
-		COOKIE = new FlxSave();
-		COOKIE.bind("nointernet-20200421.user");
-
-		LOCATION = Browser.location;
-		track =  new XapiTracker();
-		DEBUG = LOCATION.origin.indexOf("qook.test.salt.ch") > -1;
-		VERSION_TRACKER = new VersionTracker( LOCATION.origin + LOCATION.pathname+ "php/version/index.php");
-		THEME = DARK_THEME;
+		super({
+				cookie:"nointernet_20210205.user",
+				scriptName:"nointernet"
+				
+		});
+		LIB_FOLDER = "../trouble/";
+		tongue = MainApp.translator;
+		//COOKIE = save;
+		HISTORY = MainApp.stack;
+		LOCATION = MainApp.location;
+		track =  MainApp.xapiTracker;
+		DEBUG = MainApp.debug;
+		VERSION_TRACKER = MainApp.versionTracker;
+		customer = MainApp.cust;
 		
-		
-		Main.customer = new Customer();
-		tongue.initialize("fr-FR",
-					function(){
-					#if debug
-					//trace(tongue.get("$flow.nointernet.vti.CheckContractorVTI_UI1", "meta"));
-					#end
-				});
-		#if debug
-		trace(FlxG.VERSION);
-		Main.user = new Agent();
-		
-		
-		addChild(new FlxGame(1400, 880, Intro, 1, 30, 30, true, true));
-		
-		
-		
-		//addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
-		
-		setUpSystemDefault(true);
-		
-		#else
-
-		if ( DEBUG )
-		{
-			//trace(Browser.navigator.appCodeName);
-			//trace(Browser.navigator.appName);
-			//trace(Browser.navigator.appVersion);
-			//trace(Browser.navigator.buildID);
-			//trace(Browser.navigator.permissions);
-			//trace(Browser.navigator.platform);
-			//trace(Browser.navigator.plugins);
-			//trace(Browser.navigator.product);
-			//trace(Browser.navigator.productSub);
-			//trace(Browser.navigator.userAgent);
-			//trace(Browser.navigator.vendor);
-			//trace(Browser.navigator.vendorSub);
-
-		}
 		if (Browser.navigator.userAgent.indexOf("Firefox") == -1)
 		{
-			Browser.window.alert("I know your browser is the best on this planet\n\n.But this tool is only fully tested with Firefox...\n\nIt should work with all major browsers but we cannot guarantee all functionalities @100%. \n\nThanks you to acknowledge this.");
+			Browser.window.alert("This tool is only fully tested with Firefox...\n\nSome funcitonalities does not work with your browser " + Browser.navigator.userAgent);
 		}
-
 		addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
 
-		#end
-		//
 	}
 
-	public function onLRSdata(data:String)
-	{
-		trace(data);
-	}
-
-	static public function TOGGLE_MAIN_STYLE()
-	{
-		THEME = THEME == WHITE_THEME ? DARK_THEME: WHITE_THEME;
-	}
 	static public function setUpSystemDefault(?block:Bool = false )
 	{
 		FlxG.sound.soundTrayEnabled = false;
@@ -192,10 +95,21 @@ class Main extends Sprite
 	}
     static public function MOVE_ON(?old:Bool=false)
 	{
+		var next:Process;
+		var tuto:Process = new flow.TutoTree();
 		setUpSystemDefault(true);
-		track.setActor();
-		tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new flow.Intro():new flow.TutoTree() )) );
-		//tongue.initialize(Main.user.mainLanguage, ()->(FlxG.switchState( old ? new _MajorUpdate():new flow.TutoTree() )) );
+		#if !debug
+		Main.track.setActor();
+		#end
+		#if debug
+			/**
+			 * USe this  to debug a slide
+			 */
+			next = new flow.Intro();
+		#else
+			next = new Main.START_STEP();
+		#end
+		tongue.initialize(MainApp.agent.mainLanguage, ()->(FlxG.switchState( old ? next : tuto)) );
 	}
 
 }

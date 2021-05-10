@@ -9,11 +9,9 @@ import tstool.process.Action;
  */
 class _InformSaltIsFixing extends Action 
 {
-
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _AddMemoVti()];
-		super.create();
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onClick();
 	}
-	
 }

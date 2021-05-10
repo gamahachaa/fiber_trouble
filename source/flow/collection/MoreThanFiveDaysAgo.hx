@@ -8,15 +8,14 @@ import tstool.process.Descision;
  */
 class MoreThanFiveDaysAgo extends Descision 
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "Il y à plus de 5 jours ?";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextYesProcesses = [ new _PaymentSearch()];
-		this._nextNoProcesses = [ new IsPaymentOneHourOldVisible()];
-		super.create();
+		this._nexts = [{step: _PaymentSearch, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: IsPaymentOneHourOldVisible, params: []}];
+		super.onNoClick();
+	}
 }

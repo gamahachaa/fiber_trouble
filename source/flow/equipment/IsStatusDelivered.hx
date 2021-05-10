@@ -8,12 +8,14 @@ import tstool.process.Descision;
  */
 class IsStatusDelivered extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new _TellCustToGoToPost()];
-		this._nextYesProcesses = [new _GiveStatusAndRemindMyaccount()];
-		super.create();
+		this._nexts = [{step: _GiveStatusAndRemindMyaccount, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _TellCustToGoToPost, params: []}];
+		super.onNoClick();
+	}
 }

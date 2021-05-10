@@ -10,13 +10,22 @@ import tstool.process.Triplet;
 class LanOrWiFi extends Triplet 
 {
 
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		var next = new _ExplainMainSteps();
-		this._nextNoProcesses = [ next ];
-		this._nextYesProcesses = [ next ];
-		this._nextMidProcesses = [ next ];
-		super.create();
+		this._nexts = [{step: _ExplainMainSteps, params: []}];
+		super.onYesClick();
 	}
 	
+	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _ExplainMainSteps, params: []}];
+		super.onNoClick();
+	}
+	
+	override public function onMidClick():Void
+	{
+		this._nexts = [{step: _ExplainMainSteps, params: []}];
+		super.onMidClick();
+	}
 }

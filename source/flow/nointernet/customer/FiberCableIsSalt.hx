@@ -5,21 +5,20 @@ import flow.swapcable.SwapFiberCable;
 import tstool.process.Descision;
 
 /**
- * ...
+ * @todo ARCHIVE
  * @author ...
  */
 class FiberCableIsSalt extends Descision
 {
 
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "Le câble Fiber est un câble Salt ?";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		//this._nextYesProcesses = [new LedPowerOn()];
-		this._nextYesProcesses = [new SwapFiberCable()];
-		this._nextNoProcesses = [new SwapFiberCable()];
-		super.create();
+		this._nexts = [{step: SwapFiberCable, params: []}];
+		super.onYesClick();
 	}
-
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: SwapFiberCable, params: []}];
+		super.onNoClick();
+}
 }

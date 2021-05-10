@@ -8,12 +8,14 @@ import tstool.process.Descision;
  */
 class HowConnected extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new _EnsureLanCableWellPlugged()];
-		this._nextYesProcesses = [new IsOtherWifiDeviceOK()];
-		super.create();
+		this._nexts = [{step: IsOtherWifiDeviceOK, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _EnsureLanCableWellPlugged, params: []}];
+		super.onNoClick();
+	}
 }

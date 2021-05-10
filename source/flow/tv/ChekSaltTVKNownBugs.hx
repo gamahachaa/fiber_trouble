@@ -10,12 +10,14 @@ import tstool.process.Descision;
  */
 class ChekSaltTVKNownBugs extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		//this._nextProcesses = [new _QuitAndRelaunchSaltTV()];
-		this._nextYesProcesses = [new _InformSaltIsFixing()];
-		this._nextNoProcesses = [new _QuitAndRelaunchSaltTV()];
-		super.create();
+		this._nexts = [{step: _InformSaltIsFixing, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _QuitAndRelaunchSaltTV, params: []}];
+		super.onNoClick();
 	}
 }

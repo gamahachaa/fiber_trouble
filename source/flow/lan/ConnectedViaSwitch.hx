@@ -11,13 +11,14 @@ import tstool.process.Descision;
 class ConnectedViaSwitch extends Descision
 {
 
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "L'appareil est connecté via un switch";
-		//this._detailTxt = "(pas directement sur la box)";
-		//this._illustration = "";
-		this._nextYesProcesses = [new ConnectDirectToFiberbox()];
-		this._nextNoProcesses = [new _RemoveAllCablesConnectedToBox()];
-		super.create();
+		this._nexts = [{step: ConnectDirectToFiberbox, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _RemoveAllCablesConnectedToBox, params: []}];
+		super.onNoClick();
 	}
 }

@@ -23,10 +23,29 @@ class _HowFerquent extends ActionMultipleInput
 		}]
 		);
 	}
-	override public function create()
+	//override public function create()
+	//{
+		//this._nextProcesses = [new IsSameIssueWithOtherApps()];
+		//super.create();
+	//}
+	
+	
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new IsSameIssueWithOtherApps()];
-		super.create();
+		if (validate())
+		{
+			this._nexts = [{step: IsSameIssueWithOtherApps, params: []}];
+			super.onClick();
+		}
 	}
 	
+	/****************************
+	* Needed only for validation
+	*****************************/
+	/*
+	override public function validate():Bool
+	{
+		return true;
+	}
+	*/
 }

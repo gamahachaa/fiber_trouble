@@ -2,12 +2,20 @@
 
 @echo off
 
-if "%1"=="" goto :dead
-if "%1"=="debug" goto :publication
-if "%1"=="release" goto :publication
+set DEV=1
+echo "START"
+if %DEV%==1 (
+	if "%1"=="" goto :dead
+	if "%1"=="debug" goto :dead
+	if "%1"=="release" goto :publication
+) ELSE ( 
+	if "%1"=="" goto :dead
+	if "%1"=="debug" goto :publication
+	if "%1"=="release" goto :publication
+)
 
 :publication
-
+echo "publication"
 rem PREPARE DATESTAMP ------------------------------------------------------------------------------------------------------------------------------
 for /f "tokens=2 delims==" %%a in ('wmic OS Get localdatetime /value') do set "dt=%%a"
 set "YY=%dt:~2,2%" & set "YYYY=%dt:~0,4%" & set "MM=%dt:~4,2%" & set "DD=%dt:~6,2%"
@@ -42,39 +50,43 @@ powershell -Command "Rename-Item -Path "%BINDIR%/tmp.html" -NewName index_howl.h
 
 rem powershell -Command "(gc %BINDIR%/index.html) -replace '%HOWL_TARGET%', '%HOWL_TARGET%\n%HOWL%' | Out-File -encoding UTF8 %BINDIR%/index.html"
 rem powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptName%' | Out-File -encoding UTF8 %BINDIR%/index.html"
+echo "DEV=%DEV%"
+if %DEV%==1 (
+	if "%1"=="release" goto :minify
+	powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptName%' | Out-File -encoding UTF8 %BINDIR%/index.html"
+	if "%1"=="debug" goto :follow
+) ELSE (
+	if "%1"=="release" goto :minify
+	if "%1"=="debug" goto :EXPORT
+)
 
-if "%1"=="release" goto :minify
-powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptName%' | Out-File -encoding UTF8 %BINDIR%/index.html"
-
-if "%1"=="debug" goto :follow
-rem min 
 
 :minify
+echo "MINIFY"
 powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptNameMin%' | Out-File -encoding UTF8 %BINDIR%/index.html"
+powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.min.js" -NewName %newScriptNameMin%"
 
-rem REENAME JS FILES  ------------------------------------------------------------------------------------------------------------------------------
+goto :EXPORT
 
 :follow
 
-powershell -Command "(gc %BINDIR%/index.html) -replace 'background: #000000;', 'background: #4c4d4d;' | Out-File -encoding UTF8 %BINDIR%/index.html"
-rem REENAME JS FILES  ------------------------------------------------------------------------------------------------------------------------------
 powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.js" -NewName %newScriptName%"
 powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.js.map" -NewName %newMapName%"
 
-powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.min.js" -NewName %newScriptNameMin%"
+
+:EXPORT
 
 
-rem powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.min.js.map" -NewName %newMapName%"
+if %DEV%==1 (
+	if "%1"=="" goto :dead
+	if "%1"=="debug" goto :dead
+	if "%1"=="release" goto :test
+) ELSE ( 
+	if "%1"=="" goto :dead
+	if "%1"=="debug" goto :test
+	if "%1"=="release" goto :release
+)
 
-rem echo %1
-
- 
-
-if "%1"=="" goto :dead
-if "%1"=="debug" goto :test
-if "%1"=="release" goto :release
-
-rem echo %1
 
 :test
 

@@ -8,12 +8,10 @@ import tstool.process.Action;
  */
 class ConnectDirectToFiberbox extends Action 
 {
-	override public function create():Void
+	
+	override public function onClick():Void
 	{
-		//this._titleTxt = "Connect l'appareil en LAN sur la Box directement";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextProcesses = [new _RemoveAllCablesConnectedToBox()];
-		super.create();
+		this._nexts = [{step: _RemoveAllCablesConnectedToBox, params: []}];
+		super.onClick();
 	}
 }

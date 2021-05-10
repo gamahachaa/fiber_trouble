@@ -2,7 +2,6 @@ package flow.nointernet.vti;
 
 import flow.collection._VerifyCollectionStep;
 import flow.lan.ConnectedViaSwitch;
-import flow.nointernet.customer.ConnectionType;
 import flow.wifi.WifiOnInDashboard;
 import tstool.process.Descision;
 
@@ -12,27 +11,21 @@ import tstool.process.Descision;
  */
 class IsBarred extends Descision
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		
-		this._nextYesProcesses = [new _VerifyCollectionStep()];
-				/**
-		 * @todo String to Class<Process> / isInHistory
-		 */
-		if (Main.HISTORY.isInHistory("flow.all.customer.LanOrWiFi", Yes))
+		this._nexts = [{step: _VerifyCollectionStep, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		if (Main.HISTORY.isClassInteractionInHistory(flow.all.customer.LanOrWiFi, Yes))
 		{
-			/******************************
-			 * WIFI
-			/******************************/
-			this._nextNoProcesses = [new WifiOnInDashboard()];
+			this._nexts = [{step: WifiOnInDashboard, params: []}];
 		}
 		else{
-			/******************************
-			 * LAN and/or WiFi
-			/******************************/
-			this._nextNoProcesses = [new ConnectedViaSwitch()];
+			this._nexts = [{step: ConnectedViaSwitch, params: []}];
 		}
-		super.create();
+		
+		super.onNoClick();
 	}
 }

@@ -1,23 +1,24 @@
 package flow.tv;
 
 import flow._AddMemoVti;
-import tstool.process.ActionMail;
+import process.ActionMailNointernet;
+//import tstool.process.ActionMail;
 import tstool.salt.SOTickets;
 
 /**
  * ...
  * @author bb
  */
-class _CreateSOTicketSaltTV extends ActionMail 
+class _CreateSOTicketSaltTV extends ActionMailNointernet 
 {
 
 	public function new() 
 	{
 		super(SOTickets.FIX_541);
 	}
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new flow._AddMemoVti()];
-		super.create();
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onClick();
 	}
 }

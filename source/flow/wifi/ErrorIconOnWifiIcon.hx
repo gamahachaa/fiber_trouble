@@ -12,14 +12,14 @@ import tstool.process.Descision;
 class ErrorIconOnWifiIcon extends Descision
 {
 
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "Erreur sur l'Icone du WiFi ?";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextNoProcesses = [new _CanSeeGoogle()];
-		this._nextYesProcesses = [new _CreateTicketWifiIssue()];
-		super.create();
+		this._nexts = [{step: _CreateTicketWifiIssue, params: []}];
+		super.onYesClick();
 	}
-
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _CanSeeGoogle, params: []}];
+		super.onNoClick();
+	}
 }

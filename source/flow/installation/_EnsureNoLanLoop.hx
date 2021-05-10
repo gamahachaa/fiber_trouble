@@ -8,22 +8,17 @@ import flow.swapcable.SwapFiberCable;
 import tstool.process.Action;
 import tstool.process.Process;
 
-class _EnsureNoLanLoop extends Action {
-    override public function create():Void
-        {
-            /**
-			* @todo String to Class<Process> / isInHistory
-			*/
-			var next:Process;
-			if (Main.HISTORY.isInHistory("flow.nointernet.customer.FiberCableChanged", No))
-			{
-				next = new SwapFiberCable();
-			}
-			else
-			{
-				next = new _CreateTicketModemCNX();
-			}
-            this._nextProcesses = [next];
-            super.create();
-        }
+class _EnsureNoLanLoop extends Action 
+{
+	override public function onClick():Void
+	{
+		var next:Class<Process> = if (Main.HISTORY.isClassInteractionInHistory(flow.nointernet.customer.FiberCableChanged, No)){
+			SwapFiberCable;
+		}
+		else{
+			_CreateTicketModemCNX;
+		}
+		this._nexts = [{step: next, params: []}];
+		super.onClick();
+	}
 }

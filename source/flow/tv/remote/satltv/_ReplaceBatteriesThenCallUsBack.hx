@@ -10,13 +10,9 @@ import tstool.process.Action;
  */
 class _ReplaceBatteriesThenCallUsBack extends Action 
 {
-
-		override public function create()
-		{
-			/************************************
-			 * Contiinuer to Hardware check
-			/************************************/
-			this._nextProcesses = [new IsAppleTVvisibleOnTVScreen()];
-			super.create();
-		}
+	override public function onClick():Void
+	{
+		this._nexts = [{step: IsAppleTVvisibleOnTVScreen, params: []}];
+		super.onClick();
+	}
 }

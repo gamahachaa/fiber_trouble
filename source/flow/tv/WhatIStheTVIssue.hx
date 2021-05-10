@@ -10,21 +10,31 @@ import tstool.process.Triplet;
  */
 class WhatIStheTVIssue extends Triplet 
 {
-
-	override public function create()
+	override public function onYesClick():Void
+	{
+		/***********************************
+		 * TV
+		/***********************************/
+		this._nexts = [{step: WichRemote, params: []}];
+		super.onYesClick();
+	}
+	
+	
+	override public function onNoClick():Void
 	{
 		/***********************************
 		 * SOUND
 		/***********************************/
-		this._nextNoProcesses = [new _StoreCustomersSetup()];
+		this._nexts = [{step: _StoreCustomersSetup, params: []}];
+		super.onNoClick();
+	}
+	
+	override public function onMidClick():Void
+	{
 		/***********************************
 		 * REMOTE
 		/***********************************/
-		this._nextYesProcesses = [ new WichRemote()];
-		/***********************************
-		 * TV
-		/***********************************/
-		this._nextMidProcesses = [ new IsAppleTVvisibleOnTVScreen()];
-		super.create();
+		this._nexts = [{step: IsAppleTVvisibleOnTVScreen, params: []}];
+		super.onMidClick();
 	}
 }

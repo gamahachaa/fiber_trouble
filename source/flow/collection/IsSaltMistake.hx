@@ -8,15 +8,14 @@ import tstool.process.Descision;
  */
 class IsSaltMistake extends Descision 
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "Est-ce une erreur crée par Salt ?";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextYesProcesses = [new _SoTicketTreeTwoOne()];
-		this._nextNoProcesses = [new PayedAlready()];
-		super.create();
+		this._nexts = [{step: _SoTicketTreeTwoOne, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: PayedAlready, params: []}];
+		super.onNoClick();
+	}
 }

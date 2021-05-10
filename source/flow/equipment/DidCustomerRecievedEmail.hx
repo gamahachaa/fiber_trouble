@@ -8,12 +8,14 @@ import tstool.process.Descision;
  */
 class DidCustomerRecievedEmail extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new VTIMailCliackAcceptSent()];
-		this._nextYesProcesses = [new _InformShipmentStatusMyAccount()];
-		super.create();
+		this._nexts = [{step: _InformShipmentStatusMyAccount, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: VTIMailCliackAcceptSent, params: []}];
+		super.onNoClick();
+	}
 }

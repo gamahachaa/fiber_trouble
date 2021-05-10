@@ -9,14 +9,9 @@ import tstool.process.Action;
  */
 class _InformTicketIsBeingTreated extends Action 
 {
-
-	override public function create():Void
+	override public function onClick():Void
 	{
-		//this._titleTxt = "Informer le client que son ticket est en cours de traitement.";
-		//this._detailTxt = "Nous allons le contacter prochainement.";
-		//this._illustration = "";
-		this._nextProcesses = [ new IsMifiNeeded()];
-		super.create();
+		this._nexts = [{step: IsMifiNeeded, params: []}];
+		super.onClick();
 	}
-	
 }

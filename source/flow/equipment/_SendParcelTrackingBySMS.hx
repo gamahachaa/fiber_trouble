@@ -8,10 +8,9 @@ import tstool.process.Action;
  */
 class _SendParcelTrackingBySMS extends Action
 {
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _InformShipmentStatusMyAccount()];
-		super.create();
+		this._nexts = [{step: _InformShipmentStatusMyAccount, params: []}];
+		super.onClick();
 	}
-
 }

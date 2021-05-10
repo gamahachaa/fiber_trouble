@@ -1,6 +1,5 @@
 package flow.stability;
 
-import flow.nointernet.postLedChecks._ReadRXValues;
 import tstool.process.Descision;
 import tstool.process.DescisionMultipleInput;
 
@@ -25,16 +24,18 @@ class IsAnyServiceImpactedForNormalUse extends DescisionMultipleInput
 		}]
 		);
 	}
-	override public function create()
+	override public function onNoClick():Void
 	{
-		this._nextNoProcesses = [new _AddMemoVti()];
-		this._nextYesProcesses = [new _CreateSOTechModemSpeed()];
-		super.create();
+		this._nexts = [{step: _SendSpeedTemplate, params: []}];
+		super.onNoClick();
 	}
+	
+	
 	override public function onYesClick()
 	{
 		if (validateYes())
 		{
+			this._nexts = [{step: _CreateSOTechModemSpeed, params: []}];
 			super.onYesClick();
 		}
 	}

@@ -9,11 +9,9 @@ import tstool.process.Action;
  */
 class _SteupSaltTVRemoteWithRegularTV extends Action 
 {
-
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new DoesVolumeOnTvChange()];
-		super.create();
+		this._nexts = [{step: DoesVolumeOnTvChange, params: []}];
+		super.onClick();
 	}
-	
 }

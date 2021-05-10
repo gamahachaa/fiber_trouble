@@ -8,14 +8,9 @@ import tstool.process.Action;
  */
 class _AddMemoVti extends Action 
 {
-
-	override public function create():Void
+	override public function onClick():Void
 	{
-		//this._titleTxt = "Ajouter un mémo dans VTI";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextProcesses = [new End()];
-		super.create();
+		this._nexts = [{step: End, params: []}];
+		super.onClick();
 	}
-	
 }

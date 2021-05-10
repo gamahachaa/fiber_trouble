@@ -8,12 +8,9 @@ import tstool.process.Action;
  */
 class _OpenSaltTVApp extends Action 
 {
-
-	override public function create()
+	override public function onClick():Void
 	{
-		//this._nextProcesses = [new IsMessageInvitingToContactCC()];
-		this._nextProcesses = [new CanExploreMenu()];
-		super.create();
+		this._nexts = [{step: CanExploreMenu, params: []}];
+		super.onClick();
 	}
-	
 }

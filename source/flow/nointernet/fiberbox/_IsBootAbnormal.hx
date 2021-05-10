@@ -7,19 +7,18 @@ import flow.swapcable.SwapFiberCable;
 import tstool.process.Triplet;
 
 /**
- * ...
+ * @todo ARCHIVE
  * @author bb
  */
 class _IsBootAbnormal extends Triplet 
 {
 
-	override public function create()
-	{
-		this._nextNoProcesses = [new WhatColorBlink()];
-		this._nextYesProcesses = [new WhichWeirdBoot()];
-		//this._nextYesProcesses = [new _SwapBox()];
-		this._nextMidProcesses= [new SwapFiberCable()];
-		super.create();
-	}
+	//override public function create()
+	//{
+		//this._nextNoProcesses = [new WhatColorBlink()];
+		//this._nextYesProcesses = [new WhichWeirdBoot()];
+		//this._nextMidProcesses= [new SwapFiberCable()];
+		//super.create();
+	//}
 	
 }

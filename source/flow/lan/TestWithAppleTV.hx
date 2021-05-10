@@ -9,15 +9,14 @@ import tstool.process.Descision;
  */
 class TestWithAppleTV extends Descision
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "Est-il possible d'essayer avec un autre appareil ?";
-		//this._detailTxt = "Si l'AppleTV est dipo, essayer avec sinon un autre appareil en LAN.";
-		//this._illustration = "";
-		this._nextYesProcesses = [new LanConnectionOK ()];
-		this._nextNoProcesses = [new _TestWithAnotherLanDevice()];
-		super.create();
+		this._nexts = [{step: LanConnectionOK, params: []}];
+		super.onYesClick();
 	}
-
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _TestWithAnotherLanDevice, params: []}];
+		super.onNoClick();
+	}
 }

@@ -5,16 +5,16 @@ import flow.wifi._MoveCloseUnplugRepeater;
 import tstool.process.Descision;
 
 /**
- * ...
+ * @todo ARCHIVE
  * @author bb
  */
 class _CanCheckWithLan extends Descision 
 {
-	override public function create()
-	{
-		this._nextNoProcesses = [ new _IsIssueWithOtherApps()];
-		this._nextYesProcesses = [new _ConnectAppleTVtoOneGhz()];
-		super.create();
-	}
+	//override public function create()
+	//{
+		//this._nextNoProcesses = [ new _IsIssueWithOtherApps()];
+		//this._nextYesProcesses = [new _ConnectAppleTVtoOneGhz()];
+		//super.create();
+	//}
 	
 }

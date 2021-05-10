@@ -9,12 +9,14 @@ import tstool.process.Descision;
  */
 class IsOtherWifiDeviceOK extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [ new WifiOnInDashboard()];
-		this._nextYesProcesses = [ new _ForgetWifiOnAppleTV()];
-		super.create();
+		this._nexts = [{step: _ForgetWifiOnAppleTV, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: WifiOnInDashboard, params: []}];
+		super.onNoClick();
+	}
 }

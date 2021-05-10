@@ -27,6 +27,7 @@ class IsOTOidAligned extends DescisionMultipleInput
 	{
 		if (validateYes())
 		{
+			this._nexts = [{step: _EnsureCorrectPortPlug, params: []}];
 			super.onYesClick();
 		}
 	}
@@ -39,6 +40,7 @@ class IsOTOidAligned extends DescisionMultipleInput
 	{
 		if (validateNo())
 		{
+			this._nexts = [{step: _WrongOTO, params: []}];
 			super.onNoClick();
 		}
 	}
@@ -47,12 +49,12 @@ class IsOTOidAligned extends DescisionMultipleInput
 		return true;
 	}*/
 	/**/
-    override public function create():Void
+    /*override public function create():Void
         {
             //this._nextYesProcesses = [new FiberCableIsSalt()];
             //this._nextYesProcesses = [new _CheckSFP()];
             this._nextYesProcesses = [new _EnsureCorrectPortPlug()];
             this._nextNoProcesses = [new _WrongOTO()];
             super.create();
-        }
+        }*/
 }

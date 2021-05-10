@@ -8,12 +8,14 @@ import tstool.process.Descision;
  */
 class DidCustomerPaidActivationFees extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [ new DoesWantTVNow()];
-		this._nextYesProcesses = [new _ChangeBasicPackage()];
-		super.create();
+		this._nexts = [{step: _ChangeBasicPackage, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: DoesWantTVNow, params: []}];
+		super.onNoClick();
+	}
 }

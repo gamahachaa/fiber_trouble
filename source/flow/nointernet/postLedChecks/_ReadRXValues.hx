@@ -7,13 +7,14 @@ import flow.nointernet.so.tckets._SwapBox;
 import flow.stability._CreateSOTechModemSpeed;
 import tstool.process.TripletMultipleInput;
 
-
+/**
+ * @todo ARCHIVE
+ */
 class _ReadRXValues extends TripletMultipleInput
 {
+	/*
 	public function new() 
 	{
-		//super(100, "RX" , new EReg("(^-?[0-9,.]{1,6}$)|(^aaa$)","i"));
-		//super(100, "RX" , new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)|(^aaa$)", "i"));
 		super([{
 			ereg:new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)|(^aaa$)", "i"),
 			input:{
@@ -26,9 +27,6 @@ class _ReadRXValues extends TripletMultipleInput
 	}
 	override public function create():Void
 	{
-		/**
-		 * @todo String to Class<Process> / isInHistory
-		 */
 		if (Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Yes) || Main.HISTORY.isInHistory("flow.all.customer.IsSlowOrKaput", Mid)) // Stability
 		{
 			this._nextYesProcesses = [new _CreateSOTechModemSpeed()];
@@ -42,7 +40,6 @@ class _ReadRXValues extends TripletMultipleInput
 	}
 	override public function onYesClick()
 	{
-		//if (Std.parseFloat(this.singleInput.uiInput.inputtextfield.text) < -20.99)
 		#if debug
 		trace(this.multipleInputs.inputs.get("RX").getInputedText());
 		trace(Std.parseFloat(this.multipleInputs.inputs.get("RX").getInputedText()));
@@ -56,4 +53,5 @@ class _ReadRXValues extends TripletMultipleInput
 		}
 		super.onYesClick();
 	}
+	*/
 }

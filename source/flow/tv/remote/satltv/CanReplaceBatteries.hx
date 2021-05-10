@@ -9,11 +9,14 @@ import tstool.process.Descision;
 class CanReplaceBatteries extends Descision 
 {
 
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new _ReplaceBatteriesThenCallUsBack()];
-		this._nextYesProcesses = [ new DoesRedLedBlinksOnRemoteWhenPressed()];
-		super.create();
+		this._nexts = [{step: DoesRedLedBlinksOnRemoteWhenPressed, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _ReplaceBatteriesThenCallUsBack, params: []}];
+		super.onNoClick();
+	}
 }

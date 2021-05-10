@@ -9,17 +9,14 @@ import tstool.process.Descision;
  */
 class SwapFiberCable extends Descision
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "Il faut échanger le câble de Fibre optique.";
-		//this._detailTxt = "Cela peut se faire soit dans un Salt store, soit par la poste.";
-		//this._buttonYesTxt = "Store";
-		//this._buttonNoTxt = "Post";
-		//this._illustration = "";
-		this._nextYesProcesses = [new _FiberCableByStore()];
-		this._nextNoProcesses = [new _InputShipingAdress()];
-		super.create();
+		this._nexts = [{step: _FiberCableByStore, params: []}];
+		super.onYesClick();
 	}
-
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _InputShipingAdress, params: []}];
+		super.onNoClick();
+	}
 }

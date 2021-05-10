@@ -8,15 +8,14 @@ import tstool.process.Descision;
  */
 class IsOrderTicket extends Descision 
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "Est-ce un ticket commande 413, 414, 416 ou 511 ?";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextYesProcesses = [ new TicketOlderThanSixDays()];
-		this._nextNoProcesses = [ new IsTechTicket()];
-		super.create();
+		this._nexts = [{step: TicketOlderThanSixDays, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: IsTechTicket, params: []}];
+		super.onNoClick();
+	}
 }

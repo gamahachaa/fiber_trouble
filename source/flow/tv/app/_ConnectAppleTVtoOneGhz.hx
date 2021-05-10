@@ -6,17 +6,17 @@ import flow.lan.LanConnectionOK;
 import tstool.process.Action;
 
 /**
- * ...
+ * @todo ARCHIVE
  * @author bb
  */
 class _ConnectAppleTVtoOneGhz extends Action 
 {
 
-	override public function create()
-	{
-		this._nextProcesses = [ new LanConnectionOK() ];
-	
-		super.create();
-	}
+	//override public function create()
+	//{
+		//this._nextProcesses = [ new LanConnectionOK() ];
+	//
+		//super.create();
+	//}
 	
 }

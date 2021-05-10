@@ -24,11 +24,41 @@ class WhereWasOrderDone extends DescisionMultipleInput
 		}
 		]);
 	}
-	override public function create()
-	{
-		this._nextNoProcesses = [new SendTicketToTLPool()];
-		this._nextYesProcesses = [new SendTicketToTLPool()];
-		super.create();
-	}
+	//override public function create()
+	//{
+		//this._nextNoProcesses = [new SendTicketToTLPool()];
+		//this._nextYesProcesses = [new SendTicketToTLPool()];
+		//super.create();
+	//}
 	
+	
+	/****************************
+	* Needed for validation
+	*****************************/
+	override public function onYesClick():Void
+	{
+		if (validateYes()){
+			this._nexts = [{step: SendTicketToTLPool, params: []}];
+			super.onYesClick();
+		}	
+	}
+	override public function onNoClick():Void
+	{
+		if (validateNo()){
+			this._nexts = [{step: SendTicketToTLPool, params: []}];
+			super.onNoClick();
+		}
+	}
+	/*
+	override public function validateYes():Bool
+	{
+		return true;
+	}
+	*/
+	/*
+	override public function validateNo():Bool
+	{
+		return true;
+	}
+	*/
 }

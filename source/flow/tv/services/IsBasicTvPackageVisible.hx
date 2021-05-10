@@ -10,13 +10,14 @@ import tstool.process.Descision;
  */
 class IsBasicTvPackageVisible extends Descision
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		//var next = new _CreateSOTicketSaltTV();
-		this._nextNoProcesses = [ new _CreateSOTicketSaltTV() ];
-		this._nextYesProcesses = [ new DidCustomerPaidActivationFees() ];
-		super.create();
+		this._nexts = [{step: DidCustomerPaidActivationFees, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _CreateSOTicketSaltTV, params: []}];
+		super.onNoClick();
+	}
 }

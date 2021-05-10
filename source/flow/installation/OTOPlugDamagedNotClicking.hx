@@ -9,13 +9,14 @@ import tstool.process.Descision;
  */
 class OTOPlugDamagedNotClicking extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new _CheckSFP()];
-		//this._nextYesProcesses = [new _CreateTicketModemCNX()];
-		this._nextYesProcesses = [new IsOTODamagedByCust()];
-		super.create();
+		this._nexts = [{step: IsOTODamagedByCust, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _CheckSFP, params: []}];
+		super.onNoClick();
+	}
 }

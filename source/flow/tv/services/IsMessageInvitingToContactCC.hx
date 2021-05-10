@@ -11,11 +11,20 @@ import tstool.process.Triplet;
  */
 class IsMessageInvitingToContactCC extends Triplet 
 {
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [ new _QuitAndRelaunchSaltTV() ];
-		this._nextYesProcesses = [ new IsTVServicesActiveVTI() ];
-		this._nextMidProcesses = [ new HowConnected() ];
-		super.create();
+		this._nexts = [{step: IsTVServicesActiveVTI, params: []}];
+		super.onYesClick();
+	}	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _QuitAndRelaunchSaltTV, params: []}];
+		super.onNoClick();
+	}
+	
+	override public function onMidClick():Void
+	{
+		this._nexts = [{step: HowConnected, params: []}];
+		super.onMidClick();
 	}
 }

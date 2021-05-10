@@ -1,10 +1,13 @@
 package flow;
 
-import TutoTree;
+//import TutoTree;
 import tstool.process.Action;
-
+/**
+ * @todo ARCHIVE
+ */
 class TutoTwo extends Action
 {
+	/*
 	override public function create():Void
 	{
 		//Process.INIT();
@@ -38,5 +41,5 @@ class TutoTwo extends Action
 		//trace(Main.tongue.get("$" + this._name));
 		//$type(Main.tongue.get("$" + this._name));
 	}
-
+	*/
 }

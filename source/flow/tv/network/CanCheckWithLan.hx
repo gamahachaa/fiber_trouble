@@ -9,10 +9,14 @@ import tstool.process.Descision;
  */
 class CanCheckWithLan extends Descision 
 {
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [ new _CreateSOTicketSaltTV()];
-		this._nextYesProcesses = [ new _EnsureLanCableWellPlugged()];
-		super.create();
+		this._nexts = [{step: _EnsureLanCableWellPlugged, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _CreateSOTicketSaltTV, params: []}];
+		super.onNoClick();
 	}
 }

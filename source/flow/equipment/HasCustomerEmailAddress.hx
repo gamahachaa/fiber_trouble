@@ -8,12 +8,14 @@ import tstool.process.Descision;
  */
 class HasCustomerEmailAddress extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new _SendParcelTrackingBySMS()];
-		this._nextYesProcesses = [new _ResendValidationEmail()];
-		super.create();
+		this._nexts = [{step: _ResendValidationEmail, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _SendParcelTrackingBySMS, params: []}];
+		super.onNoClick();
+	}
 }

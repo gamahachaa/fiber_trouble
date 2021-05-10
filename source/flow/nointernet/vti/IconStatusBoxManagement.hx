@@ -1,17 +1,15 @@
 package flow.nointernet.vti;
 
-import flow.nointernet.fiberbox.NormalRxValues;
-import flow.powercable.LedPowerOn;
 import tstool.process.Descision;
 //import process.Triplet;
 
 /**
- * ...
+ * @todo ARCHIVE
  * @author ...
  */
 class IconStatusBoxManagement extends Descision
 {
-
+/*
 	override public function create():Void
 	{
 		this._nextYesProcesses = [new NormalRxValues()];
@@ -19,5 +17,5 @@ class IconStatusBoxManagement extends Descision
 		
 		super.create();
 	}
-
+*/
 }

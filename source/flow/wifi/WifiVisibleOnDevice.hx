@@ -13,24 +13,18 @@ import tstool.process.Descision;
  */
 class WifiVisibleOnDevice extends Descision
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		/**
-		 * @todo String to Class<Process> / isInHistory
-		 */
-		this._nextYesProcesses = [new WiFiPasswordAccepted()];
-		var nextNoFour:Process = null;
-		if (Main.HISTORY.isInHistory("flow.wifi.WifiVisibleByAppleTV", Yes))
-		{
-			nextNoFour = new _ConteactDeviceSupport();
-			//this._nextNoProcesses = [new _RestartDevice(),new _ResetWifiParams(), new _ConteactDeviceSupport() ];
-		}
-		else{
-			nextNoFour = new _CreateTicketWifiIssue();
-		}
-		this._nextNoProcesses = [new _RestartDevice(), new WifiVisibleByAppleTV(),  nextNoFour ];
-		//this._nextNoProcesses = [new _RestartDevice(), new _ResetWifiParams(), new WifiVisibleByAppleTV(),  nextNoFour ];
-		super.create();
+		this._nexts = [{step: WiFiPasswordAccepted, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [
+			{step: _RestartDevice},
+			{step: WifiVisibleByAppleTV},
+			{step: Main.HISTORY.isClassInteractionInHistory(flow.wifi.WifiVisibleByAppleTV, Yes)? _ConteactDeviceSupport: _CreateTicketWifiIssue}
+		];
+		super.onNoClick();
 	}
 }

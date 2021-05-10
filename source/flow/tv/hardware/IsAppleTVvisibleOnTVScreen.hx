@@ -2,6 +2,7 @@ package flow.tv.hardware;
 
 import flow.tv.install.IsSaltIconVisibleOnAppleTV;
 import tstool.process.Descision;
+import tstool.process.Process;
 
 /**
  * ...
@@ -9,30 +10,29 @@ import tstool.process.Descision;
  */
 class IsAppleTVvisibleOnTVScreen extends Descision
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		/**
-		 * @todo String to Class<Process> / isInHistory
-		 */
-		var nextNo = 
-		if (Main.HISTORY.isInHistory("flow.tv.hardware._MakeSurePowerCableWellPlugged", Next ))
+		this._nexts = [{step: IsSaltIconVisibleOnAppleTV, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		var nextNo:Class<Process> = 
+		if (Main.HISTORY.isClassInteractionInHistory(flow.tv.hardware._MakeSurePowerCableWellPlugged, Next ))
 		{
 			/*******************************
 			 * N°2
 			/*******************************/
-			new _RepairProcess();
+			 _RepairProcess;
 		}
 		else
 		{
 			/*******************************
 			 * N°1
 			/*******************************/
-			new _MakeSurePowerCableWellPlugged();
+			_MakeSurePowerCableWellPlugged;
 		}
-		this._nextNoProcesses = [nextNo];
-		this._nextYesProcesses = [new IsSaltIconVisibleOnAppleTV()];
-		super.create();
+		this._nexts = [{step: nextNo, params: []}];
+		super.onNoClick();
 	}
-
 }

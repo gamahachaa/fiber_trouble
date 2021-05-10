@@ -12,16 +12,30 @@ import tstool.process.Descision;
  */
 class WifiOnInDashboard extends Descision 
 {
-	override public function create():Void
+	/**
+	 * @todo IMPORTANT VERIFY branching //this._nextYesProcesses = [new ErrorIconOnWifiIcon()];
+	 */
+	
+	override public function onYesClick():Void
 	{
-		/**
-		 * @todo String to Class<Process> / isInHistory
-		 */
-
-		this._nextNoProcesses = [new _SwitchOnUsingButton(), Main.HISTORY.findStepsInHistory("flow.all.fiberbox._LoopResetFiberBox").length>0?  new _CreateTicketWifiIssue(): new _LoopResetFiberBox(), new CanConnectToBoxWithLAN()];
-		
-		var wvd = new WifiVisibleOnDevice();
-		this._nextYesProcesses = [new _MoveCloseUnplugRepeater(wvd,wvd)];
-		super.create();
+		//this._nextYesProcesses = [new ErrorIconOnWifiIcon()];
+		//this._nexts = [{step:ErrorIconOnWifiIcon}];
+		this._nexts = [{
+				step: _MoveCloseUnplugRepeater,
+				params:[
+					{step:WifiVisibleOnDevice}, 
+					{step:WifiVisibleOnDevice}]
+			}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [
+			{step: _SwitchOnUsingButton}, 
+			Main.HISTORY.isClassInHistory(_LoopResetFiberBox) ?  {step: _CreateTicketWifiIssue}: {step: _LoopResetFiberBox}, 
+			{step:CanConnectToBoxWithLAN}
+		];
+		//this._nextNoProcesses = [];
+		super.onNoClick();
 	}
 }

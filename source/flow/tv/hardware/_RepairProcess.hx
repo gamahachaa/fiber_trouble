@@ -9,9 +9,9 @@ import tstool.process.Action;
  */
 class _RepairProcess extends Action 
 {
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new flow.End()];
-		super.create();
+		this._nexts = [{step: End, params: []}];
+		super.onClick();
 	}
 }

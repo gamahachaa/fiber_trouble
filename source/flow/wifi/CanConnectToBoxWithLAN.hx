@@ -2,7 +2,6 @@ package flow.wifi;
 
 import flow.lan.ConnectedViaSwitch;
 import flow.wifi._CreateTicketWifiIssue;
-import flow.wifi._SwitchOnWifiFromAdminConsole;
 //import tstool.process.Descision;
 import tstool.process.Triplet;
 
@@ -12,17 +11,22 @@ import tstool.process.Triplet;
  */
 class CanConnectToBoxWithLAN extends Triplet
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		//this._titleTxt = "Est-il possible de connecter un appareil en LAN ?";
-		//this._detailTxt = "";
-		//this._illustration = "";
-		this._nextYesProcesses = [new ConnectedViaSwitch()];
-		//this._nextNoProcesses = [new _CreateTicketWifiIssue()];
-		this._nextNoProcesses = [new WhyCannotConnectWithLan()];
-		this._nextMidProcesses = [new _CreateTicketWifiIssue()];
-		super.create();
+		this._nexts = [{step: ConnectedViaSwitch, params: []}];
+		super.onYesClick();
 	}
-
+	
+	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: WhyCannotConnectWithLan, params: []}];
+		super.onNoClick();
+	}
+	
+	override public function onMidClick():Void
+	{
+		this._nexts = [{step: _CreateTicketWifiIssue, params: []}];
+		super.onMidClick();
+	}
 }

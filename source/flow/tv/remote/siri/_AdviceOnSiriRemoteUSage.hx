@@ -9,9 +9,9 @@ import tstool.process.Action;
  */
 class _AdviceOnSiriRemoteUSage extends Action 
 {
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new IsSaltIconVisibleOnAppleTV()];
-		super.create();
+		this._nexts = [{step: IsSaltIconVisibleOnAppleTV, params: []}];
+		super.onClick();
 	}
 }

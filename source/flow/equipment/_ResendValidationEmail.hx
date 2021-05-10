@@ -8,11 +8,9 @@ import tstool.process.Action;
  */
 class _ResendValidationEmail extends Action 
 {
-
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _SendParcelTrackingByEmail()];
-		super.create();
+		this._nexts = [{step: _SendParcelTrackingByEmail, params: []}];
+		super.onClick();
 	}
-	
 }

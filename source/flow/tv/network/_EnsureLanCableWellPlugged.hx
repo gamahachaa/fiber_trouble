@@ -8,11 +8,9 @@ import tstool.process.Action;
  */
 class _EnsureLanCableWellPlugged extends Action 
 {
-
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new DidnetworkSolved()];
-		super.create();
+		this._nexts = [{step: DidnetworkSolved, params: []}];
+		super.onClick();
 	}
-	
 }

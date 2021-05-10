@@ -8,11 +8,9 @@ import tstool.process.Action;
  */
 class _GetCloseToAppleTV extends Action 
 {
-
-	override public function create()
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _PressMenuAndPlus()];
-		super.create();
+		this._nexts = [{step: _PressMenuAndPlus, params: []}];
+		super.onClick();
 	}
-	
 }

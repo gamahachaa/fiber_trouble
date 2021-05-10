@@ -1,6 +1,5 @@
 package flow.collection;
 
-import flow.nointernet.vti.IconStatusBoxManagement;
 import tstool.process.Action;
 
 /**
@@ -9,15 +8,9 @@ import tstool.process.Action;
  */
 class _PaymentSearch extends Action 
 {
-
-	override public function create():Void
+	override public function onClick():Void
 	{
-		// this._titleTxt = "Lancer une recherche de paiement";
-		// this._detailTxt = "";
-		// this._illustration = "";
-		this._nextProcesses = [ new _AddMemoVti()];
-		//this._nextProcesses = [ new _YouWillBeInformed()];
-		super.create();
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onClick();
 	}
-	
 }

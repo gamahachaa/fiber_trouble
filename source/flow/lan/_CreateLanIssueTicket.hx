@@ -1,14 +1,15 @@
 package flow.lan;
 
 import flow.all.customer._SendTechMail;
-import tstool.process.ActionMail;
+import process.ActionMailNointernet;
+//import tstool.process.ActionMail;
 import tstool.salt.SOTickets;
 
 /**
  * ...
  * @author ...
  */
-class _CreateLanIssueTicket extends ActionMail
+class _CreateLanIssueTicket extends ActionMailNointernet
 {
 	public function new() 
 	{
@@ -16,9 +17,9 @@ class _CreateLanIssueTicket extends ActionMail
 		super(SOTickets.FIX_521);
 		//mail.setSubject("LanIssue", this);
 	}
-	override public function create():Void
+	override public function onClick():Void
 	{
-		this._nextProcesses = [new _SendTechMail()];
-		super.create();
+		this._nexts = [{step: _SendTechMail, params: []}];
+		super.onClick();
 	}
 }

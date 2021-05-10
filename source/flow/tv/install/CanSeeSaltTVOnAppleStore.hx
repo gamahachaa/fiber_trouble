@@ -8,12 +8,14 @@ import tstool.process.Descision;
  */
 class CanSeeSaltTVOnAppleStore extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [new HasAppleId()];
-		this._nextYesProcesses = [ new _InstallSaltTV()];
-		super.create();
+		this._nexts = [{step: _InstallSaltTV, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: HasAppleId, params: []}];
+		super.onNoClick();
+	}
 }

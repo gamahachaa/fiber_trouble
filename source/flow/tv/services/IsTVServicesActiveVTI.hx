@@ -8,13 +8,14 @@ import tstool.process.Descision;
  */
 class IsTVServicesActiveVTI extends Descision
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [ new IsBarringVisible()];
-		//this._nextYesProcesses = [ new _InstallSpeedTestAplleTV() ];
-		this._nextYesProcesses = [ new _QuitAndRelaunchSaltTV() ];
-		super.create();
+		this._nexts = [{step: _QuitAndRelaunchSaltTV, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: IsBarringVisible, params: []}];
+		super.onNoClick();
+	}
 }

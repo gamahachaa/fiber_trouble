@@ -11,45 +11,63 @@ import tstool.process.Process;
 class ProblemSolved extends Descision 
 {
 
-	override public function create()
+	//override public function create()
+	//{
+		//var nextNo:Process = null;
+		//if (Main.HISTORY.isProcessInHistory("flow.tv.app._CheckIfAppleTVNeedsUpdate"))
+		//{
+			//nextNo = new _CreateSOTicketSaltTV();	
+		//}
+		//else if (Main.HISTORY.isProcessInHistory("flow.tv.app._RebootAppleTV"))
+		//{
+			 //nextNo = new _CheckIfAppleTVNeedsUpdate();
+		//}
+		//else if (Main.HISTORY.isProcessInHistory("flow.tv.app._CheckIfSaltTVNeedsUpdate"))
+		//{
+			 //nextNo = new _RebootAppleTV();
+		//}
+		//else{
+			 //nextNo = new _CheckIfSaltTVNeedsUpdate();
+		//}
+		//this._nextNoProcesses = [nextNo];
+		//super.create();
+	//}
+	override public function onYesClick():Void
 	{
-		/**
-		 * @todo String to Class<Process> / isInHistory
-		 */
-
-		var nextNo:Process = null;
-		if (Main.HISTORY.isProcessInHistory("flow.tv.app._CheckIfAppleTVNeedsUpdate"))
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		var nextNo:Class<Process>;
+		if (Main.HISTORY.isClassInHistory(flow.tv.app._CheckIfAppleTVNeedsUpdate))
 		{
 			/***********************
 			 * N°4 - ticket
 			/***********************/
-			nextNo = new _CreateSOTicketSaltTV();
-			
-			
+			nextNo =  _CreateSOTicketSaltTV;
 		}
-		else if (Main.HISTORY.isProcessInHistory("flow.tv.app._RebootAppleTV"))
+		else if (Main.HISTORY.isClassInHistory(flow.tv.app._RebootAppleTV))
 		{
 			/***********************
 			 * N°3
 			/***********************/
-			 nextNo = new _CheckIfAppleTVNeedsUpdate();
+			 nextNo = _CheckIfAppleTVNeedsUpdate;
 		}
-		else if (Main.HISTORY.isProcessInHistory("flow.tv.app._CheckIfSaltTVNeedsUpdate"))
+		else if (Main.HISTORY.isClassInHistory(flow.tv.app._CheckIfSaltTVNeedsUpdate))
 		{
 			/***********************
 			 * N°2
 			/***********************/
-			 nextNo = new _RebootAppleTV();
+			 nextNo = _RebootAppleTV;
 		}
 		else{
 			/***********************
 			 * First time
 			/***********************/
-			 nextNo = new _CheckIfSaltTVNeedsUpdate();
+			 nextNo = _CheckIfSaltTVNeedsUpdate;
 		}
-		this._nextNoProcesses = [nextNo];
-		this._nextYesProcesses = [new flow._AddMemoVti()];
-		super.create();
+		this._nexts = [{step: nextNo, params: []}];
+		super.onNoClick();
 	}
-	
 }

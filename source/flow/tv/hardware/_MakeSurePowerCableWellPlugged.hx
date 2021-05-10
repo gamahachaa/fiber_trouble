@@ -8,11 +8,10 @@ import tstool.process.Action;
  */
 class _MakeSurePowerCableWellPlugged extends Action 
 {
-
-	override public function create()
-	{
-		this._nextProcesses = [new WhiteLightLids()];
-		super.create();
-	}
 	
+	override public function onClick():Void
+	{
+		this._nexts = [{step: WhiteLightLids, params: []}];
+		super.onClick();
+	}
 }

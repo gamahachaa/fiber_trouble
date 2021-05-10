@@ -8,15 +8,14 @@ import tstool.process.Descision;
  */
 class ForgotToPay extends Descision 
 {
-
-	override public function create():Void
+	override public function onYesClick():Void
 	{
-		// this._titleTxt = "Oublie de payer ?";
-		// this._detailTxt = "";
-		// this._illustration = "";
-		this._nextYesProcesses = [ new _Pay()];
-		this._nextNoProcesses = [ new IsBillChallenged()];
-		super.create();
+		this._nexts = [{step: _Pay, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: IsBillChallenged, params: []}];
+		super.onNoClick();
+	}
 }

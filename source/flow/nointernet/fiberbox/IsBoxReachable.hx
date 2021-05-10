@@ -1,7 +1,7 @@
 package flow.nointernet.fiberbox;
 
-import flow.lan._SwapEthernetCable;
-import flow.nointernet.so._CreateTicketModemCNX;
+
+
 import flow.nointernet.vti.ActivationDone;
 import flow.nointernet.vti.IsBarred;
 import flow.swapcable.SwapFiberCable;
@@ -13,12 +13,14 @@ import tstool.process.Descision;
  */
 class IsBoxReachable extends Descision 
 {
-
-	override public function create()
+	override public function onYesClick():Void
 	{
-		this._nextNoProcesses = [ new ActivationDone(), new SwapFiberCable()];
-		this._nextYesProcesses = [new IsBarred()];
-		super.create();
+		this._nexts = [{step: IsBarred, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: ActivationDone},{step: SwapFiberCable}];
+		super.onNoClick();
+	}
 }

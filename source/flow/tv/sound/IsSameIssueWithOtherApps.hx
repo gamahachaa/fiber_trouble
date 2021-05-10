@@ -24,21 +24,30 @@ class IsSameIssueWithOtherApps extends DescisionMultipleInput
 		}]
 		);
 	}
-	override public function create()
-	{
-		var next = new _QuitAndRelaunchSaltTV();
-		this._nextYesProcesses = [ next ];
-		this._nextNoProcesses = [ next ];
-		super.create();
-	}
+	//override public function create()
+	//{
+		//var next = new _QuitAndRelaunchSaltTV();
+		//this._nextYesProcesses = [ next ];
+		//this._nextNoProcesses = [ next ];
+		//super.create();
+	//}
+	
+	
 	/****************************
 	* Needed for validation
 	*****************************/
 	override public function onYesClick():Void
 	{
-		if (validateYes())
-		{
+		if (validateYes()){
+			this._nexts = [{step: _QuitAndRelaunchSaltTV, params: []}];
 			super.onYesClick();
+		}	
+	}
+	override public function onNoClick():Void
+	{
+		if (validateNo()){
+			this._nexts = [{step: _QuitAndRelaunchSaltTV, params: []}];
+			super.onNoClick();
 		}
 	}
 	/*
@@ -46,15 +55,8 @@ class IsSameIssueWithOtherApps extends DescisionMultipleInput
 	{
 		return true;
 	}
+	*/
 	
-
-	override public function onNoClick():Void
-	{
-		if (validateNo())
-		{
-			super.onNoClick();
-		}
-	}*/
 	override public function validateNo():Bool
 	{
 		return true;

@@ -5,16 +5,16 @@ import flow.stability._SelectSaltServer;
 import tstool.process.Action;
 
 /**
- * ...
+ * @todo ARCHIVE
  * @author bb
  */
 class _ConnectWiFIToFiveGH extends Action 
 {
 
-	override public function create()
-	{
-		this._nextProcesses = [new _OpenSpeedTest()];
-		super.create();
-	}
+	//override public function create()
+	//{
+		//this._nextProcesses = [new _OpenSpeedTest()];
+		//super.create();
+	//}
 	
 }

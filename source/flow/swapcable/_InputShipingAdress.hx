@@ -13,8 +13,14 @@ import tstool.salt.Adress;
  */
 class _InputShipingAdress extends DescisionMultipleInput
 {
+	static inline var STREET:String = "Street";
+	static inline var ZIP:String = "Zip";
+	static inline var NUMBER:String = "Nbr";
+	static inline var CITY:String = "City";
+	var CO:String;
 	public function new()
 	{
+		CO = (Main.customer.contract.owner == null ?"": Main.customer.contract.owner.name ) + " c/o";
 		super(
 			[
 				{
@@ -22,7 +28,7 @@ class _InputShipingAdress extends DescisionMultipleInput
 					input:
 					{
 						width:200,
-						prefix: (Main.customer.contract.owner == null ?"": Main.customer.contract.owner.name ) + " c/o",
+						prefix: CO,
 						debug: "chez Ernest & Bart",
 						position: [bottom, left]
 					}
@@ -31,9 +37,9 @@ class _InputShipingAdress extends DescisionMultipleInput
 					ereg:~/.{2,}/ig,
 					input:
 					{
-						buddy: (Main.customer.contract.owner == null ?"": Main.customer.contract.owner.name )+ " c/o",
+						buddy: CO,
 						width:200,
-						prefix:"street",
+						prefix:STREET,
 						debug: "Sesame",
 						position:[bottom, left]
 					}
@@ -42,9 +48,9 @@ class _InputShipingAdress extends DescisionMultipleInput
 					ereg:~/\d+\w?/g,
 					input:
 					{
-						buddy: "street",
+						buddy: STREET,
 						width:50,
-						prefix:"n°",
+						prefix:NUMBER,
 						debug: "69",
 						position:[top, right]
 					}
@@ -53,9 +59,9 @@ class _InputShipingAdress extends DescisionMultipleInput
 					ereg:~/^\d{4}$/g,
 					input:
 					{
-						buddy: "street",
+						buddy:STREET,
 						width:50,
-						prefix:"zip",
+						prefix:ZIP,
 						debug: "2502",
 						position:[bottom, left]
 					}
@@ -64,9 +70,9 @@ class _InputShipingAdress extends DescisionMultipleInput
 					ereg:~/\w+[a-z 0-9.éàèüöäâêô!ï()\/\-']+/i,
 					input:
 					{
-						buddy: "zip",
+						buddy: ZIP,
 						width:140, 
-						prefix:"city",
+						prefix:CITY,
 						debug: "Montcuq",
 						position:[top, right]
 					}
@@ -82,10 +88,10 @@ class _InputShipingAdress extends DescisionMultipleInput
 		super.create();
 		if (Main.customer.contract.address!= null)
 		{
-			multipleInputs.inputs.get("street").inputtextfield.text = Main.customer.contract.address._street;
-			multipleInputs.inputs.get("n°").inputtextfield.text = Main.customer.contract.address._number;
-			multipleInputs.inputs.get("zip").inputtextfield.text = Main.customer.contract.address._zip;
-			multipleInputs.inputs.get("city").inputtextfield.text = Main.customer.contract.address._city;
+			multipleInputs.setInputDefault(STREET, Main.customer.contract.address._street);
+			multipleInputs.setInputDefault(NUMBER, Main.customer.contract.address._number);
+			multipleInputs.setInputDefault(ZIP, Main.customer.contract.address._zip);
+			multipleInputs.setInputDefault(CITY, Main.customer.contract.address._city);
 		}
 		
 	}
@@ -94,11 +100,11 @@ class _InputShipingAdress extends DescisionMultipleInput
 		if (validateYes())
 		{
 			Main.customer.shipingAdress = new Adress(
-				this.multipleInputs.inputs.get("street").getInputedText(),
-				this.multipleInputs.inputs.get("n°").getInputedText(),
-				this.multipleInputs.inputs.get("zip").getInputedText(),
-				this.multipleInputs.inputs.get("city").getInputedText(),
-				this.multipleInputs.inputs.get((Main.customer.contract.owner == null ?"": Main.customer.contract.owner.name )+ " c/o").getInputedText()
+				this.multipleInputs.getText(STREET),
+				this.multipleInputs.getText(NUMBER),
+				this.multipleInputs.getText(ZIP),
+				this.multipleInputs.getText(CITY),
+				this.multipleInputs.getText(CO)
 			);
 			this._nexts = [{step: _FiberCableByPost, params: []}];
 			super.onYesClick();

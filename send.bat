@@ -2,7 +2,7 @@
 
 @echo off
 
-set DEV=1
+set DEV=0
 echo "START"
 if %DEV%==1 (
 	if "%1"=="" goto :dead
@@ -24,7 +24,7 @@ set "datestamp=%YYYY%%MM%%DD%" & set "timestamp=%HH%%Min%%Sec%"
 set "fullstamp=%YYYY%%MM%%DD%_%HH%%Min%%Sec%"
 rem ------------------ DEFINE FILE NAMES ------------------------------------------------------------------------
 set serverFolderName=trouble
-set mainScript=nointernet
+set mainScript=trouble
 rem -------------------------------------------------------------------------------------------------------------
 set oldScriptName=%mainScript%.js
 set newScriptName=%mainScript%_%fullstamp%.js
@@ -65,7 +65,6 @@ if %DEV%==1 (
 echo "MINIFY"
 powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptNameMin%' | Out-File -encoding UTF8 %BINDIR%/index.html"
 powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.min.js" -NewName %newScriptNameMin%"
-
 goto :EXPORT
 
 :follow
@@ -92,9 +91,9 @@ if %DEV%==1 (
 
 rem PUSH to TEST SERVER  ------------------------------------------------------------------------------------------------------------------------------
 
-robocopy export\html5\bin "C:\xampp\htdocs\localhost" * /E
+rem robocopy export\html5\bin "C:\xampp\htdocs\localhost" * /E
 
-echo "robocopy localhost"
+rem echo "robocopy localhost"
 
 rem if "%1"=="debug" goto :dead
 
@@ -195,7 +194,7 @@ goto :completed
 
 
 rem PUSH to PROD SERVER  ------------------------------------------------------------------------------------------------------------------------------
-robocopy export\html5\bin "C:\xampp\htdocs\localhost" * /E
+rem robocopy export\html5\bin "C:\xampp\htdocs\localhost" * /E
 
 "C:\_mesProgs\WinSCP\WinSCP.com" ^
   /log="%cd%\WinSCP.log" /ini=nul ^

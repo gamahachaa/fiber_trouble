@@ -12,14 +12,10 @@ import flixel.text.FlxText.FlxTextFormatMarkerPair;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
 import flow.Intro;
-import flow.nointernet.customer.FiberCableChanged;
-import flow.nointernet.so._CreateTicketModemCNX;
-import flow.nointernet.vti.CheckContractorVTI;
+import flow.nointernet.fiberbox.BoxLedStatus;
 import flow.tv.remote.satltv._EnsureAppleTVInVisualRangeOfRemote;
 import tstool.MainApp;
 import tstool.process.Process;
-//import flow.nointernet.customer.FiberCableChanged;
-//import flow.tv.remote.satltv.IsAppleTVFourthGen;
 
 import js.Browser;
 import js.html.Location;
@@ -37,7 +33,7 @@ import tstool.salt.Customer;
 //import tstool.utils.Mail.MailReciepient;
 import tstool.utils.Csv;
 import tstool.utils.VersionTracker;
-
+import Type;
 
 class Main extends MainApp
 {
@@ -54,21 +50,25 @@ class Main extends MainApp
 	public static var VERSION_TRACKER:VersionTracker;
 	public static var LOCATION:Location;
 	public static var DEBUG:Bool;
+	public static inline var DEBUG_LEVEL:Int = 0;
 	//public static var COOKIE: FlxSave;
 	
 	public static var LAST_STEP:Class<FlxState> = flow._AddMemoVti;
 	public static inline var START_STEP:Class<Process> = Intro;
 	public static var LANGS = ["fr-FR", "de-DE", "en-GB", "it-IT"];
 	public static inline var INTRO_PIC:String = "default.png";
+	public static inline var LIB_FOLDER_LOGIN:String = "/commonlibs/";
 	
 	public function new()
 	{
 		super({
-				cookie:"nointernet_20210205.user",
-				scriptName:"nointernet"
+				cookie:"trouble_20210505.user",
+				scriptName:"trouble",
+				libFolder: LIB_FOLDER_LOGIN
 				
 		});
 		LIB_FOLDER = "../trouble/";
+		
 		tongue = MainApp.translator;
 		//COOKIE = save;
 		HISTORY = MainApp.stack;
@@ -83,6 +83,7 @@ class Main extends MainApp
 			Browser.window.alert("This tool is only fully tested with Firefox...\n\nSome funcitonalities does not work with your browser " + Browser.navigator.userAgent);
 		}
 		addChild(new FlxGame(1400, 880, Login, 1, 30, 30, true, true));
+		
 
 	}
 
@@ -106,8 +107,9 @@ class Main extends MainApp
 			 * USe this  to debug a slide
 			 */
 			next = new flow.Intro();
+			//next = new BoxLedStatus();
 		#else
-			next = new Main.START_STEP();
+			next = Type.createInstance(Main.START_STEP,[]);
 		#end
 		tongue.initialize(MainApp.agent.mainLanguage, ()->(FlxG.switchState( old ? next : tuto)) );
 	}

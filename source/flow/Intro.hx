@@ -24,11 +24,18 @@ class Intro extends Triplet
 		Main.VERSION_TRACKER.scriptChangedSignal.add(onNewVersion);
 		Main.VERSION_TRACKER.request();
 		#if debug
-		trace("Showing the new version if any");
+		if (Main.DEBUG){
+			trace("Main.DEBUG OPEN ROBOT");
+			//openSubState(new CheckUpdateSub(UI.THEME.bg));
+		}
+		else{
+			trace("LOCAL.DEBUG does not OPEN ROBOT");
+		}
+		
 		#else
+		//trace("PROD does OPEN ROBOT");
 		openSubState(new CheckUpdateSub(UI.THEME.bg));
 		#end
-		ui.showHowto(true);
 	}
 	
 	function onNewVersion(needsUpdate:Bool):Void 

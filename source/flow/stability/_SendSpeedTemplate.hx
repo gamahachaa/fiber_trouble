@@ -1,5 +1,6 @@
 package flow.stability;
 
+import tstool.process.Process;
 import tstool.process.TripletTemplate;
 import tstool.salt.SOTemplate;
 

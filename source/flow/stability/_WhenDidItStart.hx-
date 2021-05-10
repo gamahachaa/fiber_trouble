@@ -8,7 +8,7 @@ import tstool.process.ActionMultipleInput;
  */
 class _WhenDidItStart extends ActionMultipleInput 
 {
-	static inline var START_DATE:String = "Start date";
+	static inline var START_DATE:String = "Start Date";
 
 	public function new() 
 	{

@@ -10,17 +10,6 @@ import tstool.process.ActionMultipleInput;
  */
 class _ExplainReasons extends ActionMultipleInput 
 {
-
-	//override public function create():Void
-	//{
-		//var reasonsInput = new FlxInputText(0,0,600,12);
-		//super.create();
-		//this._nextProcesses = [ new _SoTicketTreeTwoOne() ];
-		//add(reasonsInput);
-		//reasonsInput.x = this._padding;
-		//reasonsInput.y = this.details.y + this.details.height + this._padding/2;
-//
-	//}
 	public function new ()
 	{
 		super(

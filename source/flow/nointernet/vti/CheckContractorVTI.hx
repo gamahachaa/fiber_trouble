@@ -3,6 +3,7 @@ package flow.nointernet.vti;
 //import flixel.FlxG;
 import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;
+import js.html.Clipboard;
 import lime.utils.Assets;
 import tstool.layout.UI;
 import tstool.process.Process;
@@ -85,7 +86,6 @@ class CheckContractorVTI extends DescisionMultipleInput
 			Process.STORAGE.set("OWNER", owner );
 			Process.STORAGE.set("CONTACT", mobile );
 			
-
 			/**
 			 * @TODO keep clipboard trick to fill clipboard with data
 			 */

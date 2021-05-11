@@ -1,7 +1,8 @@
 package flow.ftth.pluginuse;
 
 //import tstool.process.Process;
-import tstool.process.TripletTemplate;
+import tstool.process.DescisionTemplate;
+//import tstool.process.TripletTemplate;
 import tstool.salt.SOTemplate;
 //import tstool.salt.TemplateMail;
 
@@ -9,12 +10,12 @@ import tstool.salt.SOTemplate;
  * ...
  * @author bb
  */
-class _SendPluginUseTemplate extends TripletTemplate 
+class _SendPluginUseTemplate extends DescisionTemplate 
 {
 
 	public function new() 
 	{
-		super(SOTemplate.FIX_381);
+		super(SOTemplate.FIX_381, EMAIL);
 		
 	}
 	//override public function onClick():Void
@@ -35,9 +36,9 @@ class _SendPluginUseTemplate extends TripletTemplate
 		super.onNoClick();
 	}
 	
-	override public function onMidClick():Void
-	{
-		this._nexts = [{step: _InformPluginUse, params: []}];
-		super.onMidClick();
-	}
+	//override public function onMidClick():Void
+	//{
+		//this._nexts = [{step: _InformPluginUse, params: []}];
+		//super.onMidClick();
+	//}
 }

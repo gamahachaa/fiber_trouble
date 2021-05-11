@@ -6,11 +6,11 @@ import tstool.process.Descision;
  * ...
  * @author bb
  */
-class IsQulalifDone extends Descision 
+class IsQualifDone extends Descision 
 {
 	override public function onYesClick():Void
 	{
-		this._nexts = [{step: CHANGEME, params: []}];
+		this._nexts = [{step: IsOrderAccepted, params: []}];
 		super.onYesClick();
 	}
 	override public function onNoClick():Void

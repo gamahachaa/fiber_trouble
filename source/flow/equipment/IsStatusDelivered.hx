@@ -1,5 +1,6 @@
 package flow.equipment;
 
+import flow.ftth.status.WantstoChangeAdress;
 import tstool.process.Descision;
 
 /**
@@ -10,7 +11,7 @@ class IsStatusDelivered extends Descision
 {
 	override public function onYesClick():Void
 	{
-		this._nexts = [{step: _GiveStatusAndRemindMyaccount, params: []}];
+		this._nexts = [{step: WantstoChangeAdress, params: []}];
 		super.onYesClick();
 	}
 	override public function onNoClick():Void

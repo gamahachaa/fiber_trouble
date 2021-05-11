@@ -1,5 +1,4 @@
-package flow.ftth.status;
-
+package flow.ftth.pluginuse;
 
 import tstool.process.Descision;
 
@@ -7,16 +6,16 @@ import tstool.process.Descision;
  * ...
  * @author bb
  */
-class IsWhishDateWayAhead extends Descision 
+class IsPlugInUse extends Descision 
 {
 	override public function onYesClick():Void
 	{
-		this._nexts = [{step: _ExplainToWait, params: []}];
+		this._nexts = [{step: BouncePluginUse, params: []}];
 		super.onYesClick();
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: CheckInCRMorSO, params: []}];
+		this._nexts = [{step: _SendPluginUseTemplate, params: []}];
 		super.onNoClick();
 	}
 }

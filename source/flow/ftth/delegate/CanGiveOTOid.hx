@@ -1,4 +1,4 @@
-package flow.equipment;
+package flow.ftth.delegate;
 
 import tstool.process.DescisionMultipleInput;
 
@@ -8,6 +8,7 @@ import tstool.process.DescisionMultipleInput;
  */
 class CanGiveOTOid extends DescisionMultipleInput 
 {
+	public static inline var OTO_ID:String = "OTO ID";
 
 	
 	public function new ()
@@ -17,7 +18,7 @@ class CanGiveOTOid extends DescisionMultipleInput
 			ereg: new EReg("^(A|B)\\.[0-9]{3}\\.[0-9]{3}\\.[0-9]{3}(\\.[0-9X])?$","i"),
 			input:{
 				width:300,
-				prefix:"OTO ID",
+				prefix:OTO_ID,
 				debug: "A.123.456.789.X",
 				position: [bottom, left]
 			}
@@ -42,7 +43,7 @@ class CanGiveOTOid extends DescisionMultipleInput
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _SoOrderProcessStatusCheck, params: []}];
+		this._nexts = [{step: _InformToReply, params: []}];
 		super.onNoClick();
 	}
 	/**/

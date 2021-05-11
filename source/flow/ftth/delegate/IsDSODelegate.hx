@@ -1,22 +1,24 @@
 package flow.ftth.delegate;
 
-import flow._AddMemoVti;
+import flow.vti._UpdateAdressVTI;
 import tstool.process.Descision;
 
 /**
  * ...
  * @author bb
  */
-class HasAccessToMyAccount extends Descision 
+class IsDSODelegate extends Descision 
 {
+
 	override public function onYesClick():Void
 	{
-		this._nexts = [{step: _AddMemoVti, params: []}];
+		this._nexts = [{step: _UpdateAdressVTI, params: [{step:_SendDelegateEmail}]}];
 		super.onYesClick();
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _UpdateSOTicketWithOTO, params: []}];
+		this._nexts = [{step: _InformCustOrderOnHold, params: []}];
 		super.onNoClick();
 	}
+	
 }

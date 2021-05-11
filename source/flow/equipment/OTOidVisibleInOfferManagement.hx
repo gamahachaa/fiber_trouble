@@ -1,5 +1,6 @@
 package flow.equipment;
 
+import flow.ftth.pluginuse.IsPlugInUse;
 import tstool.process.Descision;
 
 /**

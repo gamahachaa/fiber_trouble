@@ -1,6 +1,7 @@
 package flow.ftth.status;
 
 
+import flow.equipment._SoOrderProcessStatusCheck;
 import tstool.process.Descision;
 
 /**
@@ -16,7 +17,7 @@ class IsWhishDateWayAhead extends Descision
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: CheckInCRMorSO, params: []}];
+		this._nexts = [{step: _SoOrderProcessStatusCheck, params: []}];
 		super.onNoClick();
 	}
 }

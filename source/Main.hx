@@ -11,6 +11,7 @@ import flixel.text.FlxText.FlxTextFormat;
 import flixel.text.FlxText.FlxTextFormatMarkerPair;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
+import flow.End;
 import flow.Intro;
 import flow.nointernet.customer.FiberCableChanged;
 import flow.nointernet.so._CreateTicketModemCNX;
@@ -42,6 +43,7 @@ import tstool.utils.VersionTracker;
 class Main extends MainApp
 {
 	public static var LIB_FOLDER:String;
+	public static inline var LIB_FOLDER_LOGIN:String = "/commonlibs/";
 	//public static var MAIL_WRAPPER_URL:String = LIB_FOLDER + "php/mail/index.php";
 	
 	public static var HISTORY:History;
@@ -55,7 +57,8 @@ class Main extends MainApp
 	public static var LOCATION:Location;
 	public static var DEBUG:Bool;
 	//public static var COOKIE: FlxSave;
-	
+		//public static inline var LAST_STEP:Class<FlxState> = End;
+	//public static inline var START_STEP:Class<Process> = Intro;
 	public static var LAST_STEP:Class<FlxState> = flow._AddMemoVti;
 	public static inline var START_STEP:Class<Process> = Intro;
 	public static var LANGS = ["fr-FR", "de-DE", "en-GB", "it-IT"];
@@ -107,7 +110,8 @@ class Main extends MainApp
 			 */
 			next = new flow.Intro();
 		#else
-			next = new Main.START_STEP();
+			//next = new Main.START_STEP();
+			next = new flow.Intro();
 		#end
 		tongue.initialize(MainApp.agent.mainLanguage, ()->(FlxG.switchState( old ? next : tuto)) );
 	}

@@ -3,6 +3,8 @@ package flow.nointernet.vti;
 //import flixel.FlxG;
 import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;
+//import flow.ftth.IsRedStep;
+import js.html.Clipboard;
 import lime.utils.Assets;
 import tstool.layout.UI;
 import tstool.process.Process;
@@ -24,6 +26,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 {
 	var parser:tstool.utils.VTIdataParser;
 	var sagem:String;
+	var is_sagem:Bool;
 	public static inline var CUST_DATA_PRODUCT:String = "PRODUCTS";
 	public static inline var CUST_DATA_PRODUCT_BOX:String = "BOX";
 	public static inline var SAGEM:String = "Sagem";
@@ -65,9 +68,10 @@ class CheckContractorVTI extends DescisionMultipleInput
 			]
 		);
 		//sagem = Assets.getText("assets/data/sagem_fut.txt");
+		is_sagem = false;
 		this.yesValidatedSignal.add(canITrack);
 	}
-	function setReminder()
+	function setReminder(box:String)
 	{
 		//081 304 10 13
 			var voip = Main.customer.voIP.split("");
@@ -84,8 +88,8 @@ class CheckContractorVTI extends DescisionMultipleInput
 			Process.STORAGE.set("VOIP", displayVoip );
 			Process.STORAGE.set("OWNER", owner );
 			Process.STORAGE.set("CONTACT", mobile );
+			Process.STORAGE.set("BOX", box );
 			
-
 			/**
 			 * @TODO keep clipboard trick to fill clipboard with data
 			 */
@@ -98,10 +102,12 @@ class CheckContractorVTI extends DescisionMultipleInput
 			trace(profile);
 		#end
 		if (!profile.exists("meta") || !profile.exists("plan")) return;
-		else 
+		else {
+		var voip = profile.get("plan").exists("vtiVoip")? profile.get("plan").get("vtiVoip"): ""; 
+		is_sagem = voip.indexOf("-") > -1;
 		Main.customer.contract = new Contractor(
 			profile.get("meta").exists("vtiContractor")? profile.get("meta").get("vtiContractor"):"",
-			profile.get("plan").exists("vtiVoip")? StringTools.replace(profile.get("plan").get("vtiVoip"), "- ",""):"",
+			is_sagem ? StringTools.replace(voip, "- ",""):voip,
 			profile.get("plan").exists("vtiFix")? profile.get("plan").get("vtiFix"):"",
 			profile.get("plan").exists("vtiMobile")? profile.get("plan").get("vtiMobile"):"",
 			profile.get("plan").exists("vtiAdress")? profile.get("plan").get("vtiAdress"):"",
@@ -111,6 +117,8 @@ class CheckContractorVTI extends DescisionMultipleInput
 			profile.exists("owner")? StringTools.trim(profile.get("owner").get("vtiOwnerEmailValidated").toLowerCase()) == "ok":false,
 			profile.exists("balance")?new Balance( profile.get("balance").get("vtiBalance"), profile.get("balance").get("vtiOverdue"), profile.get("balance").get("vtiOverdueDate")):null
 		);
+		
+		}
 		#if debug
 			trace(Main.customer);
 		#end
@@ -145,23 +153,24 @@ class CheckContractorVTI extends DescisionMultipleInput
 		//var contractorID = vtiContractorUI.getInputedText();
 		if (validateYes())
 		{
+			//this._nexts = [{step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : IsTicketOpened }];
 			this._nexts = [{step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? OTOidVisibleInOfferManagement : IsTicketOpened }];
 			this.parser.destroy();
 			var contractorID = multipleInputs.inputs.get("Contractor ID").getInputedText();
 			var voipVTI = multipleInputs.inputs.get("VoIP Number").getInputedText();
 			var contactNB = multipleInputs.inputs.get("Contact Number").getInputedText();
 			var voipSO = "0" + voipVTI.substr(2);
-			var is_sagem = isSagem(contractorID);
+			//var is_sagem = isSagem(contractorID);
 			Main.customer.contract.contractorID = contractorID;
 			Main.customer.contract.voip = voipSO;
 			Main.customer.contract.fix = voipVTI;
 			//Main.customer.voIP = voipSO;
-			//Main.customer.iri = is_sagem ? contractorID : voipSO;
+			Main.customer.iri = is_sagem ? contractorID : voipSO;
 			Main.customer.contract.mobile = contactNB;
 			
 			Main.customer.dataSet.set(CUST_DATA_PRODUCT, [CUST_DATA_PRODUCT_BOX => (is_sagem?SAGEM:ARCADYAN)]);
-			//trace(Main.customer.dataSet.get(CUST_DATA_PRODUCT).get(CUST_DATA_PRODUCT_BOX));
-			setReminder();
+			trace(Main.customer.dataSet.get(CUST_DATA_PRODUCT).get(CUST_DATA_PRODUCT_BOX));
+			setReminder(is_sagem?SAGEM:ARCADYAN);
 			super.onYesClick();
 		}
 		
@@ -177,10 +186,10 @@ class CheckContractorVTI extends DescisionMultipleInput
 	{
 		return true;
 	}
-	//function isSagem(contrator:String)
-	//{
-		//return sagem.indexOf(contrator) >-1;
-	//}
+	function isSagem(contrator:String)
+	{
+		return sagem.indexOf(contrator) >-1;
+	}
 	function canITrack(go:Bool)
 	{
 		if (go)

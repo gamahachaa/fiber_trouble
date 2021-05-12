@@ -50,6 +50,7 @@ class Main extends MainApp
 	public static var adminFile:tstool.utils.Csv;
 	public static var tongue:Translator;
 	//public static var user:Agent;
+	public static inline var DEBUG_LEVEL = 0;
 	public static var customer:Customer;
 	public static var track:XapiTracker;
 	public static var VERSION:String;

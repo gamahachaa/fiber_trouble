@@ -64,7 +64,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 				}
 			]
 		);
-		sagem = Assets.getText("assets/data/sagem_fut.txt");
+		//sagem = Assets.getText("assets/data/sagem_fut.txt");
 		this.yesValidatedSignal.add(canITrack);
 	}
 	function setReminder()
@@ -156,7 +156,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 			Main.customer.contract.voip = voipSO;
 			Main.customer.contract.fix = voipVTI;
 			//Main.customer.voIP = voipSO;
-			Main.customer.iri = is_sagem ? contractorID : voipSO;
+			//Main.customer.iri = is_sagem ? contractorID : voipSO;
 			Main.customer.contract.mobile = contactNB;
 			
 			Main.customer.dataSet.set(CUST_DATA_PRODUCT, [CUST_DATA_PRODUCT_BOX => (is_sagem?SAGEM:ARCADYAN)]);
@@ -177,10 +177,10 @@ class CheckContractorVTI extends DescisionMultipleInput
 	{
 		return true;
 	}
-	function isSagem(contrator:String)
-	{
-		return sagem.indexOf(contrator) >-1;
-	}
+	//function isSagem(contrator:String)
+	//{
+		//return sagem.indexOf(contrator) >-1;
+	//}
 	function canITrack(go:Bool)
 	{
 		if (go)

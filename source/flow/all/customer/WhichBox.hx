@@ -9,10 +9,15 @@ import tstool.process.Descision;
 class WhichBox extends Descision 
 {
 
-	public function new() 
+	override public function onYesClick():Void
 	{
-		super();
-		
+		this._nexts = [{step: CHANGEME, params: []}];
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: CHANGEME, params: []}];
+		super.onNoClick();
+	}
+	//Main.customer.iri = is_sagem ? contractorID : voipSO;
 }

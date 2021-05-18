@@ -25,7 +25,7 @@ class BoxLedStatus extends ActionRadios
 	 * COLORS
 	/***************************************/
 	static inline var _off:String = "Off";
-	static inline var _whiteStable:String= "White stable";
+	static inline var _whiteStable:String= "White Stable";
 	static inline var _whiteBlink:String = "White Blink";
 	
 	static inline var _greenStable:String= "Green stable";
@@ -66,27 +66,33 @@ class BoxLedStatus extends ActionRadios
 			[
 				{
 					title: POWER_TITLE,
+					hasTranslation:true,
 					values: [_off, _whiteStable, _redBlink]
 				},
 				{
 					title: FIBER_SAGEM_TITLE,
+					hasTranslation:true,
 					values: [_off, _whiteStable, _whiteBlink,_redStable, _redBlink]
 				},
 				{
 					title: INTERNET_TITLE,
+					hasTranslation:true,
 					values: [_off, _whiteStable, _redStable]
 				}
 				,
 				{
 					title: PHONE_SAGEM_TITLE,
+					hasTranslation:true,
 					values: [_off, _whiteStable, _whiteBlink, _redStable]
 				},
 				{
 					title: WIFI_TITLE,
+					hasTranslation:true,
 					values: [_off, _whiteStable]
 				},
 				{
 					title: COMBO_TITLE,
+					hasTranslation:true,
 					values: [_off, _whiteStable]
 				}
 			]);
@@ -97,30 +103,37 @@ class BoxLedStatus extends ActionRadios
 			[
 				{
 					title: POWER_TITLE,
+					hasTranslation:true,
 					values:[_off, _greenStable, _blink]
 				},
 				{
 					title: FIBER_TITLE,
+					hasTranslation:true,
 					values: [_off, _greenStable, _redStable, _greenBlink, _redBlink]
 				},
 				{
 					title: WWW_TITLE,
+					hasTranslation:true,
 					values: [_off, _greenStable, _blink]
 				},
 				{
 					title: WLAN_TITLE,
+					hasTranslation:true,
 					values: [_off, _greenStable, _blink]
 				},
 				{
 					title: WPS_TITLE,
+					hasTranslation:true,
 					values: [_off, _greenStable, _blink]
 				},
 				{
 					title: PHONE_TITLE,
+					hasTranslation:true,
 					values: [_off, _greenStable, _greenBlink, _blueStable, _blueBlink]
 				},
 				{
 					title: LAN_TITLE,
+					hasTranslation:true,
 					values: [_normal, _allGreen]
 				}
 			]);
@@ -163,12 +176,29 @@ class BoxLedStatus extends ActionRadios
 	}
 	inline function getNextSagem():Class<Process>
 	{
-		return if (Main.HISTORY.isClassInteractionInHistory(FiberCableChanged, No)){
+		var next:Class<Process> = null;
+		var powerLED = status.get(POWER_TITLE);
+		var fiberLED = status.get(FIBER_SAGEM_TITLE);
+		
+		var wwwLED = status.get(INTERNET_TITLE);
+		//var rearLanLED = status.get(LAN_TITLE);
+		var wlanLED = status.get(WIFI_TITLE);
+		var wpsLED = status.get(WPS_TITLE);
+		var phoneLED = status.get(PHONE_SAGEM_TITLE);
+		
+		return if ( (fiberLED != _whiteStable) && Main.HISTORY.isClassInteractionInHistory(flow.nointernet.customer.FiberCableChanged, No))
+		{
 			SwapFiberCable;
 		}
 		else{
 			_CreateTicketModemCNX;
 		}
+		/*return if (Main.HISTORY.isClassInteractionInHistory(FiberCableChanged, No)){
+			SwapFiberCable;
+		}
+		else{
+			_CreateTicketModemCNX;
+		}*/
 		
 	}
 	override public function create()
@@ -177,7 +207,13 @@ class BoxLedStatus extends ActionRadios
 		/**
 		 * @todo remove sagem exception
 		 */
-		if( chekcIfSagem() ) ui.loadIllustrationGraphics("box/led_status/led_status_sagem");
+		
+		if ( chekcIfSagem() ) {
+			ui.loadIllustrationGraphics("box/led_status/led_status_sagem");
+			sagem = true;
+		}
+		else sagem = false;
+		
 	}
 	
 	inline function getNextArcadyan():Class<Process>
@@ -211,9 +247,9 @@ class BoxLedStatus extends ActionRadios
 					next;
 				}
 			}
-			else if (fiberLED ==  _greenStable){
+			else if (fiberLED == _greenStable){
 				if (wwwLED ==  _greenStable)
-					IsBoxReachable;
+					_CreateTicketModemCNX;
 				else{
 					IsSerialNumberCorrect;
 				}

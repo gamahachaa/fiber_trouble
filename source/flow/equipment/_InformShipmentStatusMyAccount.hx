@@ -10,7 +10,7 @@ class _InformShipmentStatusMyAccount extends Action
 {
 	override public function onClick():Void
 	{
-		this._nexts = [{step: _OpenPostParcelTracking, params: []}];
+		this._nexts = [{step: IsStatusReturned, params: []}];
 		super.onClick();
 	}
 }

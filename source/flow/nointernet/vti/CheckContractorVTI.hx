@@ -1,6 +1,6 @@
 package flow.nointernet.vti;
 
-//import flixel.FlxG;
+
 import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;
 import flow.ftth.IsRedStep;
@@ -8,7 +8,7 @@ import js.html.Clipboard;
 import lime.utils.Assets;
 import tstool.layout.UI;
 import tstool.process.Process;
-//import flow.equipment.OTOidVisibleInOfferManagement;
+
 import flow.nointernet.so.IsTicketOpened;
 import tstool.salt.Balance;
 import tstool.salt.Contractor;
@@ -16,7 +16,7 @@ import tstool.salt.Role;
 import tstool.utils.VTIdataParser;
 import tstool.process.DescisionMultipleInput;
 import Main;
-//import tstool.utils.XapiTracker;
+
 
 /**
  * ...

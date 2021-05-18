@@ -1,14 +1,14 @@
 package flow.nointernet.vti;
 
-//import flixel.FlxG;
+
 import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;
-//import flow.ftth.IsRedStep;
+import flow.ftth.IsRedStep;
 import js.html.Clipboard;
 import lime.utils.Assets;
 import tstool.layout.UI;
 import tstool.process.Process;
-import flow.equipment.OTOidVisibleInOfferManagement;
+
 import flow.nointernet.so.IsTicketOpened;
 import tstool.salt.Balance;
 import tstool.salt.Contractor;
@@ -16,7 +16,7 @@ import tstool.salt.Role;
 import tstool.utils.VTIdataParser;
 import tstool.process.DescisionMultipleInput;
 import Main;
-//import tstool.utils.XapiTracker;
+
 
 /**
  * ...
@@ -153,8 +153,8 @@ class CheckContractorVTI extends DescisionMultipleInput
 		//var contractorID = vtiContractorUI.getInputedText();
 		if (validateYes())
 		{
-			//this._nexts = [{step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : IsTicketOpened }];
-			this._nexts = [{step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? OTOidVisibleInOfferManagement : IsTicketOpened }];
+			this._nexts = [{step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : IsTicketOpened }];
+			//this._nexts = [{step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? OTOidVisibleInOfferManagement : IsTicketOpened }];
 			this.parser.destroy();
 			var contractorID = multipleInputs.inputs.get("Contractor ID").getInputedText();
 			var voipVTI = multipleInputs.inputs.get("VoIP Number").getInputedText();

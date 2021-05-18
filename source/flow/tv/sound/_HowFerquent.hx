@@ -23,12 +23,7 @@ class _HowFerquent extends ActionMultipleInput
 		}]
 		);
 	}
-	//override public function create()
-	//{
-		//this._nextProcesses = [new IsSameIssueWithOtherApps()];
-		//super.create();
-	//}
-	
+
 	
 	override public function onClick():Void
 	{
@@ -39,13 +34,5 @@ class _HowFerquent extends ActionMultipleInput
 		}
 	}
 	
-	/****************************
-	* Needed only for validation
-	*****************************/
-	/*
-	override public function validate():Bool
-	{
-		return true;
-	}
-	*/
+
 }

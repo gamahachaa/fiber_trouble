@@ -15,7 +15,7 @@ class IsSerialNumberCorrect extends DescisionMultipleInput
 			ereg: new EReg("^(SFAA)?[0-9]{8}$","gi"),
 			input:{
 				width:150,
-				prefix:"Serial N°",
+				prefix:"Serial Nb",
 				debug: "SFAA12345678",
 				position:[bottom, left]
 			}

@@ -17,7 +17,7 @@ class DoesWantTVNow extends DescisionMultipleInput
 			ereg: new EReg("(fr|de|it)","i"),
 			input:{
 				width:250,
-				prefix:"TV basic package (fr, de or it)",
+				prefix:"TV basic package (fr, de, it)",
 				debug: "fr",
 				position: [bottom, left]
 			}

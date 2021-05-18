@@ -1,6 +1,7 @@
 package flow.wifi;
 
 import flow.stability._TestSpeed;
+import tstool.process.Process;
 import tstool.process.TripletTemplate;
 import tstool.salt.SOTemplate;
 

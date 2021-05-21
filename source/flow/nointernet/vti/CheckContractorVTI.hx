@@ -169,7 +169,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 			Main.customer.contract.mobile = contactNB;
 			
 			Main.customer.dataSet.set(CUST_DATA_PRODUCT, [CUST_DATA_PRODUCT_BOX => (is_sagem?SAGEM:ARCADYAN)]);
-			trace(Main.customer.dataSet.get(CUST_DATA_PRODUCT).get(CUST_DATA_PRODUCT_BOX));
+			//trace(Main.customer.dataSet.get(CUST_DATA_PRODUCT).get(CUST_DATA_PRODUCT_BOX));
 			setReminder(is_sagem?SAGEM:ARCADYAN);
 			super.onYesClick();
 		}

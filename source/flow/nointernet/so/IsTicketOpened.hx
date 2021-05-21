@@ -7,6 +7,7 @@ import flow.equipment.IsWhishDateWayAhead;
 import flow.escalation.IsTechTicket;
 import flow.nointernet.fiberbox.IsBoxReachable;
 import flow.stability._TestSpeed;
+import flow.stability.atf.IsFWToTheLatest;
 import flow.tv.WhatIStheTVIssue;
 import flow.wifi.HaveRepeater;
 import flow.wifi._MoveCloseUnplugRepeater;
@@ -64,13 +65,14 @@ class IsTicketOpened extends Descision
 			}
 			else
 			{
-				this._nexts = [{
-					step: _MoveCloseUnplugRepeater,
-					params: [
-						{step:HaveRepeater}, 
-						{step:HaveRepeater}
-					]
-			}];
+				this._nexts = [{step:IsFWToTheLatest}];
+					//step: 
+				//this._nexts = [{
+					//step: _MoveCloseUnplugRepeater,
+					//params: [
+						//{step:HaveRepeater}, 
+						//{step:HaveRepeater}
+					//]
 			}
 		}
 		else

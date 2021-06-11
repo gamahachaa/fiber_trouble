@@ -1,11 +1,10 @@
 package flow.nointernet.vti;
 
+using tstool.utils.StringUtils;
 
 import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;
 import flow.ftth.IsRedStep;
-import js.html.Clipboard;
-import lime.utils.Assets;
 import tstool.layout.UI;
 import tstool.process.Process;
 
@@ -31,6 +30,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 	public static inline var CUST_DATA_PRODUCT_BOX:String = "BOX";
 	public static inline var SAGEM:String = "Sagem";
 	public static inline var ARCADYAN:String = "Arcadyan";
+	public static inline var GIGABOX:String = "Gigabox";
 
 	public function new()
 	{
@@ -46,7 +46,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 					}
 				},
 				{
-					ereg: new EReg("^41\\d{9}$","i"),
+					ereg: new EReg("^(41\\d{9}|00000000000)$","i"),
 					input:{
 						buddy: "Contractor ID",
 						width:150,
@@ -74,21 +74,25 @@ class CheckContractorVTI extends DescisionMultipleInput
 	function setReminder(box:String)
 	{
 		//081 304 10 13
-			var voip = Main.customer.voIP.split("");
-			voip.insert(8, " ");
-			voip.insert(6, " ");
-			voip.insert(3, " ");
+			//var voip = Main.customer.voIP.split("");
+			//voip.insert(8, " ");
+			//voip.insert(6, " ");
+			//voip.insert(3, " ");
 			
-			var displayVoip = voip.join("");
-			var owner = Main.customer.contract.owner == null? "": Main.customer.contract.owner.name == null?"":Main.customer.contract.owner.name;
+			var displayVoip = Main.customer.voIP.phonSpaces();
+			var owner = Main.customer.getOwner();
 			var mobile = Main.customer.contract.mobile == "" ? "": "(" + Main.customer.contract.mobile + ")";
 			var iri  = Main.customer.iri == "" ? "" : "(" + Main.customer.iri + ")";
 			//Process.STORAGE.set("reminder", '$displayVoip $iri\n$owner $mobile' );
 			Process.STORAGE.set("CONTRACTOR", Main.customer.contract.contractorID );
-			Process.STORAGE.set("VOIP", displayVoip );
+			if (Main.customer.contract.service != Gigabox) 
+			{
+				Process.STORAGE.set("VOIP", displayVoip );
+			}
+			Process.STORAGE.set("BOX", box );
 			Process.STORAGE.set("OWNER", owner );
 			Process.STORAGE.set("CONTACT", mobile );
-			Process.STORAGE.set("BOX", box );
+			
 			
 			/**
 			 * @TODO keep clipboard trick to fill clipboard with data
@@ -99,7 +103,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 	{
 		#if debug
 			trace("onVtiAccountParsed");
-			trace(profile);
+			//trace(profile);
 		#end
 		if (!profile.exists("meta") || !profile.exists("plan")) return;
 		else {
@@ -115,7 +119,8 @@ class CheckContractorVTI extends DescisionMultipleInput
 			profile.exists("payer")? new Role(payer,profile.get("payer").get("vtiPayer"),profile.get("payer").get("vtiPayerEmail")):null,
 			new Role(user, profile.get("plan").get("vtiUser"), profile.get("plan").get("vtiUserEmail")),
 			profile.exists("owner")? StringTools.trim(profile.get("owner").get("vtiOwnerEmailValidated").toLowerCase()) == "ok":false,
-			profile.exists("balance")?new Balance( profile.get("balance").get("vtiBalance"), profile.get("balance").get("vtiOverdue"), profile.get("balance").get("vtiOverdueDate")):null
+			profile.exists("balance")?new Balance( profile.get("balance").get("vtiBalance"), profile.get("balance").get("vtiOverdue"), profile.get("balance").get("vtiOverdueDate")):null,
+			(profile.get("plan").exists("plan") ? (profile.get("plan").get("plan").indexOf("Giga")>-1?Gigabox:Fiber):Fiber)
 		);
 		
 		}
@@ -165,12 +170,12 @@ class CheckContractorVTI extends DescisionMultipleInput
 			Main.customer.contract.voip = voipSO;
 			Main.customer.contract.fix = voipVTI;
 			//Main.customer.voIP = voipSO;
-			Main.customer.iri = is_sagem ? contractorID : voipSO;
+			Main.customer.iri = is_sagem || Main.customer.contract.service == Gigabox ? contractorID : voipSO;
 			Main.customer.contract.mobile = contactNB;
 			
 			Main.customer.dataSet.set(CUST_DATA_PRODUCT, [CUST_DATA_PRODUCT_BOX => (is_sagem?SAGEM:ARCADYAN)]);
 			//trace(Main.customer.dataSet.get(CUST_DATA_PRODUCT).get(CUST_DATA_PRODUCT_BOX));
-			setReminder(is_sagem?SAGEM:ARCADYAN);
+			setReminder(is_sagem?SAGEM:  (Main.customer.contract.service == Gigabox ? Std.string(Gigabox) : ARCADYAN));
 			super.onYesClick();
 		}
 		

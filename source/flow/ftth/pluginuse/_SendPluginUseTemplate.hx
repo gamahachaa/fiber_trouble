@@ -2,6 +2,7 @@ package flow.ftth.pluginuse;
 
 //import tstool.process.Process;
 import tstool.process.DescisionTemplate;
+import tstool.process.Process;
 //import tstool.process.TripletTemplate;
 import tstool.salt.SOTemplate;
 //import tstool.salt.TemplateMail;
@@ -25,17 +26,19 @@ class _SendPluginUseTemplate extends DescisionTemplate
 	//}
 	override public function onYesClick():Void
 	{
-		this._nexts = [{step: _InformPluginUse, params: []}];
+		this._nexts = [{step: getNext(), params: []}];
 		super.onYesClick();
 	}
 	
 	
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _InformPluginUse, params: []}];
+		this._nexts = [{step: getNext(), params: []}];
 		super.onNoClick();
 	}
-	
+	 override inline function getNext():Class<Process>{
+		return _InformPluginUse;
+	}
 	//override public function onMidClick():Void
 	//{
 		//this._nexts = [{step: _InformPluginUse, params: []}];

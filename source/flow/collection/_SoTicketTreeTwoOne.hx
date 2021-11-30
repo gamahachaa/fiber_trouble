@@ -1,6 +1,7 @@
 package flow.collection;
 
-import process.ActionMailNointernet;
+//import process.ActionMailNointernet;
+import tstool.process.ActionTicket;
 //import tstool.process.ActionMail;
 import tstool.salt.SOTickets;
 
@@ -8,7 +9,7 @@ import tstool.salt.SOTickets;
  * ...
  * @author ...
  */
-class _SoTicketTreeTwoOne extends ActionMailNointernet 
+class _SoTicketTreeTwoOne extends ActionTicket 
 {
 	public function new() 
 	{

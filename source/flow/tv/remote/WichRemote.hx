@@ -1,17 +1,19 @@
 package flow.tv.remote;
 
 
+import flow.tv.remote.salttvv2.CanPair;
 import flow.tv.remote.satltv._EnsureAppleTVInVisualRangeOfRemote;
+import tstool.process.Triplet;
 //import flow.tv.remote.siri.DoesLightningDiodeLids;
 import flow.tv.remote.siri._AdviceOnSiriRemoteUSage;
 import flow.tv.remote.siri._RechargeSiriRemote;
-import tstool.process.Descision;
+//import tstool.process.Descision;
 
 /**
  * ...
  * @author bb
  */
-class WichRemote extends Descision 
+class WichRemote extends Triplet 
 {
 	
 	override public function onYesClick():Void
@@ -27,6 +29,11 @@ class WichRemote extends Descision
 	override public function onNoClick():Void
 	{
 		this._nexts = [{step: _EnsureAppleTVInVisualRangeOfRemote}];
+		super.onNoClick();
+	}
+	override public function onMidClick():Void
+	{
+		this._nexts = [{step: CanPair}];
 		super.onNoClick();
 	}
 }

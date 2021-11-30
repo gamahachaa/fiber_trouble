@@ -1,12 +1,13 @@
 package flow.nointernet.so.tckets;
 
 import flow.End;
-import process.ActionMailNointernet;
+//import process.ActionMailNointernet;
+import tstool.process.ActionTicket;
 //import flow.nointernet.vti.CheckContractorVTI;
 //import tstool.process.ActionMail;
 import tstool.salt.SOTickets;
 
-class _SwapBox extends ActionMailNointernet {
+class _SwapBox extends TechTickets {
 	public function new() 
 	{
 		super(SOTickets.FIX_523);

@@ -15,10 +15,9 @@ class TechTickets extends ActionTicket
 	{
 		var is_sagem:Bool = Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).get(CheckContractorVTI.CUST_DATA_PRODUCT_BOX) == CheckContractorVTI.SAGEM;
 		//, [CheckContractorVTI.CUST_DATA_PRODUCT_BOX => (arcadyan?CheckContractorVTI.ARCADYAN: CheckContractorVTI.SAGEM)]);
-		if (is_sagem)
+		if (is_sagem && ticket.queue.indexOf("_X6_")==-1)
 		{
-			var tq = ticket.queue;
-			ticket.queue = StringTools.replace(tq, "_SO", "_X6_SO");
+			ticket.queue = StringTools.replace(ticket.queue, "_SO", "_X6_SO");
 		}
 		super(ticket, resolved);
 		

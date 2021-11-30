@@ -102,7 +102,7 @@ class FiberCableChanged extends TripletMultipleInput
 		return switch (multipleInputs.inputs.get(SO_TICKET_NUM).getInputedText())
 		{
 			case "11111111" : false;
-			case (Std.parseInt(_) > 10755654 && Std.parseInt(_) < 12999999) => true : true;
+			case (Std.parseInt(_) > 10755654 && Std.parseInt(_) < 19999999) => true : true;
 			case _ : false;
 		}
 	}

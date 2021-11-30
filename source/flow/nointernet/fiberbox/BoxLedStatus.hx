@@ -2,6 +2,7 @@ package flow.nointernet.fiberbox;
 
 //import flixel.addons.ui.FlxUIRadioGroup;
 //import flixel.text.FlxText;
+import flow.nointernet.customer.DidJustMoved;
 import flow.nointernet.customer.FiberCableChanged;
 import flow.nointernet.postLedChecks.IsSerialNumberCorrect;
 import flow.nointernet.so._CreateTicketModemCNX;
@@ -148,11 +149,11 @@ class BoxLedStatus extends ActionRadios
 	
 	override public function onClick():Void
 	{
-		var next:Class<Process> = null;
+		//var next:Class<Process> = null;
 		if (validate())
 		{
-			next = sagem ? getNextSagem() : getNextArcadyan();
-			this._nexts = [{step: next, params: []}];
+			//next = sagem ? getNextSagem() : getNextArcadyan();
+			this._nexts = [{step: getNext(), params: []}];
 			//trace("flow.nointernet.fiberbox.BoxLedStatus::onClick::this._nexts", this._nexts );
 			super.onClick();
 		}
@@ -174,7 +175,7 @@ class BoxLedStatus extends ActionRadios
 		}
 		else return false;
 	}
-	inline function getNextSagem():Class<Process>
+	/*inline function getNextSagem():Class<Process>
 	{
 		var next:Class<Process> = null;
 		var powerLED = status.get(POWER_TITLE);
@@ -188,19 +189,14 @@ class BoxLedStatus extends ActionRadios
 		
 		return if ( (fiberLED != _whiteStable) && Main.HISTORY.isClassInteractionInHistory(flow.nointernet.customer.FiberCableChanged, No))
 		{
-			SwapFiberCable;
+			//SwapFiberCable;
+			SendSMSReadRxTX;
 		}
 		else{
 			_CreateTicketModemCNX;
 		}
-		/*return if (Main.HISTORY.isClassInteractionInHistory(FiberCableChanged, No)){
-			SwapFiberCable;
-		}
-		else{
-			_CreateTicketModemCNX;
-		}*/
 		
-	}
+	}*/
 	override public function create()
 	{
 		super.create();
@@ -216,63 +212,73 @@ class BoxLedStatus extends ActionRadios
 		
 	}
 	
-	inline function getNextArcadyan():Class<Process>
+	inline function getNext():Class<Process>
 	{
 		var next:Class<Process> = null;
 		var powerLED = status.get(POWER_TITLE);
-		var fiberLED = status.get(FIBER_TITLE);
+		var fiberLED = sagem ? status.get(FIBER_SAGEM_TITLE) : status.get(FIBER_TITLE);
 		
-		var wwwLED = status.get(WWW_TITLE);
-		var rearLanLED = status.get(LAN_TITLE);
-		var wlanLED = status.get(WLAN_TITLE);
+		var wwwLED = sagem ? status.get(INTERNET_TITLE) : status.get(WWW_TITLE);
+		var rearLanLED = sagem ? "" : status.get(LAN_TITLE);
+		var wlanLED = sagem ? status.get(WIFI_TITLE) : status.get(WLAN_TITLE);
 		var wpsLED = status.get(WPS_TITLE);
-		var phoneLED = status.get(PHONE_TITLE);
+		var phoneLED =  sagem ? status.get(PHONE_SAGEM_TITLE): status.get(PHONE_TITLE);
 		
-		next = if (Main.HISTORY.isClassInteractionInHistory(flow.nointernet.customer.FiberCableChanged, No)){
-			SwapFiberCable;
+		
+		//var powerLED = status.get(POWER_TITLE);
+		//var fiberLED = status.get(FIBER_SAGEM_TITLE);
+		
+		//var wwwLED = status.get(INTERNET_TITLE);
+		//var rearLanLED = status.get(LAN_TITLE);
+		//var wlanLED = status.get(WIFI_TITLE);
+		//var wpsLED = status.get(WPS_TITLE);
+		//var phoneLED = status.get(PHONE_SAGEM_TITLE);
+		
+		/*next = if (Main.HISTORY.isClassInteractionInHistory(flow.nointernet.customer.FiberCableChanged, No)){
+			
+			SendSMSReadRxTX;
 		}
 		else{
 			_CreateTicketModemCNX;
-		}
-		
+		} */
+		//SAME
 		next = if (powerLED == _off && fiberLED == _off && wwwLED == _off ){
 			_SwapBox;
 		}
-		else if (powerLED == _greenStable ){
+		else if (powerLED == _greenStable || powerLED == _whiteStable) // COMMON
+		{
 			if (fiberLED == _redStable){
 				if (rearLanLED == _allGreen){
 					_SwapBox;
 				}
 				else{
-					next;
+					SendSMSReadRxTX;
 				}
 			}
-			else if (fiberLED == _greenStable){
-				if (wwwLED ==  _greenStable)
-					_CreateTicketModemCNX;
+			else if (fiberLED == _greenStable || fiberLED == _whiteStable){
+				if (wwwLED == _greenStable || wwwLED == _whiteStable )
+					DidJustMoved;
 				else{
 					IsSerialNumberCorrect;
 				}
 			}
-			else if (fiberLED ==  _greenBlink){
+			else if (fiberLED ==  _greenBlink || fiberLED == _whiteBlink){
 				IsSerialNumberCorrect;
 			}
 			else{
-				next;
+				SendSMSReadRxTX;
 			}
 		}
 		else if (
-			powerLED == _blink &&
-			( fiberLED == _greenBlink || fiberLED == _redBlink  ) &&
-			wwwLED == _blink &&
-			wlanLED == _blink &&
-			wpsLED == _blink &&
-			( phoneLED == _greenBlink || phoneLED == _blueBlink )
+			(powerLED == _blink || powerLED == _redBlink) &&
+			( fiberLED == _greenBlink || fiberLED == _redBlink ||  fiberLED == _whiteBlink ) &&
+			(wwwLED == _blink || wwwLED == _redStable) &&
+			( phoneLED == _greenBlink || phoneLED == _blueBlink || phoneLED ==_whiteBlink)
 		){
 			_SwapBox;
 		}
 		else{
-			next;
+			SendSMSReadRxTX;
 		}
 		return next;
 	}

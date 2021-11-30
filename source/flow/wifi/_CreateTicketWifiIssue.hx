@@ -1,7 +1,8 @@
 package flow.wifi;
 
 import flow.all.customer._SendTechMail;
-import process.ActionMailNointernet;
+//import process.ActionMailNointernet;
+import tstool.process.ActionTicket;
 //import tstool.process.ActionMail;
 import tstool.salt.SOTickets;
 
@@ -9,7 +10,7 @@ import tstool.salt.SOTickets;
  * ...
  * @author ...
  */
-class _CreateTicketWifiIssue extends ActionMailNointernet
+class _CreateTicketWifiIssue extends TechTickets
 {
 	public function new() 
 	{

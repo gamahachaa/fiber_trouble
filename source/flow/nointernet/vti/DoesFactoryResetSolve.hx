@@ -1,5 +1,6 @@
 package flow.nointernet.vti;
 
+import flow.nointernet.so._CreateTicketModemCNX;
 import tstool.process.Descision;
 
 /**
@@ -9,9 +10,15 @@ import tstool.process.Descision;
 class DoesFactoryResetSolve extends Descision 
 {
 
-	public function new() 
+	override public function onYesClick():Void
 	{
-		
+		this._nexts = [{step: _AddMemoVti, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _CreateTicketModemCNX, params: []}];
+		super.onNoClick();
 	}
 	
 }

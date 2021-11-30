@@ -13,12 +13,12 @@ class ConnectedViaSwitch extends Descision
 
 	override public function onYesClick():Void
 	{
-		this._nexts = [{step: ConnectDirectToFiberbox, params: []}];
+		this._nexts = [{step: _RemoveAllCablesConnectedToBox, params: []}];
 		super.onYesClick();
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _RemoveAllCablesConnectedToBox, params: []}];
+		this._nexts = [{step:ConnectDirectToFiberbox , params: []}];
 		super.onNoClick();
 	}
 }

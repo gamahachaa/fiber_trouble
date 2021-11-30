@@ -1,7 +1,10 @@
 package flow.nointernet.fiberbox;
 
 import flow.installation.OTOPlugDamagedNotClicking;
+import flow.nointernet.so._CreateTicketModemCNX;
+import flow.swapcable.SwapFiberCable;
 import tstool.process.DescisionMultipleInput;
+import tstool.process.Process;
 //import flow.installation._EnsureCorrectPortPlug;
 import flow.nointernet.customer._TellCustomerAllOkWithFiberCnx;
 import tstool.process.DescisionMultipleInput;
@@ -13,34 +16,33 @@ import tstool.process.DescisionMultipleInput;
  */
 class NormalRxValues extends DescisionMultipleInput
 {
-	/*public function new() 
+	static inline var BOX_RX:String = "Customer Box RX";
+	public function new() 
 	{
 		super([
 		{
-			ereg: new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)","i"),
+			ereg: new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)", "i"),
+			hasTranslation:true,
 			input:{
-				width:100,
-				prefix:"VTI RX",
+				width:200,
+				prefix:BOX_RX,
+				
 				debug: "-12",
 				position:[bottom, left]
 			}
 		}]);
-	}*/
-	/*override public function create()
-	{
-		this._nextNoProcesses = [new OTOPlugDamagedNotClicking()];
-		this._nextYesProcesses = [new _TellCustomerAllOkWithFiberCnx()];
-		super.create();
 	}
 	override public function onYesClick(){
+		this._nexts = [{step: getNext(), params: []}];
 		if (valueInRange(true)) super.onYesClick();
 	}
 	override public function onNoClick(){
+		this._nexts = [{step: getNext(), params: []}];
 		if (valueInRange(false)) super.onNoClick();
 	}
 	function valueInRange( waitingFor:Bool )
 	{
-		var valueInputField = this.multipleInputs.inputs.get("VTI RX");
+		var valueInputField = this.multipleInputs.inputs.get(BOX_RX);
 		var rxString = valueInputField.getInputedText();
 		var rxFloat = Std.parseFloat(rxString);
 		#if debug
@@ -52,5 +54,15 @@ class NormalRxValues extends DescisionMultipleInput
 			return false;
 		}
 		return true;
-	}*/
+	}
+	inline function getNext() : Class<Process>
+	{
+		return if (Main.HISTORY.isClassInteractionInHistory(flow.nointernet.customer.FiberCableChanged, No)){
+			
+			SwapFiberCable;
+		}
+		else{
+			_CreateTicketModemCNX;
+		} 
+	}
 }

@@ -1,5 +1,7 @@
 package flow.nointernet.customer;
 
+import flow.nointernet.so._CreateTicketModemCNX;
+import flow.nointernet.vti.DoesFactoryResetSolve;
 import tstool.process.Descision;
 
 /**
@@ -9,10 +11,15 @@ import tstool.process.Descision;
 class DidJustMoved extends Descision 
 {
 
-	public function new() 
+	override public function onYesClick():Void
 	{
-		super();
-		
+		this._nexts = [{step: DoesFactoryResetSolve , params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _CreateTicketModemCNX, params: []}];
+		super.onNoClick();
 	}
 	
 }

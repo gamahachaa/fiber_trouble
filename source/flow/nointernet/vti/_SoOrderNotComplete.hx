@@ -1,7 +1,8 @@
 package flow.nointernet.vti;
 
 import flow._AddMemoVti;
-import process.ActionMailNointernet;
+//import process.ActionMailNointernet;
+import tstool.process.ActionTicket;
 //import tstool.process.ActionMail;
 import tstool.salt.SOTickets;
 
@@ -9,7 +10,7 @@ import tstool.salt.SOTickets;
  * ...
  * @author bb
  */
-class _SoOrderNotComplete extends ActionMailNointernet 
+class _SoOrderNotComplete extends ActionTicket 
 {
 
 	public function new() 

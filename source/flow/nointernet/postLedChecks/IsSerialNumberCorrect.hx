@@ -3,19 +3,22 @@ package flow.nointernet.postLedChecks;
 import flow.installation._EnsureNoLanLoop;
 import flow.nointernet.so.tckets._SwapBox;
 import tstool.process.DescisionMultipleInput;
+import tstool.utils.ExpReg;
 
 
 class IsSerialNumberCorrect extends DescisionMultipleInput
 {
+	//static inline var BOX_SERIAL:String = "^(SFAA|GFAB)?[0-9]{8}$";
+	static inline var SERIAL_PREFIX:String = "Serial Nb";
 	public function new()
 	{
 		super(
 		[
 		{
-			ereg: new EReg("^(SFAA)?[0-9]{8}$","gi"),
+			ereg: new EReg(ExpReg.BOX_SERIAL,"gi"),
 			input:{
 				width:150,
-				prefix:"Serial Nb",
+				prefix:SERIAL_PREFIX,
 				debug: "SFAA12345678",
 				position:[bottom, left]
 			}

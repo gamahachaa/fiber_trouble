@@ -1,6 +1,6 @@
 package flow.equipment;
 
-import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
+//import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
 import tstool.process.Descision;
 
 /**

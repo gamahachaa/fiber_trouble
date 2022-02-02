@@ -3,11 +3,12 @@ package flow.installation;
 
 //import flixel.addons.ui.StrNameLabel;
 //import tstool.process.ActionDropDown;
-import tstool.process.ActionRadios;
+//import tstool.process.ActionRadios;
+import tstool.process.DescisionRadios;
 //import tstool.process.ActionMultipleInput;
 
 //class _EnsureCorrectPortPlug extends ActionDropDown
-class _EnsureCorrectPortPlug extends ActionRadios
+class _EnsureCorrectPortPlug extends DescisionRadios
 {
 	public static inline var PORT_PLUGED:String = "PLUGED PORT";
 	public function new() 
@@ -20,13 +21,21 @@ class _EnsureCorrectPortPlug extends ActionRadios
 		]);
 		
 	}
-	override public function onClick():Void
+	override public function onYesClick():Void
 	{
 		if (validate())
 		{
 			this._nexts = [{step: IsOtoPortWrong, params: []}];
-			super.onClick();
+			super.onYesClick();
 		}
+	}
+	override public function onNoClick():Void
+	{
+		//if (validate())
+		//{
+			this._nexts = [{step: OTOPlugDamagedNotClicking, params: []}];
+			super.onNoClick();
+		//}
 	}
 	
 }

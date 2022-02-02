@@ -65,14 +65,7 @@ class IsTicketOpened extends Descision
 			}
 			else
 			{
-				this._nexts = [{step:IsFWToTheLatest}];
-					//step: 
-				//this._nexts = [{
-					//step: _MoveCloseUnplugRepeater,
-					//params: [
-						//{step:HaveRepeater}, 
-						//{step:HaveRepeater}
-					//]
+				this._nexts = [{step:HaveRepeater}];
 			}
 		}
 		else

@@ -1,4 +1,5 @@
 package flow.tv.app;
+import flow.tickets.CustomerInstruction;
 import flow.tv._CreateSOTicketSaltTV;
 //import flow.tv.install._ResetAppleTV;
 import tstool.process.Descision;
@@ -39,35 +40,35 @@ class ProblemSolved extends Descision
 	}
 	override public function onNoClick():Void
 	{
-		var nextNo:Class<Process>;
+		var nextNo:ProcessContructor;
 		if (Main.HISTORY.isClassInHistory(flow.tv.app._CheckIfAppleTVNeedsUpdate))
 		{
 			/***********************
 			 * N°4 - ticket
 			/***********************/
-			nextNo =  _CreateSOTicketSaltTV;
+			nextNo =  {step: CustomerInstruction, params: [{step: _CreateSOTicketSaltTV}, {step: _CreateSOTicketSaltTV}]};
 		}
 		else if (Main.HISTORY.isClassInHistory(flow.tv.app._RebootAppleTV))
 		{
 			/***********************
 			 * N°3
 			/***********************/
-			 nextNo = _CheckIfAppleTVNeedsUpdate;
+			 nextNo = {step:_CheckIfAppleTVNeedsUpdate};
 		}
 		else if (Main.HISTORY.isClassInHistory(flow.tv.app._CheckIfSaltTVNeedsUpdate))
 		{
 			/***********************
 			 * N°2
 			/***********************/
-			 nextNo = _RebootAppleTV;
+			 nextNo = {step:_RebootAppleTV};
 		}
 		else{
 			/***********************
 			 * First time
 			/***********************/
-			 nextNo = _CheckIfSaltTVNeedsUpdate;
+			 nextNo = {step:_CheckIfSaltTVNeedsUpdate};
 		}
-		this._nexts = [{step: nextNo, params: []}];
+		this._nexts = [nextNo];
 		super.onNoClick();
 	}
 }

@@ -6,4 +6,6 @@ import tstool.process.DescisionLoop;
  * ...
  * @author ...
  */
-class _LoopResetFiberBox extends DescisionLoop{}
+class _LoopResetFiberBox extends DescisionLoop{
+	
+}

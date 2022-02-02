@@ -2,6 +2,7 @@ package flow.nointernet.postLedChecks;
 
 import flow.installation._EnsureNoLanLoop;
 import flow.nointernet.so.tckets._SwapBox;
+import flow.tickets.CustomerInstruction;
 import tstool.process.DescisionMultipleInput;
 import tstool.utils.ExpReg;
 
@@ -32,7 +33,12 @@ class IsSerialNumberCorrect extends DescisionMultipleInput
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _SwapBox, params: []}];
+		//this._nexts = [{step: _SwapBox, params: []}];
+		this._nexts = [{step: CustomerInstruction, params: [
+													{step: _SwapBox},
+													{step: _SwapBox}
+												]
+			}];
 		super.onNoClick();
 	}
 }

@@ -1,6 +1,7 @@
 package flow.collection;
 
 import flixel.addons.ui.FlxInputText;
+import flow.tickets.CustomerInstruction;
 //import tstool.process.Action;
 import tstool.process.ActionMultipleInput;
 
@@ -41,6 +42,16 @@ class _ExplainReasons extends ActionMultipleInput
 	override public function validate():Bool
 	{
 		return true;
+	}
+	*/
+	/*
+	override public function onClick():Void
+	{
+		this._nexts = [{step: CustomerInstruction, params: [
+		       	{step: _SoTicketTreeTwoOne},
+				{step: _SoTicketTreeTwoOne}
+		]}];
+		super.onClick();
 	}
 	*/
 }

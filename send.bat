@@ -2,7 +2,7 @@
 
 @echo off
 
-set DEV=0
+set DEV=1
 echo "START"
 if %DEV%==1 (
 	if "%1"=="" goto :dead
@@ -74,6 +74,7 @@ powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.js.map" -NewName %
 
 
 :EXPORT
+
 
 
 if %DEV%==1 (

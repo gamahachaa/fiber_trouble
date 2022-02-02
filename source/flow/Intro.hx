@@ -22,7 +22,7 @@ class Intro extends Triplet
  		super.create();
 		//#if !debug
 		Main.VERSION_TRACKER.scriptChangedSignal.add(onNewVersion);
-		Main.VERSION_TRACKER.request();
+		
 		#if debug
 		if (Main.DEBUG){
 			trace("Main.DEBUG OPEN ROBOT");
@@ -34,6 +34,7 @@ class Intro extends Triplet
 		
 		#else
 		//trace("PROD does OPEN ROBOT");
+		Main.VERSION_TRACKER.request();
 		openSubState(new CheckUpdateSub(UI.THEME.bg));
 		#end
 	}

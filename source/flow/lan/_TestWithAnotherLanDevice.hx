@@ -1,5 +1,6 @@
 package flow.lan;
 
+import flow.tickets.CustomerInstruction;
 import flow.wifi._CreateTicketWifiIssue;
 import tstool.process.Action;
 import tstool.process.Descision;
@@ -18,17 +19,30 @@ class _TestWithAnotherLanDevice extends Descision
 	}
 	override public function onNoClick():Void
 	{
-		var next:Class<Process> = if (Main.HISTORY.isClassInteractionInHistory(flow.wifi.CanConnectToBoxWithLAN, Yes) || Main.HISTORY.isClassInteractionInHistory(flow.wifi.CanConnectToBoxWithLAN, No) && Main.HISTORY.isClassInteractionInHistory(flow.all.customer.LanOrWiFi, Yes))
+		//var next:Class<Process> = if (Main.HISTORY.isClassInteractionInHistory(flow.wifi.CanConnectToBoxWithLAN, Yes) || Main.HISTORY.isClassInteractionInHistory(flow.wifi.CanConnectToBoxWithLAN, No) && Main.HISTORY.isClassInteractionInHistory(flow.all.customer.LanOrWiFi, Yes))
+		//{
+			//
+			///******************************************
+			 //* WiFi Not visible on Dashboard WiFi issue
+			///*****************************************/
+			//_CreateTicketWifiIssue;
+		//}
+		//else
+			//OkToTryWifi;
+			var next:ProcessContructor = if (Main.HISTORY.isClassInteractionInHistory(flow.wifi.CanConnectToBoxWithLAN, Yes) || Main.HISTORY.isClassInteractionInHistory(flow.wifi.CanConnectToBoxWithLAN, No) && Main.HISTORY.isClassInteractionInHistory(flow.all.customer.LanOrWiFi, Yes))
 		{
 			
 			/******************************************
 			 * WiFi Not visible on Dashboard WiFi issue
 			/*****************************************/
-			_CreateTicketWifiIssue;
+			//_CreateTicketWifiIssue;
+			{step: CustomerInstruction, params: [{step: _CreateTicketWifiIssue},{step: _CreateTicketWifiIssue}]};
 		}
 		else
-			OkToTryWifi;
-		this._nexts = [{step: next, params: []}];
+			{step: OkToTryWifi};
+			//OkToTryWifi;
+			//{step: CustomerInstruction, params: [{step: _CreateTicketWifiIssue},{step: _CreateTicketWifiIssue}]}
+		this._nexts = [next];
 		super.onNoClick();
 	}
 }

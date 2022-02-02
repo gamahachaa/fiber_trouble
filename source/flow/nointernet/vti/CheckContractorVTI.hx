@@ -6,10 +6,13 @@ import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;
 import flow.all.fiberbox.WhatBoxIsIt;
 import flow.ftth.IsRedStep;
+import tstool.MainApp;
 import tstool.layout.UI;
 import tstool.process.Process;
+import xapi.Agent;
+import xapi.Verb;
 
-import flow.nointernet.so.IsTicketOpened;
+//import flow.nointernet.so.IsTicketOpened;
 import tstool.salt.Balance;
 import tstool.salt.Contractor;
 import tstool.salt.Role;
@@ -145,7 +148,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 	override public function create():Void
 	{
 		Main.customer.reset();
-		prepareXAPIMainActivity();
+		
 
 		super.create();
 		parser = new VTIdataParser(account);
@@ -197,37 +200,58 @@ class CheckContractorVTI extends DescisionMultipleInput
 	{
 		if (go)
 		{
-			Main.track.setVerb("initialized");
-			Main.track.setStatementRef(null);
-			Main.track.setCustomer();
-			Main.track.send();
-			Main.track.setVerb("resolved");
+			var act = prepareXAPIMainActivity();
+			//#if debug
+				Main.trackH.reset(false);
+				Main.trackH.setActor(new Agent( MainApp.agent.iri, MainApp.agent.sAMAccountName));
+				Main.trackH.setVerb(Verb.initialized);
+				//Main.trackH.setStatementRefs(null);
+				var extensions:Map<String,Dynamic> = [];
+				extensions.set("https://vti.salt.ch/contractor/", Main.customer.contract.contractorID); 
+				extensions.set("https://vti.salt.ch/voip/", Main.customer.voIP);
+				
+				Main.trackH.setActivityObject(act,null,null,"http://activitystrea.ms/schema/1.0/process",extensions);
+				//Main.trackH.setCustomer();
+				Main.trackH.send();
+				Main.trackH.setVerb(Verb.resolved);
+			//#else
+		//
+				//Main.track.setVerb("initialized");
+				//Main.track.setStatementRef(null);
+				//Main.track.setCustomer();
+				//Main.track.setActivity(act);
+				//Main.track.send();
+				//Main.track.setVerb("resolved");
+			//#end
+			 
+		
 		}
 
 	}
 
 	function prepareXAPIMainActivity()
 	{
-		if (Main.HISTORY.isClassInteractionInHistory(Intro, Mid))
+		return if (Main.HISTORY.isClassInteractionInHistory(Intro, Mid))
 		{
-			Main.track.setActivity("equipment");
+			"equipment";
 		}
 		else if (Main.HISTORY.isClassInteractionInHistory(Intro, No))
 		{
-			Main.track.setActivity("tv");
+			"tv";
 		}
 		else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))
 		{
-			Main.track.setActivity("no-internet");
+			"no-internet";
 		}
 		else if (Main.HISTORY.isClassInteractionInHistory(flow.all.customer.IsSlowOrKaput, Yes) || Main.HISTORY.isClassInteractionInHistory(flow.all.customer.IsSlowOrKaput, Mid))
 		{
-			Main.track.setActivity("slow-internet");
+			"slow-internet";
 		}
 		else
 		{
-			Main.track.setActivity("");
+			"";
 		}
+		
 	}
 
 }

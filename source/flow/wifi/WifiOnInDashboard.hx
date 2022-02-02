@@ -1,6 +1,7 @@
 package flow.wifi;
 
 import flow.all.fiberbox._LoopResetFiberBox;
+import flow.tickets.CustomerInstruction;
 //import flow.lan._CreateLanIssueTicket;
 import flow.wifi._SwitchOnUsingButton;
 import flow.wifi.CanConnectToBoxWithLAN;
@@ -32,7 +33,8 @@ class WifiOnInDashboard extends Descision
 	{
 		this._nexts = [
 			{step: _SwitchOnUsingButton}, 
-			Main.HISTORY.isClassInHistory(_LoopResetFiberBox) ?  {step: _CreateTicketWifiIssue}: {step: _LoopResetFiberBox}, 
+			//Main.HISTORY.isClassInHistory(_LoopResetFiberBox) ?  {step: _CreateTicketWifiIssue}: {step: _LoopResetFiberBox}, 
+			Main.HISTORY.isClassInHistory(_LoopResetFiberBox) ?  {step: CustomerInstruction, params: [{step: _CreateTicketWifiIssue},{step: _CreateTicketWifiIssue}]}: {step: _LoopResetFiberBox}, 
 			{step:CanConnectToBoxWithLAN}
 		];
 		//this._nextNoProcesses = [];

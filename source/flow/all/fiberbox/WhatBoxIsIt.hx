@@ -2,7 +2,7 @@ package flow.all.fiberbox;
 
 import flow.nointernet.so.IsTicketOpened;
 import flow.nointernet.vti.CheckContractorVTI;
-import tstool.process.Descision;
+//import tstool.process.Descision;
 import tstool.process.Process;
 import tstool.process.Triplet;
 import tstool.salt.Contractor;
@@ -14,20 +14,20 @@ import tstool.salt.Contractor;
 enum Box{
 	Sagem;
 	Arcadyan;
-	Fwa;
+	Gigabox;
 }
 class WhatBoxIsIt extends Triplet
 {
 
 	override public function onYesClick():Void
 	{
-		setCustomerProfile(false);
+		setCustomerProfile(Sagem);
 		this._nexts = [{step: IsTicketOpened, params: []}];
 		super.onYesClick();
 	}
 	override public function onNoClick():Void
 	{
-		setCustomerProfile(true);
+		setCustomerProfile(Arcadyan);
 		this._nexts = [{step: IsTicketOpened, params: []}];
 		super.onNoClick();
 	}
@@ -42,14 +42,22 @@ class WhatBoxIsIt extends Triplet
 	}
 	override public function onMidClick():Void
 	{
+		setCustomerProfile(Gigabox);
 		this._nexts = [{step: IsTicketOpened, params: []}];
 		super.onMidClick();
 	}
-	function setCustomerProfile(arcadyan:Bool)
+	function setCustomerProfile(box:Box)
 	{
-		Main.customer.iri = arcadyan ? Main.customer.voIP : Main.customer.contract.contractorID;
-		Main.customer.dataSet.set(CheckContractorVTI.CUST_DATA_PRODUCT, [CheckContractorVTI.CUST_DATA_PRODUCT_BOX => (arcadyan?CheckContractorVTI.ARCADYAN: CheckContractorVTI.SAGEM)]);
-		Process.STORAGE.set("BOX", arcadyan ?CheckContractorVTI.ARCADYAN:  (Main.customer.contract.service == Gigabox ? Std.string(Gigabox) : CheckContractorVTI.SAGEM));
+		Main.customer.iri = box == Arcadyan ? Main.customer.voIP : Main.customer.contract.contractorID;
+		Main.customer.dataSet.set(
+			CheckContractorVTI.CUST_DATA_PRODUCT, 
+			[CheckContractorVTI.CUST_DATA_PRODUCT_BOX => Std.string(box)]
+		);
+		Process.STORAGE.set(
+			CheckContractorVTI.CUST_DATA_PRODUCT_BOX,  Std.string(box)
+			//arcadyan ? CheckContractorVTI.ARCADYAN: 
+				//(Main.customer.contract.service == Gigabox ? Std.string(Gigabox) : CheckContractorVTI.SAGEM)
+		);
 	}
 
 }

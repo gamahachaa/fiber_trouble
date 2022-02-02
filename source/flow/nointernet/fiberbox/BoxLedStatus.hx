@@ -3,12 +3,14 @@ package flow.nointernet.fiberbox;
 //import flixel.addons.ui.FlxUIRadioGroup;
 //import flixel.text.FlxText;
 import flow.nointernet.customer.DidJustMoved;
-import flow.nointernet.customer.FiberCableChanged;
+import flow.powercable.LedPowerOn;
+//import flow.nointernet.customer.FiberCableChanged;
 import flow.nointernet.postLedChecks.IsSerialNumberCorrect;
-import flow.nointernet.so._CreateTicketModemCNX;
+//import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.so.tckets._SwapBox;
 import flow.nointernet.vti.CheckContractorVTI;
-import flow.swapcable.SwapFiberCable;
+//import flow.swapcable.SwapFiberCable;
+import flow.tickets.CustomerInstruction;
 import tstool.process.Process;
 //import tstool.layout.RadioTitle;
 //import tstool.process.Action;
@@ -32,6 +34,7 @@ class BoxLedStatus extends ActionRadios
 	static inline var _greenStable:String= "Green stable";
 	static inline var _greenBlink:String= "Green Blink";
 	static inline var _redBlink:String = "Red Blink";
+	static inline var _alternateBlink:String = "Green Blink 30s Red stable 3s";
 	static inline var _redStable:String= "Red stable";
 	static inline var _blink:String= "Blink";
 	static inline var _blueBlink:String= "Blue Blink";
@@ -57,6 +60,7 @@ class BoxLedStatus extends ActionRadios
 	static inline var PHONE_SAGEM_TITLE:String = "4.PHONE";
 	static inline var COMBO_TITLE:String = "6.+(WPS/DECT)";
 	var sagem:Bool;
+	
 
 	public function new ()
 	{
@@ -110,7 +114,7 @@ class BoxLedStatus extends ActionRadios
 				{
 					title: FIBER_TITLE,
 					hasTranslation:true,
-					values: [_off, _greenStable, _redStable, _greenBlink, _redBlink]
+					values: [_off, _greenStable, _redStable, _greenBlink, _redBlink, _alternateBlink]
 				},
 				{
 					title: WWW_TITLE,
@@ -152,8 +156,9 @@ class BoxLedStatus extends ActionRadios
 		//var next:Class<Process> = null;
 		if (validate())
 		{
-			//next = sagem ? getNextSagem() : getNextArcadyan();
-			this._nexts = [{step: getNext(), params: []}];
+			
+			//this._nexts = [{step: getNext(), params: []}];
+			this._nexts = [getNext()];
 			//trace("flow.nointernet.fiberbox.BoxLedStatus::onClick::this._nexts", this._nexts );
 			super.onClick();
 		}
@@ -212,9 +217,11 @@ class BoxLedStatus extends ActionRadios
 		
 	}
 	
-	inline function getNext():Class<Process>
+	//inline function getNext():Class<Process>
+	inline function getNext():ProcessContructor
 	{
-		var next:Class<Process> = null;
+		//var next:Class<Process> = null;
+		var next:ProcessContructor = null;
 		var powerLED = status.get(POWER_TITLE);
 		var fiberLED = sagem ? status.get(FIBER_SAGEM_TITLE) : status.get(FIBER_TITLE);
 		
@@ -242,31 +249,46 @@ class BoxLedStatus extends ActionRadios
 			_CreateTicketModemCNX;
 		} */
 		//SAME
-		next = if (powerLED == _off && fiberLED == _off && wwwLED == _off ){
-			_SwapBox;
+		next = if (powerLED == _off && fiberLED == _off && wwwLED == _off )
+		{
+			//{step: CustomerInstruction, params: [
+													//{step: _SwapBox},
+													//{step: _SwapBox}
+												//]
+			//};
+			{step: LedPowerOn};
+		
 		}
 		else if (powerLED == _greenStable || powerLED == _whiteStable) // COMMON
 		{
 			if (fiberLED == _redStable){
 				if (rearLanLED == _allGreen){
-					_SwapBox;
+					//_SwapBox;
+					{step: CustomerInstruction, params: [
+													{step: _SwapBox},
+													{step: _SwapBox}
+												]
+			};
 				}
 				else{
-					SendSMSReadRxTX;
+					{step:SendSMSReadRxTX};
 				}
 			}
 			else if (fiberLED == _greenStable || fiberLED == _whiteStable){
 				if (wwwLED == _greenStable || wwwLED == _whiteStable )
-					DidJustMoved;
+					//DidJustMoved;
+					{step:DidJustMoved};
 				else{
-					IsSerialNumberCorrect;
+					//IsSerialNumberCorrect;
+					{step:IsSerialNumberCorrect};
 				}
 			}
-			else if (fiberLED ==  _greenBlink || fiberLED == _whiteBlink){
-				IsSerialNumberCorrect;
+			else if (fiberLED ==  _greenBlink || fiberLED == _whiteBlink || fiberLED == _alternateBlink){
+				//IsSerialNumberCorrect;
+				{step:IsSerialNumberCorrect};
 			}
 			else{
-				SendSMSReadRxTX;
+				{step:SendSMSReadRxTX};
 			}
 		}
 		else if (
@@ -275,12 +297,28 @@ class BoxLedStatus extends ActionRadios
 			(wwwLED == _blink || wwwLED == _redStable) &&
 			( phoneLED == _greenBlink || phoneLED == _blueBlink || phoneLED ==_whiteBlink)
 		){
-			_SwapBox;
+			{step: CustomerInstruction, params: [
+													{step: _SwapBox},
+													{step: _SwapBox}
+												]
+			};
+			//_SwapBox;
+			
 		}
 		else{
-			SendSMSReadRxTX;
+			{step:SendSMSReadRxTX};
 		}
 		return next;
 	}
 	
 }
+/*
+override public function onClick():Void
+	{
+		this._nexts = [{step: CustomerInstruction, params: [
+		       	{step: _SendSpeedTemplate},
+				{step: _SendSpeedTemplate}
+		]}];
+		super.onClick();
+	}
+	*/

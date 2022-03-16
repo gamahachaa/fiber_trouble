@@ -5,7 +5,7 @@ import flow.nointernet.vti.CheckContractorVTI;
 //import tstool.process.Descision;
 import tstool.process.Process;
 import tstool.process.Triplet;
-import tstool.salt.Contractor;
+
 
 /**
  * ...
@@ -35,9 +35,10 @@ class WhatBoxIsIt extends Triplet
 	override public function create():Void
 	{
 		super.create();
-		if (!Main.HISTORY.isClassInteractionInHistory(Intro, No))
+		if (Main.customer.contract.service == Office)
 		{
 			this.btnMid.visible = false;
+			this.btnNo.visible = false;
 		}
 	}
 	override public function onMidClick():Void

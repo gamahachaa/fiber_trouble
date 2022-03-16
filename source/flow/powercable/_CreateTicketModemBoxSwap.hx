@@ -1,7 +1,7 @@
 package flow.powercable;
 
 //import process.ActionMailNointernet;
-import tstool.process.ActionTicket;
+//import tstool.process.ActionTicket;
 //import tstool.process.ActionMail;
 import tstool.salt.SOTickets;
 
@@ -9,7 +9,7 @@ import tstool.salt.SOTickets;
  * @todo ARCHIVE
  * @author ...
  */
-class _CreateTicketModemBoxSwap extends ActionTicket
+class _CreateTicketModemBoxSwap extends ActionTicketFiberTrouble
 {
 	//public function new() 
 	//{

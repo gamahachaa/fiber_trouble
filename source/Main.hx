@@ -54,6 +54,11 @@ class Main extends MainApp
 		VERSION_TRACKER = MainApp.versionTracker;
 		customer = MainApp.cust;
 		initScreen();
+		/*var e = new EReg("^[\\s\\S]+$", "");
+		e.match("Personne morale Allemand Ingrid");	
+		trace(e.matched(0));
+		trace(e.matched(1));*/
+		/*trace(e.matched(2));*/
 	}
     static public function MOVE_ON(?old:Bool=false)
 	{

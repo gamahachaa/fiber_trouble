@@ -2,7 +2,7 @@ package flow.equipment;
 
 import flow._AddMemoVti;
 //import process.ActionMailNointernet;
-import tstool.process.ActionTicket;
+//import tstool.process.ActionTicket;
 //import tstool.process.ActionMail;
 import tstool.salt.SOTickets;
 
@@ -10,7 +10,7 @@ import tstool.salt.SOTickets;
  * ...
  * @author bb
  */
-class _SoOrderProcessStatusCheck extends ActionTicket 
+class _SoOrderProcessStatusCheck extends ActionTicketFiberTrouble 
 {
 
 	public function new() 

@@ -55,7 +55,6 @@ class FiberCableChanged extends TripletMultipleInput
 	{
 		var ticket = StringTools.trim(multipleInputs.inputs.get(SO_TICKET_NUM).getInputedText())  ;
 		ticket = ticket == ""?"": ticket.buildSOLink();
-		//ticket = StringTools.trim(ticket) == ""?"":"<a target='_blank' href='http://cs.salt.ch/scripts/ticket.fcgi?_sf=0&action=doScreenDefinition&idString=viewEmail&entryId=" + ticket +"'>" + ticket + "</a>";
 		
 		super.pushToHistory( buttonTxt, interactionType, [SO_TICKET_NUM => ticket]);
 	}

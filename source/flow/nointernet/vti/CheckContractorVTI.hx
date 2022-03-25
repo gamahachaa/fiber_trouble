@@ -1,6 +1,6 @@
 package flow.nointernet.vti;
 
-using tstool.utils.StringUtils;
+using string.StringUtils;
 
 import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;

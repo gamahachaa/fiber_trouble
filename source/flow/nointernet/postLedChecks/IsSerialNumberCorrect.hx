@@ -4,7 +4,7 @@ import flow.installation._EnsureNoLanLoop;
 import flow.nointernet.so.tckets._SwapBox;
 import flow.tickets.CustomerInstruction;
 import tstool.process.DescisionMultipleInput;
-import tstool.utils.ExpReg;
+import regex.ExpReg;
 
 
 class IsSerialNumberCorrect extends DescisionMultipleInput

@@ -8,6 +8,7 @@ import flow.installation._EnsureCorrectPortPlug;
 import tstool.layout.History.Interactions;
 //import tstool.process.Process;
 import tstool.process.TripletMultipleInput;
+using string.StringUtils;
 
 /**
  * ...
@@ -52,8 +53,10 @@ class FiberCableChanged extends TripletMultipleInput
 	//}
 	override function pushToHistory( buttonTxt:String, interactionType:Interactions,?values:Map<String,Dynamic>= null)
 	{
-		var ticket = multipleInputs.inputs.get(SO_TICKET_NUM).getInputedText() ;
-		ticket = StringTools.trim(ticket) == ""?"":"<a target='_blank' href='http://cs.salt.ch/scripts/ticket.fcgi?_sf=0&action=doScreenDefinition&idString=viewEmail&entryId=" + ticket +"'>" + ticket + "</a>";
+		var ticket = StringTools.trim(multipleInputs.inputs.get(SO_TICKET_NUM).getInputedText())  ;
+		ticket = ticket == ""?"": ticket.buildSOLink();
+		//ticket = StringTools.trim(ticket) == ""?"":"<a target='_blank' href='http://cs.salt.ch/scripts/ticket.fcgi?_sf=0&action=doScreenDefinition&idString=viewEmail&entryId=" + ticket +"'>" + ticket + "</a>";
+		
 		super.pushToHistory( buttonTxt, interactionType, [SO_TICKET_NUM => ticket]);
 	}
 	override public function onYesClick():Void

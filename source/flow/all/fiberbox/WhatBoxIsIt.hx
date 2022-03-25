@@ -22,13 +22,13 @@ class WhatBoxIsIt extends Triplet
 	override public function onYesClick():Void
 	{
 		setCustomerProfile(Sagem);
-		this._nexts = [{step: IsTicketOpened, params: []}];
+		this._nexts = [{step: _WhereIsBoxPlaced, params: []}];
 		super.onYesClick();
 	}
 	override public function onNoClick():Void
 	{
 		setCustomerProfile(Arcadyan);
-		this._nexts = [{step: IsTicketOpened, params: []}];
+		this._nexts = [{step: _WhereIsBoxPlaced, params: []}];
 		super.onNoClick();
 	}
 	
@@ -44,7 +44,7 @@ class WhatBoxIsIt extends Triplet
 	override public function onMidClick():Void
 	{
 		setCustomerProfile(Gigabox);
-		this._nexts = [{step: IsTicketOpened, params: []}];
+		this._nexts = [{step: _WhereIsBoxPlaced, params: []}];
 		super.onMidClick();
 	}
 	function setCustomerProfile(box:Box)

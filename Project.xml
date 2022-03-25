@@ -30,6 +30,7 @@
 	
 	<set name="BUILD_DIR" value="export" />
 	<classpath name="source" />
+	<classpath name="../_myPackages/utils" />
 	<assets path="assets" />
 	
 	<!-- _______________________________ Libraries ______________________________ -->
@@ -112,5 +113,5 @@
 	<!-- _________________________________ Custom _______________________________ -->
 	
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
-	<haxeflag name = "--macro" value="tstool.macros.TranslationVerificator.test()"/>
+	<haxeflag name = "--macro" value="tstool.macros.TranslationVerificator.test(['Main','ActionTicketFiberTrouble','AssetPaths', 'Howl', 'TechTickets'])"/>
 </project>

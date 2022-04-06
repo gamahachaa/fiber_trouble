@@ -3,6 +3,8 @@ package;
 import flixel.FlxG;
 import flixel.FlxState;
 import flow.Intro;
+import lime.utils.AssetType;
+import lime.utils.Assets;
 import tstool.MainApp;
 import tstool.process.Process;
 import tstool.layout.History;
@@ -14,6 +16,7 @@ import tstool.utils.VersionTracker;
 
 class Main extends MainApp
 {
+	public static inline var TMP_FILTER_ASSET_PATH:String = "assets/data/tmp/add_to_email_title/";
 	public static var LIB_FOLDER:String;
 	
 	
@@ -54,11 +57,11 @@ class Main extends MainApp
 		VERSION_TRACKER = MainApp.versionTracker;
 		customer = MainApp.cust;
 		initScreen();
-		/*var e = new EReg("^[\\s\\S]+$", "");
-		e.match("Personne morale Allemand Ingrid");	
-		trace(e.matched(0));
-		trace(e.matched(1));*/
-		/*trace(e.matched(2));*/
+		trace(Assets.list(AssetType.TEXT));
+		for(i in Assets.list(AssetType.TEXT))
+		{
+			if(i.indexOf(TMP_FILTER_ASSET_PATH)>-1) trace(i);
+		}
 	}
     static public function MOVE_ON(?old:Bool=false)
 	{

@@ -2,6 +2,7 @@ package flow.nointernet.fiberbox;
 
 //import flow.installation.OTOPlugDamagedNotClicking;
 import flow.nointernet.so._CreateTicketModemCNX;
+import flow.nointernet.vti.CheckContractorVTI;
 import flow.swapcable.SwapFiberCable;
 import flow.tickets.CustomerInstruction;
 import tstool.process.TripletMultipleInput;
@@ -75,7 +76,14 @@ class NormalRxValues extends TripletMultipleInput
 	}
 	inline function getNext() :ProcessContructor
 	{
-		return if (Main.HISTORY.isClassInteractionInHistory(flow.nointernet.customer.FiberCableChanged, No)){
+		var is_sagem:Bool = Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).get(CheckContractorVTI.CUST_DATA_PRODUCT_BOX) == CheckContractorVTI.SAGEM;
+		var fiberLedArcadyan:String = if (is_sagem)
+		{
+			Main.HISTORY.findValueOfFirstClassInHistory(BoxLedStatus, BoxLedStatus.FIBER_SAGEM_TITLE).value;
+		}else{
+			Main.HISTORY.findValueOfFirstClassInHistory(BoxLedStatus, BoxLedStatus.FIBER_TITLE).value;
+		}
+		return if (Main.HISTORY.isClassInteractionInHistory(flow.nointernet.customer.FiberCableChanged, No) && fiberLedArcadyan != BoxLedStatus._greenStable){
 			
 			{step: SwapFiberCable};
 		}

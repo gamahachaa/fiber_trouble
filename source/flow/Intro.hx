@@ -2,6 +2,7 @@ package flow;
 
 import flow.all.customer._ExplainMainSteps;
 import flow.all.customer.IsSlowOrKaput;
+import tstool.MainApp;
 import tstool.layout.UI;
 import tstool.process.CheckUpdateSub;
 //import tstool.layout.UI;
@@ -47,6 +48,7 @@ class Intro extends Triplet
 		}
 		else{
 			closeSubState();
+			MainApp.VERSION_TIMER_value = MainApp.VERSION_TIMER_DURATION;
 		}
 	}
 	

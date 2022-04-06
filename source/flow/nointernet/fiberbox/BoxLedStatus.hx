@@ -31,7 +31,7 @@ class BoxLedStatus extends ActionRadios
 	static inline var _whiteStable:String= "White Stable";
 	static inline var _whiteBlink:String = "White Blink";
 	
-	static inline var _greenStable:String= "Green stable";
+	public static inline var _greenStable:String= "Green stable";
 	static inline var _greenBlink:String= "Green Blink";
 	static inline var _redBlink:String = "Red Blink";
 	static inline var _alternateBlink:String = "Green Blink 30s Red stable 3s";
@@ -47,14 +47,14 @@ class BoxLedStatus extends ActionRadios
 	/****************************************/
 	
 	static inline var POWER_TITLE:String = "1.POWER";
-	static inline var FIBER_TITLE:String = "2.FIBER";
+	public static inline var FIBER_TITLE:String = "2.FIBER";
 	static inline var WWW_TITLE:String = "3.WWW";
 	static inline var WLAN_TITLE:String = "4.WLAN";
 	static inline var WPS_TITLE:String = "5.WPS";
 	static inline var PHONE_TITLE:String = "6.PHONE";
 	static inline var LAN_TITLE:String = "7.LAN (REAR)";
 	// Sagem
-	static inline var FIBER_SAGEM_TITLE:String = "2.FIBRE";
+	public static inline var FIBER_SAGEM_TITLE:String = "2.FIBRE";
 	static inline var INTERNET_TITLE:String = "3.INTERNET";
 	static inline var WIFI_TITLE:String = "5.WIFI";
 	static inline var PHONE_SAGEM_TITLE:String = "4.PHONE";

@@ -2,6 +2,7 @@ package flow;
 
 import flow.all.customer._ExplainMainSteps;
 import flow.all.customer.IsSlowOrKaput;
+import flow.tv.WhatIStheTVIssue;
 import tstool.MainApp;
 import tstool.layout.UI;
 import tstool.process.CheckUpdateSub;
@@ -62,7 +63,7 @@ class Intro extends Triplet
 	
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step:_ExplainMainSteps}];
+		this._nexts = [{step: WhatIStheTVIssue}];
 		super.onNoClick();
 	}
 	

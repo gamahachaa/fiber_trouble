@@ -2,6 +2,7 @@ package flow.nointernet.customer;
 
 import flow.installation.IsOTOidAligned;
 import flow.installation._EnsureCorrectPortPlug;
+import tstool.process.Process;
 //import flow.nointernet.fiberbox.BoxLedStatus;
 //import flow.nointernet.fiberbox._RebootBox;
 //import flow.nointernet.so._CreateTicketModemCNX;
@@ -11,14 +12,22 @@ import tstool.process.TripletMultipleInput;
 using string.StringUtils;
 
 /**
+ * @todo Make it loopable (hence put the constructor params in parent class)
  * ...
  * @author ...
  */
 //class FiberCableChanged extends DescisionMultipleInput
 class FiberCableChanged extends TripletMultipleInput
 {
+	var nYes:ProcessContructor;
+	var nNo:ProcessContructor;
+	var nMid:ProcessContructor;
 	public static inline var SO_TICKET_NUM = "SO swap cable ticket ID";
-	public function new() 
+	public function new(
+		?nextYes:ProcessContructor,
+		?nextNo:ProcessContructor,
+		?nextMid:ProcessContructor
+		) 
 		{
 			//super(280, "Store");
 			super([
@@ -32,6 +41,19 @@ class FiberCableChanged extends TripletMultipleInput
 				}
 			}
 			]);
+			nYes =  {step: _EnsureCorrectPortPlug};
+			nNo =  {step: IsOTOidAligned};
+			nMid =  {step: _EnsureCorrectPortPlug};
+			
+			if ( nextYes != null ) nYes = nextYes;
+			if ( nextNo != null ) nNo = nextNo;
+			if ( nextMid != null ) nMid = nextMid;
+			#if debug
+			trace("flow.nointernet.customer.FiberCableChanged::FiberCableChanged::nYes ", nYes  );
+	
+			trace("flow.nointernet.customer.FiberCableChanged::FiberCableChanged::nNo", nNo );
+			trace("flow.nointernet.customer.FiberCableChanged::FiberCableChanged::nMid", nMid );
+			#end
 		}
 	//override public function create():Void
 	//{
@@ -51,19 +73,19 @@ class FiberCableChanged extends TripletMultipleInput
 		////this._nextNoProcesses = [new FiberCableIsSalt()];SwapFiberCable
 		//super.create();
 	//}
-	override function pushToHistory( buttonTxt:String, interactionType:Interactions,?values:Map<String,Dynamic>= null)
+	/*override function pushToHistory( buttonTxt:String, interactionType:Interactions,?values:Map<String,Dynamic>= null)
 	{
 		var ticket = StringTools.trim(multipleInputs.inputs.get(SO_TICKET_NUM).getInputedText())  ;
 		ticket = ticket == ""?"": ticket.buildSOLink();
 		
 		super.pushToHistory( buttonTxt, interactionType, [SO_TICKET_NUM => ticket]);
-	}
+	}*/
 	override public function onYesClick():Void
 	{
 		if (validateYes())
 		{
 			//this._nexts = [{step: _RebootBox, params: [{step: BoxLedStatus},{step: BoxLedStatus}]}];
-			this._nexts = [{step: _EnsureCorrectPortPlug}];
+			this._nexts = [nYes];
 			super.onYesClick();
 		}
 		else multipleInputs.inputs.get(SO_TICKET_NUM).blink(true);
@@ -73,7 +95,7 @@ class FiberCableChanged extends TripletMultipleInput
 		if (validateMid())
 		{
 			//this._nexts = [{step: _RebootBox, params: [{step: BoxLedStatus},{step: BoxLedStatus}]}];
-			this._nexts = [{step: _EnsureCorrectPortPlug}];
+			this._nexts = [nMid];
 			super.onMidClick();
 		}
 		else multipleInputs.inputs.get(SO_TICKET_NUM).blink(true);
@@ -81,7 +103,7 @@ class FiberCableChanged extends TripletMultipleInput
 	
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: IsOTOidAligned, params: []}];
+		this._nexts = [nNo];
 		super.onNoClick();
 	}
 	override public function validateNo():Bool

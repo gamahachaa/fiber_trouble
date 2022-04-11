@@ -1,7 +1,9 @@
 package flow.all.fiberbox;
 
 import flow.nointernet.so.IsTicketOpened;
+import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.vti.CheckContractorVTI;
+import flow.tickets.CustomerInstruction;
 //import tstool.process.Descision;
 import tstool.process.Process;
 import tstool.process.Triplet;
@@ -44,7 +46,11 @@ class WhatBoxIsIt extends Triplet
 	override public function onMidClick():Void
 	{
 		setCustomerProfile(Gigabox);
-		this._nexts = [{step: _WhereIsBoxPlaced, params: []}];
+		//this._nexts = [{step: _WhereIsBoxPlaced, params: []}];
+		this._nexts = [ {step: CustomerInstruction, params: [
+													{step: _CreateTicketModemCNX},
+													{step: _CreateTicketModemCNX}
+												]}];
 		super.onMidClick();
 	}
 	function setCustomerProfile(box:Box)
@@ -60,5 +66,6 @@ class WhatBoxIsIt extends Triplet
 				//(Main.customer.contract.service == Gigabox ? Std.string(Gigabox) : CheckContractorVTI.SAGEM)
 		);
 	}
-
+	
+    
 }

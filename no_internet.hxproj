@@ -40,7 +40,7 @@
     <option noInlineOnDebug="False" />
     <option mainClass="ApplicationMain" />
     <option enabledebug="False" />
-    <option additional="--macro lime._internal.macros.DefineMacro.run()&#xA;--macro openfl.utils._internal.ExtraParamsMacro.include()&#xA;--macro UglifyJS.run()&#xA;--remap flash:openfl&#xA;--macro flixel.system.macros.FlxDefines.run()&#xA;-dce full&#xA;--macro tstool.macros.TranslationVerificator.test(['Main','ActionTicketFiberTrouble','AssetPaths', 'Howl', 'TechTickets'])&#xA;-debug " />
+    <option additional="--macro lime._internal.macros.DefineMacro.run()&#xA;--macro openfl.utils._internal.ExtraParamsMacro.include()&#xA;--macro UglifyJS.run()&#xA;--remap flash:openfl&#xA;--macro flixel.system.macros.FlxDefines.run()&#xA;-dce full&#xA;--macro tstool.macros.TranslationVerificator.test(['Main','ActionTicketFiberTrouble','AssetPaths', 'Howl', 'TechTickets'])" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>

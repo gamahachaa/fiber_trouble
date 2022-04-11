@@ -1,8 +1,9 @@
 package flow.tv;
 
-import flow.tv.hardware.IsAppleTVvisibleOnTVScreen;
-import flow.tv.remote.WichRemote;
-import flow.tv.sound._StoreCustomersSetup;
+import flow.all.customer._ExplainMainSteps;
+//import flow.tv.hardware.IsAppleTVvisibleOnTVScreen;
+//import flow.tv.remote.WichRemote;
+//import flow.tv.sound._StoreCustomersSetup;
 import tstool.process.Triplet;
 /**
  * ...
@@ -15,7 +16,7 @@ class WhatIStheTVIssue extends Triplet
 		/***********************************
 		 * TV
 		/***********************************/
-		this._nexts = [{step: WichRemote, params: []}];
+		this._nexts = [{step: _ExplainMainSteps, params: []}];
 		super.onYesClick();
 	}
 	
@@ -25,7 +26,8 @@ class WhatIStheTVIssue extends Triplet
 		/***********************************
 		 * SOUND
 		/***********************************/
-		this._nexts = [{step: _StoreCustomersSetup, params: []}];
+		//this._nexts = [{step: _StoreCustomersSetup, params: []}];
+		this._nexts = [{step: _ExplainMainSteps, params: []}];
 		super.onNoClick();
 	}
 	
@@ -34,7 +36,8 @@ class WhatIStheTVIssue extends Triplet
 		/***********************************
 		 * REMOTE
 		/***********************************/
-		this._nexts = [{step: IsAppleTVvisibleOnTVScreen, params: []}];
+		//this._nexts = [{step: IsAppleTVvisibleOnTVScreen, params: []}];
+		this._nexts = [{step: _ExplainMainSteps, params: []}];
 		super.onMidClick();
 	}
 }

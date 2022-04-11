@@ -6,6 +6,7 @@ import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;
 import flow.all.fiberbox.WhatBoxIsIt;
 import flow.ftth.IsRedStep;
+import flow.nointernet.so.IsTicketOpened;
 import js.Browser;
 import tstool.MainApp;
 import tstool.layout.UI;
@@ -14,12 +15,11 @@ import tstool.process.TripletMultipleInput;
 import xapi.Agent;
 import xapi.Verb;
 
-//import flow.nointernet.so.IsTicketOpened;
 import tstool.salt.Balance;
 import tstool.salt.Contractor;
 import tstool.salt.Role;
 import tstool.utils.VTIdataParser;
-import tstool.process.DescisionMultipleInput;
+
 import Main;
 
 /**
@@ -203,9 +203,12 @@ class CheckContractorVTI extends TripletMultipleInput
 		
 		Main.customer.iri = (is_sagem || Main.customer.contract.service == Gigabox || Main.customer.contract.service == Office) ? contractorID : voipSO;
 		Main.customer.contract.mobile = contactNB;
-        this._nexts = [ {step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : WhatBoxIsIt }];
+		
+		
+        //this._nexts = [ {step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : WhatBoxIsIt }];
+        this._nexts = [ {step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : IsTicketOpened }];
 		setReminder();
-		//super.onYesClick();
+		
 		return b2bChosen && Main.customer.contract.service == Office;
 	}
 

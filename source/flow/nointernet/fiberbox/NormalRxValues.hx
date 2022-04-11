@@ -5,6 +5,7 @@ import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.vti.CheckContractorVTI;
 import flow.swapcable.SwapFiberCable;
 import flow.tickets.CustomerInstruction;
+import regex.ExpReg;
 import tstool.process.TripletMultipleInput;
 //import tstool.process.DescisionMultipleInput;
 import tstool.process.Process;
@@ -25,7 +26,7 @@ class NormalRxValues extends TripletMultipleInput
 	{
 		super([
 		{
-			ereg: new EReg("(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)", "i"),
+			ereg: new EReg(ExpReg.RX, "i"),
 			hasTranslation:true,
 			input:{
 				width:200,
@@ -36,7 +37,7 @@ class NormalRxValues extends TripletMultipleInput
 			}
 		},
 		{
-			ereg: new EReg("(^[0-9]{1,2}((,|.)[0-9]{1,3})?$)", "i"),
+			ereg: new EReg(ExpReg.TX, "i"),
 			hasTranslation:true,
 			input:{
 				width:200,

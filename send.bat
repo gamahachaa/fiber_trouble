@@ -2,7 +2,7 @@
 
 @echo off
 
-set DEV=0
+set DEV=1
 
 echo "START"
 if %DEV%==1 (
@@ -14,7 +14,7 @@ if %DEV%==1 (
 	if "%1"=="debug" goto :publication
 	if "%1"=="release" goto :publication
 )
-
+                                        
 :publication
 echo "publication"
 rem PREPARE DATESTAMP ------------------------------------------------------------------------------------------------------------------------------

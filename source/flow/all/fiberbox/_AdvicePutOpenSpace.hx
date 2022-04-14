@@ -18,7 +18,7 @@ class _AdvicePutOpenSpace extends Action
 	override public function onClick():Void
 	{
 		//this._nexts = [{step: _RXfromVTI, params: []}];
-		
+		if (_next == null) _next =  Main.HISTORY.getPreviousClass();
 		this._nexts = [_next];
 		super.onClick();
 	}

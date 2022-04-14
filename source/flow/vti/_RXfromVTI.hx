@@ -59,7 +59,7 @@ class _RXfromVTI extends ActionMultipleInput
 	}
 	function getNextRXGood()
 	{
-		var boxLocationStatus = Main.HISTORY.findValueOfFirstClassInHistory(flow.all.fiberbox._WhereIsBoxPlaced, flow.all.fiberbox._WhereIsBoxPlaced.ONE_OPENED);
+		var boxLocationStatus = Main.HISTORY.findValueOfFirstClassInHistory(flow.all.fiberbox._WhereIsBoxPlaced, flow.all.fiberbox._WhereIsBoxPlaced.TITLE);
 		var boxIsInOpendSpace = boxLocationStatus.exists && (boxLocationStatus.value == flow.all.fiberbox._WhereIsBoxPlaced.ONE_OPENED);
 		if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, No))
 		{

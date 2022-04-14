@@ -85,7 +85,7 @@ class FiberCableChanged extends TripletMultipleInput
 		if (validateYes())
 		{
 			//this._nexts = [{step: _RebootBox, params: [{step: BoxLedStatus},{step: BoxLedStatus}]}];
-			this._nexts = [nYes];
+			this._nexts = [nYes == null ? Main.HISTORY.getPreviousClass() :nYes ];
 			super.onYesClick();
 		}
 		else multipleInputs.inputs.get(SO_TICKET_NUM).blink(true);
@@ -95,7 +95,7 @@ class FiberCableChanged extends TripletMultipleInput
 		if (validateMid())
 		{
 			//this._nexts = [{step: _RebootBox, params: [{step: BoxLedStatus},{step: BoxLedStatus}]}];
-			this._nexts = [nMid];
+			this._nexts = [nMid == null ? Main.HISTORY.getPreviousClass() : nMid];
 			super.onMidClick();
 		}
 		else multipleInputs.inputs.get(SO_TICKET_NUM).blink(true);
@@ -103,7 +103,7 @@ class FiberCableChanged extends TripletMultipleInput
 	
 	override public function onNoClick():Void
 	{
-		this._nexts = [nNo];
+		this._nexts = [nNo == null ? Main.HISTORY.getPreviousClass() :nNo];
 		super.onNoClick();
 	}
 	override public function validateNo():Bool

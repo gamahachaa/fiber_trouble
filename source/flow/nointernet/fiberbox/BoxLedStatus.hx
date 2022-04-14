@@ -153,13 +153,9 @@ class BoxLedStatus extends ActionRadios
 	
 	override public function onClick():Void
 	{
-		//var next:Class<Process> = null;
 		if (validate())
 		{
-			
-			//this._nexts = [{step: getNext(), params: []}];
 			this._nexts = [getNext()];
-			//trace("flow.nointernet.fiberbox.BoxLedStatus::onClick::this._nexts", this._nexts );
 			super.onClick();
 		}
 		
@@ -180,28 +176,7 @@ class BoxLedStatus extends ActionRadios
 		}
 		else return false;
 	}
-	/*inline function getNextSagem():Class<Process>
-	{
-		var next:Class<Process> = null;
-		var powerLED = status.get(POWER_TITLE);
-		var fiberLED = status.get(FIBER_SAGEM_TITLE);
-		
-		var wwwLED = status.get(INTERNET_TITLE);
-		//var rearLanLED = status.get(LAN_TITLE);
-		var wlanLED = status.get(WIFI_TITLE);
-		var wpsLED = status.get(WPS_TITLE);
-		var phoneLED = status.get(PHONE_SAGEM_TITLE);
-		
-		return if ( (fiberLED != _whiteStable) && Main.HISTORY.isClassInteractionInHistory(flow.nointernet.customer.FiberCableChanged, No))
-		{
-			//SwapFiberCable;
-			SendSMSReadRxTX;
-		}
-		else{
-			_CreateTicketModemCNX;
-		}
-		
-	}*/
+	
 	override public function create()
 	{
 		super.create();
@@ -217,10 +192,10 @@ class BoxLedStatus extends ActionRadios
 		
 	}
 	
-	//inline function getNext():Class<Process>
+	
 	inline function getNext():ProcessContructor
 	{
-		//var next:Class<Process> = null;
+		
 		var next:ProcessContructor = null;
 		var powerLED = status.get(POWER_TITLE);
 		var fiberLED = sagem ? status.get(FIBER_SAGEM_TITLE) : status.get(FIBER_TITLE);
@@ -232,30 +207,9 @@ class BoxLedStatus extends ActionRadios
 		var phoneLED =  sagem ? status.get(PHONE_SAGEM_TITLE): status.get(PHONE_TITLE);
 		
 		
-		//var powerLED = status.get(POWER_TITLE);
-		//var fiberLED = status.get(FIBER_SAGEM_TITLE);
-		
-		//var wwwLED = status.get(INTERNET_TITLE);
-		//var rearLanLED = status.get(LAN_TITLE);
-		//var wlanLED = status.get(WIFI_TITLE);
-		//var wpsLED = status.get(WPS_TITLE);
-		//var phoneLED = status.get(PHONE_SAGEM_TITLE);
-		
-		/*next = if (Main.HISTORY.isClassInteractionInHistory(flow.nointernet.customer.FiberCableChanged, No)){
-			
-			SendSMSReadRxTX;
-		}
-		else{
-			_CreateTicketModemCNX;
-		} */
 		//SAME
 		next = if (powerLED == _off && fiberLED == _off && wwwLED == _off )
 		{
-			//{step: CustomerInstruction, params: [
-													//{step: _SwapBox},
-													//{step: _SwapBox}
-												//]
-			//};
 			{step: LedPowerOn};
 		
 		}
@@ -312,13 +266,3 @@ class BoxLedStatus extends ActionRadios
 	}
 	
 }
-/*
-override public function onClick():Void
-	{
-		this._nexts = [{step: CustomerInstruction, params: [
-		       	{step: _SendSpeedTemplate},
-				{step: _SendSpeedTemplate}
-		]}];
-		super.onClick();
-	}
-	*/

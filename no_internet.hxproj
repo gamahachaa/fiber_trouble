@@ -40,7 +40,7 @@
     <option noInlineOnDebug="False" />
     <option mainClass="ApplicationMain" />
     <option enabledebug="False" />
-    <option additional="--macro lime._internal.macros.DefineMacro.run()&#xA;--macro openfl.utils._internal.ExtraParamsMacro.include()&#xA;--macro UglifyJS.run()&#xA;--remap flash:openfl&#xA;--macro flixel.system.macros.FlxDefines.run()&#xA;-dce full&#xA;--macro tstool.macros.TranslationVerificator.test(['Main','ActionTicketFiberTrouble','AssetPaths', 'Howl', 'TechTickets'])" />
+    <option additional="--macro lime._internal.macros.DefineMacro.run()&#xA;--macro openfl.utils._internal.ExtraParamsMacro.include()&#xA;--macro UglifyJS.run()&#xA;--remap flash:openfl&#xA;--macro flixel.system.macros.FlxDefines.run()&#xA;-dce full&#xA;--macro tstool.macros.TranslationVerificator.test(['Main','ActionTicketFiberTrouble','AssetPaths', 'Howl', 'TechTickets'])&#xA;-debug " />
   </build>
   <!-- haxelib libraries -->
   <haxelib>
@@ -58,7 +58,8 @@
   <!-- Executed before build -->
   <preBuildCommand>"$(CompilerPath)/haxelib" run lime build "$(OutputFile)" $(TargetBuild) -$(BuildConfig) -Dfdb</preBuildCommand>
   <!-- Executed after build -->
-  <postBuildCommand alwaysRun="False">send.bat $(BuildConfig)</postBuildCommand>
+  <postBuildCommand alwaysRun="False">send.bat $(BuildConfig)  
+echo yo</postBuildCommand>
   <!-- Other project options -->
   <options>
     <option showHiddenPaths="False" />

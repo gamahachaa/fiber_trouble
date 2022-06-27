@@ -19,11 +19,16 @@ class TechTickets extends ActionTicketFiberTrouble
 		try
 		{
 			var is_sagem:Bool = Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).get(CheckContractorVTI.CUST_DATA_PRODUCT_BOX) == CheckContractorVTI.SAGEM;
+			var is_gigabox:Bool = Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).get(CheckContractorVTI.CUST_DATA_PRODUCT_BOX) == "Gigabox";
              
 			//, [CheckContractorVTI.CUST_DATA_PRODUCT_BOX => (arcadyan?CheckContractorVTI.ARCADYAN: CheckContractorVTI.SAGEM)]);
 			if (is_sagem && ticket.queue.indexOf("_X6_")==-1 && !(Main.customer.contract.service == Office))
 			{
 				ticket.queue = StringTools.replace(ticket.queue, "_SO", "_X6_SO");
+			}
+			else if (is_gigabox)
+			{
+				ticket.queue = "FIBER_TECH_GIGABOX_SO";
 			}
 			
 
@@ -38,7 +43,13 @@ class TechTickets extends ActionTicketFiberTrouble
     override public function create()
 	{
 		super.create();
+		#if debug
+		trace("TechTickets::create 1");
+		#end
 		var contact = Main.HISTORY.findValueOfFirstClassInHistory(CustomerInstruction, CustomerInstruction.CONTACT_NUMBER);
+		#if debug
+		trace("TechTickets::create 2");
+		#end
 		if(contact.exists)
 			this.details.textField.htmlText = "Contact : " + contact.value;
 	}

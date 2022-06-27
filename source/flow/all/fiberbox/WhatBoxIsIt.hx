@@ -4,6 +4,10 @@ import flow.nointernet.so.IsTicketOpened;
 import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.vti.CheckContractorVTI;
 import flow.tickets.CustomerInstruction;
+import flow.tv.WhatIStheTVIssue;
+import flow.tv.hardware.IsAppleTVvisibleOnTVScreen;
+import flow.tv.remote.WichRemote;
+import flow.tv.sound._StoreCustomersSetup;
 //import tstool.process.Descision;
 import tstool.process.Process;
 import tstool.process.Triplet;
@@ -47,10 +51,29 @@ class WhatBoxIsIt extends Triplet
 	{
 		setCustomerProfile(Gigabox);
 		//this._nexts = [{step: _WhereIsBoxPlaced, params: []}];
-		this._nexts = [ {step: CustomerInstruction, params: [
+		this._nexts = if (Main.HISTORY.isClassInteractionInHistory(Intro, No))
+		{
+			if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid)){
+				//tv
+				[ {step:  IsAppleTVvisibleOnTVScreen}];
+			}
+			else if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, No)){
+				//sound
+				[ {step: _StoreCustomersSetup }];
+			}
+			else{
+				  // remote
+				  [ {step: WichRemote }];
+			}
+			
+		}
+		else{
+			[ {step: CustomerInstruction, params: [
 													{step: _CreateTicketModemCNX},
 													{step: _CreateTicketModemCNX}
 												]}];
+		}
+		 
 		super.onMidClick();
 	}
 	function setCustomerProfile(box:Box)

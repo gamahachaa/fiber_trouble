@@ -2,11 +2,11 @@ package flow.all.fiberbox;
 
 import flow.all.customer.IsSlowOrKaput;
 import flow.nointernet.fiberbox.IsBoxReachable;
-import flow.nointernet.so.IsTicketOpened;
-import flow.tv.WhatIStheTVIssue;
+import flow.nointernet.vti.CheckContractorVTI;
+import flow.vti.SerialVTI;
+
 import flow.vti._RXfromVTI;
 import tstool.process.ActionRadios;
-import tstool.process.Process;
 
 /**
  * ...
@@ -46,59 +46,27 @@ class _WhereIsBoxPlaced extends ActionRadios
 		if(Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))
 			this._nexts = [{step:IsBoxReachable}];
 		else{
-			this._nexts = [{step:_RXfromVTI}];
-			/*var s = status.get(TITLE);
-			if(s == ONE_OPENED)
-				
+			if(chekcIfArcadyan())
+				this._nexts = [{step:SerialVTI}];
 			else
-				this._nexts = [{step: _AdvicePutOpenSpace}];*/
+				this._nexts = [{step:_RXfromVTI}];
 		}
 	}
+	inline function chekcIfArcadyan()
+	{
+		if (Main.customer.dataSet != null)
+		{
+			if (Main.customer.dataSet.exists(CheckContractorVTI.CUST_DATA_PRODUCT))
+			{
+				if (Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).exists(CheckContractorVTI.CUST_DATA_PRODUCT_BOX))
+				{
+					return Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).get(CheckContractorVTI.CUST_DATA_PRODUCT_BOX) == CheckContractorVTI.ARCADYAN;
+				}
+				else return false;
+			}
+			else return false;
+		}
+		else return false;
+	}
 	
-	//inline function getNext():Class<Process>{
-	//{
-		//if (Main.HISTORY.isClassInteractionInHistory(Intro, No) && !(Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid))
-		//{
-			///************************************
-			 //* TV
-			///************************************/
-			////this._nexts = [ {step: WhatIStheTVIssue, params: []}];
-			//this._nexts = [ {step: WhatIStheTVIssue, params: []}];
-		//}
-		//else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))
-		//{
-			///***********************************
-			 //* INTERNET
-			///***********************************/
-			//if (Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).get(CheckContractorVTI.CUST_DATA_PRODUCT_BOX) == Std.string(Gigabox))
-			//{
-				///****
-				 //* GIGABOX
-				 //* */
-				 //this._nexts = [ {step: CustomerInstruction, params: [
-													//{step: _CreateTicketModemCNX},
-													//{step: _CreateTicketModemCNX}
-												//]}];
-			//}
-			//else // FIBER BOXES
-				//this._nexts = [ {step: IsBoxReachable, params: []}];
-		//}
-		//else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, Yes) || Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, Mid))
-		//{
-//
-			//if (Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, No))
-			//{
-				//this._nexts = [ {step: _TestSpeed, params: []}];
-				//
-			//}
-			//else
-			//{
-				//this._nexts = [ {step:HaveRepeater}];
-			//}
-		//}
-		//else
-			//this._nexts = [{step: _TestSpeed, params: []}];
-//
-		////super.onNoClick();
-	//}
 }

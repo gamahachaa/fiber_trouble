@@ -80,6 +80,7 @@ class CheckContractorVTI extends TripletMultipleInput
 		//sagem = Assets.getText("assets/data/sagem_fut.txt");
 		is_sagem = false;
 		this.yesValidatedSignal.add(canITrack);
+		this.midValidatedSignal.add(canITrack);
 	}
 	function setReminder()
 	{
@@ -232,7 +233,7 @@ class CheckContractorVTI extends TripletMultipleInput
 		{
 			var act = prepareXAPIMainActivity();
 			//#if debug
-			Main.trackH.reset(false);
+			
 			Main.trackH.setActor(new Agent( MainApp.agent.iri, MainApp.agent.sAMAccountName));
 			Main.trackH.setVerb(Verb.initialized);
 			//Main.trackH.setStatementRefs(null);

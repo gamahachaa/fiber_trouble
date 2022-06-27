@@ -1,23 +1,24 @@
 package flow.nointernet.so;
 
-import flow.all.customer.IsSlowOrKaput;
-import flow.all.customer.LanOrWiFi;
+//import flow.all.customer.IsSlowOrKaput;
+//import flow.all.customer.LanOrWiFi;
 import flow.all.fiberbox.WhatBoxIsIt;
 import flow.tv.remote.WichRemote;
 //import flow.nointernet.customer.FiberCableChanged;
-import flow.nointernet.vti.CheckContractorVTI;
-import flow.tickets.CustomerInstruction;
+//import flow.nointernet.vti.CheckContractorVTI;
+//import flow.tickets.CustomerInstruction;
 //import flow.all.customer.WhichBox;
 //import flow.equipment.IsWhishDateWayAhead;
 import flow.escalation.IsTechTicket;
-import flow.nointernet.fiberbox.IsBoxReachable;
-import flow.stability._TestSpeed;
+//import flow.nointernet.fiberbox.IsBoxReachable;
+//import flow.stability._TestSpeed;
 //import flow.stability.atf.IsFWToTheLatest;
 import flow.tv.WhatIStheTVIssue;
-import flow.wifi.HaveRepeater;
+//import flow.wifi.HaveRepeater;
 //import flow.wifi._MoveCloseUnplugRepeater;
 import tstool.process.Descision;
 import flow.all.fiberbox.WhatBoxIsIt.Box;  // Enum needed
+
 
 /**
  * ...

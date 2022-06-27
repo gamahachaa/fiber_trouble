@@ -25,7 +25,8 @@ class _RXfromVTI extends ActionMultipleInput
 	public function new()
 	{
 		super(
-		[{
+			[
+		{
 			ereg: new EReg(ExpReg.RX, "i"),
 			hasTranslation:true,
 			input:{
@@ -36,14 +37,14 @@ class _RXfromVTI extends ActionMultipleInput
 			}
 		}]
 		);
-		
+
 	}
 	override public function onClick():Void
 	{
 		//this._nexts = [getNext()];
 		if (validate())
 		{
-			
+
 			var rx:String = this.multipleInputs.inputs.get(RX).getInputedText().replace("dBm","");
 			if (Std.parseFloat(rx) > -21)
 			{
@@ -55,54 +56,84 @@ class _RXfromVTI extends ActionMultipleInput
 			}
 			super.onClick();
 		}
-		
+
 	}
 	function getNextRXGood()
 	{
 		var boxLocationStatus = Main.HISTORY.findValueOfFirstClassInHistory(flow.all.fiberbox._WhereIsBoxPlaced, flow.all.fiberbox._WhereIsBoxPlaced.TITLE);
+
 		var boxIsInOpendSpace = boxLocationStatus.exists && (boxLocationStatus.value == flow.all.fiberbox._WhereIsBoxPlaced.ONE_OPENED);
-		if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, No))
+		var boxIsInMultimediaCab = boxLocationStatus.exists && (boxLocationStatus.value == flow.all.fiberbox._WhereIsBoxPlaced.TREE_MULTIMEDIA);
+		var A:Process = boxIsInOpendSpace ? cast(_AdvicePutOpenSpace) : cast();
+		var B:Process = if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, No))
 		{
-			/************************************
-			 * TV    SOUND
-			/************************************/
-			if(boxIsInOpendSpace)
-				this._nexts = [ {step: _StoreCustomersSetup}];
-			else
-				this._nexts = [ {step: _AdvicePutOpenSpace , params:[{step: _StoreCustomersSetup}]}];
+			//************************************
+			// * TV    SOUND
+			//************************************/
+			_StoreCustomersSetup;
 		}
 		else if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid))
 		{
-			/************************************
-			 * TV    FLOW
-			/************************************/
-			if(boxIsInOpendSpace)
-				this._nexts = [ {step: IsAppleTVvisibleOnTVScreen}];
-			else
-		this._nexts = [{step: _AdvicePutOpenSpace, params:[{step: IsAppleTVvisibleOnTVScreen}]}];
+			IsAppleTVvisibleOnTVScreen;
 		}
 		else
 		{
 			if (Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, No))
 			{
-				if(boxIsInOpendSpace)
-				this._nexts = [ {step: _TestSpeed}];
+				_TestSpeed
+			}
 			else
-				this._nexts = [  {step: _AdvicePutOpenSpace, params:[{step: _TestSpeed}]}];
-				
+			{
+				HaveRepeater
+			}
+		}
+		if (boxIsInOpendSpace || boxIsInMultimediaCab)
+			this._nexts = [ {step: B}];
+		//else if(boxIsInMultimediaCab)
+		else
+			this._nexts = [  {step: A, params:[{step: B}]}];
+		/*if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, No))
+		{
+			//************************************
+			// * TV    SOUND
+			//************************************
+			if (boxIsInOpendSpace)
+				this._nexts = [ {step: _StoreCustomersSetup}];
+			else
+				this._nexts = [ {step: _AdvicePutOpenSpace, params:[{step: _StoreCustomersSetup}]}];
+		}
+		else if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid))
+		{
+			//************************************
+			 // TV    FLOW
+			//************************************
+			if (boxIsInOpendSpace)
+				this._nexts = [ {step: IsAppleTVvisibleOnTVScreen}];
+			else
+				this._nexts = [ {step: _AdvicePutOpenSpace, params:[{step: IsAppleTVvisibleOnTVScreen}]}];
+		}
+		else
+		{
+			if (Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, No))
+			{
+				if (boxIsInOpendSpace)
+					this._nexts = [ {step: _TestSpeed}];
+				else
+					this._nexts = [  {step: _AdvicePutOpenSpace, params:[{step: _TestSpeed}]}];
+
 				//this._nexts = [ {step: _TestSpeed, params: []}];
 
 			}
 			else
 			{
-				if(boxIsInOpendSpace)
-				this._nexts = [ {step: HaveRepeater}];
-			else
-				this._nexts = [  {step: _AdvicePutOpenSpace, params:[{step: HaveRepeater}]}];
-				
+				if (boxIsInOpendSpace)
+					this._nexts = [ {step: HaveRepeater}];
+				else
+					this._nexts = [  {step: _AdvicePutOpenSpace, params:[{step: HaveRepeater}]}];
+
 				//this._nexts = [ {step:HaveRepeater}];
 			}
-		}
+		} */
 	}
 	function getNextRXBAD()
 	{

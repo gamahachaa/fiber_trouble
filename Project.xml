@@ -30,10 +30,12 @@
 	
 	<set name="BUILD_DIR" value="export" />
 	<classpath name="source" />
-	<classpath name="../_myPackages/utils" />
+	<!--<classpath name="../_myPackages/utils" />-->
 	<assets path="assets" />
 	
 	<!-- _______________________________ Libraries ______________________________ -->
+		<haxelib name="utils"/>
+	<haxelib name="quality"/>
 	<haxelib name="csv" />
 	<haxelib name="lime" />
 	<!--<set name="next"/>-->

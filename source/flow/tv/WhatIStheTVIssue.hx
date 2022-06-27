@@ -15,7 +15,8 @@ class WhatIStheTVIssue extends Triplet
 	{
 		/***********************************
 		 * TV
-		/***********************************/
+		/***********************************/ 
+		//this._nexts = [{step: IsAppleTVvisibleOnTVScreen, params: []}];
 		this._nexts = [{step: _ExplainMainSteps, params: []}];
 		super.onYesClick();
 	}
@@ -36,7 +37,7 @@ class WhatIStheTVIssue extends Triplet
 		/***********************************
 		 * REMOTE
 		/***********************************/
-		//this._nexts = [{step: IsAppleTVvisibleOnTVScreen, params: []}];
+		
 		this._nexts = [{step: _ExplainMainSteps, params: []}];
 		super.onMidClick();
 	}

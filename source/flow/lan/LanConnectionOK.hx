@@ -19,6 +19,9 @@ class LanConnectionOK extends Descision
 	override public function onYesClick():Void
 	{
 		//var next:Class<Process> = if (
+		#if debug
+			trace("flow.lan.LanConnectionOK::onYesClick 1");
+		#end
 		var next:ProcessContructor = if (
 						Main.HISTORY.isClassInteractionInHistory(flow.wifi.CanConnectToBoxWithLAN, Yes) || Main.HISTORY.isClassInteractionInHistory(flow.wifi.CanConnectToBoxWithLAN, No) 
 						&& Main.HISTORY.isClassInteractionInHistory(flow.all.customer.LanOrWiFi, Yes))
@@ -27,23 +30,36 @@ class LanConnectionOK extends Descision
 			 * WiFi Not visible on Dashboard (all ready went though WiFi steps)
 			/*******************************************************************/
 			//_CreateTicketWifiIssue;
+			#if debug
+				trace("flow.lan.LanConnectionOK::onYesClick 2");
+			#end
 			{step: CustomerInstruction, params: [{step: _CreateTicketWifiIssue},{step: _CreateTicketWifiIssue}]};
 		}
 		else{
 			
+			#if debug
+				trace("flow.lan.LanConnectionOK::onYesClick 3");
+			#end
 			if (Main.HISTORY.isClassInteractionInHistory(flow.all.customer.LanOrWiFi, Mid))
 			{
 				/*******************************************************************
 				* BOTH issue 
 				/******************************************************************/
 				//LetsCheckYourWiFi;
-				{step: _CreateTicketWifiIssue};
+				#if debug
+					trace("flow.lan.LanConnectionOK::onYesClick 4 ");
+				#end
+				//{step: _CreateTicketWifiIssue};
+				{step: CustomerInstruction, params: [{step: _CreateTicketWifiIssue},{step: _CreateTicketWifiIssue}]}
 			}
 			else{
 				/*******************************************************************
 				* LAN issue 
 				/******************************************************************/
 				//_AddMemoVti;
+				#if debug
+					trace("flow.lan.LanConnectionOK::onYesClick 5");
+				#end
 				{step: _AddMemoVti};
 			}
 		}

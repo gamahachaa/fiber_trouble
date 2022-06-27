@@ -10,7 +10,8 @@ import tstool.salt.SOTickets;
  * ...
  * @author bb
  */
-class _CreateSOTicketSaltTV extends TechTickets 
+//class _CreateSOTicketSaltTV extends TechTickets 
+class _CreateSOTicketSaltTV extends ActionTicketFiberTrouble 
 {
 
 	public function new() 

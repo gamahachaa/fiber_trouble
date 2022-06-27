@@ -37,6 +37,8 @@ class Intro extends Triplet
 		#else
 		//trace("PROD does OPEN ROBOT");
 		Main.VERSION_TRACKER.request();
+		Main.trackH.reset(false);
+		Main.trackH.setDefaultContext(MainApp.translator.locale, "fiber.tech.qtool@salt.ch");
 		openSubState(new CheckUpdateSub(UI.THEME.bg));
 		#end
 	}

@@ -88,6 +88,7 @@ class WhatBoxIsIt extends Triplet
 			//arcadyan ? CheckContractorVTI.ARCADYAN: 
 				//(Main.customer.contract.service == Gigabox ? Std.string(Gigabox) : CheckContractorVTI.SAGEM)
 		);
+		trace( Main.customer.dataSet );
 	}
 	
     

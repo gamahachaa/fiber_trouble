@@ -1,5 +1,6 @@
 package flow.tv.remote;
 
+import flow.tv.hardware.IsAppleTVvisibleOnTVScreen;
 import tstool.process.Descision;
 
 /**
@@ -16,7 +17,7 @@ class IsAppleTVFourthGen extends Descision
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: End, params: []}];
+		this._nexts = [{step: IsAppleTVvisibleOnTVScreen, params: []}];
 		super.onNoClick();
 	}
 	

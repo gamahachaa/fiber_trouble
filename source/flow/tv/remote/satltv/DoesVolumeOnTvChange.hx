@@ -1,6 +1,10 @@
 package flow.tv.remote.satltv;
 
 import flow.tv.hardware.IsAppleTVvisibleOnTVScreen;
+import flow.tv.remote.exttv.WantsToPairRemoteWithTV;
+import flow.tv.remote.repair.WasThePurchaseDoneLessThanOnYearAgo;
+import flow.tv.remote.salttvv2.IsIssueWithGuide;
+import flow.tv.remote.siri._GetCloseToAppleTV;
 import tstool.process.Descision;
 
 /**
@@ -9,14 +13,20 @@ import tstool.process.Descision;
  */
 class DoesVolumeOnTvChange extends Descision 
 {
+	//var remote:String;
 	override public function onYesClick():Void
 	{
-		this._nexts = [{step: IsAppleTVvisibleOnTVScreen, params: []}];
+		this._nexts = [{step: _AddMemoVti, params: []}];
 		super.onYesClick();
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: WasThePurchaseDoneLessThanOnYearAgo, params: []}];
+		//this._nexts = [{step: WantsToPairRemoteWithTV, params: []}];
+		this._nexts = switch (Main.HISTORY.findValueOfFirstClassInHistory( WichRemote, WichRemote.REMOTE_VERSION).value){
+			case WichRemote.SALT_V2 : [{step: IsIssueWithGuide, params: []}];
+			case WichRemote.SALT_V1 : [{step: DoesVolumeOnTvChange, params: []}]; //volume
+			case _ : [{step: _GetCloseToAppleTV, params: []}];
+		}
 		super.onNoClick();
 	}
 }

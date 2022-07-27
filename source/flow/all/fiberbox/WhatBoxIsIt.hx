@@ -6,7 +6,8 @@ import flow.nointernet.vti.CheckContractorVTI;
 import flow.tickets.CustomerInstruction;
 import flow.tv.WhatIStheTVIssue;
 import flow.tv.hardware.IsAppleTVvisibleOnTVScreen;
-import flow.tv.remote.WichRemote;
+import flow.tv.remote.IsAppleTVFourthGen;
+//import flow.tv.remote.WichRemote;
 import flow.tv.sound._StoreCustomersSetup;
 //import tstool.process.Descision;
 import tstool.process.Process;
@@ -63,7 +64,8 @@ class WhatBoxIsIt extends Triplet
 			}
 			else{
 				  // remote
-				  [ {step: WichRemote }];
+				  //[ {step: WichRemote }];
+				  [ {step: IsAppleTVFourthGen }];
 			}
 			
 		}

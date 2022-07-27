@@ -3,7 +3,8 @@ package flow.nointernet.so;
 //import flow.all.customer.IsSlowOrKaput;
 //import flow.all.customer.LanOrWiFi;
 import flow.all.fiberbox.WhatBoxIsIt;
-import flow.tv.remote.WichRemote;
+import flow.tv.remote.IsAppleTVFourthGen;
+//import flow.tv.remote.WichRemote;
 //import flow.nointernet.customer.FiberCableChanged;
 //import flow.nointernet.vti.CheckContractorVTI;
 //import flow.tickets.CustomerInstruction;
@@ -81,7 +82,8 @@ class IsTicketOpened extends Descision
 			//this._nexts = [{step: _TestSpeed, params: []}];
 		if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Yes))
 		{
-			this._nexts = [{step: WichRemote, params: []}];
+			//this._nexts = [{step: WichRemote, params: []}];
+			this._nexts = [{step: IsAppleTVFourthGen, params: []}];
 		}
 		else 
 			this._nexts = [{step: WhatBoxIsIt, params: []}];

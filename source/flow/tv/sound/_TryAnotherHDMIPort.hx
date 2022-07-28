@@ -16,7 +16,7 @@ class _TryAnotherHDMIPort extends Descision
 	}
 	override public function onNoClick():Void
 	{
-		tthis._nexts = [{step: _TryAnotherTV, params: []}];
+		this._nexts = [{step: _TryAnotherTV, params: []}];
 		super.onNoClick();
 	}
 }

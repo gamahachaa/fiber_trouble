@@ -24,7 +24,7 @@ class DoesVolumeOnTvChange extends Descision
 		//this._nexts = [{step: WantsToPairRemoteWithTV, params: []}];
 		this._nexts = switch (Main.HISTORY.findValueOfFirstClassInHistory( WichRemote, WichRemote.REMOTE_VERSION).value){
 			case WichRemote.SALT_V2 : [{step: IsIssueWithGuide, params: []}];
-			case WichRemote.SALT_V1 : [{step: DoesVolumeOnTvChange, params: []}]; //volume
+			case WichRemote.SALT_V1 : [{step: WantsToPairRemoteWithTV, params: []}]; //volume
 			case _ : [{step: _GetCloseToAppleTV, params: []}];
 		}
 		super.onNoClick();

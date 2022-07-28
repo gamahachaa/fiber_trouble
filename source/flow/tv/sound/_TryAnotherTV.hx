@@ -1,18 +1,23 @@
 package flow.tv.sound;
 
 import tstool.process.Action;
+import tstool.process.Descision;
 
 /**
  * ...
  * @author bb
  */
-class _TryAnotherTV extends Action 
+class _TryAnotherTV extends Descision 
 {
-
-	override public function onClick():Void
+	override public function onYesClick():Void
 	{
-		this._nexts = [{step: _StoreCustomersSetup, params: []}];
-		super.onClick();
+		this._nexts = [{step: _ChangeAudioSettings, params: []}];
+		super.onYesClick();
+	}
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _ChangeAudioSettings, params: []}];
+		super.onNoClick();
 	}
 	
 }

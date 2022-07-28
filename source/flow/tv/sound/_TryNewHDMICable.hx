@@ -1,18 +1,22 @@
 package flow.tv.sound;
 
-import tstool.process.Action;
+//import tstool.process.Action;
+import tstool.process.Descision;
 
 /**
  * ...
  * @author bb
  */
-class _TryNewHDMICable extends Action 
+class _TryNewHDMICable extends Descision 
 {
-
-	override public function onClick():Void
+	override public function onYesClick():Void
 	{
 		this._nexts = [{step: _TryAnotherHDMIPort, params: []}];
-		super.onClick();
+		super.onYesClick();
 	}
-	
+	override public function onNoClick():Void
+	{
+		this._nexts = [{step: _TryAnotherHDMIPort, params: []}];
+		super.onNoClick();
+	}
 }

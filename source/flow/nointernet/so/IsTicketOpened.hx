@@ -3,7 +3,7 @@ package flow.nointernet.so;
 //import flow.all.customer.IsSlowOrKaput;
 //import flow.all.customer.LanOrWiFi;
 import flow.all.fiberbox.WhatBoxIsIt;
-import flow.tv.remote.IsAppleTVFourthGen;
+import flow.tv.hardware.IsAppleTVFourthGen;
 //import flow.tv.remote.WichRemote;
 //import flow.nointernet.customer.FiberCableChanged;
 //import flow.nointernet.vti.CheckContractorVTI;

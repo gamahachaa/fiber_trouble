@@ -1,14 +1,15 @@
 package flow.all.fiberbox;
 
-import flow.nointernet.so.IsTicketOpened;
+//import flow.nointernet.so.IsTicketOpened;
 import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.vti.CheckContractorVTI;
 import flow.tickets.CustomerInstruction;
 import flow.tv.WhatIStheTVIssue;
 import flow.tv.hardware.IsAppleTVvisibleOnTVScreen;
-import flow.tv.remote.IsAppleTVFourthGen;
+import flow.tv.hardware.IsAppleTVFourthGen;
+import flow.tv.sound._MakeSureHDMIWellConnected;
 //import flow.tv.remote.WichRemote;
-import flow.tv.sound._StoreCustomersSetup;
+//import flow.tv.sound._StoreCustomersSetup;
 //import tstool.process.Descision;
 import tstool.process.Process;
 import tstool.process.Triplet;
@@ -60,7 +61,8 @@ class WhatBoxIsIt extends Triplet
 			}
 			else if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, No)){
 				//sound
-				[ {step: _StoreCustomersSetup }];
+				//[ {step: _StoreCustomersSetup }];
+				[ {step: _MakeSureHDMIWellConnected }];
 			}
 			else{
 				  // remote

@@ -6,7 +6,8 @@ import flow.stability._TestSpeed;
 import flow.swapcable.SwapFiberCable;
 import flow.tv.WhatIStheTVIssue;
 import flow.tv.hardware.IsAppleTVvisibleOnTVScreen;
-import flow.tv.sound._StoreCustomersSetup;
+import flow.tv.sound._MakeSureHDMIWellConnected;
+//import flow.tv.sound._StoreCustomersSetup;
 import flow.wifi.HaveRepeater;
 import regex.ExpReg;
 import tstool.process.ActionMultipleInput;
@@ -67,9 +68,11 @@ class _RXfromVTI extends ActionMultipleInput
 			 * TV    SOUND
 			/************************************/
 			if(boxIsInOpendSpace)
-				this._nexts = [ {step: _StoreCustomersSetup}];
+				this._nexts = [ {step: _MakeSureHDMIWellConnected}];
+				//this._nexts = [ {step: _StoreCustomersSetup}];
 			else
-				this._nexts = [ {step: _AdvicePutOpenSpace , params:[{step: _StoreCustomersSetup}]}];
+				this._nexts = [ {step: _AdvicePutOpenSpace , params:[{step: _MakeSureHDMIWellConnected}]}];
+				//this._nexts = [ {step: _AdvicePutOpenSpace , params:[{step: _StoreCustomersSetup}]}];
 		}
 		else if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid))
 		{
@@ -113,11 +116,17 @@ class _RXfromVTI extends ActionMultipleInput
 			 * TV    SOUND
 			/************************************/
 			this._nexts = [ {step: next, params: [
+				{step:_MakeSureHDMIWellConnected},
+				{step: SwapFiberCable},
+				{step:_MakeSureHDMIWellConnected}
+				]
+			}];
+			/*this._nexts = [ {step: next, params: [
 				{step:_StoreCustomersSetup},
 				{step: SwapFiberCable},
 				{step:_StoreCustomersSetup}
 				]
-			}];
+			}];*/
 		}
 		else if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid))
 		{

@@ -3,6 +3,7 @@ package flow;
 import flow.all.customer._ExplainMainSteps;
 import flow.all.customer.IsSlowOrKaput;
 import flow.tv.WhatIStheTVIssue;
+import haxe.Exception;
 import tstool.MainApp;
 import tstool.layout.UI;
 import tstool.process.CheckUpdateSub;
@@ -23,7 +24,7 @@ class Intro extends Triplet
 		
  		super.create();
 		//#if !debug
-		Main.VERSION_TRACKER.scriptChangedSignal.add(onNewVersion);
+		
 		
 		#if debug
 		if (Main.DEBUG){
@@ -36,7 +37,14 @@ class Intro extends Triplet
 		
 		#else
 		//trace("PROD does OPEN ROBOT");
-		Main.VERSION_TRACKER.request();
+		try{
+			Main.VERSION_TRACKER.scriptChangedSignal.add(onNewVersion);
+			Main.VERSION_TRACKER.request();
+		}catch (e:Exception)
+		{
+			trace(e);
+		}
+		
 		Main.trackH.reset(false);
 		Main.trackH.setDefaultContext(MainApp.translator.locale, "fiber.tech.qtool@salt.ch");
 		openSubState(new CheckUpdateSub(UI.THEME.bg));

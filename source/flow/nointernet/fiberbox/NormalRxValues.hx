@@ -31,7 +31,6 @@ class NormalRxValues extends TripletMultipleInput
 			input:{
 				width:200,
 				prefix:BOX_RX,
-				
 				debug: "-12",
 				position:[bottom, left]
 			}

@@ -32,11 +32,11 @@ class FiberCableChanged extends TripletMultipleInput
 			//super(280, "Store");
 			super([
 			{
-				ereg: new EReg("^1[0-9]{7}$","i"),
+				ereg: new EReg("^(1[3-9]{1}[0-9]{6}|9999)$","i"),
 				input:{
 					width:200,
 					prefix:SO_TICKET_NUM,
-					debug:"11234567",
+					debug:"13345678",
 					position:[bottom, left]
 				}
 			}
@@ -49,6 +49,8 @@ class FiberCableChanged extends TripletMultipleInput
 			if ( nextNo != null ) nNo = nextNo;
 			if ( nextMid != null ) nMid = nextMid;
 			#if debug
+			var r = new EReg("^(1[3-9]{1}[0-9]{6}|9999)$", "i");
+			trace(r.match("9999"));
 			trace("flow.nointernet.customer.FiberCableChanged::FiberCableChanged::nYes ", nYes  );
 	
 			trace("flow.nointernet.customer.FiberCableChanged::FiberCableChanged::nNo", nNo );
@@ -116,17 +118,25 @@ class FiberCableChanged extends TripletMultipleInput
 	}
 	override public function validateMid():Bool
 	{
-		return super.validateMid() && checkCheaters();
+		return super.validateMid() && checkCheaters(true);
 	}
-	function checkCheaters()
+	override function pushToHistory(buttonTxt:String, interactionType:Interactions, ?values:Map<String, Dynamic> = null) 
+	{
+		super.pushToHistory(buttonTxt, interactionType, [SO_TICKET_NUM => StringUtils.buildSOLink(multipleInputs.inputs.get(SO_TICKET_NUM).getInputedText())]);
+	}
+	function checkCheaters(store:Bool=false)
 	{
 		/**
 		 * @todo Parse real tickets extract from SO
 		 */
 		return switch (multipleInputs.inputs.get(SO_TICKET_NUM).getInputedText())
 		{
+			#if debug
+			case "12345678" : true;
+			#end 
 			case "11111111" : false;
-			case (Std.parseInt(_) > 10755654 && Std.parseInt(_) < 19999999) => true : true;
+			case (Std.parseInt(_) > 13755654 && Std.parseInt(_) < 19999999) => true : true;
+			case "9999" : store && true;
 			case _ : false;
 		}
 	}

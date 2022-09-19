@@ -2,6 +2,8 @@ package flow.swapcable;
 
 //import process.ActionAdress;
 import flixel.FlxSubState;
+import regex.ExpReg;
+import tstool.salt.Role;
 //import tstool.process.ActionMultipleInput;
 import tstool.process.DescisionMultipleInput;
 import tstool.salt.Adress;
@@ -17,18 +19,31 @@ class _InputShipingAdress extends DescisionMultipleInput
 	static inline var ZIP:String = "Zip";
 	static inline var NUMBER:String = "Nbr";
 	static inline var CITY:String = "City";
-	var CO:String;
+	static inline var USER:String = "User";
+	static inline var CO:String = " c/o";
 	public function new()
 	{
-		CO = (Main.customer.contract.owner == null ?"": Main.customer.contract.owner.name ) + " c/o";
+		//CO = (Main.customer.contract.owner == null ?"": Main.customer.contract.owner.name ) + " c/o";
+		//CO = (Main.customer.contract.owner == null ?"": Main.customer.contract.owner.name ) + " c/o";
 		super(
 			[
+				{
+					ereg:ExpReg.STRING_TO_REG(ExpReg.NAME_FULL,"ui"),
+					input:
+					{
+						width:400,
+						prefix: USER,
+						debug: "Peggy",
+						position: [bottom, left]
+					}
+				},
 				{
 					ereg:~/[\s\S]*/i,
 					input:
 					{
 						width:200,
 						prefix: CO,
+						buddy: USER,
 						debug: "chez Ernest & Bart",
 						position: [bottom, left]
 					}
@@ -93,30 +108,42 @@ class _InputShipingAdress extends DescisionMultipleInput
 			multipleInputs.setInputDefault(ZIP, Main.customer.contract.address._zip);
 			multipleInputs.setInputDefault(CITY, Main.customer.contract.address._city);
 		}
+		if (Main.customer.getOwner() != "")
+			multipleInputs.setInputDefault(USER,  Main.customer.getOwner());
 		
 	}
 	override public function onYesClick():Void
 	{
 		if (validateYes())
 		{
-			Main.customer.shipingAdress = new Adress(
-				this.multipleInputs.getText(STREET),
-				this.multipleInputs.getText(NUMBER),
-				this.multipleInputs.getText(ZIP),
-				this.multipleInputs.getText(CITY),
-				this.multipleInputs.getText(CO)
-			);
+			setCustomerShipingAdress();
 			this._nexts = [{step: _FiberCableByPost, params: []}];
 			super.onYesClick();
 		}
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _FiberCableByPost, params: []}];
-		super.onNoClick();
+		if (validateNo())
+		{
+			setCustomerShipingAdress();
+			this._nexts = [{step: _FiberCableByPost, params: []}];
+			super.onNoClick();
+		}
+		
 	}
-	override public function validateNo():Bool
+	function setCustomerShipingAdress()
+	{
+		Main.customer.shipingAdress = new Adress(
+				this.multipleInputs.getText(STREET),
+				this.multipleInputs.getText(NUMBER),
+				this.multipleInputs.getText(ZIP),
+				this.multipleInputs.getText(CITY),
+				this.multipleInputs.getText(CO)
+			);
+		Main.customer.contract.owner = new Role(owner,this.multipleInputs.getText(USER) ,this.multipleInputs.getText(USER));
+	}
+	/*override public function validateNo():Bool
 	{
 		return true;
-	}
+	}*/
 }

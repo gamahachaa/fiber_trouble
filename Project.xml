@@ -30,9 +30,12 @@
 	
 	<set name="BUILD_DIR" value="export" />
 	<classpath name="source" />
+	<!--<classpath name="../_myPackages/utils" />-->
 	<assets path="assets" />
 	
 	<!-- _______________________________ Libraries ______________________________ -->
+		<haxelib name="utils"/>
+	<haxelib name="quality"/>
 	<haxelib name="csv" />
 	<haxelib name="lime" />
 	<!--<set name="next"/>-->
@@ -40,9 +43,13 @@
 	<haxelib name="flixel-addons" />
 	<haxelib name="flixel-ui" />
 
+	<haxelib name="markdown" />
 	<haxelib name="firetongue" />
 	<haxelib name="hscript" />
 	<haxelib name="tstool" />
+	<haxelib name="xapi"/>
+	<haxelib name="thx.core"/>
+	<haxelib name="signals"/>
 	<!--<haxelib name="uglifyjs" unless="debug"/>-->
 	<haxelib name="uglifyjs" />
 	
@@ -108,4 +115,5 @@
 	<!-- _________________________________ Custom _______________________________ -->
 	
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
+	<haxeflag name = "--macro" value="tstool.macros.TranslationVerificator.test(['Main','ActionTicketFiberTrouble','AssetPaths', 'Howl', 'TechTickets'])"/>
 </project>

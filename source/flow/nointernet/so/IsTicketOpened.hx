@@ -1,17 +1,24 @@
 package flow.nointernet.so;
 
-import flow.all.customer.IsSlowOrKaput;
-import flow.all.customer.LanOrWiFi;
+//import flow.all.customer.IsSlowOrKaput;
+//import flow.all.customer.LanOrWiFi;
+import flow.all.fiberbox.WhatBoxIsIt;
+import flow.tv.hardware.IsAppleTVFourthGen;
+//import flow.tv.remote.WichRemote;
+//import flow.nointernet.customer.FiberCableChanged;
+//import flow.nointernet.vti.CheckContractorVTI;
+//import flow.tickets.CustomerInstruction;
 //import flow.all.customer.WhichBox;
-import flow.equipment.IsWhishDateWayAhead;
+//import flow.equipment.IsWhishDateWayAhead;
 import flow.escalation.IsTechTicket;
-import flow.nointernet.fiberbox.IsBoxReachable;
-import flow.stability._TestSpeed;
-import flow.stability.atf.IsFWToTheLatest;
+//import flow.nointernet.fiberbox.IsBoxReachable;
+//import flow.stability._TestSpeed;
+//import flow.stability.atf.IsFWToTheLatest;
 import flow.tv.WhatIStheTVIssue;
-import flow.wifi.HaveRepeater;
-import flow.wifi._MoveCloseUnplugRepeater;
+//import flow.wifi.HaveRepeater;
+//import flow.wifi._MoveCloseUnplugRepeater;
 import tstool.process.Descision;
+import flow.all.fiberbox.WhatBoxIsIt.Box;  // Enum needed
 
 
 /**
@@ -20,8 +27,7 @@ import tstool.process.Descision;
  */
 class IsTicketOpened extends Descision
 {
-	
-	
+
 	override public function onYesClick():Void
 	{
 		this._nexts = [{step: IsTechTicket, params: []}];
@@ -29,55 +35,58 @@ class IsTicketOpened extends Descision
 	}
 	//override public function onNoClick():Void
 	//{
-		//this._nexts = [{step: WhichBox, params: []}];
-		//super.onNoClick();
+	//this._nexts = [{step: WhichBox, params: []}];
+	//super.onNoClick();
 	//}
 	override public function onNoClick():Void
 	{
-		if (Main.HISTORY.isClassInteractionInHistory(Intro, No))
+		//if (Main.HISTORY.isClassInteractionInHistory(Intro, No))
+		//{
+			///************************************
+			 //* TV
+			///************************************/
+			//this._nexts = [ {step: WhatIStheTVIssue, params: []}];
+		//}
+		//else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))
+		//{
+			///***********************************
+			 //* INTERNET
+			///***********************************/
+			//if (Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).get(CheckContractorVTI.CUST_DATA_PRODUCT_BOX) == Std.string(Gigabox))
+			//{
+				///****
+				 //* GIGABOX
+				 //* */
+				 //this._nexts = [ {step: CustomerInstruction, params: [
+													//{step: _CreateTicketModemCNX},
+													//{step: _CreateTicketModemCNX}
+												//]}];
+			//}
+			//else // FIBER BOXES
+				//this._nexts = [ {step: IsBoxReachable, params: []}];
+		//}
+		//else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, Yes) || Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, Mid))
+		//{
+//
+			////if (Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, No))
+			////{
+				////this._nexts = [ {step: _TestSpeed, params: []}];
+				////
+			////}
+			////else
+			////{
+				////this._nexts = [ {step:HaveRepeater}];
+			////}
+		//}
+		//else
+			//this._nexts = [{step: _TestSpeed, params: []}];
+		if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Yes))
 		{
-			/************************************
-			 * TV
-			/************************************/
-			this._nexts = [{step: WhatIStheTVIssue, params: []}];
+			//this._nexts = [{step: WichRemote, params: []}];
+			this._nexts = [{step: IsAppleTVFourthGen, params: []}];
 		}
-		else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))
-		{
-			/***********************************
-			 * INTERNET
-			/***********************************/
-			this._nexts = [{step: IsBoxReachable, params: []}];
-		}
-		else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, Yes) || Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, Mid))
-		{
-			#if debug
-			//trace("flow.nointernet.so.IsTicketOpened::onNoClick:: STABILITY" );
-			#end
-			/******************************************
-			 * STABILITY
-			/******************************************/
-			#if debug
-			//trace("flow.nointernet.so.IsTicketOpened::onNoClick::Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, No)", Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, No) );
-			#end
-			if (Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, No))
-			{
-				this._nexts = [{step: _TestSpeed, params: []}];
-			}
-			else
-			{
-				this._nexts = [{step:IsFWToTheLatest}];
-					//step: 
-				//this._nexts = [{
-					//step: _MoveCloseUnplugRepeater,
-					//params: [
-						//{step:HaveRepeater}, 
-						//{step:HaveRepeater}
-					//]
-			}
-		}
-		else
-			this._nexts = [{step: _TestSpeed, params: []}];
-		
+		else 
+			this._nexts = [{step: WhatBoxIsIt, params: []}];
 		super.onNoClick();
 	}
 }

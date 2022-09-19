@@ -1,9 +1,10 @@
 package flow.stability;
 
-import flow._AddMemoVti;
+//import flow._AddMemoVti;
 //import process.ActionMailNointernet;
-import tstool.process.ActionTicket;
+//import tstool.process.ActionTicket;
 //import tstool.process.ActionMail;
+import flow.all.fiberbox._AdvicePutOpenSpace;
 import tstool.salt.SOTickets;
 /**
  * ...
@@ -13,7 +14,8 @@ class _CreateSOTechModemSpeed extends TechTickets
 {
 	public function new() 
 	{
-		super(SOTickets.FIX_525);
+		super(SOTickets.FIX_525, Main.HISTORY.isClassInHistory(_AdvicePutOpenSpace));
+		
 	}
 	override public function onClick():Void
 	{

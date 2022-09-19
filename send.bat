@@ -2,7 +2,8 @@
 
 @echo off
 
-set DEV=0
+set DEV=1
+
 echo "START"
 if %DEV%==1 (
 	if "%1"=="" goto :dead
@@ -13,7 +14,7 @@ if %DEV%==1 (
 	if "%1"=="debug" goto :publication
 	if "%1"=="release" goto :publication
 )
-
+                                        
 :publication
 echo "publication"
 rem PREPARE DATESTAMP ------------------------------------------------------------------------------------------------------------------------------
@@ -74,6 +75,7 @@ powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.js.map" -NewName %
 
 
 :EXPORT
+
 
 
 if %DEV%==1 (

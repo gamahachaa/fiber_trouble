@@ -1,6 +1,7 @@
 package flow.wifi;
 
-import flow.lan._CreateLanIssueTicket;
+//import flow.lan._CreateLanIssueTicket;
+import flow.tickets.CustomerInstruction;
 import flow.wifi._CreateTicketWifiIssue;
 import flow.all.fiberbox._LoopResetFiberBox;
 import tstool.process.Descision;
@@ -38,7 +39,8 @@ class WifiVisibleByAppleTV extends Descision
 	{
 		if ( Main.HISTORY.isClassInteractionInHistory(_LoopResetFiberBox,Yes) )
 		{
-			this._nexts = [{step: _CreateTicketWifiIssue}];
+			//this._nexts = [{step: _CreateTicketWifiIssue}];
+			this._nexts = [{step: CustomerInstruction, params: [{step: _CreateTicketWifiIssue},{step: _CreateTicketWifiIssue}]}];
 		}
 		else{
 			//var wva = new WifiVisibleOnDevice();

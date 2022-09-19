@@ -1,5 +1,6 @@
 package flow.tv.network;
 
+import flow.tickets.CustomerInstruction;
 import flow.tv._CreateSOTicketSaltTV;
 import tstool.process.Descision;
 
@@ -16,7 +17,7 @@ class CanCheckWithLan extends Descision
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _CreateSOTicketSaltTV, params: []}];
+		this._nexts = [{step: CustomerInstruction, params: [{step: _CreateSOTicketSaltTV},{step: _CreateSOTicketSaltTV}]}];
 		super.onNoClick();
 	}
 }

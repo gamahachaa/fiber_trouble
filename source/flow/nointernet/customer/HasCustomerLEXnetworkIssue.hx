@@ -1,7 +1,7 @@
 package flow.nointernet.customer;
 
 import flow._AddMemoVti;
-import flow.nointernet.so.IsTicketOpened;
+//import flow.nointernet.so.IsTicketOpened;
 import tstool.process.Descision;
 
 /**

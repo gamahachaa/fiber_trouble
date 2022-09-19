@@ -1,7 +1,7 @@
-package flow.tv.remote.satltv;
+package flow.tv.remote.repair;
 
-import flow.tv.remote.satltv._GoToStoreToReplace;
-import flow.tv.remote.satltv._NeedToBuyOneNew;
+import flow.tv.remote.repair._GoToStoreToReplace;
+import flow.tv.remote.repair._NeedToBuyOneNew;
 import tstool.process.Descision;
 
 /**

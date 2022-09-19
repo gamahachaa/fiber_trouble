@@ -1,4 +1,4 @@
-package flow.tv.remote.salttvv2;
+package flow.tv.sound;
 
 import tstool.process.Action;
 
@@ -6,12 +6,12 @@ import tstool.process.Action;
  * ...
  * @author bb
  */
-class _CheckOnlineFAQ extends Action 
+class _ChangeAudioSettings extends Action 
 {
 
 	override public function onClick():Void
 	{
-		this._nexts = [{step: ChekSaltTVKNownBugs, params: []}];
+		this._nexts = [{step: _StoreCustomersSetup, params: []}];
 		super.onClick();
 	}
 	

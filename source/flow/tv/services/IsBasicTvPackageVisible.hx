@@ -1,7 +1,8 @@
 package flow.tv.services;
-import flow.equipment.DidCustomerRecievedEmail;
+//import flow.equipment.DidCustomerRecievedEmail;
+import flow.tickets.CustomerInstruction;
 import flow.tv._CreateSOTicketSaltTV;
-import flow.tv.CanExploreMenu;
+//import flow.tv.CanExploreMenu;
 import tstool.process.Descision;
 
 /**
@@ -17,7 +18,7 @@ class IsBasicTvPackageVisible extends Descision
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _CreateSOTicketSaltTV, params: []}];
+		this._nexts = [{step: CustomerInstruction, params: [{step: _CreateSOTicketSaltTV}, {step: _CreateSOTicketSaltTV}]}];
 		super.onNoClick();
 	}
 }

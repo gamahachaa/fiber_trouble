@@ -1,6 +1,7 @@
 package flow.nointernet.vti;
 
 import flow.nointernet.so._CreateTicketModemCNX;
+import flow.tickets.CustomerInstruction;
 import tstool.process.Descision;
 
 /**
@@ -17,7 +18,12 @@ class DoesFactoryResetSolve extends Descision
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _CreateTicketModemCNX, params: []}];
+		this._nexts = [{step: CustomerInstruction, params: [
+													{step: _CreateTicketModemCNX},
+													{step: _CreateTicketModemCNX}
+												]
+			}];
+		//this._nexts = [{step: _CreateTicketModemCNX, params: []}];
 		super.onNoClick();
 	}
 	

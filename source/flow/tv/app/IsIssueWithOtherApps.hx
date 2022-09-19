@@ -1,7 +1,7 @@
 package flow.tv.app;
 
-import flow.tv._CreateSOTicketSaltTV;
-import flow.wifi._MoveCloseUnplugRepeater;
+//import flow.tv._CreateSOTicketSaltTV;
+//import flow.wifi._MoveCloseUnplugRepeater;
 import tstool.process.Descision;
 
 /**

@@ -1,6 +1,7 @@
 package flow.wifi;
 
 import flow.lan.ConnectedViaSwitch;
+import flow.tickets.CustomerInstruction;
 import flow.wifi._CreateTicketWifiIssue;
 //import tstool.process.Descision;
 import tstool.process.Triplet;
@@ -26,7 +27,8 @@ class CanConnectToBoxWithLAN extends Triplet
 	
 	override public function onMidClick():Void
 	{
-		this._nexts = [{step: _CreateTicketWifiIssue, params: []}];
+		//this._nexts = [{step: _CreateTicketWifiIssue, params: []}];
+		this._nexts = [{step: CustomerInstruction, params: [{step: _CreateTicketWifiIssue},{step: _CreateTicketWifiIssue}]}];
 		super.onMidClick();
 	}
 }

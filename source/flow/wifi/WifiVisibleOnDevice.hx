@@ -1,6 +1,7 @@
 package flow.wifi;
 
 //import flow.lan._CreateLanIssueTicket;
+import flow.tickets.CustomerInstruction;
 import flow.wifi._RestartDevice;
 import flow.wifi.WiFiPasswordAccepted;
 import tstool.process.Process;
@@ -20,11 +21,27 @@ class WifiVisibleOnDevice extends Descision
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [
+		var n:Array<ProcessContructor> = [
 			{step: _RestartDevice},
-			{step: WifiVisibleByAppleTV},
-			{step: Main.HISTORY.isClassInteractionInHistory(flow.wifi.WifiVisibleByAppleTV, Yes)? _ConteactDeviceSupport: _CreateTicketWifiIssue}
+			{step: WifiVisibleByAppleTV}
+			//{step: Main.HISTORY.isClassInteractionInHistory(flow.wifi.WifiVisibleByAppleTV, Yes)? _ConteactDeviceSupport: _CreateTicketWifiIssue}
+			//{step: Main.HISTORY.isClassInteractionInHistory(flow.wifi.WifiVisibleByAppleTV, Yes)? _ConteactDeviceSupport: _CreateTicketWifiIssue}
 		];
+		n.push(
+			if (Main.HISTORY.isClassInteractionInHistory(flow.wifi.WifiVisibleByAppleTV, Yes))
+			{
+			    {step: _ConteactDeviceSupport}
+			}
+			else{
+				{step: CustomerInstruction, params: [{step: _CreateTicketWifiIssue},{step: _CreateTicketWifiIssue}]}
+			}
+		);
+		this._nexts = n;
+		//this._nexts = [
+			//{step: _RestartDevice},
+			//{step: WifiVisibleByAppleTV},
+			//{step: Main.HISTORY.isClassInteractionInHistory(flow.wifi.WifiVisibleByAppleTV, Yes)? _ConteactDeviceSupport: _CreateTicketWifiIssue}
+		//];
 		super.onNoClick();
 	}
 }

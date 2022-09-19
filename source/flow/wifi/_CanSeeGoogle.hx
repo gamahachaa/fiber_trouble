@@ -1,8 +1,9 @@
 package flow.wifi;
 
-import flow.lan._CreateLanIssueTicket;
-import tstool.process.Descision;
-import tstool.process.Triplet;
+//import flow.lan._CreateLanIssueTicket;
+import flow.tickets.CustomerInstruction;
+//import tstool.process.Descision;
+//import tstool.process.Triplet;
 import tstool.process.TripletMultipleInput;
 
 /**
@@ -31,7 +32,8 @@ class _CanSeeGoogle extends TripletMultipleInput
 	{
 		if (validateMid())
 		{
-			this._nexts = [{step: _CreateTicketWifiIssue, params: []}];
+			//this._nexts = [{step: _CreateTicketWifiIssue, params: []}];
+			this._nexts = [{step: CustomerInstruction, params: [{step: _CreateTicketWifiIssue},{step: _CreateTicketWifiIssue}]}];
 			super.onMidClick();
 		}
 	}
@@ -52,7 +54,8 @@ class _CanSeeGoogle extends TripletMultipleInput
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _CreateTicketWifiIssue, params: []}];
+		//this._nexts = [{step: _CreateTicketWifiIssue, params: []}];
+		this._nexts = [{step: CustomerInstruction, params: [{step: _CreateTicketWifiIssue},{step: _CreateTicketWifiIssue}]}];
 		super.onNoClick();
 	}
 	

@@ -1,6 +1,7 @@
 package flow.stability;
 
-import tstool.process.Descision;
+import flow.tickets.CustomerInstruction;
+//import tstool.process.Descision;
 import tstool.process.DescisionMultipleInput;
 
 /**
@@ -26,7 +27,8 @@ class IsAnyServiceImpactedForNormalUse extends DescisionMultipleInput
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _SendSpeedTemplate, params: []}];
+		//this._nexts = [{step: _SendSpeedTemplate, params: []}];
+		this._nexts = [{step: CustomerInstruction, params: [{step: _CreateSOTechModemSpeed}, {step: _CreateSOTechModemSpeed}]}];
 		super.onNoClick();
 	}
 	
@@ -35,7 +37,7 @@ class IsAnyServiceImpactedForNormalUse extends DescisionMultipleInput
 	{
 		if (validateYes())
 		{
-			this._nexts = [{step: _CreateSOTechModemSpeed, params: []}];
+			this._nexts = [{step: CustomerInstruction, params: [{step: _CreateSOTechModemSpeed}, {step: _CreateSOTechModemSpeed}]}];
 			super.onYesClick();
 		}
 	}

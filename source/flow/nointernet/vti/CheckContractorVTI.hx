@@ -1,35 +1,45 @@
 package flow.nointernet.vti;
 
-using tstool.utils.StringUtils;
+using string.StringUtils;
 
 import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;
 import flow.all.fiberbox.WhatBoxIsIt;
 import flow.ftth.IsRedStep;
+import flow.nointernet.so.IsTicketOpened;
+import js.Browser;
+import tstool.MainApp;
 import tstool.layout.UI;
 import tstool.process.Process;
+import tstool.process.TripletMultipleInput;
+import xapi.Agent;
+import xapi.Verb;
 
-import flow.nointernet.so.IsTicketOpened;
 import tstool.salt.Balance;
 import tstool.salt.Contractor;
 import tstool.salt.Role;
 import tstool.utils.VTIdataParser;
-import tstool.process.DescisionMultipleInput;
+
 import Main;
 
 /**
  * ...
  * @author
  */
-class CheckContractorVTI extends DescisionMultipleInput
+//class CheckContractorVTI extends DescisionMultipleInput
+class CheckContractorVTI extends TripletMultipleInput
 {
 	var parser:tstool.utils.VTIdataParser;
 	var sagem:String;
 	var is_sagem:Bool;
+	public static inline var CONTRACTOR_ID:String = "Contractor ID";
+	public static inline var VOIP_NUMBER:String = "VoIP Number";
+	public static inline var CONTACT_NUMBER:String = "Contact Number";
 	public static inline var CUST_DATA_PRODUCT:String = "PRODUCTS";
 	public static inline var CUST_DATA_PRODUCT_BOX:String = "BOX";
 	public static inline var SAGEM:String = "Sagem";
 	public static inline var ARCADYAN:String = "Arcadyan";
+	
 	//public static inline var GIGABOX:String = "Gigabox";
 
 	public function new()
@@ -70,6 +80,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 		//sagem = Assets.getText("assets/data/sagem_fut.txt");
 		is_sagem = false;
 		this.yesValidatedSignal.add(canITrack);
+		this.midValidatedSignal.add(canITrack);
 	}
 	function setReminder()
 	{
@@ -100,10 +111,10 @@ class CheckContractorVTI extends DescisionMultipleInput
 	}
 	function onVtiAccountParsed(profile:Map<String, Map<String, String>>):Void
 	{
-		#if debug
-		trace("onVtiAccountParsed");
-		//trace(profile);
-		#end
+		//#if debug
+		//trace("onVtiAccountParsed");
+		////trace(profile);
+		//#end
 		if (!profile.exists("meta") || !profile.exists("plan")) return;
 		else {
 			var voip = profile.get("plan").exists("vtiVoip")? profile.get("plan").get("vtiVoip"): "";
@@ -119,7 +130,7 @@ class CheckContractorVTI extends DescisionMultipleInput
 				new Role(user, profile.get("plan").get("vtiUser"), profile.get("plan").get("vtiUserEmail")),
 				profile.exists("owner")? StringTools.trim(profile.get("owner").get("vtiOwnerEmailValidated").toLowerCase()) == "ok":false,
 				profile.exists("balance")?new Balance( profile.get("balance").get("vtiBalance"), profile.get("balance").get("vtiOverdue"), profile.get("balance").get("vtiOverdueDate")):null,
-				(profile.get("plan").exists("plan") ? (profile.get("plan").get("plan").indexOf("Giga")>-1?Gigabox:Fiber):Fiber)
+				(profile.get("plan").exists("plan") ? (profile.get("plan").get("plan").indexOf("Giga")>-1?Gigabox:profile.get("plan").get("plan").indexOf("Office")>-1?Office:Fiber):Fiber)
 			);
 
 		}
@@ -130,14 +141,24 @@ class CheckContractorVTI extends DescisionMultipleInput
 		question.applyMarkup(question.text, [UI.THEME.basicEmphasis]);
 		question.drawFrame();
 		positionThis();
-		multipleInputs.inputs.get("Contractor ID").inputtextfield.text = Main.customer.contract.contractorID;
-		multipleInputs.inputs.get("VoIP Number").inputtextfield.text = Main.customer.contract.voip;
-		multipleInputs.inputs.get("Contact Number").inputtextfield.text = Main.customer.contract.mobile;
+		multipleInputs.inputs.get(CONTRACTOR_ID).inputtextfield.text = Main.customer.contract.contractorID;
+		multipleInputs.inputs.get(VOIP_NUMBER).inputtextfield.text = Main.customer.contract.voip;
+		multipleInputs.inputs.get(CONTACT_NUMBER).inputtextfield.text = Main.customer.contract.mobile;
 		var p = multipleInputs.positionThis();
 		positionButtons(p);
 		positionBottom(p);
+		if ( Main.customer.contract.service == Office )
+		{
+			this.btnYes.visible = false;
+			this.btnMid.visible = true;
+		}
+		else{
+			this.btnYes.visible = true;
+			this.btnMid.visible = false;
+		}
 
 	}
+
 	override public function update(elapsed)
 	{
 		super.update(elapsed);
@@ -145,7 +166,6 @@ class CheckContractorVTI extends DescisionMultipleInput
 	override public function create():Void
 	{
 		Main.customer.reset();
-		prepareXAPIMainActivity();
 
 		super.create();
 		parser = new VTIdataParser(account);
@@ -154,29 +174,43 @@ class CheckContractorVTI extends DescisionMultipleInput
 
 	override public function onYesClick():Void
 	{
-		//var contractorID = vtiContractorUI.getInputedText();
 		if (validateYes())
 		{
-			//this._nexts = [{step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : IsTicketOpened }];
-			this._nexts = [ {step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : WhatBoxIsIt }];
-			this.parser.destroy();
-			var contractorID = multipleInputs.inputs.get("Contractor ID").getInputedText();
-			var voipVTI = multipleInputs.inputs.get("VoIP Number").getInputedText();
-			var contactNB = multipleInputs.inputs.get("Contact Number").getInputedText();
-			var voipSO = "0" + voipVTI.substr(2);
-			//var is_sagem = isSagem(contractorID);
-			Main.customer.contract.contractorID = contractorID;
-			Main.customer.contract.voip = voipSO;
-			Main.customer.contract.fix = voipVTI;
-			//Main.customer.voIP = voipSO;
-			Main.customer.iri = is_sagem || Main.customer.contract.service == Gigabox ? contractorID : voipSO;
-			Main.customer.contract.mobile = contactNB;
-
-			setReminder();
-			//setReminder(is_sagem?SAGEM:  (Main.customer.contract.service == Gigabox ? Std.string(Gigabox) : ARCADYAN));
+			prepareAndMove(false);
 			super.onYesClick();
 		}
 
+	}
+	override public function onMidClick():Void
+	{
+		if (validateMid())
+		{
+			prepareAndMove(true);
+			Main.customer.contract.service=Office;
+			super.onMidClick();
+		}
+
+	}
+	function prepareAndMove(b2bChosen:Bool)
+	{
+		this.parser.destroy();
+		var contractorID = multipleInputs.inputs.get(CONTRACTOR_ID).getInputedText();
+		var voipVTI = multipleInputs.inputs.get(VOIP_NUMBER).getInputedText();
+		var contactNB = multipleInputs.inputs.get(CONTACT_NUMBER).getInputedText();
+		var voipSO = "0" + voipVTI.substr(2);
+		Main.customer.contract.contractorID = contractorID;
+		Main.customer.contract.voip = voipSO;
+		Main.customer.contract.fix = voipVTI;
+		
+		Main.customer.iri = (is_sagem || Main.customer.contract.service == Gigabox || Main.customer.contract.service == Office) ? contractorID : voipSO;
+		Main.customer.contract.mobile = contactNB;
+		
+		
+        //this._nexts = [ {step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : WhatBoxIsIt }];
+        this._nexts = [ {step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : IsTicketOpened }];
+		setReminder();
+		
+		return b2bChosen && Main.customer.contract.service == Office;
 	}
 
 	override public function onNoClick():Void
@@ -189,45 +223,58 @@ class CheckContractorVTI extends DescisionMultipleInput
 	{
 		return true;
 	}
-	function isSagem(contrator:String)
+	/*function isSagem(contrator:String)
 	{
 		return sagem.indexOf(contrator) >-1;
-	}
+	}*/
 	function canITrack(go:Bool)
 	{
 		if (go)
 		{
-			Main.track.setVerb("initialized");
-			Main.track.setStatementRef(null);
-			Main.track.setCustomer();
-			Main.track.send();
-			Main.track.setVerb("resolved");
+			var act = prepareXAPIMainActivity();
+			//#if debug
+			
+			Main.trackH.setActor(new Agent( MainApp.agent.iri, MainApp.agent.sAMAccountName));
+			Main.trackH.setVerb(Verb.initialized);
+			//Main.trackH.setStatementRefs(null);
+			var extensions:Map<String,Dynamic> = [];
+			extensions.set("https://vti.salt.ch/contractor/", Main.customer.contract.contractorID);
+			extensions.set("https://vti.salt.ch/voip/", Main.customer.voIP);
+			extensions.set(Browser.location.origin +"/troubleshooting/script_version/", Main.VERSION);
+          
+			Main.trackH.setActivityObject(act,null,null,"http://activitystrea.ms/schema/1.0/process",extensions);
+			//Main.trackH.setCustomer();
+			Main.trackH.send();
+			Main.trackH.setVerb(Verb.resolved);
+
+
 		}
 
 	}
 
 	function prepareXAPIMainActivity()
 	{
-		if (Main.HISTORY.isClassInteractionInHistory(Intro, Mid))
+		return if (Main.HISTORY.isClassInteractionInHistory(Intro, Mid))
 		{
-			Main.track.setActivity("equipment");
+			"equipment";
 		}
 		else if (Main.HISTORY.isClassInteractionInHistory(Intro, No))
 		{
-			Main.track.setActivity("tv");
+			"tv";
 		}
 		else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))
 		{
-			Main.track.setActivity("no-internet");
+			"no-internet";
 		}
 		else if (Main.HISTORY.isClassInteractionInHistory(flow.all.customer.IsSlowOrKaput, Yes) || Main.HISTORY.isClassInteractionInHistory(flow.all.customer.IsSlowOrKaput, Mid))
 		{
-			Main.track.setActivity("slow-internet");
+			"slow-internet";
 		}
 		else
 		{
-			Main.track.setActivity("");
+			"";
 		}
+
 	}
 
 }

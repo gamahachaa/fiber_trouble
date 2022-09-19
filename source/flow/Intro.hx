@@ -2,6 +2,9 @@ package flow;
 
 import flow.all.customer._ExplainMainSteps;
 import flow.all.customer.IsSlowOrKaput;
+import flow.tv.WhatIStheTVIssue;
+import haxe.Exception;
+import tstool.MainApp;
 import tstool.layout.UI;
 import tstool.process.CheckUpdateSub;
 //import tstool.layout.UI;
@@ -21,8 +24,8 @@ class Intro extends Triplet
 		
  		super.create();
 		//#if !debug
-		Main.VERSION_TRACKER.scriptChangedSignal.add(onNewVersion);
-		Main.VERSION_TRACKER.request();
+		
+		
 		#if debug
 		if (Main.DEBUG){
 			trace("Main.DEBUG OPEN ROBOT");
@@ -34,6 +37,16 @@ class Intro extends Triplet
 		
 		#else
 		//trace("PROD does OPEN ROBOT");
+		try{
+			Main.VERSION_TRACKER.scriptChangedSignal.add(onNewVersion);
+			Main.VERSION_TRACKER.request();
+		}catch (e:Exception)
+		{
+			trace(e);
+		}
+		
+		Main.trackH.reset(false);
+		Main.trackH.setDefaultContext(MainApp.translator.locale, "fiber.tech.qtool@salt.ch");
 		openSubState(new CheckUpdateSub(UI.THEME.bg));
 		#end
 	}
@@ -46,6 +59,7 @@ class Intro extends Triplet
 		}
 		else{
 			closeSubState();
+			MainApp.VERSION_TIMER_value = MainApp.VERSION_TIMER_DURATION;
 		}
 	}
 	
@@ -59,7 +73,7 @@ class Intro extends Triplet
 	
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step:_ExplainMainSteps}];
+		this._nexts = [{step: WhatIStheTVIssue}];
 		super.onNoClick();
 	}
 	

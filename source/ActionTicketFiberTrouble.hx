@@ -21,7 +21,23 @@ class ActionTicketFiberTrouble extends ActionTicket
 
 	public function new(ticket: SOTickets, ?resolved:Bool=false)
 	{
-		super(ticket, resolved);
+		// prevent 
+		var t:SOTickets = new SOTickets( ticket.domain, ticket.number, Main.customer.contract.service == Office? "FIBER_SOHO_TECH_SO": ticket.queue, ticket.desc, ticket.email);
+		
+		var a:String = "";
+		for (i in Assets.list(AssetType.TEXT))
+		{
+			if (i.indexOf(Main.TMP_FILTER_ASSET_PATH) >-1)
+			{
+				a =  Assets.getText(i);
+
+				if ( a.indexOf( Main.customer.contract.contractorID) >-1)
+				{
+					renameticket(i.replace(Main.TMP_FILTER_ASSET_PATH,"").replace(".txt",""), t);
+				}
+			}
+		}
+		super(t, resolved);
 
 		//var fut = Assets.getText("assets/data/ipv4_fut.txt");
 		//var seven = Assets.getText("assets/data/tmp/79HON.txt");
@@ -39,23 +55,7 @@ class ActionTicketFiberTrouble extends ActionTicket
 			this.ticket.queue = "FIBER_IP_MIGRATION_SO";
 		}
 		else */
-		if (Main.customer.contract.service == Office)
-		{
-			this.ticket.queue = "FIBER_SOHO_TECH_SO";
-		}
-		var a:String = "";
-		for (i in Assets.list(AssetType.TEXT))
-		{
-			if (i.indexOf(Main.TMP_FILTER_ASSET_PATH) >-1)
-			{
-				a =  Assets.getText(i);
-
-				if ( a.indexOf( Main.customer.contract.contractorID) >-1)
-				{
-					renameticket(i.replace(Main.TMP_FILTER_ASSET_PATH,"").replace(".txt",""));
-				}
-			}
-		}
+		
 		//if (plan_les_ouates.indexOf(Main.customer.contract.contractorID) >-1)
 		//{
 		//this.ticket.desc = "PLANLESOUTATES " + this.ticket.desc;
@@ -71,9 +71,9 @@ class ActionTicketFiberTrouble extends ActionTicket
 		#end
 
 	}
-	function renameticket(s:String)
+	function renameticket(s:String, ticket:SOTickets)
 	{
-		this.ticket.desc = ' $s ${this.ticket.desc}';
+		ticket.desc = ' $s ${this.ticket.desc}';
 	}
 
 }

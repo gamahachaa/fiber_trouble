@@ -5,7 +5,7 @@ import flixel.FlxState;
 import flow.Intro;
 import format.csv.Data.Record;
 import format.csv.Reader;
-import lime.utils.AssetType;
+//import lime.utils.AssetType;
 import lime.utils.Assets;
 import tstool.MainApp;
 import tstool.process.Process;

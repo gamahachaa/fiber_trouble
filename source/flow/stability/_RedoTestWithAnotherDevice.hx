@@ -31,9 +31,11 @@ class _RedoTestWithAnotherDevice extends Triplet
 	}
 	function getNext():ProcessContructor
 	{
-		return if (Main.HISTORY.isClassInteractionInHistory(flow.Intro, No))
+		var mainIssue = Main.HISTORY.findValueOfFirstClassInHistory(Intro, Intro.ISSUE);
+		//return if (Main.HISTORY.isClassInteractionInHistory(flow.Intro, No))
+		return if (mainIssue.value == Intro.tv)
 		{
-			//_CreateSOTicketSaltTV;
+			//tv;
 			{step: CustomerInstruction, params: [{step: _CreateSOTicketSaltTV}, {step: _CreateSOTicketSaltTV}]};
 		}
 		else{

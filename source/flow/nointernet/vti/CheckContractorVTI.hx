@@ -7,8 +7,11 @@ import flow.all.customer.IsSlowOrKaput;
 import flow.all.fiberbox.WhatBoxIsIt;
 import flow.ftth.IsRedStep;
 import flow.nointernet.so.IsTicketOpened;
+import flow.phone.WhatIsthePhoneISsue;
 import js.Browser;
 import tstool.MainApp;
+//import tstool.layout.History.Snapshot;
+import tstool.layout.History.ValueReturn;
 import tstool.layout.UI;
 import tstool.process.Process;
 import tstool.process.TripletMultipleInput;
@@ -32,6 +35,7 @@ class CheckContractorVTI extends TripletMultipleInput
 	var parser:tstool.utils.VTIdataParser;
 	var sagem:String;
 	var is_sagem:Bool;
+	var mainIssue:ValueReturn;
 	public static inline var CONTRACTOR_ID:String = "Contractor ID";
 	public static inline var VOIP_NUMBER:String = "VoIP Number";
 	public static inline var CONTACT_NUMBER:String = "Contact Number";
@@ -168,6 +172,7 @@ class CheckContractorVTI extends TripletMultipleInput
 		Main.customer.reset();
 
 		super.create();
+		mainIssue = Main.HISTORY.findValueOfFirstClassInHistory(Intro, Intro.ISSUE);
 		parser = new VTIdataParser(account);
 		parser.signal.add( onVtiAccountParsed );
 	}
@@ -207,7 +212,8 @@ class CheckContractorVTI extends TripletMultipleInput
 		
 		
         //this._nexts = [ {step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : WhatBoxIsIt }];
-        this._nexts = [ {step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : IsTicketOpened }];
+        //this._nexts = [ {step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : IsTicketOpened }];
+        this._nexts = [ {step: mainIssue.value == Intro.order ? IsRedStep : IsTicketOpened }];
 		setReminder();
 		
 		return b2bChosen && Main.customer.contract.service == Office;
@@ -254,25 +260,36 @@ class CheckContractorVTI extends TripletMultipleInput
 
 	function prepareXAPIMainActivity()
 	{
-		return if (Main.HISTORY.isClassInteractionInHistory(Intro, Mid))
+		var phoneIssue:ValueReturn = Main.HISTORY.findValueOfFirstClassInHistory(WhatIsthePhoneISsue, WhatIsthePhoneISsue.ISSUE);
+		return if (mainIssue.value == Intro.order)
 		{
 			"equipment";
 		}
-		else if (Main.HISTORY.isClassInteractionInHistory(Intro, No))
+		else if (mainIssue.value == Intro.tv)
 		{
 			"tv";
 		}
-		else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))
+		else if (mainIssue.value == Intro.internet)
 		{
-			"no-internet";
+			if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))			
+			{
+				"no-internet";
+			}
+			else if (Main.HISTORY.isClassInteractionInHistory(flow.all.customer.IsSlowOrKaput, Yes) )
+			{
+				"slow-internet";
+			}
+			else{
+				"cuts-internet";
+			}
 		}
-		else if (Main.HISTORY.isClassInteractionInHistory(flow.all.customer.IsSlowOrKaput, Yes) || Main.HISTORY.isClassInteractionInHistory(flow.all.customer.IsSlowOrKaput, Mid))
+		else if (phoneIssue.exists)
 		{
-			"slow-internet";
+			phoneIssue.value;			
 		}
 		else
 		{
-			"";
+			"uncaught";
 		}
 
 	}

@@ -8,6 +8,7 @@ import flow.tv.WhatIStheTVIssue;
 import flow.tv.hardware.IsAppleTVvisibleOnTVScreen;
 import flow.tv.hardware.IsAppleTVFourthGen;
 import flow.tv.sound._MakeSureHDMIWellConnected;
+import tstool.layout.History.ValueReturn;
 //import flow.tv.remote.WichRemote;
 //import flow.tv.sound._StoreCustomersSetup;
 //import tstool.process.Descision;
@@ -26,6 +27,7 @@ enum Box{
 }
 class WhatBoxIsIt extends Triplet
 {
+	var mainIssue:ValueReturn;
 
 	override public function onYesClick():Void
 	{
@@ -39,10 +41,10 @@ class WhatBoxIsIt extends Triplet
 		this._nexts = [{step: _WhereIsBoxPlaced, params: []}];
 		super.onNoClick();
 	}
-	
 	override public function create():Void
 	{
 		super.create();
+		mainIssue = Main.HISTORY.findValueOfFirstClassInHistory(Intro, Intro.ISSUE);
 		if (Main.customer.contract.service == Office)
 		{
 			this.btnMid.visible = false;
@@ -53,7 +55,8 @@ class WhatBoxIsIt extends Triplet
 	{
 		setCustomerProfile(Gigabox);
 		//this._nexts = [{step: _WhereIsBoxPlaced, params: []}];
-		this._nexts = if (Main.HISTORY.isClassInteractionInHistory(Intro, No))
+		//this._nexts = if (Main.HISTORY.isClassInteractionInHistory(Intro, No))
+		this._nexts = if (mainIssue.value == Intro.tv)
 		{
 			if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid)){
 				//tv

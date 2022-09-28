@@ -3,8 +3,12 @@ package flow.phone;
 import flow.tickets.CustomerInstruction;
 import flow.tickets.VoipCallDroped;
 import flow.tickets.VoipCallerID;
+import flow.tickets.VoipCalls;
+import flow.tickets.VoipFNP;
+import flow.tickets.VoipProvisioning;
 import flow.tickets.VoipSoundQuality;
 import flow.tickets.VoipTicket;
+import regex.ExpReg;
 import tstool.layout.History.ValueReturn;
 import tstool.process.ActionMultipleInput;
 import tstool.process.Process;
@@ -22,20 +26,22 @@ class InputDeviceNameAndBrand extends ActionMultipleInput
 	{
 		super(
 		[{
-			ereg: new EReg("[\\s\\S]*","i"),
+			ereg: new EReg(ExpReg.NAME_FULL,"i"),
 			input:{
 				width:250,
 				prefix:DEVICE,
-				position: [bottom, left]
+				position: [bottom, left],
+				mustValidate: [Next]
 			}
 		},
 		{
-			ereg: new EReg("[\\s\\S]*", "i"),
+			ereg: new EReg(ExpReg.NAME_FULL, "i"),
 			
 			input:{
 				width:250,buddy: DEVICE,
 				prefix:BRAND,
-				position: [bottom, left]
+				position: [bottom, left],
+				mustValidate: [Next]
 			}
 		}
 		]
@@ -50,7 +56,18 @@ class InputDeviceNameAndBrand extends ActionMultipleInput
 			case WhatIsthePhoneISsue.caller_id : VoipCallerID;
 			case WhatIsthePhoneISsue.drop_calls : VoipCallDroped;
 			case WhatIsthePhoneISsue.sound_quality : VoipSoundQuality;
-			case _ : VoipTicket;
+			case _ : VoipCalls;
+		}
+		if (next == VoipCalls)
+		{
+			if (Main.HISTORY.isClassInteractionInHistory(IsFNPAllGood, No))
+			{
+				next = VoipFNP;
+			}
+			else if (Main.HISTORY.isClassInteractionInHistory(IsProvisionsingAllGood, No))
+			{
+				next = VoipProvisioning;
+			}
 		}
 		if (validate())
 		{

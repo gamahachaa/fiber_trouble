@@ -4,6 +4,7 @@ import flow.all.customer._ExplainMainSteps;
 import flow.all.customer.IsSlowOrKaput;
 import flow.phone.WhatIsthePhoneISsue;
 import flow.tv.WhatIStheTVIssue;
+import tstool.utils.VTIdataParser;
 //import haxe.Exception;
 import tstool.MainApp;
 //import tstool.layout.History.Snapshot;
@@ -66,6 +67,7 @@ class Intro extends ActionRadios
 		Process.INIT();
 		
  		super.create();
+		
 		//#if !debug
 		//var issue:Snapshot = Main.HISTORY.findValueOfFirstClassInHistory(Intro, Intro.ISSUE);
 		

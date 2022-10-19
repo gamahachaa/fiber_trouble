@@ -1,10 +1,11 @@
 package flow.nointernet.fiberbox;
 
 //import flow.installation.OTOPlugDamagedNotClicking;
-import flow.nointernet.so._CreateTicketModemCNX;
+//import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.vti.CheckContractorVTI;
 import flow.swapcable.SwapFiberCable;
 import flow.tickets.CustomerInstruction;
+import flow.vti.ParseVTIHealthCheck;
 import regex.ExpReg;
 import tstool.process.TripletMultipleInput;
 //import tstool.process.DescisionMultipleInput;
@@ -90,8 +91,8 @@ class NormalRxValues extends TripletMultipleInput
 		else{
 			//_CreateTicketModemCNX;
 			{step: CustomerInstruction, params: [
-													{step: _CreateTicketModemCNX},
-													{step: _CreateTicketModemCNX}
+													{step: ParseVTIHealthCheck},
+													{step: ParseVTIHealthCheck}
 												]
 			};
 		} 

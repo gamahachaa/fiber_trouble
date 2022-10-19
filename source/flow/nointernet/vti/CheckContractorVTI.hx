@@ -4,7 +4,7 @@ using string.StringUtils;
 
 import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;
-import flow.all.fiberbox.WhatBoxIsIt;
+//import flow.all.fiberbox.WhatBoxIsIt;
 import flow.ftth.IsRedStep;
 import flow.nointernet.so.IsTicketOpened;
 import flow.phone.WhatIsthePhoneISsue;
@@ -36,6 +36,7 @@ class CheckContractorVTI extends TripletMultipleInput
 	var sagem:String;
 	var is_sagem:Bool;
 	var mainIssue:ValueReturn;
+	public static inline var BLANK_VOIP:String = "0000000000";
 	public static inline var CONTRACTOR_ID:String = "Contractor ID";
 	public static inline var VOIP_NUMBER:String = "VoIP Number";
 	public static inline var CONTACT_NUMBER:String = "Contact Number";
@@ -53,6 +54,7 @@ class CheckContractorVTI extends TripletMultipleInput
 		{
 			ereg:new EReg("^3\\d{7}$","i"),
 			input:{
+				
 				width:150,
 				debug: "30001047",
 				prefix:"Contractor ID",
@@ -121,8 +123,8 @@ class CheckContractorVTI extends TripletMultipleInput
 		//#end
 		if (!profile.exists("meta") || !profile.exists("plan")) return;
 		else {
-			var voip = profile.get("plan").exists("vtiVoip")? profile.get("plan").get("vtiVoip"): "";
-			is_sagem = voip.indexOf("-") > -1 || voip=="0000000000";
+			var voip = profile.get("plan").exists("vtiVoip")? profile.get("plan").get("vtiVoip"): "00000000000";
+			is_sagem = voip.indexOf("-") > -1 || voip ==BLANK_VOIP;
 			Main.customer.contract = new Contractor(
 				profile.get("meta").exists("vtiContractor")? profile.get("meta").get("vtiContractor"):"",
 				is_sagem ? StringTools.replace(voip, "- ",""):voip,
@@ -173,6 +175,7 @@ class CheckContractorVTI extends TripletMultipleInput
 
 		super.create();
 		mainIssue = Main.HISTORY.findValueOfFirstClassInHistory(Intro, Intro.ISSUE);
+		
 		parser = new VTIdataParser(account);
 		parser.signal.add( onVtiAccountParsed );
 	}

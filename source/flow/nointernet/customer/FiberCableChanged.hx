@@ -36,7 +36,7 @@ class FiberCableChanged extends TripletMultipleInput
 				input:{
 					width:200,
 					prefix:SO_TICKET_NUM,
-					debug:"13345678",
+					debug:"14345678",
 					position:[bottom, left]
 				}
 			}

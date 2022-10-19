@@ -64,10 +64,8 @@ class BoxLedStatus extends ActionRadios
 
 	public function new ()
 	{
-		
-		if (chekcIfSagem())
+		var radiosTab = if (chekcIfSagem())
 		{
-			super(
 			[
 				{
 					title: POWER_TITLE,
@@ -100,11 +98,11 @@ class BoxLedStatus extends ActionRadios
 					hasTranslation:true,
 					values: [_off, _whiteStable]
 				}
-			]);
+			];
 		}
 		else
 		{
-			super(
+			
 			[
 				{
 					title: POWER_TITLE,
@@ -141,9 +139,12 @@ class BoxLedStatus extends ActionRadios
 					hasTranslation:true,
 					values: [_normal, _allGreen]
 				}
-			]);
+			];
 		}
-		
+		#if debug
+		trace("flow.nointernet.fiberbox.BoxLedStatus::BoxLedStatus::radiosTab", radiosTab );
+		#end
+		super(radiosTab);
 		
 	}
 
@@ -162,6 +163,7 @@ class BoxLedStatus extends ActionRadios
 	}
 	inline function chekcIfSagem()
 	{
+		
 		if (Main.customer.dataSet != null)
 		{
 			if (Main.customer.dataSet.exists(CheckContractorVTI.CUST_DATA_PRODUCT))
@@ -174,7 +176,13 @@ class BoxLedStatus extends ActionRadios
 			}
 			else return false;
 		}
-		else return false;
+		else {
+			#if debug
+			return true;
+			#else
+			return false;
+			#end
+		}
 	}
 	
 	override public function create()

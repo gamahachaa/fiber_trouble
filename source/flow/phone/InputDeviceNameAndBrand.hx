@@ -30,16 +30,17 @@ class InputDeviceNameAndBrand extends ActionMultipleInput
 			input:{
 				width:250,
 				prefix:DEVICE,
+				debug:"E370HX",
 				position: [bottom, left],
 				mustValidate: [Next]
 			}
 		},
 		{
-			ereg: new EReg(ExpReg.NAME_FULL, "i"),
-			
+			ereg: new EReg(ExpReg.NAME_FULL, "i"),			
 			input:{
 				width:250,buddy: DEVICE,
 				prefix:BRAND,
+				debug:"Gigaset",
 				position: [bottom, left],
 				mustValidate: [Next]
 			}

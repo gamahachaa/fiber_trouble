@@ -2,6 +2,7 @@ package flow.installation;
 
 import flow.nointernet.so._CreateTicketModemCNX;
 import flow.tickets.CustomerInstruction;
+import flow.vti.ParseVTIHealthCheck;
 import tstool.process.DescisionTemplate;
 import tstool.process.Process;
 //import tstool.process.TripletTemplate;
@@ -30,8 +31,8 @@ class SendOTOPrortCloggedSOTemplate extends DescisionTemplate
 	{
 		//this._nexts = [{step: getNext(), params: []}];
 		this._nexts = [{step: CustomerInstruction, params: [
-													{step: _CreateTicketModemCNX},
-													{step: _CreateTicketModemCNX}
+													{step: ParseVTIHealthCheck},
+													{step: ParseVTIHealthCheck}
 												]
 			}];
 		super.onYesClick();
@@ -42,8 +43,8 @@ class SendOTOPrortCloggedSOTemplate extends DescisionTemplate
 	{
 		//this._nexts = [{step: getNext(), params: []}];
 		this._nexts = [{step: CustomerInstruction, params: [
-													{step: _CreateTicketModemCNX},
-													{step: _CreateTicketModemCNX}
+													{step: ParseVTIHealthCheck},
+													{step: ParseVTIHealthCheck}
 												]
 			}];
 		super.onNoClick();

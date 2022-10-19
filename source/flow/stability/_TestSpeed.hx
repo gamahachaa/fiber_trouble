@@ -12,6 +12,9 @@ import tstool.process.Process;
  */
 class _TestSpeed extends DescisionMultipleInput 
 {
+	static inline var SPEETEST_2_4GHZ:String = "Speedtests Wi-Fi 2.4GHz";
+	static inline var SPEETEST_5GHZ:String = "Speedtests Wi-Fi 5GHz";
+	static inline var SPEETEST_LAN:String = "Speedtests LAN";
 	/*override public function create()
 	{
 		this._nextYesProcesses = [ new _RebootBox(new _RedoTestWithAnotherDevice(),new _RedoTestWithAnotherDevice())];
@@ -37,7 +40,7 @@ class _TestSpeed extends DescisionMultipleInput
 			ereg: new EReg("[\\s\\S]*","i"),
 			input:{
 				width:600,
-				prefix:"Speedtest 1",
+				prefix:SPEETEST_2_4GHZ,
 				position: [bottom, left]
 			}
 		},
@@ -45,8 +48,8 @@ class _TestSpeed extends DescisionMultipleInput
 			ereg: new EReg("[\\s\\S]*","i"),
 			input:{
 				width:600,
-				prefix:"Speedtest 2",
-				buddy: "Speedtest 1",
+				prefix:SPEETEST_5GHZ,
+				buddy: SPEETEST_2_4GHZ,
 				position: [bottom, left]
 			}
 		},
@@ -54,8 +57,8 @@ class _TestSpeed extends DescisionMultipleInput
 			ereg: new EReg("[\\s\\S]*","i"),
 			input:{
 				width:600,
-				prefix:"Speedtest 3",
-				buddy: "Speedtest 2",
+				prefix:SPEETEST_LAN,
+				buddy: SPEETEST_5GHZ,
 				position: [bottom, left]
 			}
 		}]

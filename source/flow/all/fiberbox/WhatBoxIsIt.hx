@@ -3,6 +3,7 @@ package flow.all.fiberbox;
 //import flow.nointernet.so.IsTicketOpened;
 //import flixel.FlxG;
 //import flixel.text.FlxText;
+import flixel.addons.ui.ButtonLabelStyle;
 import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.vti.CheckContractorVTI;
 import flow.tickets.CustomerInstruction;
@@ -45,14 +46,14 @@ class WhatBoxIsIt extends Triplet
 	{
 		if (Main.customer.voIP == CheckContractorVTI.BLANK_VOIP)
 		{
-			openAlert(["<ID>" => Main.customer.voIP, "<IDNAME>" => "Voip Number", "<PRODUCT>"=>"Arcadyan box"]);	
+			//openAlert(["<ID>" => Main.customer.voIP, "<IDNAME>" => "Voip Number", "<PRODUCT>" => "Arcadyan box"]);
+			setCustomerProfile(Arcadyan, true);
 		}
 		else{
 			setCustomerProfile(Arcadyan);
-			this._nexts = [{step: _WhereIsBoxPlaced, params: []}];
-			super.onNoClick();
 		}
-		
+		this._nexts = [{step: _WhereIsBoxPlaced, params: []}];
+		super.onNoClick();
 	}
 	inline function openAlert(message:Map<String,String>)
 	{
@@ -118,9 +119,9 @@ class WhatBoxIsIt extends Triplet
 			openAlert(["<ID>" => Main.customer.voIP, "<IDNAME>" => "Voip Number", "<PRODUCT>"=>"Gigabox"]);
 		}
 	}
-	function setCustomerProfile(box:Box)
+	function setCustomerProfile(box:Box, ?fake:Bool=false )
 	{
-		Main.customer.iri = box == Arcadyan ? Main.customer.voIP : Main.customer.contract.contractorID;
+		Main.customer.iri = (box != Arcadyan || fake) ? Main.customer.contract.contractorID : Main.customer.voIP;
 		Main.customer.dataSet.set(
 			CheckContractorVTI.CUST_DATA_PRODUCT,
 			[CheckContractorVTI.CUST_DATA_PRODUCT_BOX => Std.string(box)]

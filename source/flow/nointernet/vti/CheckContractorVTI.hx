@@ -4,6 +4,7 @@ using string.StringUtils;
 
 import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;
+import regex.ExpReg;
 //import flow.all.fiberbox.WhatBoxIsIt;
 import flow.ftth.IsRedStep;
 import flow.nointernet.so.IsTicketOpened;
@@ -36,6 +37,7 @@ class CheckContractorVTI extends TripletMultipleInput
 	var sagem:String;
 	var is_sagem:Bool;
 	var mainIssue:ValueReturn;
+	//static inline var VTI_VIOP_WITH_CHEATING:String = "^(?!41[0-9]{2}0000000)(41\d{9}|00000000000)$";
 	public static inline var BLANK_VOIP:String = "0000000000";
 	public static inline var CONTRACTOR_ID:String = "Contractor ID";
 	public static inline var VOIP_NUMBER:String = "VoIP Number";
@@ -52,7 +54,7 @@ class CheckContractorVTI extends TripletMultipleInput
 		super(
 			[
 		{
-			ereg:new EReg("^3\\d{7}$","i"),
+			ereg:new EReg(ExpReg.CONTRACTOR_EREG,"i"),
 			input:{
 				
 				width:150,
@@ -62,7 +64,7 @@ class CheckContractorVTI extends TripletMultipleInput
 			}
 		},
 		{
-			ereg: new EReg("^(41\\d{9}|00000000000)$","i"),
+			ereg: new EReg(ExpReg.VTI_VOIP_WITH_NOCHEATING,"i"),
 			input:{
 				buddy: "Contractor ID",
 				width:150,
@@ -72,7 +74,7 @@ class CheckContractorVTI extends TripletMultipleInput
 			}
 		},
 		{
-			ereg: new EReg("^41\\d{9}$","i"),
+			ereg: new EReg(ExpReg.VOIP_WITH_CHEATING,"i"),
 			input:{
 				buddy: "Contractor ID",
 				width:150,
@@ -117,10 +119,10 @@ class CheckContractorVTI extends TripletMultipleInput
 	}
 	function onVtiAccountParsed(profile:Map<String, Map<String, String>>):Void
 	{
-		//#if debug
-		//trace("onVtiAccountParsed");
-		////trace(profile);
-		//#end
+		#if debug
+		trace("onVtiAccountParsed");
+		trace(profile);
+		#end
 		if (!profile.exists("meta") || !profile.exists("plan")) return;
 		else {
 			var voip = profile.get("plan").exists("vtiVoip")? profile.get("plan").get("vtiVoip"): "00000000000";

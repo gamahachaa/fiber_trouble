@@ -1,5 +1,6 @@
 package flow.vti;
 
+import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
 import flow.nointernet.so._CreateTicketModemCNX;
 import regex.ExpReg;
 import tstool.process.ActionMultipleInput;
@@ -67,7 +68,7 @@ class ParseVTIHealthCheck extends ActionMultipleInput
 			input:{
 				debug: "KP100314-C0001",
 				mustValidate: [Next],
-				width:170,
+				width:200,
 				prefix: VTIdataParser.breakoutCableId,
 				buddy: VTIdataParser.lexId,
 				position: [bottom, left]
@@ -89,7 +90,7 @@ class ParseVTIHealthCheck extends ActionMultipleInput
 			input:{
 				debug: "VD_9210-69VAE-OLT1:1-1-1",
 				mustValidate: [Exit],
-				width:200,
+				width:240,
 				prefix: VTIdataParser.oltObject,
 				buddy: VTIdataParser.fiberNumber,
 				position: [top, right]
@@ -99,7 +100,7 @@ class ParseVTIHealthCheck extends ActionMultipleInput
 			input:{
 				debug: "B.111.092.567.0",
 				mustValidate: [Exit],
-				width:100,
+				width:140,
 				buddy: VTIdataParser.breakoutCableId,
 				prefix: VTIdataParser.otoId,
 				position: [bottom, left]
@@ -121,7 +122,7 @@ class ParseVTIHealthCheck extends ActionMultipleInput
 			input:{
 				debug: "SFAA80501062",
 				mustValidate: [Exit],
-				width:200,
+				width:160,
 				prefix: VTIdataParser.routerSerialNumber,
 				buddy: VTIdataParser.otoPortId,
 				position: [top, right]
@@ -157,7 +158,7 @@ class ParseVTIHealthCheck extends ActionMultipleInput
 		 }
 	}
 	inline function getNext():Class<Process>{
-		return _CreateTicketModemCNX;
+		return HasCustomerLEXnetworkIssue;
 	}
 	/****************************
 	* Needed only for validation

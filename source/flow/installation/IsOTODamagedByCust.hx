@@ -1,8 +1,8 @@
 package flow.installation;
 
-//import flow.nointernet.so._CreateTicketModemCNX;
+import flow.nointernet.so._CreateTicketModemCNX;
 import flow.tickets.CustomerInstruction;
-import flow.vti.ParseVTIHealthCheck;
+//import flow.vti.ParseVTIHealthCheck;
 import tstool.process.Descision;
 
 /**
@@ -15,8 +15,8 @@ class IsOTODamagedByCust extends Descision
 	{
 		//this._nexts = [{step: _CreateTicketModemCNX, params: []}];
 		this._nexts = [{step: CustomerInstruction, params: [
-													{step: ParseVTIHealthCheck},
-													{step: ParseVTIHealthCheck}
+													{step: _CreateTicketModemCNX},
+													{step: _CreateTicketModemCNX}
 												]
 			}];
 		super.onYesClick();

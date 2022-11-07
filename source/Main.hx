@@ -3,8 +3,10 @@ package;
 import flixel.FlxG;
 import flixel.FlxState;
 import flow.Intro;
-import flow.nointernet.fiberbox.BoxLedStatus;
-import flow.vti.ParseVTIHealthCheck;
+import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
+//import flow.nointernet.fiberbox.BoxLedStatus;
+import flow.tv.ChekSaltTVKNownBugs;
+//import flow.vti.ParseVTIHealthCheck;
 import format.csv.Data.Record;
 import format.csv.Reader;
 //import lime.utils.AssetType;
@@ -87,7 +89,8 @@ class Main extends MainApp
 			 * USe this  to debug a slide
 			 */
 			next = new flow.Intro();
-			//next = new ParseVTIHealthCheck();
+			//next = new ChekSaltTVKNownBugs();
+			//next = new HasCustomerLEXnetworkIssue();
 		#else
 			next = Type.createInstance(Main.START_STEP,[]);
 		#end

@@ -41,9 +41,9 @@ class FiberCableChanged extends TripletMultipleInput
 				}
 			}
 			]);
-			nYes =  {step: _EnsureCorrectPortPlug};
+			nMid =  nYes =  {step: _EnsureCorrectPortPlug};
 			nNo =  {step: IsOTOidAligned};
-			nMid =  {step: _EnsureCorrectPortPlug};
+			//nMid =  {step: _EnsureCorrectPortPlug};
 			
 			if ( nextYes != null ) nYes = nextYes;
 			if ( nextNo != null ) nNo = nextNo;

@@ -18,11 +18,6 @@ class CustomerInstruction extends DescisionMultipleInputLoop
 	
 	override public function new( ?nextYes:ProcessContructor, ?nextNo:ProcessContructor )
 	{
-		
-		#if debug
-		//trace("flow.tickets.CustomerInstruction::CustomerInstruction::nextYes", nextYes );
-		//trace("flow.tickets.CustomerInstruction::CustomerInstruction::nextNo", nextNo );
-		#end
 		super(
 		[{
 			ereg: new EReg(ExpReg.MISIDN_UNIVERAL,"gi"),

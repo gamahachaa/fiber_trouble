@@ -126,7 +126,8 @@ class WhatBoxIsIt extends Triplet
 			CheckContractorVTI.CUST_DATA_PRODUCT,
 			[CheckContractorVTI.CUST_DATA_PRODUCT_BOX => Std.string(box)]
 		);
-		Process.STORAGE.set(
+		Main.STORAGE_DISPLAY.push(CheckContractorVTI.CUST_DATA_PRODUCT_BOX);
+		Process.STORE(
 			CheckContractorVTI.CUST_DATA_PRODUCT_BOX,  Std.string(box)
 			//arcadyan ? CheckContractorVTI.ARCADYAN:
 			//(Main.customer.contract.service == Gigabox ? Std.string(Gigabox) : CheckContractorVTI.SAGEM)

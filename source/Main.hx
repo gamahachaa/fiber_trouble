@@ -41,7 +41,7 @@ class Main extends MainApp
 	public static var _mainDebug:Bool;
 	public static inline var DEBUG_LEVEL:Int = 0;
 	
-	
+	static public var STORAGE_DISPLAY:Array<String> = [];
 	public static var LAST_STEP:Class<FlxState> = flow._AddMemoVti;
 	public static inline var START_STEP:Class<Process> = Intro;
 	public static var LANGS = ["fr-FR", "de-DE", "en-GB", "it-IT"];

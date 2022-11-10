@@ -1,6 +1,7 @@
 package flow.swapcable;
 
 import flow._AddMemoVti;
+import tstool.process.ActionTicket;
 //import process.ActionMailNointernet;
 //import tstool.process.Action;
 //import tstool.process.ActionTicket;
@@ -11,7 +12,8 @@ import tstool.salt.SOTickets;
  * ...
  * @author ...
  */
-class _FiberCableByStore extends ActionTicketFiberTrouble
+//class _FiberCableByStore extends ActionTicketFiberTrouble
+class _FiberCableByStore extends ActionTicket
 {
 	public function new() 
 	{

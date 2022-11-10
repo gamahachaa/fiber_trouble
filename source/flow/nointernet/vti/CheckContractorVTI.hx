@@ -103,14 +103,18 @@ class CheckContractorVTI extends TripletMultipleInput
 		var mobile = Main.customer.contract.mobile == "" ? "": "(" + Main.customer.contract.mobile + ")";
 		var iri  = Main.customer.iri == "" ? "" : "(" + Main.customer.iri + ")";
 		//Process.STORAGE.set("reminder", '$displayVoip $iri\n$owner $mobile' );
-		Process.STORAGE.set("CONTRACTOR", Main.customer.contract.contractorID );
+		Main.STORAGE_DISPLAY.push("CONTRACTOR");
+		Main.STORAGE_DISPLAY.push("VOIP");
+		Main.STORAGE_DISPLAY.push("OWNER");
+		Main.STORAGE_DISPLAY.push("CONTACT");
+		Process.STORE("CONTRACTOR", Main.customer.contract.contractorID );
 		if (Main.customer.contract.service != Gigabox)
 		{
-			Process.STORAGE.set("VOIP", displayVoip );
+			Process.STORE("VOIP", displayVoip );
 		}
 		//
-		Process.STORAGE.set("OWNER", owner );
-		Process.STORAGE.set("CONTACT", mobile );
+		Process.STORE("OWNER", owner );
+		Process.STORE("CONTACT", mobile );
 
 		/**
 		 * @TODO keep clipboard trick to fill clipboard with data

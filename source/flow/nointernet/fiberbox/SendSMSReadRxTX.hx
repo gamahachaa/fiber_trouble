@@ -14,7 +14,7 @@ class SendSMSReadRxTX extends DescisionTemplate
 
 	public function new() 
 	{
-		super(SOTemplate.FIX_608,SMS);
+		super(SOTemplate.FIX_608, SMS);
 	}
 	
 	override public function onYesClick():Void

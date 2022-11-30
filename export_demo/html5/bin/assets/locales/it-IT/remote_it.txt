@@ -1,0 +1,36 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
+$flow.tv.remote.siri._ContactApple	I telecomandi Siri V2 non sono venduti da Salt.<N>Non abbiamo modo di fornire assistenza oltre a quanto abbiamo tentato di fare.	Contatti il servizio clienti Apple<N>0800 001 853
+$flow.tv.remote.siri.ThisAppleRemoteNotFromSalt		Questo telecomando non è stato acquistato da Salt.<N>Cercheremo comunque di aiutarla il più possibile.
+$flow.tv.remote.siri.DifficultiesWithUsingSiri	https://support.apple.com/it-ch/HT205305<N>Oppure cerchi su Google <LQ>Utilizzare il telecomando Siri<RQ> Ha problemi a utilizzare il telecomando Siri?					https://support.apple.com/it-ch/HT205305
+$flow.tv.remote.salttvv2._PressVolAndMenuTenSec	Conto i 10 secondi con le persone<N> Dovrebbe apparire un messaggio di conferma dell'abbinamento.	Prema contemporaneamente i pulsanti PIÙ (+) e MENU per 10 secondi.
+
+$flow.tv.remote.WichRemote		Che telecomando è?		
+$flow.tv.remote.DoesAppleTVLedBlinks	Quando manipola il telecomando con i tasti freccia, la Surface Touch o il Clickpad 	Il LED bianco sulla parte anteriore dell'Apple TV box lampeggia e le icone sullo schermo si muovono?
+$flow.tv.remote.siri._RechargeSiriRemote		Collegare il Siri Remote a un cavo di ricarica compatibile con iPhone (cavo Lightning).		Ok	Già ricaricato.
+
+$flow.tv.remote.siri._CallUsBackWhenSiriRecharged		Dovrà ricaricare il telecomando e richiamarci quando sarà completamente carico (potrebbero essere necessarie alcune ore).
+
+
+$flow.tv.remote.siri._GetCloseToAppleTV		Avvicinarsi all'Apple TV con il telecomando in mano
+$flow.tv.remote.siri._PressMenuAndPlus		Collegare il telecomando Siri all'Apple TV<N>Premere contemporaneamente i tasti MENU e + 
+$flow.tv.remote.siri._AdviceOnSiriRemoteUSage	Aprire la pagine di Salt.<N>Verificare le funzionalità con il cliente<N>Spedire il link della guida di Apple TV di Salt Home	Consigli su come utilizzare il Siri Remote.					https://fiber.salt.ch/fiber/equipment/apple-tv/guide
+$flow.tv.remote.satltv._EnsureAppleTVInVisualRangeOfRemote		Assicurarsi che l'Apple TV sia nel campo del telecomando
+$flow.tv.remote.satltv.DoesRedLedBlinksOnRemoteWhenPressed		Il LED rosso sul telecomando lampeggia?
+$flow.tv.remote.satltv._MakeSureBatteriesCoerrectlyInstalled		Assicurarsi che le batterie siano inserite correttamente nel telecomando	tv/salttv_remote/batteries
+$flow.tv.remote.satltv.CanReplaceBatteries		Può sostituire le batterie in questo momento?
+$flow.tv.remote.satltv._ReplaceBatteriesThenCallUsBack		La prego di sostituirli e di richiamarci
+
+$flow.tv.remote.satltv._SteupSaltTVRemoteWithRegularTV		Provi ad impostare il telecomando Salt TV con la TV normale
+$flow.tv.remote.satltv.DoesVolumeOnTvChange		Il volume del televisore cambia?
+$flow.tv.remote.repair.WasThePurchaseDoneLessThanOnYearAgo		Quando ha acquistato il telecomando? <N> Più di un anno fa?
+$flow.tv.remote.repair._GoToStoreToReplace	Portare con sé la prova d'acquisto e andare in un Salt Store.<N>Il telecomando sarà sostituito.	Vada in un negozio per sostituirlo
+$flow.tv.remote.repair._NeedToBuyOneNew		La garanzia è scaduta. Sembra che il suo telecomando sia difettoso. <N>È necessario acquistarne uno nuovo.
+$flow.tv.remote.exttv.DoesVolumeChangeOnTV	Se il telecomando è stato abbinato ad uno schermo TV, il volume dovrebbe cambiare come con un normale telecomando.<N> Se il suono cambia, allora il telecomando va bene.	Quando preme il tasto del volume<N>Il suono cambio sulla sua TV?
+$flow.tv.remote.exttv.WantsToPairRemoteWithTV	In caso contrario, continueremo con la risoluzione dei problemi dell'applicazione TV nel caso in cui il problema del cliente non fosse legato al telecomando.	Vuole abbinare il telecomando Salt TV con il suo televisore?
+$flow.tv.remote.exttv._PressMenuAndOK		Premere MENU + OK sul telecomando finché il led rosso lampeggia
+$flow.tv.remote.exttv._AimAtTVAndClick	Il cliente deve premere più volte il tasto P^<N>Finché il volume della TV volume appare sullo schermo<N>Provare diverse decine di click perché <em>ogni click scansiona diversi tipi di TV<em>.	Puntare il telecomando verso la TV e cliccare più volte su P^
+$flow.tv.remote.exttv.MenuVoluemDisplaysOnTV	E anche i tasti del volume + o - dovrebbero cambiare il volume.	Il menu del volume viene visualizzato sul televisore?
+$flow.tv.remote.exttv._ClickOKOnRemote	L'abbinamento è stato fatto con successo.<N><N>Ora continueremo con la risoluzione dei problemi dell'applicazione TV nel caso in cui il problema del cliente non fosse legato al telecomando.	Cliccare OK sul telecomando
+$flow.tv.remote.salttvv2.IsIssueWithGuide	Se il pulsante <LQ>Guide<RQ> non funziona, allora è probabile che Salt non sia registrato come provider TV.<N>Vedi le FAQ sul sito per questo:<N>https://fiber.salt.ch/home/equipment/salt-tv-remote > <LQ>Come registrare Salt come fornitore TV <RQ>	Il tuo problema è il pulsante <LQ>Guide<RQ>, o qualcos'altro?		Guida	Altre preoccupazioni	https://fiber.salt.ch/home/equipment/salt-tv-remote
+$flow.tv.remote.salttvv2._CollectIssue		La prego di descrivere con precisione il suo problema in modo che possa trasferire il suo caso ai nostri specialisti.
+$flow.tv.remote.salttvv2._ReplaceBatteries	Creeremo ancora un ticket per controllare che non ci sia un altro problema	Forse dobbiamo sostituire le batterie.

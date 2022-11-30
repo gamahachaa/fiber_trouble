@@ -4,11 +4,15 @@ using string.StringUtils;
 
 import flow.activation.IsFiberOrMultisurf;
 import flow.all.customer.IsSlowOrKaput;
-import flow.all.fiberbox.WhatBoxIsIt;
+import regex.ExpReg;
+//import flow.all.fiberbox.WhatBoxIsIt;
 import flow.ftth.IsRedStep;
 import flow.nointernet.so.IsTicketOpened;
+import flow.phone.WhatIsthePhoneISsue;
 import js.Browser;
 import tstool.MainApp;
+//import tstool.layout.History.Snapshot;
+import tstool.layout.History.ValueReturn;
 import tstool.layout.UI;
 import tstool.process.Process;
 import tstool.process.TripletMultipleInput;
@@ -32,6 +36,9 @@ class CheckContractorVTI extends TripletMultipleInput
 	var parser:tstool.utils.VTIdataParser;
 	var sagem:String;
 	var is_sagem:Bool;
+	var mainIssue:ValueReturn;
+	//static inline var VTI_VIOP_WITH_CHEATING:String = "^(?!41[0-9]{2}0000000)(41\d{9}|00000000000)$";
+	public static inline var BLANK_VOIP:String = "0000000000";
 	public static inline var CONTRACTOR_ID:String = "Contractor ID";
 	public static inline var VOIP_NUMBER:String = "VoIP Number";
 	public static inline var CONTACT_NUMBER:String = "Contact Number";
@@ -47,8 +54,9 @@ class CheckContractorVTI extends TripletMultipleInput
 		super(
 			[
 		{
-			ereg:new EReg("^3\\d{7}$","i"),
+			ereg:new EReg(ExpReg.CONTRACTOR_EREG,"i"),
 			input:{
+				
 				width:150,
 				debug: "30001047",
 				prefix:"Contractor ID",
@@ -56,7 +64,7 @@ class CheckContractorVTI extends TripletMultipleInput
 			}
 		},
 		{
-			ereg: new EReg("^(41\\d{9}|00000000000)$","i"),
+			ereg: new EReg(ExpReg.VTI_VOIP_WITH_NOCHEATING,"i"),
 			input:{
 				buddy: "Contractor ID",
 				width:150,
@@ -66,7 +74,7 @@ class CheckContractorVTI extends TripletMultipleInput
 			}
 		},
 		{
-			ereg: new EReg("^41\\d{9}$","i"),
+			ereg: new EReg(ExpReg.VOIP_WITH_CHEATING,"i"),
 			input:{
 				buddy: "Contractor ID",
 				width:150,
@@ -95,14 +103,18 @@ class CheckContractorVTI extends TripletMultipleInput
 		var mobile = Main.customer.contract.mobile == "" ? "": "(" + Main.customer.contract.mobile + ")";
 		var iri  = Main.customer.iri == "" ? "" : "(" + Main.customer.iri + ")";
 		//Process.STORAGE.set("reminder", '$displayVoip $iri\n$owner $mobile' );
-		Process.STORAGE.set("CONTRACTOR", Main.customer.contract.contractorID );
+		Main.STORAGE_DISPLAY.push("CONTRACTOR");
+		Main.STORAGE_DISPLAY.push("VOIP");
+		Main.STORAGE_DISPLAY.push("OWNER");
+		Main.STORAGE_DISPLAY.push("CONTACT");
+		Process.STORE("CONTRACTOR", Main.customer.contract.contractorID );
 		if (Main.customer.contract.service != Gigabox)
 		{
-			Process.STORAGE.set("VOIP", displayVoip );
+			Process.STORE("VOIP", displayVoip );
 		}
 		//
-		Process.STORAGE.set("OWNER", owner );
-		Process.STORAGE.set("CONTACT", mobile );
+		Process.STORE("OWNER", owner );
+		Process.STORE("CONTACT", mobile );
 
 		/**
 		 * @TODO keep clipboard trick to fill clipboard with data
@@ -111,14 +123,14 @@ class CheckContractorVTI extends TripletMultipleInput
 	}
 	function onVtiAccountParsed(profile:Map<String, Map<String, String>>):Void
 	{
-		//#if debug
-		//trace("onVtiAccountParsed");
-		////trace(profile);
-		//#end
+		#if debug
+		trace("onVtiAccountParsed");
+		trace(profile);
+		#end
 		if (!profile.exists("meta") || !profile.exists("plan")) return;
 		else {
-			var voip = profile.get("plan").exists("vtiVoip")? profile.get("plan").get("vtiVoip"): "";
-			is_sagem = voip.indexOf("-") > -1 || voip=="0000000000";
+			var voip = profile.get("plan").exists("vtiVoip")? profile.get("plan").get("vtiVoip"): "00000000000";
+			is_sagem = voip.indexOf("-") > -1 || voip ==BLANK_VOIP;
 			Main.customer.contract = new Contractor(
 				profile.get("meta").exists("vtiContractor")? profile.get("meta").get("vtiContractor"):"",
 				is_sagem ? StringTools.replace(voip, "- ",""):voip,
@@ -137,16 +149,18 @@ class CheckContractorVTI extends TripletMultipleInput
 		#if debug
 		trace(Main.customer);
 		#end
-		question.text = question.text + " <em>" + Main.customer.contract.owner.name + "<em>";
-		question.applyMarkup(question.text, [UI.THEME.basicEmphasis]);
-		question.drawFrame();
-		positionThis();
+		 
+		//this.question.
+		//question.text = question.text + " <em>" + Main.customer.contract.owner.name + "<em>";
+		//question.applyMarkup(question.text, [UI.THEME.basicEmphasis]);
+		//question.drawFrame();
+		//positionThis();
 		multipleInputs.inputs.get(CONTRACTOR_ID).inputtextfield.text = Main.customer.contract.contractorID;
 		multipleInputs.inputs.get(VOIP_NUMBER).inputtextfield.text = Main.customer.contract.voip;
 		multipleInputs.inputs.get(CONTACT_NUMBER).inputtextfield.text = Main.customer.contract.mobile;
-		var p = multipleInputs.positionThis();
-		positionButtons(p);
-		positionBottom(p);
+		//var p = multipleInputs.positionThis();
+		//positionButtons(p);
+		//positionBottom(p);
 		if ( Main.customer.contract.service == Office )
 		{
 			this.btnYes.visible = false;
@@ -162,12 +176,15 @@ class CheckContractorVTI extends TripletMultipleInput
 	override public function update(elapsed)
 	{
 		super.update(elapsed);
+		
 	}
 	override public function create():Void
 	{
 		Main.customer.reset();
 
 		super.create();
+		mainIssue = Main.HISTORY.findValueOfFirstClassInHistory(Intro, Intro.ISSUE);
+		
 		parser = new VTIdataParser(account);
 		parser.signal.add( onVtiAccountParsed );
 	}
@@ -207,7 +224,8 @@ class CheckContractorVTI extends TripletMultipleInput
 		
 		
         //this._nexts = [ {step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : WhatBoxIsIt }];
-        this._nexts = [ {step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : IsTicketOpened }];
+        //this._nexts = [ {step: Main.HISTORY.isClassInteractionInHistory( Intro, Mid ) ? IsRedStep : IsTicketOpened }];
+        this._nexts = [ {step: mainIssue.value == Intro.order ? IsRedStep : IsTicketOpened }];
 		setReminder();
 		
 		return b2bChosen && Main.customer.contract.service == Office;
@@ -254,25 +272,36 @@ class CheckContractorVTI extends TripletMultipleInput
 
 	function prepareXAPIMainActivity()
 	{
-		return if (Main.HISTORY.isClassInteractionInHistory(Intro, Mid))
+		var phoneIssue:ValueReturn = Main.HISTORY.findValueOfFirstClassInHistory(WhatIsthePhoneISsue, WhatIsthePhoneISsue.ISSUE);
+		return if (mainIssue.value == Intro.order)
 		{
 			"equipment";
 		}
-		else if (Main.HISTORY.isClassInteractionInHistory(Intro, No))
+		else if (mainIssue.value == Intro.tv)
 		{
 			"tv";
 		}
-		else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))
+		else if (mainIssue.value == Intro.internet)
 		{
-			"no-internet";
+			if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))			
+			{
+				"no-internet";
+			}
+			else if (Main.HISTORY.isClassInteractionInHistory(flow.all.customer.IsSlowOrKaput, Yes) )
+			{
+				"slow-internet";
+			}
+			else{
+				"cuts-internet";
+			}
 		}
-		else if (Main.HISTORY.isClassInteractionInHistory(flow.all.customer.IsSlowOrKaput, Yes) || Main.HISTORY.isClassInteractionInHistory(flow.all.customer.IsSlowOrKaput, Mid))
+		else if (phoneIssue.exists)
 		{
-			"slow-internet";
+			phoneIssue.value;			
 		}
 		else
 		{
-			"";
+			"uncaught";
 		}
 
 	}

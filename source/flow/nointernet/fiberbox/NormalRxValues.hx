@@ -5,6 +5,8 @@ import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.vti.CheckContractorVTI;
 import flow.swapcable.SwapFiberCable;
 import flow.tickets.CustomerInstruction;
+import tstool.MainApp;
+//import flow.vti.ParseVTIHealthCheck;
 import regex.ExpReg;
 import tstool.process.TripletMultipleInput;
 //import tstool.process.DescisionMultipleInput;
@@ -22,6 +24,7 @@ class NormalRxValues extends TripletMultipleInput
 {
 	static inline var BOX_RX:String = "Customer Box RX";
 	static inline var BOX_TX:String = "Customer Box TX";
+	static inline var JUSTIFICATION:String = "justification";
 	public function new() 
 	{
 		super([
@@ -32,7 +35,8 @@ class NormalRxValues extends TripletMultipleInput
 				width:200,
 				prefix:BOX_RX,
 				debug: "-12",
-				position:[bottom, left]
+				position:[bottom, left],
+				mustValidate: [Yes,No]
 			}
 		},
 		{
@@ -43,7 +47,18 @@ class NormalRxValues extends TripletMultipleInput
 				prefix:BOX_TX,
 				buddy: BOX_RX,
 				debug: "4",
-				position:[bottom, left]
+				position:[bottom, left],
+				mustValidate: [Yes,No]
+			}
+		},
+		{
+			ereg:new EReg(ExpReg.MINIMAL_3WORDS,"i"),
+			input:{
+				width:450,
+				prefix: JUSTIFICATION,
+				buddy: BOX_TX,
+				position: [bottom, left],
+				mustValidate: [Mid]
 			}
 		}]);
 	}
@@ -56,8 +71,11 @@ class NormalRxValues extends TripletMultipleInput
 		if (valueInRange(false)) super.onNoClick();
 	}
 	override public function onMidClick(){
-		this._nexts = [getNext()];
-		super.onMidClick();
+		if (validateMid())
+		{
+			this._nexts = [getNext()];
+			super.onMidClick();
+		}
 	}
 	function valueInRange( waitingFor:Bool )
 	{
@@ -96,8 +114,17 @@ class NormalRxValues extends TripletMultipleInput
 			};
 		} 
 	}
-	override function validateMid()
+	//override function validateMid()
+	//{
+		//return true;
+	//}
+	override public function create():Void 
 	{
-		return true;
+		super.create();
+		var justification = MainApp.translator.get("$justification_UI1", "meta") +" (" + this._buttonMidTxt +")";
+		/**
+		 * @todo refactor to text field
+		 */
+		this.multipleInputs.inputs.get(JUSTIFICATION).imputLabel.text = justification;
 	}
 }

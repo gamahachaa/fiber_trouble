@@ -36,14 +36,14 @@ class FiberCableChanged extends TripletMultipleInput
 				input:{
 					width:200,
 					prefix:SO_TICKET_NUM,
-					debug:"13345678",
+					debug:"14345678",
 					position:[bottom, left]
 				}
 			}
 			]);
-			nYes =  {step: _EnsureCorrectPortPlug};
+			nMid =  nYes =  {step: _EnsureCorrectPortPlug};
 			nNo =  {step: IsOTOidAligned};
-			nMid =  {step: _EnsureCorrectPortPlug};
+			//nMid =  {step: _EnsureCorrectPortPlug};
 			
 			if ( nextYes != null ) nYes = nextYes;
 			if ( nextNo != null ) nNo = nextNo;

@@ -40,46 +40,6 @@ class IsTicketOpened extends Descision
 	//}
 	override public function onNoClick():Void
 	{
-		//if (Main.HISTORY.isClassInteractionInHistory(Intro, No))
-		//{
-			///************************************
-			 //* TV
-			///************************************/
-			//this._nexts = [ {step: WhatIStheTVIssue, params: []}];
-		//}
-		//else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))
-		//{
-			///***********************************
-			 //* INTERNET
-			///***********************************/
-			//if (Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).get(CheckContractorVTI.CUST_DATA_PRODUCT_BOX) == Std.string(Gigabox))
-			//{
-				///****
-				 //* GIGABOX
-				 //* */
-				 //this._nexts = [ {step: CustomerInstruction, params: [
-													//{step: _CreateTicketModemCNX},
-													//{step: _CreateTicketModemCNX}
-												//]}];
-			//}
-			//else // FIBER BOXES
-				//this._nexts = [ {step: IsBoxReachable, params: []}];
-		//}
-		//else if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, Yes) || Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, Mid))
-		//{
-//
-			////if (Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, No))
-			////{
-				////this._nexts = [ {step: _TestSpeed, params: []}];
-				////
-			////}
-			////else
-			////{
-				////this._nexts = [ {step:HaveRepeater}];
-			////}
-		//}
-		//else
-			//this._nexts = [{step: _TestSpeed, params: []}];
 		if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Yes))
 		{
 			//this._nexts = [{step: WichRemote, params: []}];

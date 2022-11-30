@@ -1,0 +1,54 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
+$flow.tv.hardware._NotSupported		We are not able to help you with this Apple TV.
+$flow.tv.hardware._UnplugAppleTVPowerCable		Unplug and replug the AppleTV<N>Wait a few seconds for the AppleTV menu to appear on the screen.
+$flow.tv.hardware.IsAppleTVFourthGen	Open the Apple support page<N>Check if the design and the model number match the one of Apple TV 4K or Apple TV HD	Is the Apple TV a fourth generation or higher one?					https://support.apple.com/HT200008
+$flow.tv.hardware.IsAppleTVvisibleOnTVScreen	The classical Home screen, containing icons of preinstalled apps.<N>(such as App Store)	Is the Apple TV Home screen visible on the TV?	tv/tvhomescreen	Visible	Not visible
+$flow.tv.hardware._MakeSurePowerCableWellPlugged	Make sure the Power cable is well plugged in.<N>Change the wall socket if needed.	Is the Power cable plugged in properly?	tv/powercablepluggedin	Cable OK
+$flow.tv.hardware.WhiteLightLids	If powered properly the LED is steady and white 	Is the white LED (status light) on the Apple TV switched on? 	tv/statusled	Yes, white	Other		https://support.apple.com/en-gb/guide/tv/atvba38a4135/tvos
+$flow.tv.hardware._CheckHDMIcnx	Check that the physical HDMI port number matches the <Q>INPUT/SOURCE<Q> type selected on the TV.<N>Replace the HDMI cable if possible.	Verify the HDMI cable connection	tv/hdmiconnection	Connection OK			https://youtu.be/3kCLLJ3m-VA?t=271 
+$flow.tv.hardware._RepairProcess	Encourage the customer to do the repair registration online	The Apple TV must be repaired					https://qoof.salt.ch/de/customer-process/use_trouble/replacement_and_repair/repair_equipment_fiberbox_tvbox_accessories#salt-fiber-box-fiber-zubeh%C3%B6r-und-apple-tv-4k
+$flow.tv.install.IsSaltIconVisibleOnAppleTV		Is the Salt TV app icon visible?  	tv/salttvicon	Visible	Not visible
+$flow.tv.install._OpenAppleStore		Open the App Store on the  Apple TV	appletv/apple_store/open
+$flow.tv.install.CanSeeSaltTVOnAppleStore	Type Salt in the search field	Can you see Salt TV in the store	appletv/apple_store/see_staltv_applestore
+$flow.tv.install.HasAppleId		Do you have an Apple ID (Apple account)?	appletv/apple_store/apple_id
+$flow.tv.install.CanCreateAppleAccount	Take the time with the customer to help him create the Apple ID.<N>Make sure to select Switzerland as a country.	Are you ok to create one?	appletv/apple_store/apple_id_cancreate
+$flow.tv.install.HasSwissAppleID	An Apple ID created by selecting a country other than Switzerland does not allow you to download Salt TV. 	Is the Apple ID a swiss Apple ID?	appletv/apple_store/apple_id_swiss	Swiss Apple ID	No Swiss Apple ID
+$flow.tv.install.WantToChangeToSwiss	Customer can always revert to another country if needed later.<N>Read "What to do before you change your country or region" on the link below to know the conditions of changing languge of an Apple ID	Is it allright with you to change the country of your Apple ID to Swizerland?	appletv/apple_store/apple_id_change_to_swiss				https://support.apple.com/en-us/HT201389
+$flow.tv.install._HowToChangeAppleIDtoSwiss	There are several ways one can change the language (On the iPhone, iPad, iPod touch, a Mac computer or ther Apple ID web page).<N>Here is the Apple ID web page:<N>On a web browser<N><T>1. Sign in https://appleid.apple.com/ with your Apple ID<N><T>2. Scroll to the Account section, then click Edit.<N><T>3. From the Country/Region menu, select your new country or region.<N><T>4. When asked if you want to change your country or region, click "Continue to update."	Let's change your Apple ID country!
+$flow.tv.install._InstallSaltTV	In the Qoof document you will find YouTube tutorials for customers with or without Apple ID.	Download and install the Salt TV app	salttv/install/install_salttv				https://qoof.salt.ch/de/customer-process/configure/manage_appletv_salttv/salttv/salttv_download_tipps_and_tricks
+$flow.tv.install._LogInWithSwissAppleID		Sign in with a Swiss Apple TV account
+$flow.tv.install._CreateAppleIDorBypass	1. Select SWITZERLAND as country.<N>2. Connect the Apple TV to the Fiber Box to enable <Q>Zero sign in<QR>.<N>3. Skip the Apple ID input step.<N>4. Select Salt as TV provider	Connect the Apple TV to the Fiber Box to automatically install Salt TV
+$flow.tv.install._ResetAppleTV	Go to:<N><T>- Settings<N><T>- System<N><T>- Reset	Reset the AppleTV					https://support.apple.com/en-gb/HT202118
+$flow.tv.app._QuitAndRelaunchSaltTV	With the Apple remote or Salt TV remote 2.0:<N><T><T>- Press twice quickly the 'Home' button (with a TV icon) : All opened apps will be displayed on the screen<N><T><T>- Position the cursor on the Salt.tv app and, to kill the app:<N><T><T><T><T>* (with the Apple remote) slide your finger up on the Surface Key<N><T><T><T><T>* (with the Salt TV remote 2. 0) click twice quickly upwards <N><T><T>- Click 'Menu' to return to the main Apple TV menu<N><T><T>- Relaunch the Salt. tv<N><N>With the Salt TV remote infrared remote:<N><T><T>- On the Apple TV menu, go to 'Settings'<N><T><T>- Select 'System'<N><T><T>- Click 'Restart'<N><T><T>- When the Apple TV restarts, restart Salt.tv 	Close ("kill") the salt.tv app and restart it					https://support.apple.com/en-gb/guide/tv/atvbbcec4f4e/tvos
+$flow.tv.app.ProblemSolved	Does the customer confirm that all channels are working properly?	Is the problem resolved?		All OK	No
+$flow.tv.app._CheckIfAppleTVNeedsUpdate	If an update is requiered, update Apple TV.<N><T>- Go to <Q>Settings - System - Software Updates<Q><N><T>- Select <Q>Update Software<Q> 	Is the Apple TV 4K software up to date?		Up to date			https://support.apple.com/en-gb/guide/tv/atvb7e0a4ea5/tvos
+$flow.tv.app._RebootAppleTV	Go to:<N><T>- Settings<N><T>- System<N><T>- Restart.	Reboot the Apple TV					https://support.apple.com/en-us/HT201836
+$flow.tv.app._CheckIfSaltTVNeedsUpdate	If an update is requiered, update the Salt TV App.<N><N>Recommend the customer to set up automatic app updates. 	Is the Salt TV app on the latest version?  	tv/updatesalttv	Up to date			https://qoof.salt.ch/de/customer-process/configure/manage_appletv_salttv/salttv/update_salt_tv_app
+$flow.tv.app.WhatAppleTVcnxType	What connection type does the customer have?	How is the AppleTV connected to the Fiber Box?		On LAN	On WiFi
+$flow.tv.app.IsIssueWithOtherApps		Does the issue occur only with Salt TV or with other Apple TV apps?
+$flow.tv.app.CanCheckWithLan		Can you try connecting the Apple TV to the LAN?
+$flow.tv.services.IsMessageInvitingToContactCC	If message is to contact Customer Care, the customer may be barred.<N>If the message is about internet conexion issue, we will trouble shoot the internet connection of the Apple TV.<N>If there is no message, we'll continue by trouble shooting the Salt TV App.	Is there a message prompting on the app ?		Yes, inviting to contact Ccare	No message	Yes, internet issue
+$flow.tv.services._ActivateTVServicesVTI	In:<N><T>- VTI -> Offer management -> Health Check -> TV<N><N>Click on <Q>Activate TV user>	Activate TV services in VTI	tv/activatetvuseren	Active			https://qoof.salt.ch/de/customer-process/use_trouble/tv/salttv_automatic_deactivation_after_non_use
+$flow.tv.services.IsTVServicesActiveVTI	Go to:<N><T>- VTI -> Offer management -> Health Check -> TV	Are the TV services active in VTI ?	tv/activetvservice	Active	Issue
+$flow.tv.services.IsBasicTvPackageVisible		Check in VTI if the customer has basic packages		Yes, but <LQ>I do not wish TV<RQ>	None
+$flow.tv.services.IsBarringVisible		Check in VTI if any barring is visible		Yes <LQ>No use<RQ>	No barring	Yes <LQ>Collection<RQ>	https://qoof.salt.ch/customer-process/use_trouble/tv/salttv_automatic_deactivation_after_non_use
+$flow.tv.WhatIStheTVIssue	Choose remote for <N><T>- Siri remote issues<N><T>- Salt TV remote<N><N>Choose TV for issue with <N><T>- Apple TV<N><T>- Salt TV app<N><T>- channels <N><T>- feature <N><T>- install<N><T>- Etc…	What issue do you face?		Can't use the remote	Sound is bad	Can't watch TV
+$flow.tv._OpenSaltTVApp		Open the Salt TV App	salttv/open/en
+$flow.tv.ChekSaltTVKNownBugs	If an incident matches I open the Qoof page (link below) to see if there is a solution.	Is there currently an ongoing Salt TV matching incident published?		Yes there is incident matching	No matching incident		https://qoof.salt.ch/de/bug/services/salt_tv_known_bugs
+$flow.tv.CanExploreMenu		Can you explore the Salt TV menu ?	appletv/explore/en
+$flow.tv._InformSaltIsFixing	End the call politely. Apologize for the inconvenience.	Our technician are fixing it.
+$flow.tv._CreateSOTicketSaltTV	A ticket [541] will be automatically generated upon advancing to the next step. Do not manually create one (SuperOffice). A copy of the content will be sent to your mailbox.	Automatic ticket creation [541] in SuperOffice
+$flow.tv.services.IsSaltTVWorkingNow	If does not work for the customer, ask him to log off Salt TV and log back in.	Is Salt TV working now ?
+$flow.tv.services._ChangeBasicPackage		In VTI. Apply the basic channel changes wanted by the customer.
+$flow.tv.services.DoesWantTVNow	Review the offer with the customer.<N> inform about the fees.<N>Select the basic channel wanted.<N>Select the number of Apple TV wanted.	Do you want Salt TV now ?
+$flow.tv.services._CreateTicketTwoOneFive		Automatic ticket creation [215] in SuperOffice
+$flow.tv.services.DidCustomerPaidActivationFees	Check in VTI > Bill information > Activation fee. If the customer has not paid the activation fee yet, he will have to activate the TV option now (includes an Apple TV).	Has the customer paid an activation fee (CHF 99.95)?	vti/billing/activation_fees/paid_not_paid
+$flow.tv.network.HowConnected		How is the Apple TV connected ?		WiFi	LAN
+$flow.tv.network.IsOtherWifiDeviceOK	With a phone, a computer etc…<N>Make sure the same WiFi network (2.4 or 5 Ghz) is tested.	Test the WiFi with another device in the same room		Works with other device	Does not work neither
+$flow.tv.network.DidnetworkSolved		Is the problem resolved?
+$flow.tv.network.CanReconnectWiFi		Reconnect the Apple TV to the WiFi		Works now	Still doesn't work
+$flow.tv.network.CanCheckWithLan		Can connect the Apple TV on LAN ?
+$flow.tv.network._TesLanCableWithComputer		Launch tv.salt.ch from a computer connected on LAN
+$flow.tv.network._ForgetWifiOnAppleTV	This will delete that WiFi name and associated password from the Apple TV memory.	Forget the current wireless network
+$flow.tv.network._EnsureLanCableWellPlugged		Make sure the LAN cable is well pluged on both ends
+$flow.tv.remote.siri._PressBackAndVolUp		Please press the <b>Back<b> Button and the <b>+<b> volume at the same time.	appletv/remote/siri-2gen_pairing

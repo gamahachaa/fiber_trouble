@@ -16,13 +16,8 @@ class CustomerInstruction extends DescisionMultipleInputLoop
 	public static inline var CONTACT_EMAIL_2ND:String = "Alt. Contact email";
 
 	
-	override public function new( ?nextYes:ProcessContructor, ?nextNo:ProcessContructor)
+	override public function new( ?nextYes:ProcessContructor, ?nextNo:ProcessContructor )
 	{
-		
-		#if debug
-		trace("flow.tickets.CustomerInstruction::CustomerInstruction::nextYes", nextYes );
-		trace("flow.tickets.CustomerInstruction::CustomerInstruction::nextNo", nextNo );
-		#end
 		super(
 		[{
 			ereg: new EReg(ExpReg.MISIDN_UNIVERAL,"gi"),

@@ -3,6 +3,9 @@ package flow.all.fiberbox;
 import flow.all.customer.IsSlowOrKaput;
 import flow.nointernet.fiberbox.IsBoxReachable;
 import flow.nointernet.vti.CheckContractorVTI;
+import flow.phone.HowIsDeviceConnected;
+import flow.phone.IsTheDeviceWorking;
+import flow.phone.WhatIsthePhoneISsue;
 import flow.vti.SerialVTI;
 
 import flow.vti._RXfromVTI;
@@ -42,9 +45,33 @@ class _WhereIsBoxPlaced extends ActionRadios
 		}
 	}
 	function getNext():Void
-	{	
+	{
+		var mainIssue = Main.HISTORY.findValueOfFirstClassInHistory(Intro, Intro.ISSUE);
+		var phoneIssue = Main.HISTORY.findValueOfFirstClassInHistory(WhatIsthePhoneISsue, WhatIsthePhoneISsue.ISSUE);
 		if(Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))
 			this._nexts = [{step:IsBoxReachable}];
+		else if (mainIssue.value == Intro.phone )
+		{
+			if (phoneIssue.value == WhatIsthePhoneISsue.drop_calls)
+			{
+				this._nexts = [{step:IsTheDeviceWorking}];
+			}
+			else if (phoneIssue.value == WhatIsthePhoneISsue.caller_id || phoneIssue.value == WhatIsthePhoneISsue.sound_quality)
+			{
+				this._nexts = [{step: HowIsDeviceConnected}];
+			} 
+			//else (phoneIssue.value == WhatIsthePhoneISsue.no_calls)
+			else
+			{
+				this._nexts = [{step:IsBoxReachable}];
+			}
+			//else
+			//{
+				//this._nexts = [{step:SerialVTI}];
+			//}
+			
+			
+		}
 		else{
 			if(chekcIfArcadyan())
 				this._nexts = [{step:SerialVTI}];

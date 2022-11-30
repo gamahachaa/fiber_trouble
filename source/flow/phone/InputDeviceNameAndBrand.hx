@@ -7,17 +7,18 @@ import flow.tickets.VoipCalls;
 import flow.tickets.VoipFNP;
 import flow.tickets.VoipProvisioning;
 import flow.tickets.VoipSoundQuality;
-import flow.tickets.VoipTicket;
+//import flow.tickets.VoipTicket;
 import regex.ExpReg;
 import tstool.layout.History.ValueReturn;
-import tstool.process.ActionMultipleInput;
+//import tstool.process.ActionMultipleInput;
+import tstool.process.DescisionMultipleInput;
 import tstool.process.Process;
 
 /**
  * ...
  * @author bb
  */
-class InputDeviceNameAndBrand extends ActionMultipleInput 
+class InputDeviceNameAndBrand extends DescisionMultipleInput 
 {
 	static inline var DEVICE:String = "Device";
 	static inline var BRAND:String = "Brand";
@@ -50,7 +51,7 @@ class InputDeviceNameAndBrand extends ActionMultipleInput
 	}
 	
 	
-	override public function onClick():Void
+	override public function onYesClick():Void
 	{
 		var phoneIssue:ValueReturn = Main.HISTORY.findValueOfFirstClassInHistory(WhatIsthePhoneISsue, WhatIsthePhoneISsue.ISSUE);
 		var next:Class<Process> = switch (phoneIssue.value){
@@ -70,11 +71,16 @@ class InputDeviceNameAndBrand extends ActionMultipleInput
 				next = VoipProvisioning;
 			}
 		}
-		if (validate())
+		if (validateYes())
 		{
 			this._nexts = [{step: CustomerInstruction,params: [{step: next},{step: next}]}];
-			super.onClick();
+			super.onYesClick();
 		}
+	}
+	override public function onNoClick():Void 
+	{
+		this._nexts = [{step: _AddMemoVti}];
+		super.onNoClick();
 	}
 	//inline function getNext():Class<Process>{
 		//return VoipTicket;

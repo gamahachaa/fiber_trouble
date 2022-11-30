@@ -42,22 +42,24 @@ class ChekSaltTVKNownBugs extends Descision
 	{
 		super();
 
-		#if debug
-		trace('flow.tv.ChekSaltTVKNownBugs::ChekSaltTVKNownBugs::MainApp.translator.locale ${MainApp.translator.locale}');
-		trace("/var/www/html/owncloud/data/bbaudry/files/qook/06.Salt_Fiber/03.Bug/03.Services/01.Salt_TV_Known_Bugs/myfile.csv".urlEncode());
-		#end
+		//#if debug
+		//trace('flow.tv.ChekSaltTVKNownBugs::ChekSaltTVKNownBugs::MainApp.translator.locale ${MainApp.translator.locale}');
+		//trace("/var/www/html/owncloud/data/bbaudry/files/qook/06.Salt_Fiber/03.Bug/03.Services/01.Salt_TV_Known_Bugs/myfile.csv".urlEncode());
+		//#end
 		//knownBugsCsv;
-		fetcher = new CsvFetcher();
 		var qookLang = MainApp.translator.getPreferedQookLang();
+		var root = "";
+		fetcher = new CsvFetcher();
 		fetcher.onData = ondata;
+
 		#if debug
-		fetcher.addParameter(TEMP_OUTAGES, FILES_ROOT_DEV+"06.Salt_Fiber/03.Bug/03.Services/01.Salt_TV_Known_Bugs/myfile.csv".urlEncode());
-		var csv2 = FILES_ROOT_DEV+'06.Salt_Fiber/03.Bug/03.Services/01.Salt_TV_Known_Bugs/known_tvbugs_$qookLang.csv';
+		root = FILES_ROOT_DEV;
 		#else
-		fetcher.addParameter(TEMP_OUTAGES, FILES_ROOT_PROD+"06.Salt_Fiber/03.Bug/03.Services/01.Salt_TV_Known_Bugs/myfile.csv".urlEncode());
-		var csv2 =FILES_ROOT_PROD+ '06.Salt_Fiber/03.Bug/03.Services/01.Salt_TV_Known_Bugs/known_tvbugs_$qookLang.csv';
+		root = FILES_ROOT_PROD;
+
 		#end
-		fetcher.addParameter(KNOWN_BUGs, csv2.urlEncode());
+		fetcher.addParameter(TEMP_OUTAGES, root+"06.Salt_Fiber/03.Bug/03.Services/01.Salt_TV_Known_Bugs/myfile.csv".urlEncode());
+		fetcher.addParameter(KNOWN_BUGs, root+ '06.Salt_Fiber/03.Bug/03.Services/01.Salt_TV_Known_Bugs/known_tvbugs_$qookLang.csv'.urlEncode());
 	}
 
 	function ondata(d:String)
@@ -66,23 +68,15 @@ class ChekSaltTVKNownBugs extends Descision
 		var tmp = "";
 		if (j.status == Results.SUCCESS_VALUE)
 		{
-			#if debug
-			trace("flow.tv.ChekSaltTVKNownBugs::ondata::j", j );
-			#end
+
 			tvOutages = Reflect.field(j.values.data, TEMP_OUTAGES).additional.trim().replace('"', "");
 			try
 			{
 
 				var t = Reader.parseCsv(tvOutages,";");
-				//trace(t);
-				#if debug
-				trace("flow.tv.ChekSaltTVKNownBugs::ondata::t", t );
-				#end
+
 				var tab:Array<Record> = t.filter((e)->(Std.string(e[STATUS].toUpperCase()).indexOf(OPEN_STATUS) >-1));
-				//trace(tab);
-				#if debug
-				trace("flow.tv.ChekSaltTVKNownBugs::ondata::tab", tab );
-				#end
+
 				if (tab.length > 0)
 				{
 					tmp += "<b>TV channel outages :<b>" ;
@@ -90,14 +84,9 @@ class ChekSaltTVKNownBugs extends Descision
 					for (i in tab)
 					{
 						tmp += "\n\t - " + i[CHANNELS] + " : " + i[IMPACT];
-						#if debug
-						//trace("flow.tv.ChekSaltTVKNownBugs::ondata::ExpReg.PARSABLE_DATE.match(i[START_DATE])", ExpReg.PARSABLE_DATE.match(i[START_DATE]) );
-						#end
+
 						if (ExpReg.PARSABLE_DATE.match(i[START_DATE]))
 						{
-							#if debug
-							trace("flow.tv.ChekSaltTVKNownBugs::ondata::ExpReg.PARSABLE_DATE.matched(0,1)", ExpReg.PARSABLE_DATE.matched(0), ExpReg.PARSABLE_DATE.matched(1) );
-							#end
 							dte = DateTimeUtc.fromString(ExpReg.PARSABLE_DATE.matched(1));
 							tmp += " (" + dte.day + "." + dte.month + "." + dte.year +" @" + dte.hour.zeroLead() +":" + dte.minute.zeroLead() +")";
 						}
@@ -115,17 +104,14 @@ class ChekSaltTVKNownBugs extends Descision
 			{
 
 				var t = Reader.parseCsv(knownBugsCsv,";");
-				//trace(t);
+
 				var tab2:Array<Record> = t.filter((e)->(Std.string(e[3].toUpperCase()).indexOf(OPEN_STATUS) >-1));
-				//trace(tab2);
+
 				tmp += "\n\n<b>Know bugs :<b>" ;
-				//var dte:DateTimeUtc;
+
 				for (i in tab2)
 				{
-
-					//dte = DateTimeUtc.fromString(i[2]);
 					tmp += "\n\t - " + i[0] + " (" + i[2] +")";
-					//this._detailTxt += "\n\t - " + i[CHANNELS] + " : " + i[IMPACT] + " (" + dte.getDate() +"."+ dte.getMonth() +"."+ dte.getFullYear() +" @" + dte.getHours() +":"+ dte.getMinutes() +")";
 				}
 
 			}
@@ -143,16 +129,30 @@ class ChekSaltTVKNownBugs extends Descision
 	}
 	override public function onYesClick():Void
 	{
+		#if DEMO
+		this._nexts = [{step: End, params: []}];
+		#else
 		this._nexts = [{step: _InformSaltIsFixing, params: []}];
+		#end
 		super.onYesClick();
 	}
 	override public function onNoClick():Void
 	{
+		#if DEMO
+		this._nexts = [{step: End, params: []}];
+		#else
 		this._nexts = [{step: _QuitAndRelaunchSaltTV, params: []}];
+		#end
 		super.onNoClick();
 	}
 	override public function create():Void
 	{
+		#if debug
+		if (!Main.DEBUG)
+			ondata('{"status":"success","error":"","additional":"","values":{"data":{"$TEMP_OUTAGES":{"status":"success","error":"","additional":"### RESOLVED - Major Incident FR_9213-FFR-GVIL-ASR1\r\n\r\nImpact: Fixnet unavailable\r\n\r\nLEX impacted: FR_9213-FFR-GVIL-ASR1 + 69VAE + FR_9213-FFR-GVIL-OLT1 + FR_9210-FFR-ALBV-OLT1 + FR_9217-FFR-PRGY-OLT1\r\n\r\nStart: 01.01.2022 01:45\r\n\r\nEnd: 01.01.2022 09:32\r\n\r\nReference Ticket Incident : HD0000000107728\r\n\r\n108 impacted customers"},"$KNOWN_BUGs":{"status":"success","error":"","additional":"### Rue Le Corbusier 8, 1208 Genf\r\n\r\nSalt Home Dienste sind f\u00fcr [9 Haushalte](list.xlsx) aufgrund eines besch\u00e4digten Glasfaserkabels nicht verf\u00fcgbar.\r\n\r\n- Kein technisches Ticket erstellen.\r\n- In SuperOffice pr\u00fcfen, ob ein."}}}}');
+		else fetcher.request();
+		#else
 		fetcher.request();
+		#end
 	}
 }

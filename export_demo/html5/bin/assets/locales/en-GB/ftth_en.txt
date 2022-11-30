@@ -1,0 +1,35 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
+$flow.ftth.pluginuse.WasCancelationSent	If <em>yes<em> :<N><T>please send us a copy of the letter in order for us to make the necessary inquiries with the provider.<N><N>If <em>not<em> :<N><T>please send the termination letter as soon as possible to your former provider.	Have you already sent the termination letter to your former provider?
+$flow.ftth.pluginuse._SendPluginUseTemplate		I will send you the email with all the steps to follow ?
+$flow.ftth.pluginuse._InformPluginUse		Your order is on stand-by because your fibre connection is contracted to another operator.
+$flow.ftth.pluginuse.BouncePluginUse	This means that the email was entered incorrectly.	Is there a <LQ>BOUNCE EMAIL<RQ> in S.O. ?
+$flow.ftth.pluginuse.IsPlugInUse	I filter in S.O.:<N>Title <em>contains<em> <Q>Contractor ID<Q> and <Q>Created<Q> (so that the SuperOffice search does not take hours or crashes)	Is there a <LQ>PLUG IN USE<RQ> ticket in S.O. ?	ftth360/search_so_pluginuse
+$flow.ftth.delegate._UpdateSOTicketWithOTO	<OTOID>	I update the ticket information					https://qoof.salt.ch/knowledge/admin/order/
+handle_delegate_tickets_dedicated_team_front_and_back_office/
+incoming_call_dedicated_team
+$flow.ftth.delegate._InformToReply		I recommend that you reply as soon as possible with the requested information,<N>otherwise the order will be blocked. 
+$flow.ftth.delegate._SendDelegateEmail		I will resend the email?<N>(DELEGATE)?		Resend the DELEGATE email	No need
+$flow.ftth.delegate.HasAccessToMyAccount	By accessing <LQ>My Account<RQ>, you can enter the OTO ID to speed up the process.	Can you access your My Account area to enter the OTO number?			Cannot access <LQ>My Account<RQ>.
+$flow.equipment.CanGiveOTOid		Do you know the number of the OTO outlet in your home? 	customer/oto/customer_reads_OTOid
+$flow.ftth.delegate._InformCustOrderOnHold		Your order is in <LQ>Stand-by<RQ>, because you didn't provide us with your OTO-ID
+
+$flow.ftth.delegate.IsDSODelegate	I filter in S.O.:<N>Email <em>contains<em> <Q>georges.clooney@whatelse.com<Q><N>Title <em>contains<em> <Q>39999999<Q> (conractor ID) 	Is there a <LQ>Bounce email<RQ> DELEGATE in S.O. ?
+$flow.ftth.status.WantstoChangeAdress		Would you like to change the delivery address?
+$flow.ftth.status._InformCanChangeAdress	Follow the intructions in Qoof	Here's how you can do it					https://qoof.salt.ch/knowledge/admin/order/fiber_material_delivery_change_of_delivery_address
+$flow.ftth.status._InformAboutDelivery	Click on the <b>TRACK & TRACE<b> link<N>check that the email with the information has arrived in his box.	The equipment is on its way<N>Here are the details of the package from the post office	ftth360/click_track_trace
+$flow.ftth.status._CPESendingOngoingOrange	<em>Orange<em> the shipment is in progress<N><em>Green<em> the package has been delivered (or returned)<N>Black there is a problem with the <Q>provisioning<Q>.	I check the status <Q>CPE sending	ftth360/cpe_send_completed	Orange	Black	Green
+$flow.ftth.status._ExplainToWait	Explain that we only send the equipment about 1 week before the date. Please wait a few more days.<N>(Internal info: The shipment is only shipped when the following status is visible in VTI > POM > Ordering phase: <LQ>Order has been accepted by ALO or ALEX<RQ>.)	It is still a bit too early.
+$flow.ftth.status.IsWhishDateWayAhead	Check in the CC Dashboard or in VTI > Customer Life (order summary).	Is the activation date <Q>wish date<Q> more than 15 days away?	ftth360/ordering_phase_started	Yes > 15d	No
+$flow.ftth.status._CommunicateSwitchDate		I will tell you the date your line will be activated<N>(Wish date)
+$flow.ftth.status.IsOrderAccepted		I verify if the order is accepted by the system<N>(Green or Orange dot)	ftth360/order_accepted	Accepted (Green)	Ordering Phase Started (Orange)
+$flow.ftth.status.CheckInCRMorSO	<T> - Note from backoffice in VTI<N><T> - ticket 4.1.5 in S.O.	I am looking in VTI or in S.O if there is any issue related to the activation already.<N>Is there? <N>If yes I will communicate the status and update it with your possible comments. 		In S.O.	In VTI	No, nowhere
+$flow.ftth.status.IsQualifDone		I read the qualification status	ftth360/qualif_done	Done (Green)	Started (Red or Orange)
+$flow.ftth.canceled._CheckFinancialIfActivationRefundNEeded		I check if a reimbursement of the activation is necessary					https://qoof.salt.ch/customer-process/leave/
+termination/request_cancellation_of_fiber_order_front
+$flow.ftth.canceled.IsOderPossibleInVTI		I try to redo the order in VTI		Possible	Not possible
+$flow.ftth.canceled._PomCanceledOrOfferClosed	The status under the red dot is:<N><T>Offer status : Closed<N><T>Pom status : Canceled	I verify in VTI, Customer events log "Reason of cancel"<N>
+$flow.ftth.IsDelegateOrPluginUse		Do I see the 3rd <LQ>Delegate<RQ> or <LQ>PlugInUse<RQ><N>(blue) dot?	ftth360/delegate_or_pluginuse	Delegate	PlugInUse
+$flow.ftth.IsBlueStep		I look in FTTH360 for a blue dot.	ftth360/IsBlueStep	NO blue	It's blue!
+$flow.ftth.IsRedStep	<em>Tip!<em><N>I do <b>Ctrl+C<b> here and then, in FFTH360, <b>Ctrl+V<b> in the search field to automatically insert the contractor-ID ;-)	I look in FTTH360 for a red dot. 	ftth360/copy_paste	Is red	No red		https://ftth360.salt.ch
+$flow.vti._UpdateAdressVTI		I update your email address in our CRM (VTI)
+$flow.ftth.delegate.CanGiveOTOid		Can you tell us the number of your OTO socket?

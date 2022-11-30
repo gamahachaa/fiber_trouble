@@ -161,7 +161,8 @@ class ProvideSamples extends ActionMultipleInput
 	}
 	inline function getNext():Class<Process>
 	{
-		return InputDeviceNameAndBrand;
+		//return InputDeviceNameAndBrand;
+		return IsPhoneGigasetE370HX;
 	}
 	/****************************
 	* Needed only for validation

@@ -149,16 +149,18 @@ class CheckContractorVTI extends TripletMultipleInput
 		#if debug
 		trace(Main.customer);
 		#end
-		question.text = question.text + " <em>" + Main.customer.contract.owner.name + "<em>";
-		question.applyMarkup(question.text, [UI.THEME.basicEmphasis]);
-		question.drawFrame();
-		positionThis();
+		 
+		//this.question.
+		//question.text = question.text + " <em>" + Main.customer.contract.owner.name + "<em>";
+		//question.applyMarkup(question.text, [UI.THEME.basicEmphasis]);
+		//question.drawFrame();
+		//positionThis();
 		multipleInputs.inputs.get(CONTRACTOR_ID).inputtextfield.text = Main.customer.contract.contractorID;
 		multipleInputs.inputs.get(VOIP_NUMBER).inputtextfield.text = Main.customer.contract.voip;
 		multipleInputs.inputs.get(CONTACT_NUMBER).inputtextfield.text = Main.customer.contract.mobile;
-		var p = multipleInputs.positionThis();
-		positionButtons(p);
-		positionBottom(p);
+		//var p = multipleInputs.positionThis();
+		//positionButtons(p);
+		//positionBottom(p);
 		if ( Main.customer.contract.service == Office )
 		{
 			this.btnYes.visible = false;
@@ -174,6 +176,7 @@ class CheckContractorVTI extends TripletMultipleInput
 	override public function update(elapsed)
 	{
 		super.update(elapsed);
+		
 	}
 	override public function create():Void
 	{

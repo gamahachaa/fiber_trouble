@@ -1,0 +1,26 @@
+FLAG	DETAILS	TITLE	ILLUSTRATION	RIGHT-BTN	LEFT-BTN	MID-BTN	QOOK
+$flow.tv.sound._StoreCustomersSetup	<N><T>-TV-Marke und Modell<N><T>-Soundsystem Marke und Modell	Welche Einrichtung hat der Kunde?
+$flow.tv.sound._AppleTVSoundSetup	<N><T>-Audioausgabe<N><T>-Audioformat<N><T>-laute Töne reduzieren<N><T>-Audiomodus	Wie ist die Sound-Einstellung des Apple TV?	appletv/sound/de
+$flow.tv.sound._SaltTVDetails	<N><T>-Betroffene Sender<N><T>-ProgramName<N><T>-TimeAndDate	Erzählen Sie uns mehr darüber, wie Sie Salt TV nutzen, wenn Sie Probleme mit dem Ton haben?
+
+$flow.tv.sound._IssueDescription	Was genau ist die Audio-Störung, mit der der Kunde konfrontiert ist?	Beschreiben Sie das Tonproblem
+$flow.tv.sound._HowFerquent	Fragen, ob das Problem bei allen Sendern oder nur bei einem einzigen auftaucht. Immer oder gelegentlich etc.	Wie häufig, wann geschieht es?
+$flow.tv.sound.IsSameIssueWithOtherApps	Bsp.: mit iTunes, Spotify, Spielen usw.	Tritt das Tonproblem bei anderen Apps auf dem Apple TV auf?
+
+
+$flow.tv.sound.volume.VolumeButtonDoesWork		Funktionieren die Lautstärkeknöpfe?	
+$flow.tv.sound._MakeSureHDMIWellConnected		Können Sie versuchen zu sehen, ob das HDMI-Kabel richtig eingesteckt ist?<N>(Aus- und wieder Einstecken)<N>Im Fernsehen und auf Apple TV
+$flow.tv.sound.HaveHDMISwitch		Gibt es einen HDMI-Switch zwischen Ihrem Fernseher und dem Apple TV?	appletv/sound/HDMI_switch	
+$flow.tv.sound._ConnectHDMIDirectToTV		Schließen Sie das HDMI-Kabel direkt an den Fernseher an.
+$flow.tv.sound._TryAnotherHDMIPort		Könnten Sie einen anderen HDMI-Anschluss an Ihrem Fernseher ausprobieren?
+$flow.tv.sound._TryAnotherTV		Können Sie es auf einem anderen Fernseher versuchen?
+$flow.tv.sound._TryNewHDMICable		Haben Sie ein anderes HDMI-Kabel zum Testen?
+$flow.tv.sound._TryReversingHDMI		Versuchen Sie, das HDMI-Kabel umzudrehen<N>(Schließen Sie den Stecker, der am Fernseher war, an den AppleTV an und umgekehrt)
+$flow.tv.sound.volume.VolIssueSolved		Ist das Problem gelöst?	
+
+$flow.tv.sound._ChangeAudioSettings	In diesem Schritt werden wir die optimalen Einstellungen ausprobieren.<N><N>Format:<N><T><T>- Auto, um 5.1 zu aktivieren<N><T><T>- Off, um Dolby zu deaktivieren<N><N>Audio output: <N><T><T>- Wir probieren die verschiedenen Einstellungen entsprechend der Konfiguration des Kunden aus<N><T><T>- Reduce Loud Sound: Off<N><T>- Audio Mode: Auto	Versuchen wir, einige Audioeinstellungen zu ändern.	appletv/sound/audio_settings_de
+
+$flow.tv.sound.volume._GotoSettingsRemoteDevices		1. Gehen Sie zu den Apple TV Einstellungen.<N>2. Wählen Sie «Fernbedienungen und Geräte».	appletv/remote/remote_add_appletv_01_de	
+$flow.tv.sound.volume._SelectVoluemCtrlMemoNewDevice		3. Wählen Sie «Lautstärkeregelung».<N>4. Klicken Sie auf «Neues Gerät anlernen...»	appletv/remote/remote_add_appletv_02_de	
+$flow.tv.sound.volume._OnRemotePressVolNameRemote		5. Drücken Sie auf der Fernbedienung Ihres TV «Lautstärke + / - / Mute» Tasten.<N>6. Tragen Sie einen Namen für die Fernbedienung ein, deren Lautstärketasten Sie gerade bedient haben.	appletv/remote/remote_add_appletv_03_de	
+$flow.tv.sound.volume._SetVolListRemotes		7. Sie können nun die Lautstärke mit Ihrer Apple TV Fernbedienung einstellen.<N>8. Die Liste der Fernbedienungen kann in den Apple TV Einstellungen geändert werden.	appletv/remote/remote_add_appletv_04_de	

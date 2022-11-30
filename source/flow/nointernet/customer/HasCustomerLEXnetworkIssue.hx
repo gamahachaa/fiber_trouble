@@ -3,6 +3,7 @@ package flow.nointernet.customer;
 import dir.Results;
 import dir.Params;
 import flow._AddMemoVti;
+import flow.tv.ChekSaltTVKNownBugs;
 import flow.vti.ParseVTIHealthCheck;
 import haxe.Json;
 import regex.ExpReg;
@@ -49,17 +50,30 @@ class HasCustomerLEXnetworkIssue extends Descision
 
 	override public function onYesClick():Void
 	{
+		#if DEMO
+		this._nexts = [{step: ChekSaltTVKNownBugs, params: []}];
+		#else
 		this._nexts = [{step: _AddMemoVti, params: []}];
+		#end
 		super.onYesClick();
 	}
 	override public function onNoClick():Void
 	{
+		
+		#if DEMO
+		this._nexts = [{step: ChekSaltTVKNownBugs, params: []}];
+		#else
 		this._nexts = [{step: FiberCableChanged, params: []}];
+		#end
 		super.onNoClick();
 	}
 	function ondata(d:String)
 	{
-		var lexID = values.get(VTIdataParser.lexId);	var j:Dynamic = Json.parse(d);
+		#if debug
+		trace("flow.nointernet.customer.HasCustomerLEXnetworkIssue::ondata::values", values );
+		#end
+		var lexID = values.get(VTIdataParser.lexId);	
+		var j:Dynamic = Json.parse(d);
 		//var tmp = "";
 		outages = "";
 		if (j.status == Results.SUCCESS_VALUE) 
@@ -121,7 +135,13 @@ class HasCustomerLEXnetworkIssue extends Descision
 	}
 	override public function create():Void
 	{
+		#if DEMO
+		trace("DEMO");
+		values =[VTIdataParser.oltObject=>"VD_9210-69VAE-OLT1:1-1-1",VTIdataParser.lexId=>"69VAE"];
+		#else
+		trace("NOT DEMO");
 		values = Main.HISTORY.findAllValuesOffOfFirstClassInHistory(ParseVTIHealthCheck);
+		#end
 
 		#if debug
 		if (!Main.DEBUG)

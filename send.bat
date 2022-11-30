@@ -91,6 +91,7 @@ if %DEV%==1 (
 
 :test
 
+
 rem PUSH to TEST SERVER  ------------------------------------------------------------------------------------------------------------------------------
 
 rem robocopy export\html5\bin "C:\xampp\htdocs\localhost" * /E
@@ -194,6 +195,9 @@ goto :completed
 
 :release
 
+"C:\HaxeToolkit\haxe/haxelib" run lime build "Project_demo_outages.xml" html5 -release -Dfdb
+
+rem goto :demo
 
 rem PUSH to PROD SERVER  ------------------------------------------------------------------------------------------------------------------------------
 rem robocopy export\html5\bin "C:\xampp\htdocs\localhost" * /E
@@ -271,12 +275,98 @@ rem index
     "cd /home/qook/app/qook/%serverFolderName%" ^
     "put -nopreservetime index.html" ^
     "exit"
+	
+:demo
+rem DEMOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+
+set BINDIR_DEMO=%cd%\export_demo\html5\bin\
+set serverFolderName_DEMO=trouble_demo
+
+"C:\_mesProgs\WinSCP\WinSCP.com" ^
+  /log="%cd%\WinSCP.log" /ini=nul ^
+  /command ^
+    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
+    "lcd %BINDIR_DEMO%\flixel" ^
+    "cd /home/qook/app/qook/%serverFolderName_DEMO%/flixel" ^
+    "put -nopreservetime *" ^
+    "exit"
+
+"C:\_mesProgs\WinSCP\WinSCP.com" ^
+  /log="%cd%\WinSCP.log" /ini=nul ^
+  /command ^
+    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
+    "lcd %BINDIR_DEMO%\manifest" ^
+    "cd /home/qook/app/qook/%serverFolderName_DEMO%/manifest" ^
+    "put -nopreservetime *" ^
+    "exit"
+
+"C:\_mesProgs\WinSCP\WinSCP.com" ^
+  /log="%cd%\WinSCP.log" /ini=nul ^
+  /command ^
+    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
+    "lcd %BINDIR_DEMO%\lib" ^
+    "cd /home/qook/app/qook/%serverFolderName_DEMO%/lib" ^
+    "put -nopreservetime *" ^
+    "exit"
+rem delete old JS
+"C:\_mesProgs\WinSCP\WinSCP.com" ^
+  /log="%cd%\WinSCP.log" /ini=nul ^
+  /command ^
+    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
+    "cd /home/qook/app/qook/%serverFolderName_DEMO%/" ^
+    "rm *.js" ^
+    "exit"
+rem add new JS	
+"C:\_mesProgs\WinSCP\WinSCP.com" ^
+  /log="%cd%\WinSCP.log" /ini=nul ^
+  /command ^
+    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
+    "lcd %BINDIR_DEMO%\" ^
+    "cd /home/qook/app/qook/%serverFolderName_DEMO%/" ^
+    "put -nopreservetime *.js" ^
+    "exit"
+	
+rem delete old JS MAP	
+"C:\_mesProgs\WinSCP\WinSCP.com" ^
+  /log="%cd%\WinSCP.log" /ini=nul ^
+  /command ^
+    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
+    "cd /home/qook/app/qook/%serverFolderName_DEMO%" ^
+    "rm *.js.map" ^
+    "exit"
+	
+rem add new JS MAP	
+"C:\_mesProgs\WinSCP\WinSCP.com" ^
+  /log="%cd%\WinSCP.log" /ini=nul ^
+  /command ^
+    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
+    "lcd %BINDIR_DEMO%" ^
+    "cd /home/qook/app/qook/%serverFolderName_DEMO%" ^
+    "put -nopreservetime *.js.map" ^
+    "exit"
+rem ADD FONTS
+
+rem index
+"C:\_mesProgs\WinSCP\WinSCP.com" ^
+  /log="%cd%\WinSCP.log" /ini=nul ^
+  /command ^
+    "open sftp://qook:uU155cy54IGQf0M4Jek6@10.192.14.13/ -hostkey=""ssh-rsa 2048 nqlUJZBRZk4+gCB8pRNrGcXJrx13iKLTftGfrXlqvk4=""" ^
+    "lcd %BINDIR_DEMO%\" ^
+    "cd /home/qook/app/qook/%serverFolderName_DEMO%" ^
+    "put -nopreservetime index.html" ^
+    "exit"
+
+
 goto :completed
 
 :end
 echo "JUST DEBUGGING"
 :dead
 echo "NO DIRECTIVES"
+
+
+ 
+"C:\HaxeToolkit\haxe/haxelib" run lime build "Project_demo_outages.xml" html5 -debug -Dfdb
 
 :completed
 

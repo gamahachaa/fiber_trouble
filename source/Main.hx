@@ -5,7 +5,7 @@ import flixel.FlxState;
 import flow.Intro;
 import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
 //import flow.nointernet.fiberbox.BoxLedStatus;
-import flow.tv.ChekSaltTVKNownBugs;
+//import flow.tv.ChekSaltTVKNownBugs;
 //import flow.vti.ParseVTIHealthCheck;
 import format.csv.Data.Record;
 import format.csv.Reader;
@@ -43,7 +43,13 @@ class Main extends MainApp
 	
 	static public var STORAGE_DISPLAY:Array<String> = [];
 	public static var LAST_STEP:Class<FlxState> = flow._AddMemoVti;
-	public static inline var START_STEP:Class<Process> = Intro;
+	#if DEMO
+		public static inline var START_STEP:Class<Process> = HasCustomerLEXnetworkIssue;
+	#elseif debug
+		public static inline var START_STEP:Class<Process> = Intro;
+	#else
+		public static inline var START_STEP:Class<Process> = Intro;
+	#end
 	public static var LANGS = ["fr-FR", "de-DE", "en-GB", "it-IT"];
 	public static inline var INTRO_PIC:String = "default.png";
 	public static inline var LIB_FOLDER_LOGIN:String = "/commonlibs/";
@@ -54,7 +60,11 @@ class Main extends MainApp
 	{
 		super({
 				cookie:"trouble_20210505.user",
+				#if DEMO
+				scriptName:"trouble_demo",
+				#else
 				scriptName:"trouble",
+				#end
 				libFolder: LIB_FOLDER_LOGIN
 				
 		});
@@ -69,7 +79,9 @@ class Main extends MainApp
 		customer = MainApp.cust;
 		initScreen();
 		
-		//var sns = ;
+		/**
+		 * @todo remove
+		 */
 		snTabRecord = Reader.parseCsv(Assets.getText("assets/data/fab_UMC_only.csv"));
 		SN_TAB = Lambda.map( snTabRecord, (e:Record)->(return e[0]));
 		
@@ -84,16 +96,22 @@ class Main extends MainApp
 		var next:Process;
 		var tuto:Process = new flow.TutoTree();
 		MainApp.setUpSystemDefault(true);
-		#if debug
-			/**
-			 * USe this  to debug a slide
-			 */
-			next = new flow.Intro();
-			//next = new ChekSaltTVKNownBugs();
+		next = Type.createInstance(Main.START_STEP, []);
+		//#if debug
+			///**
+			 //* USe this  to debug a slide
+			 //*/
+			//next = new flow.Intro();
+			////next = new ChekSaltTVKNownBugs();
+			//
+			//
+		//#else
+			//#if DEMO
 			//next = new HasCustomerLEXnetworkIssue();
-		#else
-			next = Type.createInstance(Main.START_STEP,[]);
-		#end
+			//#else
+			//
+			//#end
+		//#end
 		MainApp.translator.initialize(MainApp.agent.mainLanguage, ()->(FlxG.switchState( old ? next : tuto)) );
 	}
 

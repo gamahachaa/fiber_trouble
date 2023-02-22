@@ -1,6 +1,9 @@
 package flow.tv.remote.salttvv2;
 
+//import flow.all.fiberbox._AdvicePutOpenSpace;
+//import flow.all.fiberbox._WhereIsBoxPlaced;
 import flow.tickets.CustomerInstruction;
+import tstool.layout.History.ValueReturn;
 import tstool.process.ActionMultipleInput;
 
 /**
@@ -25,8 +28,7 @@ class _CollectIssue extends ActionMultipleInput
 	}
 	
 	override public function onClick():Void
-	{
-		//this._nexts = [{step: _CreateSOTicketSaltTV, params: []}];
+	{	
 		this._nexts = [{step: CustomerInstruction, params: [{step: _CreateSOTicketSaltTV}, {step: _CreateSOTicketSaltTV}]}];
 		super.onClick();
 	}

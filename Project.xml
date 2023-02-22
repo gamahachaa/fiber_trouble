@@ -16,6 +16,7 @@
 	
 	<!--These window settings apply to all targets-->
 	<window width="1400" height="880" fps="60" background="#FF000000" hardware="true" vsync="true" />
+	<window if="debug" background="#FFD95350"/>
 	
 	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />

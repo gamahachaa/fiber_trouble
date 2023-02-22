@@ -1,6 +1,9 @@
 package flow.stability;
 
+import flow.all.customer.LanOrWiFi;
+import flow.all.fiberbox._AdvicePutOpenSpace;
 import flow.tickets.CustomerInstruction;
+import tstool.process.Process;
 //import tstool.process.Descision;
 import tstool.process.DescisionMultipleInput;
 
@@ -28,7 +31,7 @@ class IsAnyServiceImpactedForNormalUse extends DescisionMultipleInput
 	override public function onNoClick():Void
 	{
 		//this._nexts = [{step: _SendSpeedTemplate, params: []}];
-		this._nexts = [{step: CustomerInstruction, params: [{step: _CreateSOTechModemSpeed}, {step: _CreateSOTechModemSpeed}]}];
+		this._nexts = getNexts();
 		super.onNoClick();
 	}
 	
@@ -37,7 +40,7 @@ class IsAnyServiceImpactedForNormalUse extends DescisionMultipleInput
 	{
 		if (validateYes())
 		{
-			this._nexts = [{step: CustomerInstruction, params: [{step: _CreateSOTechModemSpeed}, {step: _CreateSOTechModemSpeed}]}];
+			this._nexts = getNexts();
 			super.onYesClick();
 		}
 	}
@@ -67,6 +70,23 @@ class IsAnyServiceImpactedForNormalUse extends DescisionMultipleInput
 	override public function validateNo():Bool
 	{
 		return true;
+	}
+	function isBoxInOpenedSpace():Bool
+	{
+		var boxLocationStatus = Main.HISTORY.findValueOfFirstClassInHistory(flow.all.fiberbox._WhereIsBoxPlaced, flow.all.fiberbox._WhereIsBoxPlaced.TITLE);
+		return  boxLocationStatus.exists && (boxLocationStatus.value == flow.all.fiberbox._WhereIsBoxPlaced.ONE_OPENED);
+	}
+	
+	function getNexts():Array<ProcessContructor> 
+	{
+		var isWiFiOnly = Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, Yes);
+		return if (isBoxInOpenedSpace() || !isWiFiOnly)
+		{
+			[{step: CustomerInstruction, params: [{step: _CreateSOTechModemSpeed}, {step: _CreateSOTechModemSpeed}]}];
+		}
+		else{
+			[{step: _AdvicePutOpenSpace}];
+		}
 	}
 	/**/
 }

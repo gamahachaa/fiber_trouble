@@ -6,6 +6,7 @@ $flow.all.fiberbox._WhereIsBoxPlaced.Multimedia	3. Distributeur multimédia
 $flow.nointernet.fiberbox.BoxLedStatus.Off	Éteinte
 $flow.nointernet.fiberbox.BoxLedStatus.WhiteStable	Blanche stable
 $flow.nointernet.fiberbox.BoxLedStatus.WhiteBlink	Blanche clignottante
+$flow.nointernet.fiberbox.BoxLedStatus.whiteLongBlink	Blanche allumée puis éteinte
 $flow.nointernet.fiberbox.BoxLedStatus.Greenstable	Verte stable
 $flow.nointernet.fiberbox.BoxLedStatus.GreenBlink	Verte clignottante
 $flow.nointernet.fiberbox.BoxLedStatus.RedBlink	Rouge clignottante

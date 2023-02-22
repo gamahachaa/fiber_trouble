@@ -619,16 +619,16 @@ tstool_process_Process.prototype = $extend(flixel_FlxState.prototype,{
 	,listener: function(s) {
 		switch(s) {
 		case "de-DE":
-			this.switchLang("de-DE",{ fileName : "tstool/process/Process.hx", lineNumber : 276, className : "tstool.process.Process", methodName : "listener"});
+			this.switchLang("de-DE",{ fileName : "tstool/process/Process.hx", lineNumber : 289, className : "tstool.process.Process", methodName : "listener"});
 			break;
 		case "en-GB":
-			this.switchLang("en-GB",{ fileName : "tstool/process/Process.hx", lineNumber : 274, className : "tstool.process.Process", methodName : "listener"});
+			this.switchLang("en-GB",{ fileName : "tstool/process/Process.hx", lineNumber : 287, className : "tstool.process.Process", methodName : "listener"});
 			break;
 		case "fr-FR":
-			this.switchLang("fr-FR",{ fileName : "tstool/process/Process.hx", lineNumber : 277, className : "tstool.process.Process", methodName : "listener"});
+			this.switchLang("fr-FR",{ fileName : "tstool/process/Process.hx", lineNumber : 290, className : "tstool.process.Process", methodName : "listener"});
 			break;
 		case "it-IT":
-			this.switchLang("it-IT",{ fileName : "tstool/process/Process.hx", lineNumber : 275, className : "tstool.process.Process", methodName : "listener"});
+			this.switchLang("it-IT",{ fileName : "tstool/process/Process.hx", lineNumber : 288, className : "tstool.process.Process", methodName : "listener"});
 			break;
 		case "logout":
 			this.onlogout();
@@ -673,7 +673,7 @@ tstool_process_Process.prototype = $extend(flixel_FlxState.prototype,{
 			if(flixel_FlxG.game._state.switchTo(nextState)) {
 				flixel_FlxG.game._requestedState = nextState;
 			}
-		},{ fileName : "tstool/process/Process.hx", lineNumber : 301, className : "tstool.process.Process", methodName : "switchLang"});
+		},{ fileName : "tstool/process/Process.hx", lineNumber : 314, className : "tstool.process.Process", methodName : "switchLang"});
 	}
 	,onClipBoardClick: function() {
 	}
@@ -767,10 +767,10 @@ tstool_process_Process.prototype = $extend(flixel_FlxState.prototype,{
 			}
 		} catch( _g ) {
 			var e = haxe_Exception.caught(_g);
-			haxe_Log.trace(e.get_message(),{ fileName : "tstool/process/Process.hx", lineNumber : 437, className : "tstool.process.Process", methodName : "moveToNextClassProcess"});
-			haxe_Log.trace($bind(e,e.details),{ fileName : "tstool/process/Process.hx", lineNumber : 438, className : "tstool.process.Process", methodName : "moveToNextClassProcess"});
+			haxe_Log.trace(e.get_message(),{ fileName : "tstool/process/Process.hx", lineNumber : 456, className : "tstool.process.Process", methodName : "moveToNextClassProcess"});
+			haxe_Log.trace($bind(e,e.details),{ fileName : "tstool/process/Process.hx", lineNumber : 457, className : "tstool.process.Process", methodName : "moveToNextClassProcess"});
 			var tmp = e.get_stack();
-			haxe_Log.trace(tmp == null ? "null" : haxe_CallStack.toString(tmp),{ fileName : "tstool/process/Process.hx", lineNumber : 439, className : "tstool.process.Process", methodName : "moveToNextClassProcess"});
+			haxe_Log.trace(tmp == null ? "null" : haxe_CallStack.toString(tmp),{ fileName : "tstool/process/Process.hx", lineNumber : 458, className : "tstool.process.Process", methodName : "moveToNextClassProcess"});
 		}
 	}
 	,update: function(elapsed) {
@@ -1006,7 +1006,7 @@ var tstool_process_ActionTicket = function(ticket,resolved) {
 			if(i.indexOf("assets/data/tmp/add_to_email_title/") > -1) {
 				a = lime_utils_Assets.getText(i);
 				if(a.indexOf(Main.customer.get_iri()) > -1) {
-					description += StringTools.replace(StringTools.replace(i,"assets/data/tmp/add_to_email_title/",""),".txt","");
+					description += " | " + StringTools.replace(StringTools.replace(i,"assets/data/tmp/add_to_email_title/",""),".txt","");
 				}
 			}
 		}
@@ -1366,7 +1366,10 @@ lime__$internal_backend_html5_HTML5Application.prototype = {
 		window.addEventListener("blur",$bind(this,this.handleWindowEvent),false);
 		window.addEventListener("resize",$bind(this,this.handleWindowEvent),false);
 		window.addEventListener("beforeunload",$bind(this,this.handleWindowEvent),false);
-		window.addEventListener("devicemotion",$bind(this,this.handleSensorEvent),false);
+		var o = window;
+		if(Object.prototype.hasOwnProperty.call(o,"Accelerometer")) {
+			window.addEventListener("devicemotion",$bind(this,this.handleSensorEvent),false);
+		}
 		
 			if (!CanvasRenderingContext2D.prototype.isPointInStroke) {
 				CanvasRenderingContext2D.prototype.isPointInStroke = function (path, x, y) {
@@ -1910,13 +1913,13 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "117";
+	app.meta.h["build"] = "118";
 	app.meta.h["company"] = "";
 	app.meta.h["file"] = "trouble_demo";
 	app.meta.h["name"] = "trouble_demo";
 	app.meta.h["packageName"] = "com.example.myapp";
 	app.meta.h["version"] = "0.0.1";
-	var attributes = { allowHighDPI : false, alwaysOnTop : false, borderless : false, element : null, frameRate : 60, height : 880, hidden : false, maximized : false, minimized : false, parameters : { }, resizable : true, title : "trouble_demo", width : 1400, x : null, y : null};
+	var attributes = { allowHighDPI : true, alwaysOnTop : false, borderless : false, element : null, frameRate : 60, height : 880, hidden : false, maximized : false, minimized : false, parameters : { }, resizable : true, title : "trouble_demo", width : 1400, x : null, y : null};
 	attributes.context = { antialiasing : 0, background : -16777216, colorDepth : 32, depth : true, hardware : true, stencil : true, type : null, vsync : true};
 	if(app.__window == null) {
 		if(config != null) {
@@ -4512,7 +4515,7 @@ ManifestResources.init = function(config) {
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$nokiafc22_$ttf);
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$monsterrat_$ttf);
 	var bundle;
-	var data = "{\"name\":null,\"assets\":\"aoy4:pathy57:assets%2Fdata%2F20200402_CycleTimeExpectedNextWeek_BB.csvy4:sizei1178y4:typey4:TEXTy2:idR1y7:preloadtgoR0y26:assets%2Fdata%2Fadmins.txtR2i68R3R4R5R7R6tgoR0y36:assets%2Fdata%2FcustomerProfile.jsonR2i13413R3R4R5R8R6tgoR0y35:assets%2Fdata%2FdashboardSante.jsonR2i3461R3R4R5R9R6tgoR0y32:assets%2Fdata%2Ffab_UMC_only.csvR2i4012015R3R4R5R10R6tgoR0y27:assets%2Fdata%2Ftesters.txtR2i79R3R4R5R11R6tgoR0y55:assets%2Fdata%2Ftmp%2Fadd_to_email_title%2FIPV4_MIG.txtR2i10550R3R4R5R12R6tgoR2i136708R3y4:FONTy9:classNamey47:__ASSET__assets_fonts_jetbrainsmono_regular_ttfR5y42:assets%2Ffonts%2FJetBrainsMono-Regular.ttfR6tgoR0y43:assets%2Ffonts%2FJetBrainsMono-Regular.woffR2i60220R3y6:BINARYR5R17R6tgoR2i114588R3R13R14y36:__ASSET__assets_fonts_lato_black_ttfR5y31:assets%2Ffonts%2FLato-Black.ttfR6tgoR0y32:assets%2Ffonts%2FLato-Black.woffR2i48592R3R18R5R21R6tgoR2i120196R3R13R14y38:__ASSET__assets_fonts_lato_regular_ttfR5y33:assets%2Ffonts%2FLato-Regular.ttfR6tgoR0y34:assets%2Ffonts%2FLato-Regular.woffR2i50140R3R18R5R24R6tgoR0y50:assets%2Fimages%2Factivation%2FSST-door-online.pngR2i623931R3y5:IMAGER5R25R6tgoR0y53:assets%2Fimages%2Factivation%2Fverrif_eligibility.pngR2i84443R3R26R5R27R6tgoR0y54:assets%2Fimages%2Fappletv%2Fapple_store%2Fapple_id.pngR2i44903R3R26R5R28R6tgoR0y64:assets%2Fimages%2Fappletv%2Fapple_store%2Fapple_id_cancreate.pngR2i69321R3R26R5R29R6tgoR0y70:assets%2Fimages%2Fappletv%2Fapple_store%2Fapple_id_change_to_swiss.pngR2i79750R3R26R5R30R6tgoR0y60:assets%2Fimages%2Fappletv%2Fapple_store%2Fapple_id_swiss.pngR2i63421R3R26R5R31R6tgoR0y50:assets%2Fimages%2Fappletv%2Fapple_store%2Fopen.pngR2i566003R3R26R5R32R6tgoR0y67:assets%2Fimages%2Fappletv%2Fapple_store%2Fsee_staltv_applestore.pngR2i720090R3R26R5R33R6tgoR0y44:assets%2Fimages%2Fappletv%2Fexplore%2Fde.pngR2i296280R3R26R5R34R6tgoR0y44:assets%2Fimages%2Fappletv%2Fexplore%2Fen.pngR2i288712R3R26R5R35R6tgoR0y44:assets%2Fimages%2Fappletv%2Fexplore%2Ffr.pngR2i255073R3R26R5R36R6tgoR0y44:assets%2Fimages%2Fappletv%2Fexplore%2Fit.pngR2i313681R3R26R5R37R6tgoR0y59:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv.psdR2i5499974R3R18R5R38R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_01_de.pngR2i109908R3R26R5R39R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_01_en.pngR2i103733R3R26R5R40R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_01_fr.pngR2i105124R3R26R5R41R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_01_it.pngR2i112449R3R26R5R42R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_02_de.pngR2i106783R3R26R5R43R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_02_en.pngR2i102681R3R26R5R44R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_02_fr.pngR2i112273R3R26R5R45R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_02_it.pngR2i120215R3R26R5R46R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_03_de.pngR2i102097R3R26R5R47R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_03_en.pngR2i109345R3R26R5R48R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_03_fr.pngR2i115234R3R26R5R49R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_03_it.pngR2i103688R3R26R5R50R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_04_de.pngR2i132197R3R26R5R51R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_04_en.pngR2i127066R3R26R5R52R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_04_fr.pngR2i130557R3R26R5R53R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_04_it.pngR2i127421R3R26R5R54R6tgoR0y58:assets%2Fimages%2Fappletv%2Fremote%2Fsiri-2gen_pairing.pngR2i338408R3R26R5R55R6tgoR0y57:assets%2Fimages%2Fappletv%2Fsound%2Faudio_settings_de.pngR2i258548R3R26R5R56R6tgoR0y57:assets%2Fimages%2Fappletv%2Fsound%2Faudio_settings_en.pngR2i351629R3R26R5R57R6tgoR0y57:assets%2Fimages%2Fappletv%2Fsound%2Faudio_settings_fr.pngR2i282427R3R26R5R58R6tgoR0y57:assets%2Fimages%2Fappletv%2Fsound%2Faudio_settings_it.pngR2i281114R3R26R5R59R6tgoR0y42:assets%2Fimages%2Fappletv%2Fsound%2Fde.pngR2i366623R3R26R5R60R6tgoR0y42:assets%2Fimages%2Fappletv%2Fsound%2Fen.pngR2i301214R3R26R5R61R6tgoR0y42:assets%2Fimages%2Fappletv%2Fsound%2Ffr.pngR2i373572R3R26R5R62R6tgoR0y51:assets%2Fimages%2Fappletv%2Fsound%2FHDMI_switch.pngR2i114160R3R26R5R63R6tgoR0y42:assets%2Fimages%2Fappletv%2Fsound%2Fit.pngR2i482077R3R26R5R64R6tgoR0y38:assets%2Fimages%2Fbox%2FAdminRX-de.pngR2i137837R3R26R5R65R6tgoR0y38:assets%2Fimages%2Fbox%2FAdminRX-en.pngR2i126936R3R26R5R66R6tgoR0y38:assets%2Fimages%2Fbox%2FAdminRX-fr.pngR2i132960R3R26R5R67R6tgoR0y38:assets%2Fimages%2Fbox%2FAdminRX-it.pngR2i134249R3R26R5R68R6tgoR0y38:assets%2Fimages%2Fbox%2Fapi_device.pngR2i326388R3R26R5R69R6tgoR0y59:assets%2Fimages%2Fbox%2Fatf%2Fdeactivateairtimefairness.pngR2i511156R3R26R5R70R6tgoR0y39:assets%2Fimages%2Fbox%2Fblueleverup.pngR2i198749R3R26R5R71R6tgoR0y42:assets%2Fimages%2Fbox%2Fbox-front-wlan.pngR2i54909R3R26R5R72R6tgoR0y37:assets%2Fimages%2Fbox%2Fbox-reset.pngR2i325103R3R26R5R73R6tgoR0y48:assets%2Fimages%2Fbox%2Fbox_placement_advise.pngR2i110759R3R26R5R74R6tgoR0y44:assets%2Fimages%2Fbox%2Fbox_placement_de.pngR2i254615R3R26R5R75R6tgoR0y44:assets%2Fimages%2Fbox%2Fbox_placement_en.pngR2i254515R3R26R5R76R6tgoR0y44:assets%2Fimages%2Fbox%2Fbox_placement_fr.pngR2i254345R3R26R5R77R6tgoR0y44:assets%2Fimages%2Fbox%2Fbox_placement_it.pngR2i254899R3R26R5R78R6tgoR0y36:assets%2Fimages%2Fbox%2FgetClose.pngR2i34846R3R26R5R79R6tgoR0y67:assets%2Fimages%2Fbox%2Flan%2FCCK_Networking_Basics_Network_hub.pngR2i22102R3R26R5R80R6tgoR0y37:assets%2Fimages%2Fbox%2Flan%2Flan.pngR2i286750R3R26R5R81R6tgoR0y40:assets%2Fimages%2Fbox%2Flan%2Flan_ok.pngR2i138687R3R26R5R82R6tgoR0y50:assets%2Fimages%2Fbox%2Flan%2Fmac_network_icon.pngR2i125883R3R26R5R83R6tgoR0y49:assets%2Fimages%2Fbox%2Flan%2Fmac_network_sys.pngR2i187949R3R26R5R84R6tgoR0y44:assets%2Fimages%2Fbox%2Flan%2Fswitch-old.pngR2i31077R3R26R5R85R6tgoR0y40:assets%2Fimages%2Fbox%2Flan%2Fswitch.gifR2i15956R3R26R5R86R6tgoR0y40:assets%2Fimages%2Fbox%2Flan%2Fswitch.pngR2i127656R3R26R5R87R6tgoR0y43:assets%2Fimages%2Fbox%2Flan%2Fswitch_no.pngR2i28511R3R26R5R88R6tgoR0y57:assets%2Fimages%2Fbox%2Flan%2Fwindows_network_icon_ok.pngR2i9832R3R26R5R89R6tgoR0y35:assets%2Fimages%2Fbox%2Flanloop.pngR2i146765R3R26R5R90R6tgoR0y39:assets%2Fimages%2Fbox%2Flan_or_wifi.pngR2i46259R3R26R5R91R6tgoR0y44:assets%2Fimages%2Fbox%2Fled_status%2Fall.pngR2i138301R3R26R5R92R6tgoR0y48:assets%2Fimages%2Fbox%2Fled_status%2Fall_old.pngR2i137771R3R26R5R93R6tgoR0y57:assets%2Fimages%2Fbox%2Fled_status%2Fled_status_sagem.pngR2i126155R3R26R5R94R6tgoR0y47:assets%2Fimages%2Fbox%2Foto%2FCorrectplugde.pngR2i100836R3R26R5R95R6tgoR0y47:assets%2Fimages%2Fbox%2Foto%2FCorrectplugen.pngR2i103031R3R26R5R96R6tgoR0y47:assets%2Fimages%2Fbox%2Foto%2FCorrectplugfr.pngR2i100836R3R26R5R97R6tgoR0y47:assets%2Fimages%2Fbox%2Foto%2FCorrectplugit.pngR2i100836R3R26R5R98R6tgoR0y39:assets%2Fimages%2Fbox%2FpowerLed-de.pngR2i65407R3R26R5R99R6tgoR0y39:assets%2Fimages%2Fbox%2FpowerLed-fr.pngR2i65366R3R26R5R100R6tgoR0y39:assets%2Fimages%2Fbox%2FpowerLed-it.pngR2i65369R3R26R5R101R6tgoR0y36:assets%2Fimages%2Fbox%2FpowerLed.pngR2i70214R3R26R5R102R6tgoR0y42:assets%2Fimages%2Fbox%2FpowerLedBlack.jpegR2i15551R3R26R5R103R6tgoR0y41:assets%2Fimages%2Fbox%2FpowerLedBlack.pngR2i73084R3R26R5R104R6tgoR0y39:assets%2Fimages%2Fbox%2FpowerLedOn.jpegR2i15585R3R26R5R105R6tgoR0y38:assets%2Fimages%2Fbox%2FpowerLedOn.pngR2i73852R3R26R5R106R6tgoR0y48:assets%2Fimages%2Fbox%2FpowerLedRedBlinking.jpegR2i15708R3R26R5R107R6tgoR0y47:assets%2Fimages%2Fbox%2FpowerLedRedBlinking.pngR2i74919R3R26R5R108R6tgoR0y44:assets%2Fimages%2Fbox%2Fpower_wallsocket.pngR2i197475R3R26R5R109R6tgoR0y43:assets%2Fimages%2Fbox%2Freboot%2Freboot.pngR2i531762R3R26R5R110R6tgoR0y38:assets%2Fimages%2Fbox%2Fserialfind.pngR2i321213R3R26R5R111R6tgoR0y38:assets%2Fimages%2Fbox%2Fserial_vti.pngR2i77618R3R26R5R112R6tgoR0y41:assets%2Fimages%2Fbox%2Fsfp%2Fbadgood.pngR2i727291R3R26R5R113R6tgoR0y44:assets%2Fimages%2Fbox%2Fsfp%2Fbadgood_x6.pngR2i433461R3R26R5R114R6tgoR0y34:assets%2Fimages%2Fbox%2FValues.pngR2i50249R3R26R5R115R6tgoR0y66:assets%2Fimages%2Fccdashboard%2Fcollection-steps-original-size.pngR2i163991R3R26R5R116R6tgoR0y51:assets%2Fimages%2Fccdashboard%2Fcollectionsteps.pngR2i248870R3R26R5R117R6tgoR0y44:assets%2Fimages%2Fcustomer%2Fgoogle_wifi.pngR2i7992R3R26R5R118R6tgoR0y55:assets%2Fimages%2Fcustomer%2Fhandclickingsmsrxtx_de.pngR2i225510R3R26R5R119R6tgoR0y55:assets%2Fimages%2Fcustomer%2Fhandclickingsmsrxtx_en.pngR2i224983R3R26R5R120R6tgoR0y55:assets%2Fimages%2Fcustomer%2Fhandclickingsmsrxtx_fr.pngR2i225338R3R26R5R121R6tgoR0y55:assets%2Fimages%2Fcustomer%2Fhandclickingsmsrxtx_it.pngR2i226540R3R26R5R122R6tgoR0y42:assets%2Fimages%2Fcustomer%2Fintro-old.pngR2i1374256R3R26R5R123R6tgoR0y38:assets%2Fimages%2Fcustomer%2Fintro.pngR2i13375R3R26R5R124R6tgoR0y37:assets%2Fimages%2Fcustomer%2Fmove.pngR2i122612R3R26R5R125R6tgoR0y59:assets%2Fimages%2Fcustomer%2Foto%2Fcustomer_reads_OTOid.pngR2i116776R3R26R5R126R6tgoR0y61:assets%2Fimages%2Fcustomer%2Foto%2Fcustomer_reads_OTOport.pngR2i89275R3R26R5R127R6tgoR0y50:assets%2Fimages%2Fcustomer%2Foto%2Fdamaged_oto.pngR2i132792R3R26R5R128R6tgoR0y52:assets%2Fimages%2Fcustomer%2FWhen-It-Doesnt-Work.pngR2i166142R3R26R5R129R6tgoR0y45:assets%2Fimages%2FCustomPreload%2Fdefault.pngR2i37490R3R26R5R130R6tgoR0y29:assets%2Fimages%2Fdefault.pngR2i210155R3R26R5R131R6tgoR0y38:assets%2Fimages%2Fequipment%2Fpost.pngR2i376116R3R26R5R132R6tgoR0y78:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement%2Fimg0.pngR2i52075R3R26R5R133R6tgoR0y78:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement%2Fimg1.jpgR2i27937R3R26R5R134R6tgoR0y78:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement%2Fimg1.pngR2i101089R3R26R5R135R6tgoR0y74:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement-de.pngR2i46780R3R26R5R136R6tgoR0y74:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement-en.pngR2i45830R3R26R5R137R6tgoR0y74:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement-fr.pngR2i48251R3R26R5R138R6tgoR0y74:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement-it.pngR2i42968R3R26R5R139R6tgoR0y71:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement.pngR2i86393R3R26R5R140R6tgoR0y67:assets%2Fimages%2Fflow%2Fstability%2F-SelectSaltServer-original.pngR2i76265R3R26R5R141R6tgoR0y58:assets%2Fimages%2Fflow%2Fstability%2F-SelectSaltServer.pngR2i75058R3R26R5R142R6tgoR0y52:assets%2Fimages%2Fflow%2Fstability%2Fconseils_DE.pngR2i205715R3R26R5R143R6tgoR0y52:assets%2Fimages%2Fflow%2Fstability%2Fconseils_EN.pngR2i202580R3R26R5R144R6tgoR0y52:assets%2Fimages%2Fflow%2Fstability%2Fconseils_FR.pngR2i204127R3R26R5R145R6tgoR0y52:assets%2Fimages%2Fflow%2Fstability%2Fconseils_IT.pngR2i202931R3R26R5R146R6tgoR0y53:assets%2Fimages%2Fflow%2Fstability%2FotherMobiles.pngR2i97359R3R26R5R147R6tgoR0y66:assets%2Fimages%2Fflow%2Fstability%2Fwhy-internet-running-slow.pngR2i199126R3R26R5R148R6tgoR0y39:assets%2Fimages%2Fflow%2FTutoOne-de.pngR2i6192R3R26R5R149R6tgoR0y39:assets%2Fimages%2Fflow%2FTutoOne-fr.pngR2i6144R3R26R5R150R6tgoR0y39:assets%2Fimages%2Fflow%2FTutoOne-it.pngR2i9575R3R26R5R151R6tgoR0y49:assets%2Fimages%2Fftth360%2Fclick_track_trace.pngR2i40537R3R26R5R152R6tgoR0y42:assets%2Fimages%2Fftth360%2Fcopy_paste.pngR2i228852R3R26R5R153R6tgoR0y51:assets%2Fimages%2Fftth360%2Fcpe_sending_ongoing.pngR2i57669R3R26R5R154R6tgoR0y50:assets%2Fimages%2Fftth360%2Fcpe_send_completed.pngR2i57147R3R26R5R155R6tgoR0y52:assets%2Fimages%2Fftth360%2Fdelegate_missing_oto.pngR2i59084R3R26R5R156R6tgoR0y53:assets%2Fimages%2Fftth360%2Fdelegate_or_pluginuse.pngR2i52270R3R26R5R157R6tgoR0y40:assets%2Fimages%2Fftth360%2Ffirmware.pngR2i94005R3R26R5R158R6tgoR0y42:assets%2Fimages%2Fftth360%2FIsBlueStep.pngR2i52450R3R26R5R159R6tgoR0y41:assets%2Fimages%2Fftth360%2FIsRedStep.pngR2i53193R3R26R5R160R6tgoR0y54:assets%2Fimages%2Fftth360%2Fordering_phase_started.pngR2i54243R3R26R5R161R6tgoR0y46:assets%2Fimages%2Fftth360%2Forder_accepted.pngR2i56550R3R26R5R162R6tgoR0y43:assets%2Fimages%2Fftth360%2Fplug_in_use.pngR2i56166R3R26R5R163R6tgoR0y43:assets%2Fimages%2Fftth360%2Fqualif_done.pngR2i56748R3R26R5R164R6tgoR0y46:assets%2Fimages%2Fftth360%2Fsagem_arcadyan.pngR2i193596R3R26R5R165R6tgoR0y51:assets%2Fimages%2Fftth360%2Fsearch_so_pluginuse.pngR2i5940R3R26R5R166R6tgoR0y54:assets%2Fimages%2Fftth360%2Ftrack_and_trace_status.pngR2i79873R3R26R5R167R6tgoR0y44:assets%2Fimages%2Fgeneral%2Fconversation.pngR2i36991R3R26R5R168R6tgoR0y35:assets%2Fimages%2Fgeneral%2Fend.pngR2i18787R3R26R5R169R6tgoR0y41:assets%2Fimages%2Fgeneral%2Ffeedbacks.pngR2i74552R3R26R5R170R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R171R6tgoR0y42:assets%2Fimages%2Fintro%2Fbaby_shocked.pngR2i117235R3R26R5R172R6tgoR0y40:assets%2Fimages%2Fintros%2Ffeedbacks.pngR2i74552R3R26R5R173R6tgoR0y55:assets%2Fimages%2Fsalttv%2Finstall%2Finstall_salttv.pngR2i847511R3R26R5R174R6tgoR0y40:assets%2Fimages%2Fsalttv%2Fopen%2Fde.pngR2i419413R3R26R5R175R6tgoR0y40:assets%2Fimages%2Fsalttv%2Fopen%2Fen.pngR2i406561R3R26R5R176R6tgoR0y40:assets%2Fimages%2Fsalttv%2Fopen%2Ffr.pngR2i375550R3R26R5R177R6tgoR0y40:assets%2Fimages%2Fsalttv%2Fopen%2Fit.pngR2i435284R3R26R5R178R6tgoR0y37:assets%2Fimages%2Fsalttv%2Fwelcom.pngR2i1283392R3R26R5R179R6tgoR0y42:assets%2Fimages%2Fso%2Fcheck-send-mifi.pngR2i104266R3R26R5R180R6tgoR0y44:assets%2Fimages%2Fso%2Fcheckifrecallerfr.pngR2i32855R3R26R5R181R6tgoR0y39:assets%2Fimages%2Fso%2Fcompensation.pngR2i3734R3R26R5R182R6tgoR0y41:assets%2Fimages%2Fso%2Fcompensationde.pngR2i3734R3R26R5R183R6tgoR0y41:assets%2Fimages%2Fso%2Fcompensationen.pngR2i2770R3R26R5R184R6tgoR0y41:assets%2Fimages%2Fso%2Fcompensationfr.pngR2i3617R3R26R5R185R6tgoR0y41:assets%2Fimages%2Fso%2Fcompensationit.pngR2i2906R3R26R5R186R6tgoR0y44:assets%2Fimages%2Fso%2Fescalate%2Ftab-de.pngR2i86336R3R26R5R187R6tgoR0y44:assets%2Fimages%2Fso%2Fescalate%2Ftab-en.pngR2i82485R3R26R5R188R6tgoR0y44:assets%2Fimages%2Fso%2Fescalate%2Ftab-fr.pngR2i85888R3R26R5R189R6tgoR0y44:assets%2Fimages%2Fso%2Fescalate%2Ftab-it.pngR2i83929R3R26R5R190R6tgoR0y39:assets%2Fimages%2Fso%2Fmifitemplate.pngR2i6744R3R26R5R191R6tgoR0y43:assets%2Fimages%2Fso%2Fnew-print-screen.pngR2i3694R3R26R5R192R6tgoR0y48:assets%2Fimages%2Fso%2Fpaymentsearchtemplate.pngR2i12268R3R26R5R193R6tgoR0y43:assets%2Fimages%2Fso%2Ftechticketopened.pngR2i107672R3R26R5R194R6tgoR0y47:assets%2Fimages%2Fso%2Ftechticketopened_old.pngR2i2435R3R26R5R195R6tgoR0y43:assets%2Fimages%2Ftv%2Factivatetvuserde.pngR2i16406R3R26R5R196R6tgoR0y43:assets%2Fimages%2Ftv%2Factivatetvuseren.pngR2i16116R3R26R5R197R6tgoR0y43:assets%2Fimages%2Ftv%2Factivatetvuserfr.pngR2i18467R3R26R5R198R6tgoR0y42:assets%2Fimages%2Ftv%2Factivetvservice.pngR2i11915R3R26R5R199R6tgoR0y41:assets%2Fimages%2Ftv%2Fhdmiconnection.pngR2i356587R3R26R5R200R6tgoR0y37:assets%2Fimages%2Ftv%2Fjerkyimage.pngR2i494403R3R26R5R201R6tgoR0y38:assets%2Fimages%2Ftv%2Fjerky_image.pngR2i4322688R3R26R5R202R6tgoR0y46:assets%2Fimages%2Ftv%2Fpowercablepluggedin.pngR2i223012R3R26R5R203R6tgoR0y37:assets%2Fimages%2Ftv%2Fsalttvicon.pngR2i58598R3R26R5R204R6tgoR0y52:assets%2Fimages%2Ftv%2Fsalttv_remote%2Fbatteries.pngR2i52795R3R26R5R205R6tgoR0y36:assets%2Fimages%2Ftv%2Fstatusled.pngR2i60995R3R26R5R206R6tgoR0y39:assets%2Fimages%2Ftv%2Ftvhomescreen.pngR2i366304R3R26R5R207R6tgoR0y39:assets%2Fimages%2Ftv%2Fupdatesalttv.pngR2i336211R3R26R5R208R6tgoR0y35:assets%2Fimages%2Fui%2Fall-good.pngR2i4661R3R26R5R209R6tgoR0y31:assets%2Fimages%2Fui%2Fback.pngR2i7760R3R26R5R210R6tgoR0y36:assets%2Fimages%2Fui%2FclipBoard.pngR2i2456R3R26R5R211R6tgoR0y32:assets%2Fimages%2Fui%2Fclose.pngR2i4989R3R26R5R212R6tgoR0y34:assets%2Fimages%2Fui%2Fcomment.pngR2i6291R3R26R5R213R6tgoR0y29:assets%2Fimages%2Fui%2Fde.pngR2i3650R3R26R5R214R6tgoR0y31:assets%2Fimages%2Fui%2Fdown.pngR2i6660R3R26R5R215R6tgoR0y29:assets%2Fimages%2Fui%2Fen.pngR2i3572R3R26R5R216R6tgoR0y31:assets%2Fimages%2Fui%2Fexit.pngR2i4953R3R26R5R217R6tgoR0y29:assets%2Fimages%2Fui%2Ffr.pngR2i3645R3R26R5R218R6tgoR0y31:assets%2Fimages%2Fui%2Fhelp.pngR2i7180R3R26R5R219R6tgoR0y32:assets%2Fimages%2Fui%2Fhowto.pngR2i3824R3R26R5R220R6tgoR0y29:assets%2Fimages%2Fui%2Fit.pngR2i2051R3R26R5R221R6tgoR0y31:assets%2Fimages%2Fui%2Fleft.pngR2i5261R3R26R5R222R6tgoR0y32:assets%2Fimages%2Fui%2Flight.pngR2i7477R3R26R5R223R6tgoR0y33:assets%2Fimages%2Fui%2Flogout.pngR2i4472R3R26R5R224R6tgoR0y31:assets%2Fimages%2Fui%2Fmail.pngR2i21955R3R26R5R225R6tgoR0y37:assets%2Fimages%2Fui%2FpageLoader.pngR2i11707R3R26R5R226R6tgoR0y32:assets%2Fimages%2Fui%2Fright.pngR2i5276R3R26R5R227R6tgoR0y33:assets%2Fimages%2Fui%2Fscript.pngR2i8958R3R26R5R228R6tgoR0y34:assets%2Fimages%2Fui%2FshowPwd.pngR2i8423R3R26R5R229R6tgoR0y38:assets%2Fimages%2Fui%2FsimpleAlert.pngR2i1102R3R26R5R230R6tgoR0y35:assets%2Fimages%2Fui%2Ftemplate.pngR2i11468R3R26R5R231R6tgoR0y39:assets%2Fimages%2Fui%2FtrainingMode.pngR2i5713R3R26R5R232R6tgoR0y41:assets%2Fimages%2Fui%2FtutoKeyboardDE.pngR2i197972R3R26R5R233R6tgoR0y41:assets%2Fimages%2Fui%2FtutoKeyboardEN.pngR2i194114R3R26R5R234R6tgoR0y41:assets%2Fimages%2Fui%2FtutoKeyboardFR.pngR2i197400R3R26R5R235R6tgoR0y41:assets%2Fimages%2Fui%2FtutoKeyboardIT.pngR2i196927R3R26R5R236R6tgoR0y34:assets%2Fimages%2Fui%2Fversion.pngR2i33131R3R26R5R237R6tgoR0y40:assets%2Fimages%2Fvoip%2Fcall_fwd_de.pngR2i47216R3R26R5R238R6tgoR0y40:assets%2Fimages%2Fvoip%2Fcall_fwd_en.pngR2i45104R3R26R5R239R6tgoR0y40:assets%2Fimages%2Fvoip%2Fcall_fwd_fr.pngR2i45140R3R26R5R240R6tgoR0y41:assets%2Fimages%2Fvoip%2Fdect_vs_rj11.pngR2i136223R3R26R5R241R6tgoR0y39:assets%2Fimages%2Fvoip%2Ffnp_cc_tab.pngR2i39284R3R26R5R242R6tgoR0y36:assets%2Fimages%2Fvoip%2Fgigaset.pngR2i163992R3R26R5R243R6tgoR0y45:assets%2Fimages%2Fvoip%2Fgigaset_charging.pngR2i130591R3R26R5R244R6tgoR0y40:assets%2Fimages%2Fvoip%2Ftecrep_voip.pngR2i199026R3R26R5R245R6tgoR0y41:assets%2Fimages%2Fvoip%2Fvoip_barring.pngR2i213324R3R26R5R246R6tgoR0y38:assets%2Fimages%2Fvti%2Faddnote2de.pngR2i19186R3R26R5R247R6tgoR0y38:assets%2Fimages%2Fvti%2Faddnote2en.pngR2i17425R3R26R5R248R6tgoR0y38:assets%2Fimages%2Fvti%2Faddnote2fr.pngR2i18145R3R26R5R249R6tgoR0y38:assets%2Fimages%2Fvti%2Faddnote2it.pngR2i20531R3R26R5R250R6tgoR0y37:assets%2Fimages%2Fvti%2Faddnotede.pngR2i22078R3R26R5R251R6tgoR0y37:assets%2Fimages%2Fvti%2Faddnoteen.pngR2i19767R3R26R5R252R6tgoR0y37:assets%2Fimages%2Fvti%2Faddnotefr.pngR2i20102R3R26R5R253R6tgoR0y37:assets%2Fimages%2Fvti%2Faddnoteit.pngR2i17157R3R26R5R254R6tgoR0y45:assets%2Fimages%2Fvti%2Faddnotenoparcelde.pngR2i13540R3R26R5R255R6tgoR0y45:assets%2Fimages%2Fvti%2Faddnotenoparcelen.pngR2i10609R3R26R5R256R6tgoR0y45:assets%2Fimages%2Fvti%2Faddnotenoparcelfr.pngR2i11244R3R26R5R257R6tgoR0y45:assets%2Fimages%2Fvti%2Faddnotenoparcelit.pngR2i10851R3R26R5R258R6tgoR0y69:assets%2Fimages%2Fvti%2Fbilling%2Factivation_fees%2Fpaid_not_paid.pngR2i38897R3R26R5R259R6tgoR0y56:assets%2Fimages%2Fvti%2Fbilling%2Fcurrent_balance_de.pngR2i6393R3R26R5R260R6tgoR0y56:assets%2Fimages%2Fvti%2Fbilling%2Fcurrent_balance_en.pngR2i6660R3R26R5R261R6tgoR0y56:assets%2Fimages%2Fvti%2Fbilling%2Fcurrent_balance_fr.pngR2i6635R3R26R5R262R6tgoR0y56:assets%2Fimages%2Fvti%2Fbilling%2Fcurrent_balance_it.pngR2i6210R3R26R5R263R6tgoR0y45:assets%2Fimages%2Fvti%2Fbox-management-de.pngR2i27469R3R26R5R264R6tgoR0y45:assets%2Fimages%2Fvti%2Fbox-management-fr.pngR2i28277R3R26R5R265R6tgoR0y42:assets%2Fimages%2Fvti%2Fbox-management.pngR2i20100R3R26R5R266R6tgoR0y49:assets%2Fimages%2Fvti%2Fcheckcontactdetailsde.pngR2i10556R3R26R5R267R6tgoR0y49:assets%2Fimages%2Fvti%2Fcheckcontactdetailsen.pngR2i9945R3R26R5R268R6tgoR0y49:assets%2Fimages%2Fvti%2Fcheckcontactdetailsfr.pngR2i10571R3R26R5R269R6tgoR0y49:assets%2Fimages%2Fvti%2Fcheckcontactdetailsit.pngR2i10107R3R26R5R270R6tgoR0y36:assets%2Fimages%2Fvti%2Fcopy_all.pngR2i163248R3R26R5R271R6tgoR0y52:assets%2Fimages%2Fvti%2Fcopy_all_vti_healthcheck.pngR2i151756R3R26R5R272R6tgoR0y41:assets%2Fimages%2Fvti%2FDatabarred_en.pngR2i45791R3R26R5R273R6tgoR0y41:assets%2Fimages%2Fvti%2FDatabarred_fr.pngR2i48767R3R26R5R274R6tgoR0y44:assets%2Fimages%2Fvti%2Femailvalidatedde.pngR2i24006R3R26R5R275R6tgoR0y44:assets%2Fimages%2Fvti%2Femailvalidateden.pngR2i22551R3R26R5R276R6tgoR0y44:assets%2Fimages%2Fvti%2Femailvalidatedfr.pngR2i24298R3R26R5R277R6tgoR0y46:assets%2Fimages%2Fvti%2FemailValidationBTN.pngR2i47827R3R26R5R278R6tgoR0y66:assets%2Fimages%2Fvti%2Fequipment%2Foto_visible_offer_mgt%2Fde.pngR2i187056R3R26R5R279R6tgoR0y66:assets%2Fimages%2Fvti%2Fequipment%2Foto_visible_offer_mgt%2Fen.pngR2i173765R3R26R5R280R6tgoR0y66:assets%2Fimages%2Fvti%2Fequipment%2Foto_visible_offer_mgt%2Ffr.pngR2i178016R3R26R5R281R6tgoR0y66:assets%2Fimages%2Fvti%2Fequipment%2Foto_visible_offer_mgt%2Fit.pngR2i172061R3R26R5R282R6tgoR0y51:assets%2Fimages%2Fvti%2Fequipment%2Fplug_in_use.pngR2i197525R3R26R5R283R6tgoR0y48:assets%2Fimages%2Fvti%2Ffactory_reset_btn_de.pngR2i15400R3R26R5R284R6tgoR0y48:assets%2Fimages%2Fvti%2Ffactory_reset_btn_en.pngR2i15038R3R26R5R285R6tgoR0y48:assets%2Fimages%2Fvti%2Ffactory_reset_btn_fr.pngR2i15563R3R26R5R286R6tgoR0y48:assets%2Fimages%2Fvti%2Ffactory_reset_btn_it.pngR2i14775R3R26R5R287R6tgoR0y45:assets%2Fimages%2Fvti%2FIsBoxReachable_de.pngR2i111685R3R26R5R288R6tgoR0y45:assets%2Fimages%2Fvti%2FIsBoxReachable_en.pngR2i111034R3R26R5R289R6tgoR0y45:assets%2Fimages%2Fvti%2FIsBoxReachable_fr.pngR2i110450R3R26R5R290R6tgoR0y45:assets%2Fimages%2Fvti%2FIsBoxReachable_it.pngR2i110450R3R26R5R291R6tgoR0y39:assets%2Fimages%2Fvti%2Flexincident.pngR2i170368R3R26R5R292R6tgoR0y44:assets%2Fimages%2Fvti%2Fnot-activated-de.pngR2i65256R3R26R5R293R6tgoR0y44:assets%2Fimages%2Fvti%2Fnot-activated-fr.pngR2i65928R3R26R5R294R6tgoR0y50:assets%2Fimages%2Fvti%2Fprovisioning-completed.pngR2i33016R3R26R5R295R6tgoR0y37:assets%2Fimages%2Fvti%2Frouter-de.pngR2i30629R3R26R5R296R6tgoR0y37:assets%2Fimages%2Fvti%2Frouter-fr.pngR2i32078R3R26R5R297R6tgoR0y40:assets%2Fimages%2Fvti%2Frx-values-de.pngR2i68448R3R26R5R298R6tgoR0y40:assets%2Fimages%2Fvti%2Frx-values-en.pngR2i68912R3R26R5R299R6tgoR0y40:assets%2Fimages%2Fvti%2Frx-values-fr.pngR2i67738R3R26R5R300R6tgoR0y40:assets%2Fimages%2Fvti%2Frx-values-it.pngR2i66621R3R26R5R301R6tgoR0y37:assets%2Fimages%2Fvti%2Frx-values.pngR2i67724R3R26R5R302R6tgoR0y48:assets%2Fimages%2Fvti%2Fsearch-contractor-de.pngR2i31330R3R26R5R303R6tgoR0y48:assets%2Fimages%2Fvti%2Fsearch-contractor-en.pngR2i30844R3R26R5R304R6tgoR0y48:assets%2Fimages%2Fvti%2Fsearch-contractor-it.pngR2i30907R3R26R5R305R6tgoR0y45:assets%2Fimages%2Fvti%2Fsearch-contractor.pngR2i32380R3R26R5R306R6tgoR0y55:assets%2Fimages%2Fvti%2Fsearchandverifycontractorde.pngR2i123778R3R26R5R307R6tgoR0y55:assets%2Fimages%2Fvti%2Fsearchandverifycontractoren.pngR2i118608R3R26R5R308R6tgoR0y55:assets%2Fimages%2Fvti%2Fsearchandverifycontractorfr.pngR2i176741R3R26R5R309R6tgoR0y55:assets%2Fimages%2Fvti%2Fsearchandverifycontractorit.pngR2i176875R3R26R5R310R6tgoR0y46:assets%2Fimages%2Fvti%2Fsearchcontractorfr.pngR2i100104R3R26R5R311R6tgoR0y41:assets%2Fimages%2Fvti%2Ftrackandtrace.pngR2i7645R3R26R5R312R6tgoR0y44:assets%2Fimages%2Fvti%2FTroubleShootWiFi.pngR2i51848R3R26R5R313R6tgoR0y47:assets%2Fimages%2Fvti%2FvtiPomOrderingPhase.pngR2i97676R3R26R5R314R6tgoR0y43:assets%2Fimages%2Fvti%2FvtiPostTracking.pngR2i97466R3R26R5R315R6tgoR0y37:assets%2Fimages%2Fvti%2Fvti_rx_de.pngR2i42234R3R26R5R316R6tgoR0y37:assets%2Fimages%2Fvti%2Fvti_rx_en.pngR2i41344R3R26R5R317R6tgoR0y37:assets%2Fimages%2Fvti%2Fvti_rx_fr.pngR2i43569R3R26R5R318R6tgoR0y37:assets%2Fimages%2Fvti%2Fvti_rx_it.pngR2i40306R3R26R5R319R6tgoR0y37:assets%2Fimages%2Fvti%2Fwhishdate.pngR2i44045R3R26R5R320R6tgoR0y48:assets%2Fimages%2Fvti%2FWifiOnInDashboard-de.pngR2i46472R3R26R5R321R6tgoR0y48:assets%2Fimages%2Fvti%2FWifiOnInDashboard-en.pngR2i48552R3R26R5R322R6tgoR0y48:assets%2Fimages%2Fvti%2FWifiOnInDashboard-fr.pngR2i46938R3R26R5R323R6tgoR0y48:assets%2Fimages%2Fvti%2FWifiOnInDashboard-it.pngR2i46938R3R26R5R324R6tgoR0y61:assets%2Fimages%2Fwifi%2FExtender_Salt_Fiber_box_DE_small.pngR2i304426R3R26R5R325R6tgoR0y61:assets%2Fimages%2Fwifi%2FExtender_Salt_Fiber_box_EN_small.pngR2i282483R3R26R5R326R6tgoR0y61:assets%2Fimages%2Fwifi%2FExtender_Salt_Fiber_box_FR_small.pngR2i297123R3R26R5R327R6tgoR0y61:assets%2Fimages%2Fwifi%2FExtender_Salt_Fiber_box_IT_small.pngR2i293854R3R26R5R328R6tgoR0y37:assets%2Fimages%2Fwifi%2Frepeater.pngR2i15557R3R26R5R329R6tgoR0y37:assets%2Flocales%2Fde-DE%2Fall_de.txtR2i6944R3R4R5R330R6tgoR0y37:assets%2Flocales%2Fde-DE%2Fatf_de.txtR2i2626R3R4R5R331R6tgoR0y40:assets%2Flocales%2Fde-DE%2Fcables_de.txtR2i2657R3R4R5R332R6tgoR0y44:assets%2Flocales%2Fde-DE%2Fcollection_de.txtR2i4094R3R4R5R333R6tgoR0y43:assets%2Flocales%2Fde-DE%2Fequipment_de.txtR2i6639R3R4R5R334R6tgoR0y44:assets%2Flocales%2Fde-DE%2Fescalation_de.txtR2i4608R3R4R5R335R6tgoR0y38:assets%2Flocales%2Fde-DE%2Fftth_de.txtR2i6244R3R4R5R336R6tgoR0y41:assets%2Flocales%2Fde-DE%2Fheaders_de.txtR2i4218R3R4R5R337R6tgoR0y57:assets%2Flocales%2Fde-DE%2Finstallation-activation_de.txtR2i4011R3R4R5R338R6tgoR0y38:assets%2Flocales%2Fde-DE%2Fmeta_de.txtR2i645R3R4R5R339R6tgoR0y44:assets%2Flocales%2Fde-DE%2Fnointernet_de.txtR2i15312R3R4R5R340R6tgoR0y39:assets%2Flocales%2Fde-DE%2Fphone_de.txtR2i6100R3R4R5R341R6tgoR0y40:assets%2Flocales%2Fde-DE%2Fremote_de.txtR2i6395R3R4R5R342R6tgoR0y40:assets%2Flocales%2Fde-DE%2Fsalttv_de.txtR2i11879R3R4R5R343R6tgoR0y43:assets%2Flocales%2Fde-DE%2Fstability_de.txtR2i3745R3R4R5R344R6tgoR0y41:assets%2Flocales%2Fde-DE%2Ftvsound_de.txtR2i3382R3R4R5R345R6tgoR0y43:assets%2Flocales%2Fde-DE%2Fvalidator_de.txtR2i230R3R4R5R346R6tgoR0y42:assets%2Flocales%2Fde-DE%2Fwifi-lan_de.txtR2i8896R3R4R5R347R6tgoR0y37:assets%2Flocales%2Fen-GB%2Fall_en.txtR2i6040R3R4R5R348R6tgoR0y37:assets%2Flocales%2Fen-GB%2Fatf_en.txtR2i2285R3R4R5R349R6tgoR0y40:assets%2Flocales%2Fen-GB%2Fcables_en.txtR2i2245R3R4R5R350R6tgoR0y44:assets%2Flocales%2Fen-GB%2Fcollection_en.txtR2i3845R3R4R5R351R6tgoR0y43:assets%2Flocales%2Fen-GB%2Fequipment_en.txtR2i6496R3R4R5R352R6tgoR0y44:assets%2Flocales%2Fen-GB%2Fescalation_en.txtR2i4124R3R4R5R353R6tgoR0y38:assets%2Flocales%2Fen-GB%2Fftth_en.txtR2i5472R3R4R5R354R6tgoR0y41:assets%2Flocales%2Fen-GB%2Fheaders_en.txtR2i4069R3R4R5R355R6tgoR0y57:assets%2Flocales%2Fen-GB%2Finstallation-activation_en.txtR2i3539R3R4R5R356R6tgoR0y38:assets%2Flocales%2Fen-GB%2Fmeta_en.txtR2i575R3R4R5R357R6tgoR0y44:assets%2Flocales%2Fen-GB%2Fnointernet_en.txtR2i13609R3R4R5R358R6tgoR0y39:assets%2Flocales%2Fen-GB%2Fphone_en.txtR2i5119R3R4R5R359R6tgoR0y40:assets%2Flocales%2Fen-GB%2Fremote_en.txtR2i4940R3R4R5R360R6tgoR0y40:assets%2Flocales%2Fen-GB%2Fsalttv_en.txtR2i10704R3R4R5R361R6tgoR0y43:assets%2Flocales%2Fen-GB%2Fstability_en.txtR2i3216R3R4R5R362R6tgoR0y41:assets%2Flocales%2Fen-GB%2Ftvsound_en.txtR2i3022R3R4R5R363R6tgoR0y43:assets%2Flocales%2Fen-GB%2Fvalidator_en.txtR2i235R3R4R5R364R6tgoR0y42:assets%2Flocales%2Fen-GB%2Fwifi-lan_en.txtR2i7667R3R4R5R365R6tgoR0y37:assets%2Flocales%2Ffr-FR%2Fall_fr.txtR2i6979R3R4R5R366R6tgoR0y37:assets%2Flocales%2Ffr-FR%2Fatf_fr.txtR2i2571R3R4R5R367R6tgoR0y40:assets%2Flocales%2Ffr-FR%2Fcables_fr.txtR2i2447R3R4R5R368R6tgoR0y44:assets%2Flocales%2Ffr-FR%2Fcollection_fr.txtR2i4107R3R4R5R369R6tgoR0y43:assets%2Flocales%2Ffr-FR%2Fequipment_fr.txtR2i6323R3R4R5R370R6tgoR0y44:assets%2Flocales%2Ffr-FR%2Fescalation_fr.txtR2i4430R3R4R5R371R6tgoR0y38:assets%2Flocales%2Ffr-FR%2Fftth_fr.txtR2i5910R3R4R5R372R6tgoR0y41:assets%2Flocales%2Ffr-FR%2Fheaders_fr.txtR2i4266R3R4R5R373R6tgoR0y57:assets%2Flocales%2Ffr-FR%2Finstallation-activation_fr.txtR2i3806R3R4R5R374R6tgoR0y38:assets%2Flocales%2Ffr-FR%2Fmeta_fr.txtR2i658R3R4R5R375R6tgoR0y44:assets%2Flocales%2Ffr-FR%2Fnointernet_fr.txtR2i15054R3R4R5R376R6tgoR0y39:assets%2Flocales%2Ffr-FR%2Fphone_fr.txtR2i5981R3R4R5R377R6tgoR0y40:assets%2Flocales%2Ffr-FR%2Fremote_fr.txtR2i5806R3R4R5R378R6tgoR0y40:assets%2Flocales%2Ffr-FR%2Fsalttv_fr.txtR2i12021R3R4R5R379R6tgoR0y43:assets%2Flocales%2Ffr-FR%2Fstability_fr.txtR2i3725R3R4R5R380R6tgoR0y41:assets%2Flocales%2Ffr-FR%2Ftvsound_fr.txtR2i3503R3R4R5R381R6tgoR0y43:assets%2Flocales%2Ffr-FR%2Fvalidator_fr.txtR2i244R3R4R5R382R6tgoR0y42:assets%2Flocales%2Ffr-FR%2Fwifi-lan_fr.txtR2i9028R3R4R5R383R6tgoR0y28:assets%2Flocales%2Findex.xmlR2i5741R3R4R5R384R6tgoR0y37:assets%2Flocales%2Fit-IT%2Fall_it.txtR2i6810R3R4R5R385R6tgoR0y37:assets%2Flocales%2Fit-IT%2Fatf_it.txtR2i2400R3R4R5R386R6tgoR0y40:assets%2Flocales%2Fit-IT%2Fcables_it.txtR2i2435R3R4R5R387R6tgoR0y44:assets%2Flocales%2Fit-IT%2Fcollection_it.txtR2i4161R3R4R5R388R6tgoR0y43:assets%2Flocales%2Fit-IT%2Fequipment_it.txtR2i6264R3R4R5R389R6tgoR0y44:assets%2Flocales%2Fit-IT%2Fescalation_it.txtR2i4439R3R4R5R390R6tgoR0y38:assets%2Flocales%2Fit-IT%2Fftth_it.txtR2i5652R3R4R5R391R6tgoR0y41:assets%2Flocales%2Fit-IT%2Fheaders_it.txtR2i4282R3R4R5R392R6tgoR0y57:assets%2Flocales%2Fit-IT%2Finstallation-activation_it.txtR2i3719R3R4R5R393R6tgoR0y38:assets%2Flocales%2Fit-IT%2Fmeta_it.txtR2i664R3R4R5R394R6tgoR0y44:assets%2Flocales%2Fit-IT%2Fnointernet_it.txtR2i14331R3R4R5R395R6tgoR0y39:assets%2Flocales%2Fit-IT%2Fphone_it.txtR2i5987R3R4R5R396R6tgoR0y40:assets%2Flocales%2Fit-IT%2Fremote_it.txtR2i5344R3R4R5R397R6tgoR0y40:assets%2Flocales%2Fit-IT%2Fsalttv_it.txtR2i11355R3R4R5R398R6tgoR0y43:assets%2Flocales%2Fit-IT%2Fstability_it.txtR2i3538R3R4R5R399R6tgoR0y41:assets%2Flocales%2Fit-IT%2Ftvsound_it.txtR2i3201R3R4R5R400R6tgoR0y43:assets%2Flocales%2Fit-IT%2Fvalidator_it.txtR2i318R3R4R5R401R6tgoR0y42:assets%2Flocales%2Fit-IT%2Fwifi-lan_it.txtR2i9502R3R4R5R402R6tgoR2i2114R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3y9:pathGroupaR404y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R403R5y28:flixel%2Fsounds%2Fflixel.mp3R405aR407y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i5794R3y5:SOUNDR5R406R405aR404R406hgoR2i33629R3R409R5R408R405aR407R408hgoR2i15744R3R13R14y35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R13R14y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R26R5R414R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R26R5R415R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Fbox.pngR2i912R3R26R5R416R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fbutton.pngR2i433R3R26R5R417R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_down.pngR2i446R3R26R5R418R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_left.pngR2i459R3R26R5R419R6tgoR0y49:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_right.pngR2i511R3R26R5R420R6tgoR0y46:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_up.pngR2i493R3R26R5R421R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fbutton_thin.pngR2i247R3R26R5R422R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fbutton_toggle.pngR2i534R3R26R5R423R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fcheck_box.pngR2i922R3R26R5R424R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fcheck_mark.pngR2i946R3R26R5R425R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fchrome.pngR2i253R3R26R5R426R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fchrome_flat.pngR2i212R3R26R5R427R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_inset.pngR2i192R3R26R5R428R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_light.pngR2i214R3R26R5R429R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fdropdown_mark.pngR2i156R3R26R5R430R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Ffinger_big.pngR2i1724R3R26R5R431R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Ffinger_small.pngR2i294R3R26R5R432R6tgoR0y38:flixel%2Fflixel-ui%2Fimg%2Fhilight.pngR2i129R3R26R5R433R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Finvis.pngR2i128R3R26R5R434R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fminus_mark.pngR2i136R3R26R5R435R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fplus_mark.pngR2i147R3R26R5R436R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Fradio.pngR2i191R3R26R5R437R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fradio_dot.pngR2i153R3R26R5R438R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fswatch.pngR2i185R3R26R5R439R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Ftab.pngR2i201R3R26R5R440R6tgoR0y39:flixel%2Fflixel-ui%2Fimg%2Ftab_back.pngR2i210R3R26R5R441R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Ftooltip_arrow.pngR2i18509R3R26R5R442R6tgoR0y39:flixel%2Fflixel-ui%2Fxml%2Fdefaults.xmlR2i1299R3R4R5R443R6tgoR0y53:flixel%2Fflixel-ui%2Fxml%2Fdefault_loading_screen.xmlR2i2012R3R4R5R444R6tgoR0y44:flixel%2Fflixel-ui%2Fxml%2Fdefault_popup.xmlR2i1907R3R4R5R445R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	var data = "{\"name\":null,\"assets\":\"aoy4:pathy57:assets%2Fdata%2F20200402_CycleTimeExpectedNextWeek_BB.csvy4:sizei1178y4:typey4:TEXTy2:idR1y7:preloadtgoR0y26:assets%2Fdata%2Fadmins.txtR2i68R3R4R5R7R6tgoR0y36:assets%2Fdata%2FcustomerProfile.jsonR2i13413R3R4R5R8R6tgoR0y35:assets%2Fdata%2FdashboardSante.jsonR2i3461R3R4R5R9R6tgoR0y32:assets%2Fdata%2Ffab_UMC_only.csvR2i4012015R3R4R5R10R6tgoR0y27:assets%2Fdata%2Ftesters.txtR2i79R3R4R5R11R6tgoR0y55:assets%2Fdata%2Ftmp%2Fadd_to_email_title%2FIPV4_MIG.txtR2i10550R3R4R5R12R6tgoR2i136708R3y4:FONTy9:classNamey47:__ASSET__assets_fonts_jetbrainsmono_regular_ttfR5y42:assets%2Ffonts%2FJetBrainsMono-Regular.ttfR6tgoR0y43:assets%2Ffonts%2FJetBrainsMono-Regular.woffR2i60220R3y6:BINARYR5R17R6tgoR2i114588R3R13R14y36:__ASSET__assets_fonts_lato_black_ttfR5y31:assets%2Ffonts%2FLato-Black.ttfR6tgoR0y32:assets%2Ffonts%2FLato-Black.woffR2i48592R3R18R5R21R6tgoR2i120196R3R13R14y38:__ASSET__assets_fonts_lato_regular_ttfR5y33:assets%2Ffonts%2FLato-Regular.ttfR6tgoR0y34:assets%2Ffonts%2FLato-Regular.woffR2i50140R3R18R5R24R6tgoR0y50:assets%2Fimages%2Factivation%2FSST-door-online.pngR2i623931R3y5:IMAGER5R25R6tgoR0y53:assets%2Fimages%2Factivation%2Fverrif_eligibility.pngR2i84443R3R26R5R27R6tgoR0y54:assets%2Fimages%2Fappletv%2Fapple_store%2Fapple_id.pngR2i44903R3R26R5R28R6tgoR0y64:assets%2Fimages%2Fappletv%2Fapple_store%2Fapple_id_cancreate.pngR2i69321R3R26R5R29R6tgoR0y70:assets%2Fimages%2Fappletv%2Fapple_store%2Fapple_id_change_to_swiss.pngR2i79750R3R26R5R30R6tgoR0y60:assets%2Fimages%2Fappletv%2Fapple_store%2Fapple_id_swiss.pngR2i63421R3R26R5R31R6tgoR0y50:assets%2Fimages%2Fappletv%2Fapple_store%2Fopen.pngR2i566003R3R26R5R32R6tgoR0y67:assets%2Fimages%2Fappletv%2Fapple_store%2Fsee_staltv_applestore.pngR2i720090R3R26R5R33R6tgoR0y44:assets%2Fimages%2Fappletv%2Fexplore%2Fde.pngR2i296280R3R26R5R34R6tgoR0y44:assets%2Fimages%2Fappletv%2Fexplore%2Fen.pngR2i288712R3R26R5R35R6tgoR0y44:assets%2Fimages%2Fappletv%2Fexplore%2Ffr.pngR2i255073R3R26R5R36R6tgoR0y44:assets%2Fimages%2Fappletv%2Fexplore%2Fit.pngR2i313681R3R26R5R37R6tgoR0y59:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv.psdR2i5499974R3R18R5R38R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_01_de.pngR2i109908R3R26R5R39R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_01_en.pngR2i103733R3R26R5R40R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_01_fr.pngR2i105124R3R26R5R41R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_01_it.pngR2i112449R3R26R5R42R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_02_de.pngR2i106783R3R26R5R43R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_02_en.pngR2i102681R3R26R5R44R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_02_fr.pngR2i112273R3R26R5R45R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_02_it.pngR2i120215R3R26R5R46R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_03_de.pngR2i102097R3R26R5R47R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_03_en.pngR2i109345R3R26R5R48R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_03_fr.pngR2i115234R3R26R5R49R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_03_it.pngR2i103688R3R26R5R50R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_04_de.pngR2i132197R3R26R5R51R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_04_en.pngR2i127066R3R26R5R52R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_04_fr.pngR2i130557R3R26R5R53R6tgoR0y65:assets%2Fimages%2Fappletv%2Fremote%2Fremote_add_appletv_04_it.pngR2i127421R3R26R5R54R6tgoR0y58:assets%2Fimages%2Fappletv%2Fremote%2Fsiri-2gen_pairing.pngR2i338408R3R26R5R55R6tgoR0y57:assets%2Fimages%2Fappletv%2Fsound%2Faudio_settings_de.pngR2i258548R3R26R5R56R6tgoR0y57:assets%2Fimages%2Fappletv%2Fsound%2Faudio_settings_en.pngR2i351629R3R26R5R57R6tgoR0y57:assets%2Fimages%2Fappletv%2Fsound%2Faudio_settings_fr.pngR2i282427R3R26R5R58R6tgoR0y57:assets%2Fimages%2Fappletv%2Fsound%2Faudio_settings_it.pngR2i281114R3R26R5R59R6tgoR0y42:assets%2Fimages%2Fappletv%2Fsound%2Fde.pngR2i366623R3R26R5R60R6tgoR0y42:assets%2Fimages%2Fappletv%2Fsound%2Fen.pngR2i301214R3R26R5R61R6tgoR0y42:assets%2Fimages%2Fappletv%2Fsound%2Ffr.pngR2i373572R3R26R5R62R6tgoR0y51:assets%2Fimages%2Fappletv%2Fsound%2FHDMI_switch.pngR2i114160R3R26R5R63R6tgoR0y42:assets%2Fimages%2Fappletv%2Fsound%2Fit.pngR2i482077R3R26R5R64R6tgoR0y38:assets%2Fimages%2Fbox%2FAdminRX-de.pngR2i137837R3R26R5R65R6tgoR0y38:assets%2Fimages%2Fbox%2FAdminRX-en.pngR2i126936R3R26R5R66R6tgoR0y38:assets%2Fimages%2Fbox%2FAdminRX-fr.pngR2i132960R3R26R5R67R6tgoR0y38:assets%2Fimages%2Fbox%2FAdminRX-it.pngR2i134249R3R26R5R68R6tgoR0y38:assets%2Fimages%2Fbox%2Fapi_device.pngR2i326388R3R26R5R69R6tgoR0y59:assets%2Fimages%2Fbox%2Fatf%2Fdeactivateairtimefairness.pngR2i511156R3R26R5R70R6tgoR0y39:assets%2Fimages%2Fbox%2Fblueleverup.pngR2i198749R3R26R5R71R6tgoR0y42:assets%2Fimages%2Fbox%2Fbox-front-wlan.pngR2i54909R3R26R5R72R6tgoR0y37:assets%2Fimages%2Fbox%2Fbox-reset.pngR2i325103R3R26R5R73R6tgoR0y48:assets%2Fimages%2Fbox%2Fbox_placement_advise.pngR2i206834R3R26R5R74R6tgoR0y44:assets%2Fimages%2Fbox%2Fbox_placement_de.pngR2i254615R3R26R5R75R6tgoR0y44:assets%2Fimages%2Fbox%2Fbox_placement_en.pngR2i254515R3R26R5R76R6tgoR0y44:assets%2Fimages%2Fbox%2Fbox_placement_fr.pngR2i254345R3R26R5R77R6tgoR0y44:assets%2Fimages%2Fbox%2Fbox_placement_it.pngR2i254899R3R26R5R78R6tgoR0y36:assets%2Fimages%2Fbox%2FgetClose.pngR2i34846R3R26R5R79R6tgoR0y67:assets%2Fimages%2Fbox%2Flan%2FCCK_Networking_Basics_Network_hub.pngR2i22102R3R26R5R80R6tgoR0y37:assets%2Fimages%2Fbox%2Flan%2Flan.pngR2i286750R3R26R5R81R6tgoR0y40:assets%2Fimages%2Fbox%2Flan%2Flan_ok.pngR2i138687R3R26R5R82R6tgoR0y50:assets%2Fimages%2Fbox%2Flan%2Fmac_network_icon.pngR2i125883R3R26R5R83R6tgoR0y49:assets%2Fimages%2Fbox%2Flan%2Fmac_network_sys.pngR2i187949R3R26R5R84R6tgoR0y44:assets%2Fimages%2Fbox%2Flan%2Fswitch-old.pngR2i31077R3R26R5R85R6tgoR0y40:assets%2Fimages%2Fbox%2Flan%2Fswitch.gifR2i15956R3R26R5R86R6tgoR0y40:assets%2Fimages%2Fbox%2Flan%2Fswitch.pngR2i127656R3R26R5R87R6tgoR0y43:assets%2Fimages%2Fbox%2Flan%2Fswitch_no.pngR2i28511R3R26R5R88R6tgoR0y57:assets%2Fimages%2Fbox%2Flan%2Fwindows_network_icon_ok.pngR2i9832R3R26R5R89R6tgoR0y35:assets%2Fimages%2Fbox%2Flanloop.pngR2i146765R3R26R5R90R6tgoR0y39:assets%2Fimages%2Fbox%2Flan_or_wifi.pngR2i46259R3R26R5R91R6tgoR0y44:assets%2Fimages%2Fbox%2Fled_status%2Fall.pngR2i138301R3R26R5R92R6tgoR0y48:assets%2Fimages%2Fbox%2Fled_status%2Fall_old.pngR2i137771R3R26R5R93R6tgoR0y57:assets%2Fimages%2Fbox%2Fled_status%2Fled_status_sagem.pngR2i126155R3R26R5R94R6tgoR0y46:assets%2Fimages%2Fbox%2Fmmcab_lan_extender.pngR2i182163R3R26R5R95R6tgoR0y47:assets%2Fimages%2Fbox%2Foto%2FCorrectplugde.pngR2i100836R3R26R5R96R6tgoR0y47:assets%2Fimages%2Fbox%2Foto%2FCorrectplugen.pngR2i103031R3R26R5R97R6tgoR0y47:assets%2Fimages%2Fbox%2Foto%2FCorrectplugfr.pngR2i100836R3R26R5R98R6tgoR0y47:assets%2Fimages%2Fbox%2Foto%2FCorrectplugit.pngR2i100836R3R26R5R99R6tgoR0y39:assets%2Fimages%2Fbox%2FpowerLed-de.pngR2i65407R3R26R5R100R6tgoR0y39:assets%2Fimages%2Fbox%2FpowerLed-fr.pngR2i65366R3R26R5R101R6tgoR0y39:assets%2Fimages%2Fbox%2FpowerLed-it.pngR2i65369R3R26R5R102R6tgoR0y36:assets%2Fimages%2Fbox%2FpowerLed.pngR2i70214R3R26R5R103R6tgoR0y42:assets%2Fimages%2Fbox%2FpowerLedBlack.jpegR2i15551R3R26R5R104R6tgoR0y41:assets%2Fimages%2Fbox%2FpowerLedBlack.pngR2i73084R3R26R5R105R6tgoR0y39:assets%2Fimages%2Fbox%2FpowerLedOn.jpegR2i15585R3R26R5R106R6tgoR0y38:assets%2Fimages%2Fbox%2FpowerLedOn.pngR2i73852R3R26R5R107R6tgoR0y48:assets%2Fimages%2Fbox%2FpowerLedRedBlinking.jpegR2i15708R3R26R5R108R6tgoR0y47:assets%2Fimages%2Fbox%2FpowerLedRedBlinking.pngR2i74919R3R26R5R109R6tgoR0y44:assets%2Fimages%2Fbox%2Fpower_wallsocket.pngR2i197475R3R26R5R110R6tgoR0y43:assets%2Fimages%2Fbox%2Freboot%2Freboot.pngR2i531762R3R26R5R111R6tgoR0y38:assets%2Fimages%2Fbox%2Fserialfind.pngR2i321213R3R26R5R112R6tgoR0y38:assets%2Fimages%2Fbox%2Fserial_vti.pngR2i77618R3R26R5R113R6tgoR0y41:assets%2Fimages%2Fbox%2Fsfp%2Fbadgood.pngR2i727291R3R26R5R114R6tgoR0y44:assets%2Fimages%2Fbox%2Fsfp%2Fbadgood_x6.pngR2i433461R3R26R5R115R6tgoR0y34:assets%2Fimages%2Fbox%2FValues.pngR2i50249R3R26R5R116R6tgoR0y66:assets%2Fimages%2Fccdashboard%2Fcollection-steps-original-size.pngR2i163991R3R26R5R117R6tgoR0y51:assets%2Fimages%2Fccdashboard%2Fcollectionsteps.pngR2i248870R3R26R5R118R6tgoR0y44:assets%2Fimages%2Fcustomer%2Fgoogle_wifi.pngR2i7992R3R26R5R119R6tgoR0y55:assets%2Fimages%2Fcustomer%2Fhandclickingsmsrxtx_de.pngR2i225510R3R26R5R120R6tgoR0y55:assets%2Fimages%2Fcustomer%2Fhandclickingsmsrxtx_en.pngR2i224983R3R26R5R121R6tgoR0y55:assets%2Fimages%2Fcustomer%2Fhandclickingsmsrxtx_fr.pngR2i225338R3R26R5R122R6tgoR0y55:assets%2Fimages%2Fcustomer%2Fhandclickingsmsrxtx_it.pngR2i226540R3R26R5R123R6tgoR0y42:assets%2Fimages%2Fcustomer%2Fintro-old.pngR2i1374256R3R26R5R124R6tgoR0y38:assets%2Fimages%2Fcustomer%2Fintro.pngR2i13375R3R26R5R125R6tgoR0y37:assets%2Fimages%2Fcustomer%2Fmove.pngR2i122612R3R26R5R126R6tgoR0y59:assets%2Fimages%2Fcustomer%2Foto%2Fcustomer_reads_OTOid.pngR2i116776R3R26R5R127R6tgoR0y61:assets%2Fimages%2Fcustomer%2Foto%2Fcustomer_reads_OTOport.pngR2i89275R3R26R5R128R6tgoR0y50:assets%2Fimages%2Fcustomer%2Foto%2Fdamaged_oto.pngR2i529201R3R26R5R129R6tgoR0y52:assets%2Fimages%2Fcustomer%2FWhen-It-Doesnt-Work.pngR2i166142R3R26R5R130R6tgoR0y45:assets%2Fimages%2FCustomPreload%2Fdefault.pngR2i37490R3R26R5R131R6tgoR0y29:assets%2Fimages%2Fdefault.pngR2i210155R3R26R5R132R6tgoR0y38:assets%2Fimages%2Fequipment%2Fpost.pngR2i376116R3R26R5R133R6tgoR0y78:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement%2Fimg0.pngR2i52075R3R26R5R134R6tgoR0y78:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement%2Fimg1.jpgR2i27937R3R26R5R135R6tgoR0y78:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement%2Fimg1.pngR2i101089R3R26R5R136R6tgoR0y74:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement-de.pngR2i46780R3R26R5R137R6tgoR0y74:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement-en.pngR2i45830R3R26R5R138R6tgoR0y74:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement-fr.pngR2i48251R3R26R5R139R6tgoR0y74:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement-it.pngR2i42968R3R26R5R140R6tgoR0y71:assets%2Fimages%2Fflow%2Fnointernet%2Fvti%2FIconStatusBoxManagement.pngR2i86393R3R26R5R141R6tgoR0y67:assets%2Fimages%2Fflow%2Fstability%2F-SelectSaltServer-original.pngR2i76265R3R26R5R142R6tgoR0y58:assets%2Fimages%2Fflow%2Fstability%2F-SelectSaltServer.pngR2i75058R3R26R5R143R6tgoR0y52:assets%2Fimages%2Fflow%2Fstability%2Fconseils_DE.pngR2i205715R3R26R5R144R6tgoR0y52:assets%2Fimages%2Fflow%2Fstability%2Fconseils_EN.pngR2i202580R3R26R5R145R6tgoR0y52:assets%2Fimages%2Fflow%2Fstability%2Fconseils_FR.pngR2i204127R3R26R5R146R6tgoR0y52:assets%2Fimages%2Fflow%2Fstability%2Fconseils_IT.pngR2i202931R3R26R5R147R6tgoR0y53:assets%2Fimages%2Fflow%2Fstability%2FotherMobiles.pngR2i97359R3R26R5R148R6tgoR0y66:assets%2Fimages%2Fflow%2Fstability%2Fwhy-internet-running-slow.pngR2i199126R3R26R5R149R6tgoR0y39:assets%2Fimages%2Fflow%2FTutoOne-de.pngR2i6192R3R26R5R150R6tgoR0y39:assets%2Fimages%2Fflow%2FTutoOne-fr.pngR2i6144R3R26R5R151R6tgoR0y39:assets%2Fimages%2Fflow%2FTutoOne-it.pngR2i9575R3R26R5R152R6tgoR0y49:assets%2Fimages%2Fftth360%2Fclick_track_trace.pngR2i40537R3R26R5R153R6tgoR0y42:assets%2Fimages%2Fftth360%2Fcopy_paste.pngR2i228852R3R26R5R154R6tgoR0y51:assets%2Fimages%2Fftth360%2Fcpe_sending_ongoing.pngR2i57669R3R26R5R155R6tgoR0y50:assets%2Fimages%2Fftth360%2Fcpe_send_completed.pngR2i57147R3R26R5R156R6tgoR0y52:assets%2Fimages%2Fftth360%2Fdelegate_missing_oto.pngR2i59084R3R26R5R157R6tgoR0y53:assets%2Fimages%2Fftth360%2Fdelegate_or_pluginuse.pngR2i52270R3R26R5R158R6tgoR0y40:assets%2Fimages%2Fftth360%2Ffirmware.pngR2i94005R3R26R5R159R6tgoR0y42:assets%2Fimages%2Fftth360%2FIsBlueStep.pngR2i52450R3R26R5R160R6tgoR0y41:assets%2Fimages%2Fftth360%2FIsRedStep.pngR2i53193R3R26R5R161R6tgoR0y54:assets%2Fimages%2Fftth360%2Fordering_phase_started.pngR2i54243R3R26R5R162R6tgoR0y46:assets%2Fimages%2Fftth360%2Forder_accepted.pngR2i56550R3R26R5R163R6tgoR0y43:assets%2Fimages%2Fftth360%2Fplug_in_use.pngR2i56166R3R26R5R164R6tgoR0y43:assets%2Fimages%2Fftth360%2Fqualif_done.pngR2i56748R3R26R5R165R6tgoR0y46:assets%2Fimages%2Fftth360%2Fsagem_arcadyan.pngR2i193596R3R26R5R166R6tgoR0y51:assets%2Fimages%2Fftth360%2Fsearch_so_pluginuse.pngR2i5940R3R26R5R167R6tgoR0y54:assets%2Fimages%2Fftth360%2Ftrack_and_trace_status.pngR2i79873R3R26R5R168R6tgoR0y46:assets%2Fimages%2Fgeneral%2Fclick_resolved.pngR2i178390R3R26R5R169R6tgoR0y44:assets%2Fimages%2Fgeneral%2Fconversation.pngR2i36991R3R26R5R170R6tgoR0y35:assets%2Fimages%2Fgeneral%2Fend.pngR2i18787R3R26R5R171R6tgoR0y41:assets%2Fimages%2Fgeneral%2Ffeedbacks.pngR2i74552R3R26R5R172R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R173R6tgoR0y42:assets%2Fimages%2Fintro%2Fbaby_shocked.pngR2i117235R3R26R5R174R6tgoR0y40:assets%2Fimages%2Fintros%2Ffeedbacks.pngR2i74552R3R26R5R175R6tgoR0y55:assets%2Fimages%2Fsalttv%2Finstall%2Finstall_salttv.pngR2i847511R3R26R5R176R6tgoR0y40:assets%2Fimages%2Fsalttv%2Fopen%2Fde.pngR2i419413R3R26R5R177R6tgoR0y40:assets%2Fimages%2Fsalttv%2Fopen%2Fen.pngR2i406561R3R26R5R178R6tgoR0y40:assets%2Fimages%2Fsalttv%2Fopen%2Ffr.pngR2i375550R3R26R5R179R6tgoR0y40:assets%2Fimages%2Fsalttv%2Fopen%2Fit.pngR2i435284R3R26R5R180R6tgoR0y37:assets%2Fimages%2Fsalttv%2Fwelcom.pngR2i1283392R3R26R5R181R6tgoR0y42:assets%2Fimages%2Fso%2Fcheck-send-mifi.pngR2i104266R3R26R5R182R6tgoR0y44:assets%2Fimages%2Fso%2Fcheckifrecallerfr.pngR2i32855R3R26R5R183R6tgoR0y39:assets%2Fimages%2Fso%2Fcompensation.pngR2i3734R3R26R5R184R6tgoR0y41:assets%2Fimages%2Fso%2Fcompensationde.pngR2i3734R3R26R5R185R6tgoR0y41:assets%2Fimages%2Fso%2Fcompensationen.pngR2i2770R3R26R5R186R6tgoR0y41:assets%2Fimages%2Fso%2Fcompensationfr.pngR2i3617R3R26R5R187R6tgoR0y41:assets%2Fimages%2Fso%2Fcompensationit.pngR2i2906R3R26R5R188R6tgoR0y44:assets%2Fimages%2Fso%2Fescalate%2Ftab-de.pngR2i86336R3R26R5R189R6tgoR0y44:assets%2Fimages%2Fso%2Fescalate%2Ftab-en.pngR2i82485R3R26R5R190R6tgoR0y44:assets%2Fimages%2Fso%2Fescalate%2Ftab-fr.pngR2i85888R3R26R5R191R6tgoR0y44:assets%2Fimages%2Fso%2Fescalate%2Ftab-it.pngR2i83929R3R26R5R192R6tgoR0y39:assets%2Fimages%2Fso%2Fmifitemplate.pngR2i6744R3R26R5R193R6tgoR0y43:assets%2Fimages%2Fso%2Fnew-print-screen.pngR2i3694R3R26R5R194R6tgoR0y48:assets%2Fimages%2Fso%2Fpaymentsearchtemplate.pngR2i12268R3R26R5R195R6tgoR0y43:assets%2Fimages%2Fso%2Ftechticketopened.pngR2i107672R3R26R5R196R6tgoR0y47:assets%2Fimages%2Fso%2Ftechticketopened_old.pngR2i2435R3R26R5R197R6tgoR0y43:assets%2Fimages%2Ftv%2Factivatetvuserde.pngR2i16406R3R26R5R198R6tgoR0y43:assets%2Fimages%2Ftv%2Factivatetvuseren.pngR2i16116R3R26R5R199R6tgoR0y43:assets%2Fimages%2Ftv%2Factivatetvuserfr.pngR2i18467R3R26R5R200R6tgoR0y42:assets%2Fimages%2Ftv%2Factivetvservice.pngR2i11915R3R26R5R201R6tgoR0y41:assets%2Fimages%2Ftv%2Fhdmiconnection.pngR2i356587R3R26R5R202R6tgoR0y37:assets%2Fimages%2Ftv%2Fjerkyimage.pngR2i494403R3R26R5R203R6tgoR0y38:assets%2Fimages%2Ftv%2Fjerky_image.pngR2i4322688R3R26R5R204R6tgoR0y46:assets%2Fimages%2Ftv%2Fpowercablepluggedin.pngR2i223012R3R26R5R205R6tgoR0y37:assets%2Fimages%2Ftv%2Fsalttvicon.pngR2i58598R3R26R5R206R6tgoR0y52:assets%2Fimages%2Ftv%2Fsalttv_remote%2Fbatteries.pngR2i52795R3R26R5R207R6tgoR0y36:assets%2Fimages%2Ftv%2Fstatusled.pngR2i60995R3R26R5R208R6tgoR0y39:assets%2Fimages%2Ftv%2Ftvhomescreen.pngR2i366304R3R26R5R209R6tgoR0y39:assets%2Fimages%2Ftv%2Fupdatesalttv.pngR2i336211R3R26R5R210R6tgoR0y35:assets%2Fimages%2Fui%2Fall-good.pngR2i4661R3R26R5R211R6tgoR0y31:assets%2Fimages%2Fui%2Fback.pngR2i7760R3R26R5R212R6tgoR0y36:assets%2Fimages%2Fui%2FclipBoard.pngR2i2456R3R26R5R213R6tgoR0y32:assets%2Fimages%2Fui%2Fclose.pngR2i4989R3R26R5R214R6tgoR0y34:assets%2Fimages%2Fui%2Fcomment.pngR2i6291R3R26R5R215R6tgoR0y29:assets%2Fimages%2Fui%2Fde.pngR2i3650R3R26R5R216R6tgoR0y31:assets%2Fimages%2Fui%2Fdown.pngR2i6660R3R26R5R217R6tgoR0y29:assets%2Fimages%2Fui%2Fen.pngR2i3572R3R26R5R218R6tgoR0y31:assets%2Fimages%2Fui%2Fexit.pngR2i4953R3R26R5R219R6tgoR0y29:assets%2Fimages%2Fui%2Ffr.pngR2i3645R3R26R5R220R6tgoR0y31:assets%2Fimages%2Fui%2Fhelp.pngR2i7180R3R26R5R221R6tgoR0y32:assets%2Fimages%2Fui%2Fhowto.pngR2i3824R3R26R5R222R6tgoR0y29:assets%2Fimages%2Fui%2Fit.pngR2i2051R3R26R5R223R6tgoR0y31:assets%2Fimages%2Fui%2Fleft.pngR2i5261R3R26R5R224R6tgoR0y32:assets%2Fimages%2Fui%2Flight.pngR2i7477R3R26R5R225R6tgoR0y33:assets%2Fimages%2Fui%2Flogout.pngR2i4472R3R26R5R226R6tgoR0y31:assets%2Fimages%2Fui%2Fmail.pngR2i21955R3R26R5R227R6tgoR0y37:assets%2Fimages%2Fui%2FpageLoader.pngR2i11707R3R26R5R228R6tgoR0y32:assets%2Fimages%2Fui%2Fright.pngR2i5276R3R26R5R229R6tgoR0y33:assets%2Fimages%2Fui%2Fscript.pngR2i8958R3R26R5R230R6tgoR0y34:assets%2Fimages%2Fui%2FshowPwd.pngR2i8423R3R26R5R231R6tgoR0y38:assets%2Fimages%2Fui%2FsimpleAlert.pngR2i1102R3R26R5R232R6tgoR0y35:assets%2Fimages%2Fui%2Ftemplate.pngR2i11468R3R26R5R233R6tgoR0y39:assets%2Fimages%2Fui%2FtrainingMode.pngR2i5713R3R26R5R234R6tgoR0y41:assets%2Fimages%2Fui%2FtutoKeyboardDE.pngR2i197972R3R26R5R235R6tgoR0y41:assets%2Fimages%2Fui%2FtutoKeyboardEN.pngR2i194114R3R26R5R236R6tgoR0y41:assets%2Fimages%2Fui%2FtutoKeyboardFR.pngR2i197400R3R26R5R237R6tgoR0y41:assets%2Fimages%2Fui%2FtutoKeyboardIT.pngR2i196927R3R26R5R238R6tgoR0y34:assets%2Fimages%2Fui%2Fversion.pngR2i33131R3R26R5R239R6tgoR0y40:assets%2Fimages%2Fvoip%2Fcall_fwd_de.pngR2i47216R3R26R5R240R6tgoR0y40:assets%2Fimages%2Fvoip%2Fcall_fwd_en.pngR2i45104R3R26R5R241R6tgoR0y40:assets%2Fimages%2Fvoip%2Fcall_fwd_fr.pngR2i45140R3R26R5R242R6tgoR0y41:assets%2Fimages%2Fvoip%2Fdect_vs_rj11.pngR2i136223R3R26R5R243R6tgoR0y39:assets%2Fimages%2Fvoip%2Ffnp_cc_tab.pngR2i39284R3R26R5R244R6tgoR0y36:assets%2Fimages%2Fvoip%2Fgigaset.pngR2i163992R3R26R5R245R6tgoR0y45:assets%2Fimages%2Fvoip%2Fgigaset_charging.pngR2i130591R3R26R5R246R6tgoR0y40:assets%2Fimages%2Fvoip%2Ftecrep_voip.pngR2i199026R3R26R5R247R6tgoR0y41:assets%2Fimages%2Fvoip%2Fvoip_barring.pngR2i213324R3R26R5R248R6tgoR0y38:assets%2Fimages%2Fvti%2Faddnote2de.pngR2i19186R3R26R5R249R6tgoR0y38:assets%2Fimages%2Fvti%2Faddnote2en.pngR2i17425R3R26R5R250R6tgoR0y38:assets%2Fimages%2Fvti%2Faddnote2fr.pngR2i18145R3R26R5R251R6tgoR0y38:assets%2Fimages%2Fvti%2Faddnote2it.pngR2i20531R3R26R5R252R6tgoR0y37:assets%2Fimages%2Fvti%2Faddnotede.pngR2i22078R3R26R5R253R6tgoR0y37:assets%2Fimages%2Fvti%2Faddnoteen.pngR2i19767R3R26R5R254R6tgoR0y37:assets%2Fimages%2Fvti%2Faddnotefr.pngR2i20102R3R26R5R255R6tgoR0y37:assets%2Fimages%2Fvti%2Faddnoteit.pngR2i17157R3R26R5R256R6tgoR0y45:assets%2Fimages%2Fvti%2Faddnotenoparcelde.pngR2i13540R3R26R5R257R6tgoR0y45:assets%2Fimages%2Fvti%2Faddnotenoparcelen.pngR2i10609R3R26R5R258R6tgoR0y45:assets%2Fimages%2Fvti%2Faddnotenoparcelfr.pngR2i11244R3R26R5R259R6tgoR0y45:assets%2Fimages%2Fvti%2Faddnotenoparcelit.pngR2i10851R3R26R5R260R6tgoR0y69:assets%2Fimages%2Fvti%2Fbilling%2Factivation_fees%2Fpaid_not_paid.pngR2i38897R3R26R5R261R6tgoR0y56:assets%2Fimages%2Fvti%2Fbilling%2Fcurrent_balance_de.pngR2i6393R3R26R5R262R6tgoR0y56:assets%2Fimages%2Fvti%2Fbilling%2Fcurrent_balance_en.pngR2i6660R3R26R5R263R6tgoR0y56:assets%2Fimages%2Fvti%2Fbilling%2Fcurrent_balance_fr.pngR2i6635R3R26R5R264R6tgoR0y56:assets%2Fimages%2Fvti%2Fbilling%2Fcurrent_balance_it.pngR2i6210R3R26R5R265R6tgoR0y45:assets%2Fimages%2Fvti%2Fbox-management-de.pngR2i27469R3R26R5R266R6tgoR0y45:assets%2Fimages%2Fvti%2Fbox-management-fr.pngR2i28277R3R26R5R267R6tgoR0y42:assets%2Fimages%2Fvti%2Fbox-management.pngR2i20100R3R26R5R268R6tgoR0y49:assets%2Fimages%2Fvti%2Fcheckcontactdetailsde.pngR2i10556R3R26R5R269R6tgoR0y49:assets%2Fimages%2Fvti%2Fcheckcontactdetailsen.pngR2i9945R3R26R5R270R6tgoR0y49:assets%2Fimages%2Fvti%2Fcheckcontactdetailsfr.pngR2i10571R3R26R5R271R6tgoR0y49:assets%2Fimages%2Fvti%2Fcheckcontactdetailsit.pngR2i10107R3R26R5R272R6tgoR0y36:assets%2Fimages%2Fvti%2Fcopy_all.pngR2i163248R3R26R5R273R6tgoR0y52:assets%2Fimages%2Fvti%2Fcopy_all_vti_healthcheck.pngR2i151756R3R26R5R274R6tgoR0y41:assets%2Fimages%2Fvti%2FDatabarred_en.pngR2i45791R3R26R5R275R6tgoR0y41:assets%2Fimages%2Fvti%2FDatabarred_fr.pngR2i48767R3R26R5R276R6tgoR0y44:assets%2Fimages%2Fvti%2Femailvalidatedde.pngR2i24006R3R26R5R277R6tgoR0y44:assets%2Fimages%2Fvti%2Femailvalidateden.pngR2i22551R3R26R5R278R6tgoR0y44:assets%2Fimages%2Fvti%2Femailvalidatedfr.pngR2i24298R3R26R5R279R6tgoR0y46:assets%2Fimages%2Fvti%2FemailValidationBTN.pngR2i47827R3R26R5R280R6tgoR0y66:assets%2Fimages%2Fvti%2Fequipment%2Foto_visible_offer_mgt%2Fde.pngR2i187056R3R26R5R281R6tgoR0y66:assets%2Fimages%2Fvti%2Fequipment%2Foto_visible_offer_mgt%2Fen.pngR2i173765R3R26R5R282R6tgoR0y66:assets%2Fimages%2Fvti%2Fequipment%2Foto_visible_offer_mgt%2Ffr.pngR2i178016R3R26R5R283R6tgoR0y66:assets%2Fimages%2Fvti%2Fequipment%2Foto_visible_offer_mgt%2Fit.pngR2i172061R3R26R5R284R6tgoR0y51:assets%2Fimages%2Fvti%2Fequipment%2Fplug_in_use.pngR2i197525R3R26R5R285R6tgoR0y48:assets%2Fimages%2Fvti%2Ffactory_reset_btn_de.pngR2i15400R3R26R5R286R6tgoR0y48:assets%2Fimages%2Fvti%2Ffactory_reset_btn_en.pngR2i15038R3R26R5R287R6tgoR0y48:assets%2Fimages%2Fvti%2Ffactory_reset_btn_fr.pngR2i15563R3R26R5R288R6tgoR0y48:assets%2Fimages%2Fvti%2Ffactory_reset_btn_it.pngR2i14775R3R26R5R289R6tgoR0y45:assets%2Fimages%2Fvti%2FIsBoxReachable_de.pngR2i111685R3R26R5R290R6tgoR0y45:assets%2Fimages%2Fvti%2FIsBoxReachable_en.pngR2i111034R3R26R5R291R6tgoR0y45:assets%2Fimages%2Fvti%2FIsBoxReachable_fr.pngR2i110450R3R26R5R292R6tgoR0y45:assets%2Fimages%2Fvti%2FIsBoxReachable_it.pngR2i110450R3R26R5R293R6tgoR0y39:assets%2Fimages%2Fvti%2Flexincident.pngR2i170368R3R26R5R294R6tgoR0y44:assets%2Fimages%2Fvti%2Fnot-activated-de.pngR2i65256R3R26R5R295R6tgoR0y44:assets%2Fimages%2Fvti%2Fnot-activated-fr.pngR2i65928R3R26R5R296R6tgoR0y50:assets%2Fimages%2Fvti%2Fprovisioning-completed.pngR2i33016R3R26R5R297R6tgoR0y37:assets%2Fimages%2Fvti%2Frouter-de.pngR2i30629R3R26R5R298R6tgoR0y37:assets%2Fimages%2Fvti%2Frouter-fr.pngR2i32078R3R26R5R299R6tgoR0y40:assets%2Fimages%2Fvti%2Frx-values-de.pngR2i68448R3R26R5R300R6tgoR0y40:assets%2Fimages%2Fvti%2Frx-values-en.pngR2i68912R3R26R5R301R6tgoR0y40:assets%2Fimages%2Fvti%2Frx-values-fr.pngR2i67738R3R26R5R302R6tgoR0y40:assets%2Fimages%2Fvti%2Frx-values-it.pngR2i66621R3R26R5R303R6tgoR0y37:assets%2Fimages%2Fvti%2Frx-values.pngR2i67724R3R26R5R304R6tgoR0y48:assets%2Fimages%2Fvti%2Fsearch-contractor-de.pngR2i31330R3R26R5R305R6tgoR0y48:assets%2Fimages%2Fvti%2Fsearch-contractor-en.pngR2i30844R3R26R5R306R6tgoR0y48:assets%2Fimages%2Fvti%2Fsearch-contractor-it.pngR2i30907R3R26R5R307R6tgoR0y45:assets%2Fimages%2Fvti%2Fsearch-contractor.pngR2i32380R3R26R5R308R6tgoR0y55:assets%2Fimages%2Fvti%2Fsearchandverifycontractorde.pngR2i123778R3R26R5R309R6tgoR0y55:assets%2Fimages%2Fvti%2Fsearchandverifycontractoren.pngR2i118608R3R26R5R310R6tgoR0y55:assets%2Fimages%2Fvti%2Fsearchandverifycontractorfr.pngR2i176741R3R26R5R311R6tgoR0y55:assets%2Fimages%2Fvti%2Fsearchandverifycontractorit.pngR2i176875R3R26R5R312R6tgoR0y46:assets%2Fimages%2Fvti%2Fsearchcontractorfr.pngR2i100104R3R26R5R313R6tgoR0y41:assets%2Fimages%2Fvti%2Ftrackandtrace.pngR2i7645R3R26R5R314R6tgoR0y44:assets%2Fimages%2Fvti%2FTroubleShootWiFi.pngR2i51848R3R26R5R315R6tgoR0y47:assets%2Fimages%2Fvti%2FvtiPomOrderingPhase.pngR2i97676R3R26R5R316R6tgoR0y43:assets%2Fimages%2Fvti%2FvtiPostTracking.pngR2i97466R3R26R5R317R6tgoR0y37:assets%2Fimages%2Fvti%2Fvti_rx_de.pngR2i42234R3R26R5R318R6tgoR0y37:assets%2Fimages%2Fvti%2Fvti_rx_en.pngR2i41344R3R26R5R319R6tgoR0y37:assets%2Fimages%2Fvti%2Fvti_rx_fr.pngR2i43569R3R26R5R320R6tgoR0y37:assets%2Fimages%2Fvti%2Fvti_rx_it.pngR2i40306R3R26R5R321R6tgoR0y37:assets%2Fimages%2Fvti%2Fwhishdate.pngR2i44045R3R26R5R322R6tgoR0y48:assets%2Fimages%2Fvti%2FWifiOnInDashboard-de.pngR2i46472R3R26R5R323R6tgoR0y48:assets%2Fimages%2Fvti%2FWifiOnInDashboard-en.pngR2i48552R3R26R5R324R6tgoR0y48:assets%2Fimages%2Fvti%2FWifiOnInDashboard-fr.pngR2i46938R3R26R5R325R6tgoR0y48:assets%2Fimages%2Fvti%2FWifiOnInDashboard-it.pngR2i46938R3R26R5R326R6tgoR0y61:assets%2Fimages%2Fwifi%2FExtender_Salt_Fiber_box_DE_small.pngR2i304426R3R26R5R327R6tgoR0y61:assets%2Fimages%2Fwifi%2FExtender_Salt_Fiber_box_EN_small.pngR2i282483R3R26R5R328R6tgoR0y61:assets%2Fimages%2Fwifi%2FExtender_Salt_Fiber_box_FR_small.pngR2i297123R3R26R5R329R6tgoR0y61:assets%2Fimages%2Fwifi%2FExtender_Salt_Fiber_box_IT_small.pngR2i293854R3R26R5R330R6tgoR0y37:assets%2Fimages%2Fwifi%2Frepeater.pngR2i15557R3R26R5R331R6tgoR0y37:assets%2Flocales%2Fde-DE%2Fall_de.txtR2i7408R3R4R5R332R6tgoR0y37:assets%2Flocales%2Fde-DE%2Fatf_de.txtR2i2626R3R4R5R333R6tgoR0y40:assets%2Flocales%2Fde-DE%2Fcables_de.txtR2i2657R3R4R5R334R6tgoR0y44:assets%2Flocales%2Fde-DE%2Fcollection_de.txtR2i4094R3R4R5R335R6tgoR0y43:assets%2Flocales%2Fde-DE%2Fequipment_de.txtR2i6639R3R4R5R336R6tgoR0y44:assets%2Flocales%2Fde-DE%2Fescalation_de.txtR2i4608R3R4R5R337R6tgoR0y38:assets%2Flocales%2Fde-DE%2Fftth_de.txtR2i6245R3R4R5R338R6tgoR0y41:assets%2Flocales%2Fde-DE%2Fheaders_de.txtR2i4293R3R4R5R339R6tgoR0y57:assets%2Flocales%2Fde-DE%2Finstallation-activation_de.txtR2i4011R3R4R5R340R6tgoR0y38:assets%2Flocales%2Fde-DE%2Fmeta_de.txtR2i645R3R4R5R341R6tgoR0y44:assets%2Flocales%2Fde-DE%2Fnointernet_de.txtR2i15849R3R4R5R342R6tgoR0y39:assets%2Flocales%2Fde-DE%2Fphone_de.txtR2i6100R3R4R5R343R6tgoR0y40:assets%2Flocales%2Fde-DE%2Fremote_de.txtR2i6395R3R4R5R344R6tgoR0y40:assets%2Flocales%2Fde-DE%2Fsalttv_de.txtR2i12017R3R4R5R345R6tgoR0y43:assets%2Flocales%2Fde-DE%2Fstability_de.txtR2i4070R3R4R5R346R6tgoR0y41:assets%2Flocales%2Fde-DE%2Ftvsound_de.txtR2i3382R3R4R5R347R6tgoR0y43:assets%2Flocales%2Fde-DE%2Fvalidator_de.txtR2i230R3R4R5R348R6tgoR0y42:assets%2Flocales%2Fde-DE%2Fwifi-lan_de.txtR2i8873R3R4R5R349R6tgoR0y37:assets%2Flocales%2Fen-GB%2Fall_en.txtR2i6320R3R4R5R350R6tgoR0y37:assets%2Flocales%2Fen-GB%2Fatf_en.txtR2i2285R3R4R5R351R6tgoR0y40:assets%2Flocales%2Fen-GB%2Fcables_en.txtR2i2245R3R4R5R352R6tgoR0y44:assets%2Flocales%2Fen-GB%2Fcollection_en.txtR2i3845R3R4R5R353R6tgoR0y43:assets%2Flocales%2Fen-GB%2Fequipment_en.txtR2i6496R3R4R5R354R6tgoR0y44:assets%2Flocales%2Fen-GB%2Fescalation_en.txtR2i4124R3R4R5R355R6tgoR0y38:assets%2Flocales%2Fen-GB%2Fftth_en.txtR2i5473R3R4R5R356R6tgoR0y41:assets%2Flocales%2Fen-GB%2Fheaders_en.txtR2i4142R3R4R5R357R6tgoR0y57:assets%2Flocales%2Fen-GB%2Finstallation-activation_en.txtR2i3539R3R4R5R358R6tgoR0y38:assets%2Flocales%2Fen-GB%2Fmeta_en.txtR2i575R3R4R5R359R6tgoR0y44:assets%2Flocales%2Fen-GB%2Fnointernet_en.txtR2i14020R3R4R5R360R6tgoR0y39:assets%2Flocales%2Fen-GB%2Fphone_en.txtR2i5119R3R4R5R361R6tgoR0y40:assets%2Flocales%2Fen-GB%2Fremote_en.txtR2i4940R3R4R5R362R6tgoR0y40:assets%2Flocales%2Fen-GB%2Fsalttv_en.txtR2i10822R3R4R5R363R6tgoR0y43:assets%2Flocales%2Fen-GB%2Fstability_en.txtR2i3526R3R4R5R364R6tgoR0y41:assets%2Flocales%2Fen-GB%2Ftvsound_en.txtR2i3022R3R4R5R365R6tgoR0y43:assets%2Flocales%2Fen-GB%2Fvalidator_en.txtR2i235R3R4R5R366R6tgoR0y42:assets%2Flocales%2Fen-GB%2Fwifi-lan_en.txtR2i7656R3R4R5R367R6tgoR0y37:assets%2Flocales%2Ffr-FR%2Fall_fr.txtR2i7251R3R4R5R368R6tgoR0y37:assets%2Flocales%2Ffr-FR%2Fatf_fr.txtR2i2571R3R4R5R369R6tgoR0y40:assets%2Flocales%2Ffr-FR%2Fcables_fr.txtR2i2447R3R4R5R370R6tgoR0y44:assets%2Flocales%2Ffr-FR%2Fcollection_fr.txtR2i4107R3R4R5R371R6tgoR0y43:assets%2Flocales%2Ffr-FR%2Fequipment_fr.txtR2i6323R3R4R5R372R6tgoR0y44:assets%2Flocales%2Ffr-FR%2Fescalation_fr.txtR2i4430R3R4R5R373R6tgoR0y38:assets%2Flocales%2Ffr-FR%2Fftth_fr.txtR2i5911R3R4R5R374R6tgoR0y41:assets%2Flocales%2Ffr-FR%2Fheaders_fr.txtR2i4352R3R4R5R375R6tgoR0y57:assets%2Flocales%2Ffr-FR%2Finstallation-activation_fr.txtR2i3806R3R4R5R376R6tgoR0y38:assets%2Flocales%2Ffr-FR%2Fmeta_fr.txtR2i658R3R4R5R377R6tgoR0y44:assets%2Flocales%2Ffr-FR%2Fnointernet_fr.txtR2i15577R3R4R5R378R6tgoR0y39:assets%2Flocales%2Ffr-FR%2Fphone_fr.txtR2i5981R3R4R5R379R6tgoR0y40:assets%2Flocales%2Ffr-FR%2Fremote_fr.txtR2i5806R3R4R5R380R6tgoR0y40:assets%2Flocales%2Ffr-FR%2Fsalttv_fr.txtR2i12150R3R4R5R381R6tgoR0y43:assets%2Flocales%2Ffr-FR%2Fstability_fr.txtR2i4066R3R4R5R382R6tgoR0y41:assets%2Flocales%2Ffr-FR%2Ftvsound_fr.txtR2i3503R3R4R5R383R6tgoR0y43:assets%2Flocales%2Ffr-FR%2Fvalidator_fr.txtR2i244R3R4R5R384R6tgoR0y42:assets%2Flocales%2Ffr-FR%2Fwifi-lan_fr.txtR2i9002R3R4R5R385R6tgoR0y28:assets%2Flocales%2Findex.xmlR2i5741R3R4R5R386R6tgoR0y37:assets%2Flocales%2Fit-IT%2Fall_it.txtR2i7083R3R4R5R387R6tgoR0y37:assets%2Flocales%2Fit-IT%2Fatf_it.txtR2i2400R3R4R5R388R6tgoR0y40:assets%2Flocales%2Fit-IT%2Fcables_it.txtR2i2435R3R4R5R389R6tgoR0y44:assets%2Flocales%2Fit-IT%2Fcollection_it.txtR2i4161R3R4R5R390R6tgoR0y43:assets%2Flocales%2Fit-IT%2Fequipment_it.txtR2i6264R3R4R5R391R6tgoR0y44:assets%2Flocales%2Fit-IT%2Fescalation_it.txtR2i4439R3R4R5R392R6tgoR0y38:assets%2Flocales%2Fit-IT%2Fftth_it.txtR2i5653R3R4R5R393R6tgoR0y41:assets%2Flocales%2Fit-IT%2Fheaders_it.txtR2i4364R3R4R5R394R6tgoR0y57:assets%2Flocales%2Fit-IT%2Finstallation-activation_it.txtR2i3719R3R4R5R395R6tgoR0y38:assets%2Flocales%2Fit-IT%2Fmeta_it.txtR2i664R3R4R5R396R6tgoR0y44:assets%2Flocales%2Fit-IT%2Fnointernet_it.txtR2i14840R3R4R5R397R6tgoR0y39:assets%2Flocales%2Fit-IT%2Fphone_it.txtR2i5987R3R4R5R398R6tgoR0y40:assets%2Flocales%2Fit-IT%2Fremote_it.txtR2i5344R3R4R5R399R6tgoR0y40:assets%2Flocales%2Fit-IT%2Fsalttv_it.txtR2i11495R3R4R5R400R6tgoR0y43:assets%2Flocales%2Fit-IT%2Fstability_it.txtR2i3840R3R4R5R401R6tgoR0y41:assets%2Flocales%2Fit-IT%2Ftvsound_it.txtR2i3201R3R4R5R402R6tgoR0y43:assets%2Flocales%2Fit-IT%2Fvalidator_it.txtR2i318R3R4R5R403R6tgoR0y42:assets%2Flocales%2Fit-IT%2Fwifi-lan_it.txtR2i9502R3R4R5R404R6tgoR2i2114R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3y9:pathGroupaR406y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R405R5y28:flixel%2Fsounds%2Fflixel.mp3R407aR409y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i5794R3y5:SOUNDR5R408R407aR406R408hgoR2i33629R3R411R5R410R407aR409R410hgoR2i15744R3R13R14y35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R13R14y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R26R5R416R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R26R5R417R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Fbox.pngR2i912R3R26R5R418R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fbutton.pngR2i433R3R26R5R419R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_down.pngR2i446R3R26R5R420R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_left.pngR2i459R3R26R5R421R6tgoR0y49:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_right.pngR2i511R3R26R5R422R6tgoR0y46:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_up.pngR2i493R3R26R5R423R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fbutton_thin.pngR2i247R3R26R5R424R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fbutton_toggle.pngR2i534R3R26R5R425R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fcheck_box.pngR2i922R3R26R5R426R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fcheck_mark.pngR2i946R3R26R5R427R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fchrome.pngR2i253R3R26R5R428R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fchrome_flat.pngR2i212R3R26R5R429R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_inset.pngR2i192R3R26R5R430R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_light.pngR2i214R3R26R5R431R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fdropdown_mark.pngR2i156R3R26R5R432R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Ffinger_big.pngR2i1724R3R26R5R433R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Ffinger_small.pngR2i294R3R26R5R434R6tgoR0y38:flixel%2Fflixel-ui%2Fimg%2Fhilight.pngR2i129R3R26R5R435R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Finvis.pngR2i128R3R26R5R436R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fminus_mark.pngR2i136R3R26R5R437R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fplus_mark.pngR2i147R3R26R5R438R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Fradio.pngR2i191R3R26R5R439R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fradio_dot.pngR2i153R3R26R5R440R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fswatch.pngR2i185R3R26R5R441R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Ftab.pngR2i201R3R26R5R442R6tgoR0y39:flixel%2Fflixel-ui%2Fimg%2Ftab_back.pngR2i210R3R26R5R443R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Ftooltip_arrow.pngR2i18509R3R26R5R444R6tgoR0y39:flixel%2Fflixel-ui%2Fxml%2Fdefaults.xmlR2i1299R3R4R5R445R6tgoR0y53:flixel%2Fflixel-ui%2Fxml%2Fdefault_loading_screen.xmlR2i2012R3R4R5R446R6tgoR0y44:flixel%2Fflixel-ui%2Fxml%2Fdefault_popup.xmlR2i1907R3R4R5R447R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	var manifest = lime_utils_AssetManifest.parse(data,ManifestResources.rootPath);
 	var library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -5525,113 +5528,6 @@ Xml.prototype = {
 	}
 	,__class__: Xml
 };
-var firetongue_CSV = function(input,delimeter,quoted) {
-	if(quoted == null) {
-		quoted = true;
-	}
-	if(delimeter == null) {
-		delimeter = ",";
-	}
-	this._delimeter = "";
-	this._delimeter = delimeter;
-	this._quoted = quoted;
-	if(input != "") {
-		this.processRows(this.getRows(input));
-	}
-};
-$hxClasses["firetongue.CSV"] = firetongue_CSV;
-firetongue_CSV.__name__ = "firetongue.CSV";
-firetongue_CSV.prototype = {
-	destroy: function() {
-		this.clearArray(this.grid);
-		this.clearArray(this.fields);
-		this.grid = null;
-		this.fields = null;
-	}
-	,clearArray: function(array) {
-		if(array == null) {
-			return;
-		}
-		var i = array.length - 1;
-		while(i >= 0) {
-			this.destroyThing(array[i]);
-			array[i] = null;
-			array.splice(i,1);
-			--i;
-		}
-		array = null;
-	}
-	,destroyThing: function(thing) {
-		if(thing == null) {
-			return;
-		}
-		if(((thing) instanceof Array)) {
-			this.clearArray(thing);
-		}
-		thing = null;
-	}
-	,getCells: function(row) {
-		if(this._rgx == null) {
-			if(row.charAt(row.length - 1) == this._delimeter) {
-				row = HxOverrides.substr(row,0,row.length - 1);
-			}
-			if(this._delimeter == ",") {
-				this._rgx = new EReg(",(?=(?:[^\\x22]*\\x22[^\\x22]*\\x22)*(?![^\\x22]*\\x22))","gm");
-			} else {
-				this._rgx = new EReg(this._delimeter + "(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))","gm");
-			}
-		}
-		return this._rgx.split(row);
-	}
-	,getRows: function(input) {
-		var endl = "\r\n";
-		if(input.indexOf("\r\n") == -1) {
-			endl = "\n";
-		}
-		return input.split(endl);
-	}
-	,processCells: function(cells,row) {
-		if(row == null) {
-			row = 0;
-		}
-		var col = 0;
-		var newline = false;
-		var row_array = null;
-		if(this.grid == null) {
-			this.grid = [];
-			this.fields = [];
-		}
-		row_array = [];
-		var _g = 0;
-		var _g1 = cells.length;
-		while(_g < _g1) {
-			var i = _g++;
-			var cell = "";
-			if(this._quoted) {
-				cell = HxOverrides.substr(cells[i],1,cells[i].length - 2);
-			} else {
-				cell = cells[i];
-			}
-			if(row == 0) {
-				this.fields.push(cell);
-			} else {
-				row_array.push(cell);
-			}
-		}
-		this.grid.push(row_array);
-		this.clearArray(cells);
-		cells = null;
-	}
-	,processRows: function(rows) {
-		var _g = 0;
-		var _g1 = rows.length;
-		while(_g < _g1) {
-			var i = _g++;
-			this.processCells(this.getCells(rows[i]),i);
-		}
-	}
-	,__class__: firetongue_CSV
-};
 var firetongue_FireTongue = function(framework,checkFile,getText,getDirectoryContents,forceCase) {
 	if(forceCase == null) {
 		forceCase = 1;
@@ -5973,7 +5869,7 @@ firetongue_FireTongue.prototype = {
 				delimeter = haxe_xml__$Access_AttribAccess.resolve(haxe_xml__$Access_NodeAccess.resolve(fileData,"file"),"delimeter");
 			}
 			if(raw_data != "" && raw_data != null) {
-				var csv = new firetongue_CSV(raw_data,delimeter);
+				var csv = new firetongue_format_CSV(raw_data,delimeter);
 				this.processCSV(csv,fileID,checkVsDefault);
 			} else if(this.checkMissing) {
 				this.logMissingFile(fileName);
@@ -5991,7 +5887,7 @@ firetongue_FireTongue.prototype = {
 			var raw_data = null;
 			var raw_data = this.loadText(loc + "/" + fileName);
 			if(raw_data != "" && raw_data != null) {
-				var tsv = new firetongue_TSV(raw_data);
+				var tsv = new firetongue_format_TSV(raw_data);
 				this.processCSV(tsv,fileID,checkVsDefault);
 			} else if(this.checkMissing) {
 				this.logMissingFile(fileName);
@@ -6471,7 +6367,7 @@ firetongue_FireTongue.prototype = {
 			--failsafe;
 		}
 		if(failsafe <= 0) {
-			haxe_Log.trace("WARNING! > " + failsafe + " redirections detected when processing (" + orig + "), failsafe tripped!",{ fileName : "firetongue/FireTongue.hx", lineNumber : 1425, className : "firetongue.FireTongue", methodName : "tryRedirect"});
+			haxe_Log.trace("WARNING! > " + failsafe + " redirections detected when processing (" + orig + "), failsafe tripped!",{ fileName : "firetongue/FireTongue.hx", lineNumber : 1427, className : "firetongue.FireTongue", methodName : "tryRedirect"});
 			str = orig;
 		}
 		if(str == null && last != null) {
@@ -6572,13 +6468,13 @@ firetongue_Getter.prototype = {
 		}
 	}
 	,getDirectoryContents_OpenFL: function(path) {
-		return this.limitPath(openfl_utils_Assets.list("TEXT"),path);
+		return this.limitPath(lime_utils_Assets.list("TEXT"),path);
 	}
 	,getText_OpenFL: function(filename) {
-		return openfl_utils_Assets.getText(filename);
+		return lime_utils_Assets.getText(filename);
 	}
 	,checkFile_OpenFL: function(filename) {
-		return openfl_utils_Assets.exists(filename);
+		return lime_utils_Assets.exists(filename);
 	}
 	,getDirectoryContents_Lime: function(path) {
 		return this.limitPath(lime_utils_Assets.list("TEXT"),path);
@@ -6642,13 +6538,120 @@ firetongue_Replace.registerTags = function(tag) {
 		firetongue_Replace.TAGS.push(tag);
 	}
 };
-var firetongue_TSV = function(input) {
-	firetongue_CSV.call(this,input,"\t",false);
+var firetongue_format_CSV = function(input,delimeter,quoted) {
+	if(quoted == null) {
+		quoted = true;
+	}
+	if(delimeter == null) {
+		delimeter = ",";
+	}
+	this._delimeter = "";
+	this._delimeter = delimeter;
+	this._quoted = quoted;
+	if(input != "") {
+		this.processRows(this.getRows(input));
+	}
 };
-$hxClasses["firetongue.TSV"] = firetongue_TSV;
-firetongue_TSV.__name__ = "firetongue.TSV";
-firetongue_TSV.__super__ = firetongue_CSV;
-firetongue_TSV.prototype = $extend(firetongue_CSV.prototype,{
+$hxClasses["firetongue.format.CSV"] = firetongue_format_CSV;
+firetongue_format_CSV.__name__ = "firetongue.format.CSV";
+firetongue_format_CSV.prototype = {
+	destroy: function() {
+		this.clearArray(this.grid);
+		this.clearArray(this.fields);
+		this.grid = null;
+		this.fields = null;
+	}
+	,clearArray: function(array) {
+		if(array == null) {
+			return;
+		}
+		var i = array.length - 1;
+		while(i >= 0) {
+			this.destroyThing(array[i]);
+			array[i] = null;
+			array.splice(i,1);
+			--i;
+		}
+		array = null;
+	}
+	,destroyThing: function(thing) {
+		if(thing == null) {
+			return;
+		}
+		if(((thing) instanceof Array)) {
+			this.clearArray(thing);
+		}
+		thing = null;
+	}
+	,getCells: function(row) {
+		if(this._rgx == null) {
+			if(row.charAt(row.length - 1) == this._delimeter) {
+				row = HxOverrides.substr(row,0,row.length - 1);
+			}
+			if(this._delimeter == ",") {
+				this._rgx = new EReg(",(?=(?:[^\\x22]*\\x22[^\\x22]*\\x22)*(?![^\\x22]*\\x22))","gm");
+			} else {
+				this._rgx = new EReg(this._delimeter + "(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))","gm");
+			}
+		}
+		return this._rgx.split(row);
+	}
+	,getRows: function(input) {
+		var endl = "\r\n";
+		if(input.indexOf("\r\n") == -1) {
+			endl = "\n";
+		}
+		return input.split(endl);
+	}
+	,processCells: function(cells,row) {
+		if(row == null) {
+			row = 0;
+		}
+		var col = 0;
+		var newline = false;
+		var row_array = null;
+		if(this.grid == null) {
+			this.grid = [];
+			this.fields = [];
+		}
+		row_array = [];
+		var _g = 0;
+		var _g1 = cells.length;
+		while(_g < _g1) {
+			var i = _g++;
+			var cell = "";
+			if(this._quoted) {
+				cell = HxOverrides.substr(cells[i],1,cells[i].length - 2);
+			} else {
+				cell = cells[i];
+			}
+			if(row == 0) {
+				this.fields.push(cell);
+			} else {
+				row_array.push(cell);
+			}
+		}
+		this.grid.push(row_array);
+		this.clearArray(cells);
+		cells = null;
+	}
+	,processRows: function(rows) {
+		var _g = 0;
+		var _g1 = rows.length;
+		while(_g < _g1) {
+			var i = _g++;
+			this.processCells(this.getCells(rows[i]),i);
+		}
+	}
+	,__class__: firetongue_format_CSV
+};
+var firetongue_format_TSV = function(input) {
+	firetongue_format_CSV.call(this,input,"\t",false);
+};
+$hxClasses["firetongue.format.TSV"] = firetongue_format_TSV;
+firetongue_format_TSV.__name__ = "firetongue.format.TSV";
+firetongue_format_TSV.__super__ = firetongue_format_CSV;
+firetongue_format_TSV.prototype = $extend(firetongue_format_CSV.prototype,{
 	processRows: function(rows) {
 		var _g = 0;
 		var _g1 = rows.length;
@@ -6662,7 +6665,7 @@ firetongue_TSV.prototype = $extend(firetongue_CSV.prototype,{
 	,getCells: function(row) {
 		return row.split("\t");
 	}
-	,__class__: firetongue_TSV
+	,__class__: firetongue_format_TSV
 });
 var flixel_IFlxBasic = function() { };
 $hxClasses["flixel.IFlxBasic"] = flixel_IFlxBasic;
@@ -40855,7 +40858,6 @@ tstool_process_Triplet.prototype = $extend(tstool_process_Process.prototype,{
 		this.btnMid.updateHitbox();
 		this.positionThis();
 		this.setStyle();
-		this.setStyle();
 	}
 	,positionThis: function(offSet) {
 		this.positionMain([this.btnNo,this.btnMid,this.btnYes],offSet);
@@ -40973,6 +40975,31 @@ flow_all_customer__$SendTechMail.prototype = $extend(tstool_process_Action.proto
 	}
 	,__class__: flow_all_customer__$SendTechMail
 });
+var flow_all_fiberbox_AreYouUsingTheMMLanNetwork = function() {
+	tstool_process_Descision.call(this);
+};
+$hxClasses["flow.all.fiberbox.AreYouUsingTheMMLanNetwork"] = flow_all_fiberbox_AreYouUsingTheMMLanNetwork;
+flow_all_fiberbox_AreYouUsingTheMMLanNetwork.__name__ = "flow.all.fiberbox.AreYouUsingTheMMLanNetwork";
+flow_all_fiberbox_AreYouUsingTheMMLanNetwork.__super__ = tstool_process_Descision;
+flow_all_fiberbox_AreYouUsingTheMMLanNetwork.prototype = $extend(tstool_process_Descision.prototype,{
+	onYesClick: function() {
+		if(Main.HISTORY.isClassInteractionInHistory(flow_tv_WhatIStheTVIssue,tstool_layout_Interactions.No)) {
+			this._nexts = [{ step : flow_tv_sound__$MakeSureHDMIWellConnected}];
+		} else if(Main.HISTORY.isClassInteractionInHistory(flow_tv_WhatIStheTVIssue,tstool_layout_Interactions.Mid)) {
+			this._nexts = [{ step : flow_tv_hardware_IsAppleTVvisibleOnTVScreen}];
+		} else if(Main.HISTORY.isClassInteractionInHistory(flow_all_customer_LanOrWiFi,tstool_layout_Interactions.No)) {
+			this._nexts = [{ step : flow_stability__$TestSpeed}];
+		} else {
+			this._nexts = [{ step : flow_wifi_HaveRepeater}];
+		}
+		tstool_process_Descision.prototype.onYesClick.call(this);
+	}
+	,onNoClick: function() {
+		this._nexts = [{ step : flow_wifi__$InformAboutRepeaterGoodness, params : []}];
+		tstool_process_Descision.prototype.onNoClick.call(this);
+	}
+	,__class__: flow_all_fiberbox_AreYouUsingTheMMLanNetwork
+});
 var flow_all_fiberbox_Box = $hxEnums["flow.all.fiberbox.Box"] = { __ename__:"flow.all.fiberbox.Box",__constructs__:null
 	,Sagem: {_hx_name:"Sagem",_hx_index:0,__enum__:"flow.all.fiberbox.Box",toString:$estr}
 	,Arcadyan: {_hx_name:"Arcadyan",_hx_index:1,__enum__:"flow.all.fiberbox.Box",toString:$estr}
@@ -40986,21 +41013,7 @@ $hxClasses["flow.all.fiberbox.WhatBoxIsIt"] = flow_all_fiberbox_WhatBoxIsIt;
 flow_all_fiberbox_WhatBoxIsIt.__name__ = "flow.all.fiberbox.WhatBoxIsIt";
 flow_all_fiberbox_WhatBoxIsIt.__super__ = tstool_process_Triplet;
 flow_all_fiberbox_WhatBoxIsIt.prototype = $extend(tstool_process_Triplet.prototype,{
-	onYesClick: function() {
-		this.setCustomerProfile(flow_all_fiberbox_Box.Sagem);
-		this._nexts = [{ step : flow_all_fiberbox__$WhereIsBoxPlaced, params : []}];
-		tstool_process_Triplet.prototype.onYesClick.call(this);
-	}
-	,onNoClick: function() {
-		if(Main.customer.get_voIP() == "0000000000") {
-			this.setCustomerProfile(flow_all_fiberbox_Box.Arcadyan,true);
-		} else {
-			this.setCustomerProfile(flow_all_fiberbox_Box.Arcadyan);
-		}
-		this._nexts = [{ step : flow_all_fiberbox__$WhereIsBoxPlaced, params : []}];
-		tstool_process_Triplet.prototype.onNoClick.call(this);
-	}
-	,openAlert: function(message) {
+	openAlert: function(message) {
 		var alert = new flow_all_fiberbox_AlertBadVoip(message);
 		alert.signal.add($bind(this,this.closeAlert));
 		this.openSubState(alert);
@@ -41012,39 +41025,79 @@ flow_all_fiberbox_WhatBoxIsIt.prototype = $extend(tstool_process_Triplet.prototy
 	}
 	,create: function() {
 		tstool_process_Triplet.prototype.create.call(this);
+		this.box = Type.createEnum(flow_all_fiberbox_Box,Main.customer.get_dataSet().h["PRODUCTS"].h["BOX"]);
 		this.mainIssue = Main.HISTORY.findValueOfFirstClassInHistory(flow_Intro,"ISSUE");
 		if(Main.customer.get_contract().get_service() == tstool_salt_Service.Office) {
 			this.btnMid.set_visible(false);
 			this.btnNo.set_visible(false);
 		}
 	}
-	,onMidClick: function() {
-		if(Main.customer.get_voIP() == "0000000000") {
-			this.setCustomerProfile(flow_all_fiberbox_Box.Gigabox);
-			this._nexts = this.mainIssue.value == "tv" ? Main.HISTORY.isClassInteractionInHistory(flow_tv_WhatIStheTVIssue,tstool_layout_Interactions.Mid) ? [{ step : flow_tv_hardware_IsAppleTVvisibleOnTVScreen}] : Main.HISTORY.isClassInteractionInHistory(flow_tv_WhatIStheTVIssue,tstool_layout_Interactions.No) ? [{ step : flow_tv_sound__$MakeSureHDMIWellConnected}] : [{ step : flow_tv_hardware_IsAppleTVFourthGen}] : [{ step : flow_tickets_CustomerInstruction, params : [{ step : flow_nointernet_so__$CreateTicketModemCNX},{ step : flow_nointernet_so__$CreateTicketModemCNX}]}];
-			tstool_process_Triplet.prototype.onMidClick.call(this);
-		} else {
-			var _g = new haxe_ds_StringMap();
-			var value = Main.customer.get_voIP();
-			_g.h["<ID>"] = value;
-			_g.h["<IDNAME>"] = "Voip Number";
-			_g.h["<PRODUCT>"] = "Gigabox";
-			var alert = new flow_all_fiberbox_AlertBadVoip(_g);
-			alert.signal.add($bind(this,this.closeAlert));
-			this.openSubState(alert);
+	,onYesClick: function() {
+		if(this.checkBox(flow_all_fiberbox_Box.Sagem)) {
+			this.setCustomerProfile(flow_all_fiberbox_Box.Sagem);
+			this.getNext(flow_all_fiberbox_Box.Sagem);
+			tstool_process_Triplet.prototype.onYesClick.call(this);
 		}
+	}
+	,onNoClick: function() {
+		if(this.checkBox(flow_all_fiberbox_Box.Arcadyan)) {
+			this.getNext(flow_all_fiberbox_Box.Arcadyan);
+			tstool_process_Triplet.prototype.onNoClick.call(this);
+		}
+	}
+	,onMidClick: function() {
+		if(this.checkBox(flow_all_fiberbox_Box.Gigabox)) {
+			this.getNext(flow_all_fiberbox_Box.Gigabox);
+			tstool_process_Triplet.prototype.onMidClick.call(this);
+		}
+	}
+	,checkBox: function(boxClicked) {
+		if(this.box == boxClicked) {
+			return true;
+		}
+		var _g = new haxe_ds_StringMap();
+		var value = Main.customer.get_voIP();
+		_g.h["<ID>"] = value;
+		_g.h["<IDNAME>"] = "Voip Number";
+		_g.h["<PRODUCT>"] = Std.string(boxClicked);
+		var alert = new flow_all_fiberbox_AlertBadVoip(_g);
+		alert.signal.add($bind(this,this.closeAlert));
+		this.openSubState(alert);
+		return false;
 	}
 	,setCustomerProfile: function(box,fake) {
 		if(fake == null) {
 			fake = false;
 		}
 		Main.customer.set_iri(box != flow_all_fiberbox_Box.Arcadyan || fake ? Main.customer.get_contract().contractorID : Main.customer.get_voIP());
-		var this1 = Main.customer.get_dataSet();
-		var _g = new haxe_ds_StringMap();
-		_g.h["BOX"] = Std.string(box);
-		this1.h["PRODUCTS"] = _g;
 		Main.STORAGE_DISPLAY.push("BOX");
 		tstool_process_Process.STORE("BOX",Std.string(box));
+	}
+	,getNext: function(box) {
+		var mainIssue = Main.HISTORY.findValueOfFirstClassInHistory(flow_Intro,"ISSUE");
+		var phoneIssue = Main.HISTORY.findValueOfFirstClassInHistory(flow_phone_WhatIsthePhoneISsue,"ISSUE");
+		if(box == flow_all_fiberbox_Box.Arcadyan) {
+			this.setCustomerProfile(flow_all_fiberbox_Box.Arcadyan,Main.customer.get_voIP() == "0000000000");
+		} else {
+			this.setCustomerProfile(box);
+		}
+		if(box == flow_all_fiberbox_Box.Gigabox) {
+			this._nexts = mainIssue.value == "tv" ? Main.HISTORY.isClassInteractionInHistory(flow_tv_WhatIStheTVIssue,tstool_layout_Interactions.Mid) ? [{ step : flow_tv_hardware_IsAppleTVvisibleOnTVScreen}] : Main.HISTORY.isClassInteractionInHistory(flow_tv_WhatIStheTVIssue,tstool_layout_Interactions.No) ? [{ step : flow_tv_sound__$MakeSureHDMIWellConnected}] : [{ step : flow_tv_hardware_IsAppleTVFourthGen}] : [{ step : flow_tickets_CustomerInstruction, params : [{ step : flow_nointernet_so__$CreateTicketModemCNX},{ step : flow_nointernet_so__$CreateTicketModemCNX}]}];
+		} else if(Main.HISTORY.isClassInteractionInHistory(flow_all_customer_IsSlowOrKaput,tstool_layout_Interactions.No)) {
+			this._nexts = [{ step : flow_nointernet_fiberbox_IsBoxReachable}];
+		} else if(mainIssue.value == "phone") {
+			if(phoneIssue.value == "drop_calls") {
+				this._nexts = [{ step : flow_phone_IsTheDeviceWorking}];
+			} else if(phoneIssue.value == "caller_id" || phoneIssue.value == "sound_quality") {
+				this._nexts = [{ step : flow_phone_HowIsDeviceConnected}];
+			} else {
+				this._nexts = [{ step : flow_nointernet_fiberbox_IsBoxReachable}];
+			}
+		} else if(box == flow_all_fiberbox_Box.Arcadyan) {
+			this._nexts = [{ step : flow_vti_SerialVTI}];
+		} else {
+			this._nexts = [{ step : flow_vti__$RXfromVTI}];
+		}
 	}
 	,__class__: flow_all_fiberbox_WhatBoxIsIt
 });
@@ -41162,20 +41215,19 @@ flow_all_fiberbox_AlertBadVoip.__super__ = tstool_layout_Alert;
 flow_all_fiberbox_AlertBadVoip.prototype = $extend(tstool_layout_Alert.prototype,{
 	__class__: flow_all_fiberbox_AlertBadVoip
 });
-var flow_all_fiberbox__$AdvicePutOpenSpace = function(next) {
+var flow_all_fiberbox__$AdvicePutOpenSpace = function() {
 	tstool_process_Action.call(this);
-	this._next = next;
 };
 $hxClasses["flow.all.fiberbox._AdvicePutOpenSpace"] = flow_all_fiberbox__$AdvicePutOpenSpace;
 flow_all_fiberbox__$AdvicePutOpenSpace.__name__ = "flow.all.fiberbox._AdvicePutOpenSpace";
 flow_all_fiberbox__$AdvicePutOpenSpace.__super__ = tstool_process_Action;
 flow_all_fiberbox__$AdvicePutOpenSpace.prototype = $extend(tstool_process_Action.prototype,{
 	onClick: function() {
-		if(this._next == null) {
-			var _this = Main.HISTORY;
-			this._next = _this.get_history()[_this.get_history().length - 1].step;
+		if(Main.HISTORY.isClassInHistory(flow_tv_WhatIStheTVIssue)) {
+			this._nexts = [{ step : flow_tv__$CreateSOTicketSaltTV}];
+		} else {
+			this._nexts = [{ step : flow_stability__$CreateSOTechModemSpeed}];
 		}
-		this._nexts = [this._next];
 		tstool_process_Action.prototype.onClick.call(this);
 	}
 	,__class__: flow_all_fiberbox__$AdvicePutOpenSpace
@@ -41371,53 +41423,29 @@ flow_all_fiberbox__$WhereIsBoxPlaced.prototype = $extend(tstool_process_ActionRa
 		}
 	}
 	,getNext: function() {
-		var mainIssue = Main.HISTORY.findValueOfFirstClassInHistory(flow_Intro,"ISSUE");
-		var phoneIssue = Main.HISTORY.findValueOfFirstClassInHistory(flow_phone_WhatIsthePhoneISsue,"ISSUE");
-		if(Main.HISTORY.isClassInteractionInHistory(flow_all_customer_IsSlowOrKaput,tstool_layout_Interactions.No)) {
-			this._nexts = [{ step : flow_nointernet_fiberbox_IsBoxReachable}];
-		} else if(mainIssue.value == "phone") {
-			if(phoneIssue.value == "drop_calls") {
-				this._nexts = [{ step : flow_phone_IsTheDeviceWorking}];
-			} else if(phoneIssue.value == "caller_id" || phoneIssue.value == "sound_quality") {
-				this._nexts = [{ step : flow_phone_HowIsDeviceConnected}];
-			} else {
-				this._nexts = [{ step : flow_nointernet_fiberbox_IsBoxReachable}];
-			}
+		var boxIsInOpendSpace = this.status.h["Placement"] == "Open space";
+		if(Main.HISTORY.isClassInteractionInHistory(flow_tv_WhatIStheTVIssue,tstool_layout_Interactions.No)) {
+			this._nexts = [{ step : flow_tv_sound__$MakeSureHDMIWellConnected}];
+		} else if(Main.HISTORY.isClassInteractionInHistory(flow_tv_WhatIStheTVIssue,tstool_layout_Interactions.Mid)) {
+			this._nexts = [{ step : flow_tv_hardware_IsAppleTVvisibleOnTVScreen}];
+		} else if(Main.HISTORY.isClassInteractionInHistory(flow_all_customer_LanOrWiFi,tstool_layout_Interactions.No)) {
+			this._nexts = [{ step : flow_stability__$TestSpeed}];
 		} else {
-			var tmp;
-			if(Main.customer.get_dataSet() != null) {
-				var this1 = Main.customer.get_dataSet();
-				if(Object.prototype.hasOwnProperty.call(this1.h,"PRODUCTS")) {
-					var this1 = Main.customer.get_dataSet().h["PRODUCTS"];
-					tmp = Object.prototype.hasOwnProperty.call(this1.h,"BOX") && Main.customer.get_dataSet().h["PRODUCTS"].h["BOX"] == "Arcadyan";
-				} else {
-					tmp = false;
+			var _g = this.status.h["Placement"];
+			if(_g == null) {
+				this._nexts = [{ step : flow_wifi_HaveRepeater}];
+			} else {
+				switch(_g) {
+				case "Closed space":
+					this._nexts = [{ step : flow_all_fiberbox__$AdvicePutOpenSpace}];
+					break;
+				case "Multimedia":
+					this._nexts = [{ step : flow_all_fiberbox_AreYouUsingTheMMLanNetwork}];
+					break;
+				default:
+					this._nexts = [{ step : flow_wifi_HaveRepeater}];
 				}
-			} else {
-				tmp = false;
 			}
-			if(tmp) {
-				this._nexts = [{ step : flow_vti_SerialVTI}];
-			} else {
-				this._nexts = [{ step : flow_vti__$RXfromVTI}];
-			}
-		}
-	}
-	,chekcIfArcadyan: function() {
-		if(Main.customer.get_dataSet() != null) {
-			var this1 = Main.customer.get_dataSet();
-			if(Object.prototype.hasOwnProperty.call(this1.h,"PRODUCTS")) {
-				var this1 = Main.customer.get_dataSet().h["PRODUCTS"];
-				if(Object.prototype.hasOwnProperty.call(this1.h,"BOX")) {
-					return Main.customer.get_dataSet().h["PRODUCTS"].h["BOX"] == "Arcadyan";
-				} else {
-					return false;
-				}
-			} else {
-				return false;
-			}
-		} else {
-			return false;
 		}
 	}
 	,__class__: flow_all_fiberbox__$WhereIsBoxPlaced
@@ -41809,11 +41837,11 @@ flow_equipment_IsStatusDelivered.__name__ = "flow.equipment.IsStatusDelivered";
 flow_equipment_IsStatusDelivered.__super__ = tstool_process_Descision;
 flow_equipment_IsStatusDelivered.prototype = $extend(tstool_process_Descision.prototype,{
 	onYesClick: function() {
-		this._nexts = [{ step : flow_ftth_status_WantstoChangeAdress, params : []}];
+		this._nexts = [{ step : flow_equipment__$TellCustToGoToPost, params : []}];
 		tstool_process_Descision.prototype.onYesClick.call(this);
 	}
 	,onNoClick: function() {
-		this._nexts = [{ step : flow_equipment__$TellCustToGoToPost, params : []}];
+		this._nexts = [{ step : flow_ftth_status_WantstoChangeAdress, params : []}];
 		tstool_process_Descision.prototype.onNoClick.call(this);
 	}
 	,__class__: flow_equipment_IsStatusDelivered
@@ -42645,7 +42673,7 @@ flow_ftth_status_CheckInCRMorSO.prototype = $extend(tstool_process_Triplet.proto
 	}
 	,onMidClick: function() {
 		this._nexts = [{ step : flow_equipment__$SoOrderProcessStatusCheck, params : []}];
-		tstool_process_Triplet.prototype.onNoClick.call(this);
+		tstool_process_Triplet.prototype.onMidClick.call(this);
 	}
 	,__class__: flow_ftth_status_CheckInCRMorSO
 });
@@ -42734,7 +42762,7 @@ flow_ftth_status__$CPESendingOngoingOrange.prototype = $extend(tstool_process_Tr
 	}
 	,onMidClick: function() {
 		this._nexts = [{ step : flow_equipment__$OpenPostParcelTracking, params : []}];
-		tstool_process_Triplet.prototype.onNoClick.call(this);
+		tstool_process_Triplet.prototype.onMidClick.call(this);
 	}
 	,__class__: flow_ftth_status__$CPESendingOngoingOrange
 });
@@ -43228,6 +43256,26 @@ flow_lan__$TestWithAnotherLanDevice.prototype = $extend(tstool_process_Descision
 	}
 	,__class__: flow_lan__$TestWithAnotherLanDevice
 });
+var flow_nointernet_customer_BielIncidentInQoof = function() {
+	tstool_process_Action.call(this);
+};
+$hxClasses["flow.nointernet.customer.BielIncidentInQoof"] = flow_nointernet_customer_BielIncidentInQoof;
+flow_nointernet_customer_BielIncidentInQoof.__name__ = "flow.nointernet.customer.BielIncidentInQoof";
+flow_nointernet_customer_BielIncidentInQoof.__super__ = tstool_process_Action;
+flow_nointernet_customer_BielIncidentInQoof.prototype = $extend(tstool_process_Action.prototype,{
+	create: function() {
+		var CheckContractorValues = Main.HISTORY.findValueOfFirstClassInHistory(flow_nointernet_vti_CheckContractorVTI,"incidident_location");
+		if(CheckContractorValues.exists) {
+			this.set__titleTxt(StringTools.replace(this._titleTxt,"<LOCATION>",CheckContractorValues.value.toUpperCase()));
+		}
+		tstool_process_Action.prototype.create.call(this);
+	}
+	,onClick: function() {
+		this._nexts = [{ step : flow_nointernet_so_IsTicketOpened, params : []}];
+		tstool_process_Action.prototype.onClick.call(this);
+	}
+	,__class__: flow_nointernet_customer_BielIncidentInQoof
+});
 var flow_nointernet_customer_DidJustMoved = function() {
 	tstool_process_Descision.call(this);
 };
@@ -43517,7 +43565,7 @@ var flow_nointernet_fiberbox_BoxLedStatus = function() {
 	} else {
 		radiosTab = false;
 	}
-	var radiosTab1 = radiosTab ? [{ title : "1.POWER", hasTranslation : true, values : ["Off","White Stable","Red Blink"]},{ title : "2.FIBRE", hasTranslation : true, values : ["Off","White Stable","White Blink","Red stable","Red Blink"]},{ title : "3.INTERNET", hasTranslation : true, values : ["Off","White Stable","Red stable"]},{ title : "4.PHONE", hasTranslation : true, values : ["Off","White Stable","White Blink","Red stable"]},{ title : "5.WIFI", hasTranslation : true, values : ["Off","White Stable"]},{ title : "6.+(WPS/DECT)", hasTranslation : true, values : ["Off","White Stable"]}] : [{ title : "1.POWER", hasTranslation : true, values : ["Off","Green stable","Blink"]},{ title : "2.FIBER", hasTranslation : true, values : ["Off","Green stable","Red stable","Green Blink","Red Blink","Green Blink 30s Red stable 3s"]},{ title : "3.WWW", hasTranslation : true, values : ["Off","Green stable","Blink"]},{ title : "4.WLAN", hasTranslation : true, values : ["Off","Green stable","Blink"]},{ title : "5.WPS", hasTranslation : true, values : ["Off","Green stable","Blink"]},{ title : "6.PHONE", hasTranslation : true, values : ["Off","Green stable","Green Blink","Blue stable","Blue Blink"]},{ title : "7.LAN (REAR)", hasTranslation : true, values : ["Normal","All green"]}];
+	var radiosTab1 = radiosTab ? [{ title : "1.POWER", hasTranslation : true, values : ["Off","White Stable","Red Blink","White Long Blink"]},{ title : "2.FIBRE", hasTranslation : true, values : ["Off","White Stable","White Blink","Red stable","Red Blink"]},{ title : "3.INTERNET", hasTranslation : true, values : ["Off","White Stable","Red stable"]},{ title : "4.PHONE", hasTranslation : true, values : ["Off","White Stable","White Blink","Red stable","Blue stable"]},{ title : "5.WIFI", hasTranslation : true, values : ["Off","White Stable"]},{ title : "6.+(WPS/DECT)", hasTranslation : true, values : ["Off","White Stable"]}] : [{ title : "1.POWER", hasTranslation : true, values : ["Off","Green stable","Red Blink"]},{ title : "2.FIBER", hasTranslation : true, values : ["Off","Green stable","Red stable","Green Blink","Red Blink","Green Blink 30s Red stable 3s"]},{ title : "3.WWW", hasTranslation : true, values : ["Off","Green stable","Blink"]},{ title : "4.WLAN", hasTranslation : true, values : ["Off","Green stable","Blink"]},{ title : "5.WPS", hasTranslation : true, values : ["Off","Green stable","Blink"]},{ title : "6.PHONE", hasTranslation : true, values : ["Off","Green stable","Green Blink","Blue stable","Blue Blink"]},{ title : "7.LAN (REAR)", hasTranslation : true, values : ["Normal","All green"]}];
 	tstool_process_ActionRadios.call(this,radiosTab1);
 };
 $hxClasses["flow.nointernet.fiberbox.BoxLedStatus"] = flow_nointernet_fiberbox_BoxLedStatus;
@@ -43534,7 +43582,7 @@ flow_nointernet_fiberbox_BoxLedStatus.prototype = $extend(tstool_process_ActionR
 			var wlanLED = this.sagem ? this.status.h["5.WIFI"] : this.status.h["4.WLAN"];
 			var wpsLED = this.status.h["5.WPS"];
 			var phoneLED = this.sagem ? this.status.h["4.PHONE"] : this.status.h["6.PHONE"];
-			next = powerLED == "Off" && fiberLED == "Off" && wwwLED == "Off" ? { step : flow_powercable_LedPowerOn} : powerLED == "Green stable" || powerLED == "White Stable" ? fiberLED == "Red stable" ? rearLanLED == "All green" ? { step : flow_tickets_CustomerInstruction, params : [{ step : flow_nointernet_so_tckets__$SwapBox},{ step : flow_nointernet_so_tckets__$SwapBox}]} : { step : flow_nointernet_fiberbox_SendSMSReadRxTX} : fiberLED == "Green stable" || fiberLED == "White Stable" ? wwwLED == "Green stable" || wwwLED == "White Stable" ? { step : flow_nointernet_customer_DidJustMoved} : { step : flow_nointernet_postLedChecks_IsSerialNumberCorrect} : fiberLED == "Green Blink" || fiberLED == "White Blink" || fiberLED == "Green Blink 30s Red stable 3s" ? { step : flow_nointernet_postLedChecks_IsSerialNumberCorrect} : { step : flow_nointernet_fiberbox_SendSMSReadRxTX} : (powerLED == "Blink" || powerLED == "Red Blink") && (fiberLED == "Green Blink" || fiberLED == "Red Blink" || fiberLED == "White Blink") && (wwwLED == "Blink" || wwwLED == "Red stable") && (phoneLED == "Green Blink" || phoneLED == "Blue Blink" || phoneLED == "White Blink") ? { step : flow_tickets_CustomerInstruction, params : [{ step : flow_nointernet_so_tckets__$SwapBox},{ step : flow_nointernet_so_tckets__$SwapBox}]} : { step : flow_nointernet_fiberbox_SendSMSReadRxTX};
+			next = powerLED == "Off" && fiberLED == "Off" && wwwLED == "Off" ? { step : flow_powercable_LedPowerOn} : powerLED == "White Long Blink" ? { step : flow_tickets_CustomerInstruction, params : [{ step : flow_nointernet_so_tckets__$SwapBox},{ step : flow_nointernet_so_tckets__$SwapBox}]} : powerLED == "Green stable" || powerLED == "White Stable" ? fiberLED == "Red stable" ? rearLanLED == "All green" ? { step : flow_tickets_CustomerInstruction, params : [{ step : flow_nointernet_so_tckets__$SwapBox},{ step : flow_nointernet_so_tckets__$SwapBox}]} : { step : flow_nointernet_fiberbox_SendSMSReadRxTX} : fiberLED == "Green stable" || fiberLED == "White Stable" ? wwwLED == "Green stable" || wwwLED == "White Stable" ? { step : flow_nointernet_customer_DidJustMoved} : { step : flow_nointernet_postLedChecks_IsSerialNumberCorrect} : fiberLED == "Green Blink" || fiberLED == "White Blink" || fiberLED == "Green Blink 30s Red stable 3s" ? { step : flow_nointernet_postLedChecks_IsSerialNumberCorrect} : { step : flow_nointernet_fiberbox_SendSMSReadRxTX} : (powerLED == "Blink" || powerLED == "Red Blink") && (fiberLED == "Green Blink" || fiberLED == "Red Blink" || fiberLED == "White Blink") && (wwwLED == "Blink" || wwwLED == "Red stable") && (phoneLED == "Green Blink" || phoneLED == "Blue Blink" || phoneLED == "White Blink") ? { step : flow_tickets_CustomerInstruction, params : [{ step : flow_nointernet_so_tckets__$SwapBox},{ step : flow_nointernet_so_tckets__$SwapBox}]} : { step : flow_nointernet_fiberbox_SendSMSReadRxTX};
 			this._nexts = [next];
 			tstool_process_ActionRadios.prototype.onClick.call(this);
 		}
@@ -43586,7 +43634,7 @@ flow_nointernet_fiberbox_BoxLedStatus.prototype = $extend(tstool_process_ActionR
 		var wlanLED = this.sagem ? this.status.h["5.WIFI"] : this.status.h["4.WLAN"];
 		var wpsLED = this.status.h["5.WPS"];
 		var phoneLED = this.sagem ? this.status.h["4.PHONE"] : this.status.h["6.PHONE"];
-		next = powerLED == "Off" && fiberLED == "Off" && wwwLED == "Off" ? { step : flow_powercable_LedPowerOn} : powerLED == "Green stable" || powerLED == "White Stable" ? fiberLED == "Red stable" ? rearLanLED == "All green" ? { step : flow_tickets_CustomerInstruction, params : [{ step : flow_nointernet_so_tckets__$SwapBox},{ step : flow_nointernet_so_tckets__$SwapBox}]} : { step : flow_nointernet_fiberbox_SendSMSReadRxTX} : fiberLED == "Green stable" || fiberLED == "White Stable" ? wwwLED == "Green stable" || wwwLED == "White Stable" ? { step : flow_nointernet_customer_DidJustMoved} : { step : flow_nointernet_postLedChecks_IsSerialNumberCorrect} : fiberLED == "Green Blink" || fiberLED == "White Blink" || fiberLED == "Green Blink 30s Red stable 3s" ? { step : flow_nointernet_postLedChecks_IsSerialNumberCorrect} : { step : flow_nointernet_fiberbox_SendSMSReadRxTX} : (powerLED == "Blink" || powerLED == "Red Blink") && (fiberLED == "Green Blink" || fiberLED == "Red Blink" || fiberLED == "White Blink") && (wwwLED == "Blink" || wwwLED == "Red stable") && (phoneLED == "Green Blink" || phoneLED == "Blue Blink" || phoneLED == "White Blink") ? { step : flow_tickets_CustomerInstruction, params : [{ step : flow_nointernet_so_tckets__$SwapBox},{ step : flow_nointernet_so_tckets__$SwapBox}]} : { step : flow_nointernet_fiberbox_SendSMSReadRxTX};
+		next = powerLED == "Off" && fiberLED == "Off" && wwwLED == "Off" ? { step : flow_powercable_LedPowerOn} : powerLED == "White Long Blink" ? { step : flow_tickets_CustomerInstruction, params : [{ step : flow_nointernet_so_tckets__$SwapBox},{ step : flow_nointernet_so_tckets__$SwapBox}]} : powerLED == "Green stable" || powerLED == "White Stable" ? fiberLED == "Red stable" ? rearLanLED == "All green" ? { step : flow_tickets_CustomerInstruction, params : [{ step : flow_nointernet_so_tckets__$SwapBox},{ step : flow_nointernet_so_tckets__$SwapBox}]} : { step : flow_nointernet_fiberbox_SendSMSReadRxTX} : fiberLED == "Green stable" || fiberLED == "White Stable" ? wwwLED == "Green stable" || wwwLED == "White Stable" ? { step : flow_nointernet_customer_DidJustMoved} : { step : flow_nointernet_postLedChecks_IsSerialNumberCorrect} : fiberLED == "Green Blink" || fiberLED == "White Blink" || fiberLED == "Green Blink 30s Red stable 3s" ? { step : flow_nointernet_postLedChecks_IsSerialNumberCorrect} : { step : flow_nointernet_fiberbox_SendSMSReadRxTX} : (powerLED == "Blink" || powerLED == "Red Blink") && (fiberLED == "Green Blink" || fiberLED == "Red Blink" || fiberLED == "White Blink") && (wwwLED == "Blink" || wwwLED == "Red stable") && (phoneLED == "Green Blink" || phoneLED == "Blue Blink" || phoneLED == "White Blink") ? { step : flow_tickets_CustomerInstruction, params : [{ step : flow_nointernet_so_tckets__$SwapBox},{ step : flow_nointernet_so_tckets__$SwapBox}]} : { step : flow_nointernet_fiberbox_SendSMSReadRxTX};
 		return next;
 	}
 	,__class__: flow_nointernet_fiberbox_BoxLedStatus
@@ -43858,6 +43906,11 @@ flow_nointernet_vti_ActivationDone.prototype = $extend(tstool_process_Descision.
 });
 var flow_nointernet_vti_CheckContractorVTI = function() {
 	tstool_process_TripletMultipleInput.call(this,[{ ereg : new EReg("^(3\\d{7})$","i"), input : { width : 150, debug : "30001047", prefix : "Contractor ID", position : [tstool_layout_Direction.bottom,tstool_layout_Direction.left]}},{ ereg : new EReg("^(?!41\\s?\\d{2}\\s?000\\s?00\\s?00)(41\\d{9}|00000000000)$","i"), input : { buddy : "Contractor ID", width : 150, debug : "41212180513", prefix : "VoIP Number", position : [tstool_layout_Direction.top,tstool_layout_Direction.right]}},{ ereg : new EReg("^(?!41\\s?\\d{2}\\s?000\\s?00\\s?00)(41\\d{9})$","i"), input : { buddy : "Contractor ID", width : 150, debug : "41787878814", prefix : "Contact Number", position : [tstool_layout_Direction.bottom,tstool_layout_Direction.left]}}]);
+	this.fetcher = new tstool_utils_CsvFetcher();
+	this.incidentFilesContractor = [];
+	this.fetcher.onData = $bind(this,this.onBielIncidentData);
+	var FILES_ROOT = "/var/www/html/qlood/data/qook/files/06.Salt_Fiber/";
+	this.fetcher.addParameter("_incident_",FILES_ROOT + encodeURIComponent("biel/"));
 	this.is_sagem = false;
 	this.get_yesValidatedSignal().add($bind(this,this.canITrack));
 	this.get_midValidatedSignal().add($bind(this,this.canITrack));
@@ -43866,7 +43919,46 @@ $hxClasses["flow.nointernet.vti.CheckContractorVTI"] = flow_nointernet_vti_Check
 flow_nointernet_vti_CheckContractorVTI.__name__ = "flow.nointernet.vti.CheckContractorVTI";
 flow_nointernet_vti_CheckContractorVTI.__super__ = tstool_process_TripletMultipleInput;
 flow_nointernet_vti_CheckContractorVTI.prototype = $extend(tstool_process_TripletMultipleInput.prototype,{
-	setReminder: function() {
+	pushToHistory: function(buttonTxt,interactionType,values) {
+		var _g = new haxe_ds_StringMap();
+		var h = this.multipleInputs.get_inputs().h;
+		var _g1_h = h;
+		var _g1_keys = Object.keys(h);
+		var _g1_length = _g1_keys.length;
+		var _g1_current = 0;
+		while(_g1_current < _g1_length) {
+			var key = _g1_keys[_g1_current++];
+			var _g2_key = key;
+			var _g2_value = _g1_h[key];
+			var k = _g2_key;
+			var v = _g2_value;
+			var value = v.getInputedText();
+			_g.h[k] = value;
+		}
+		var v = _g;
+		if(this.incidentLocation != "") {
+			v.h["incidident_location"] = this.incidentLocation;
+		}
+		values = v;
+		tstool_process_TripletMultipleInput.prototype.pushToHistory.call(this,buttonTxt,interactionType,values);
+	}
+	,onBielIncidentData: function(d) {
+		var j = new haxe_format_JsonParser(d).doParse();
+		this.incidentFilesContractor = [];
+		if(j.status == "success") {
+			var s = j.additional;
+			var list = decodeURIComponent(s.split("+").join(" "));
+			var files = list.split("$");
+			var _g = 0;
+			while(_g < files.length) {
+				var i = files[_g];
+				++_g;
+				var split = i.split("£");
+				this.incidentFilesContractor.push({ location : StringTools.replace(StringTools.replace(split[0],"_incident_",""),".csv",""), contractors : split[1].split("|")});
+			}
+		}
+	}
+	,setReminder: function() {
 		var t = Main.customer.get_voIP().split("");
 		t.splice(8,0," ");
 		t.splice(6,0," ");
@@ -43889,11 +43981,15 @@ flow_nointernet_vti_CheckContractorVTI.prototype = $extend(tstool_process_Triple
 	,onVtiAccountParsed: function(profile) {
 		if(!Object.prototype.hasOwnProperty.call(profile.h,"meta") || !Object.prototype.hasOwnProperty.call(profile.h,"plan")) {
 			return;
-		} else {
-			var voip = Object.prototype.hasOwnProperty.call(profile.h["plan"].h,"vtiVoip") ? profile.h["plan"].h["vtiVoip"] : "00000000000";
-			this.is_sagem = voip.indexOf("-") > -1 || voip == "0000000000";
-			Main.customer.set_contract(new tstool_salt_Contractor(Object.prototype.hasOwnProperty.call(profile.h["meta"].h,"vtiContractor") ? profile.h["meta"].h["vtiContractor"] : "",this.is_sagem ? StringTools.replace(voip,"- ","") : voip,Object.prototype.hasOwnProperty.call(profile.h["plan"].h,"vtiFix") ? profile.h["plan"].h["vtiFix"] : "",Object.prototype.hasOwnProperty.call(profile.h["plan"].h,"vtiMobile") ? profile.h["plan"].h["vtiMobile"] : "",Object.prototype.hasOwnProperty.call(profile.h["plan"].h,"vtiAdress") ? profile.h["plan"].h["vtiAdress"] : "",Object.prototype.hasOwnProperty.call(profile.h,"owner") ? new tstool_salt_Role(tstool_salt_Roles.owner,profile.h["owner"].h["vtiOwner"],profile.h["owner"].h["vtiOwnerEmail"]) : null,Object.prototype.hasOwnProperty.call(profile.h,"payer") ? new tstool_salt_Role(tstool_salt_Roles.payer,profile.h["payer"].h["vtiPayer"],profile.h["payer"].h["vtiPayerEmail"]) : null,new tstool_salt_Role(tstool_salt_Roles.user,profile.h["plan"].h["vtiUser"],profile.h["plan"].h["vtiUserEmail"]),Object.prototype.hasOwnProperty.call(profile.h,"owner") && StringTools.trim(profile.h["owner"].h["vtiOwnerEmailValidated"].toLowerCase()) == "ok",Object.prototype.hasOwnProperty.call(profile.h,"balance") ? new tstool_salt_Balance(profile.h["balance"].h["vtiBalance"],profile.h["balance"].h["vtiOverdue"],profile.h["balance"].h["vtiOverdueDate"]) : null,Object.prototype.hasOwnProperty.call(profile.h["plan"].h,"plan") ? profile.h["plan"].h["plan"].indexOf("Giga") > -1 ? tstool_salt_Service.Gigabox : profile.h["plan"].h["plan"].indexOf("Office") > -1 ? tstool_salt_Service.Office : tstool_salt_Service.Fiber : tstool_salt_Service.Fiber));
 		}
+		var voip = Object.prototype.hasOwnProperty.call(profile.h["plan"].h,"vtiVoip") ? profile.h["plan"].h["vtiVoip"] : "0000000000";
+		this.is_sagem = voip.indexOf("-") > -1 || voip == "0000000000";
+		Main.customer.set_contract(new tstool_salt_Contractor(Object.prototype.hasOwnProperty.call(profile.h["meta"].h,"vtiContractor") ? profile.h["meta"].h["vtiContractor"] : "",this.is_sagem ? StringTools.replace(voip,"- ","") : voip,Object.prototype.hasOwnProperty.call(profile.h["plan"].h,"vtiFix") ? profile.h["plan"].h["vtiFix"] : "",Object.prototype.hasOwnProperty.call(profile.h["plan"].h,"vtiMobile") ? profile.h["plan"].h["vtiMobile"] : "",Object.prototype.hasOwnProperty.call(profile.h["plan"].h,"vtiAdress") ? profile.h["plan"].h["vtiAdress"] : "",Object.prototype.hasOwnProperty.call(profile.h,"owner") ? new tstool_salt_Role(tstool_salt_Roles.owner,profile.h["owner"].h["vtiOwner"],profile.h["owner"].h["vtiOwnerEmail"]) : null,Object.prototype.hasOwnProperty.call(profile.h,"payer") ? new tstool_salt_Role(tstool_salt_Roles.payer,profile.h["payer"].h["vtiPayer"],profile.h["payer"].h["vtiPayerEmail"]) : null,new tstool_salt_Role(tstool_salt_Roles.user,profile.h["plan"].h["vtiUser"],profile.h["plan"].h["vtiUserEmail"]),Object.prototype.hasOwnProperty.call(profile.h,"owner") && StringTools.trim(profile.h["owner"].h["vtiOwnerEmailValidated"].toLowerCase()) == "ok",Object.prototype.hasOwnProperty.call(profile.h,"balance") ? new tstool_salt_Balance(profile.h["balance"].h["vtiBalance"],profile.h["balance"].h["vtiOverdue"],profile.h["balance"].h["vtiOverdueDate"]) : null,Object.prototype.hasOwnProperty.call(profile.h["plan"].h,"plan") ? profile.h["plan"].h["plan"].indexOf("Giga") > -1 ? tstool_salt_Service.Gigabox : profile.h["plan"].h["plan"].indexOf("Office") > -1 ? tstool_salt_Service.Office : tstool_salt_Service.Fiber : tstool_salt_Service.Fiber));
+		var box = Main.customer.get_contract().get_service() == tstool_salt_Service.Gigabox ? "Gigabox" : this.is_sagem ? "Sagem" : "Arcadyan";
+		var this1 = Main.customer.get_dataSet();
+		var _g = new haxe_ds_StringMap();
+		_g.h["BOX"] = box;
+		this1.h["PRODUCTS"] = _g;
 		this.multipleInputs.get_inputs().h["Contractor ID"].get_inputtextfield().set_text(Main.customer.get_contract().contractorID);
 		this.multipleInputs.get_inputs().h["VoIP Number"].get_inputtextfield().set_text(Main.customer.get_contract().voip);
 		this.multipleInputs.get_inputs().h["Contact Number"].get_inputtextfield().set_text(Main.customer.get_contract().mobile);
@@ -43914,6 +44010,7 @@ flow_nointernet_vti_CheckContractorVTI.prototype = $extend(tstool_process_Triple
 		this.mainIssue = Main.HISTORY.findValueOfFirstClassInHistory(flow_Intro,"ISSUE");
 		this.parser = new tstool_utils_VTIdataParser(tstool_utils_VtiInterface.account);
 		this.parser.get_signal().add($bind(this,this.onVtiAccountParsed));
+		this.fetcher.request();
 	}
 	,onYesClick: function() {
 		if(this.validateYes()) {
@@ -43939,13 +44036,21 @@ flow_nointernet_vti_CheckContractorVTI.prototype = $extend(tstool_process_Triple
 		Main.customer.get_contract().fix = voipVTI;
 		Main.customer.set_iri(this.is_sagem || Main.customer.get_contract().get_service() == tstool_salt_Service.Gigabox || Main.customer.get_contract().get_service() == tstool_salt_Service.Office ? contractorID : voipSO);
 		Main.customer.get_contract().mobile = contactNB;
-		this._nexts = [{ step : this.mainIssue.value == "order" ? flow_ftth_IsRedStep : flow_nointernet_so_IsTicketOpened}];
-		this.setReminder();
-		if(b2bChosen) {
-			return Main.customer.get_contract().get_service() == tstool_salt_Service.Office;
+		this.incidentLocation = this.checkIfIncidentForTheContractor(Main.customer.get_contract().contractorID);
+		if(this.mainIssue.value == "order") {
+			this._nexts = [{ step : flow_ftth_IsRedStep}];
+		} else if(this.incidentLocation == "" || !Main.HISTORY.isClassInteractionInHistory(flow_all_customer_IsSlowOrKaput,tstool_layout_Interactions.No) && Main.HISTORY.findValueOfFirstClassInHistory(flow_phone_WhatIsthePhoneISsue,"ISSUE").value != "no_calls" && !Main.HISTORY.isClassInteractionInHistory(flow_tv_WhatIStheTVIssue,tstool_layout_Interactions.Mid)) {
+			this._nexts = [{ step : flow_nointernet_so_IsTicketOpened}];
 		} else {
-			return false;
+			this._nexts = [{ step : flow_nointernet_customer_BielIncidentInQoof}];
 		}
+		if(b2bChosen) {
+			var this1 = Main.customer.get_dataSet();
+			var _g = new haxe_ds_StringMap();
+			_g.h["BOX"] = "Sagem";
+			this1.h["PRODUCTS"] = _g;
+		}
+		this.setReminder();
 	}
 	,onNoClick: function() {
 		this._nexts = [{ step : flow_activation_IsFiberOrMultisurf, params : []}];
@@ -43990,6 +44095,21 @@ flow_nointernet_vti_CheckContractorVTI.prototype = $extend(tstool_process_Triple
 		} else {
 			return "uncaught";
 		}
+	}
+	,checkIfIncidentForTheContractor: function(contractor) {
+		var location = "";
+		if(this.incidentFilesContractor.length > 0) {
+			var _g = 0;
+			var _g1 = this.incidentFilesContractor;
+			while(_g < _g1.length) {
+				var i = _g1[_g];
+				++_g;
+				if(i.contractors.indexOf(contractor) > -1) {
+					location = i.location;
+				}
+			}
+		}
+		return location;
 	}
 	,__class__: flow_nointernet_vti_CheckContractorVTI
 });
@@ -44460,17 +44580,33 @@ flow_stability_IsAnyServiceImpactedForNormalUse.__name__ = "flow.stability.IsAny
 flow_stability_IsAnyServiceImpactedForNormalUse.__super__ = tstool_process_DescisionMultipleInput;
 flow_stability_IsAnyServiceImpactedForNormalUse.prototype = $extend(tstool_process_DescisionMultipleInput.prototype,{
 	onNoClick: function() {
-		this._nexts = [{ step : flow_tickets_CustomerInstruction, params : [{ step : flow_stability__$CreateSOTechModemSpeed},{ step : flow_stability__$CreateSOTechModemSpeed}]}];
+		this._nexts = this.getNexts();
 		tstool_process_DescisionMultipleInput.prototype.onNoClick.call(this);
 	}
 	,onYesClick: function() {
 		if(this.validateYes()) {
-			this._nexts = [{ step : flow_tickets_CustomerInstruction, params : [{ step : flow_stability__$CreateSOTechModemSpeed},{ step : flow_stability__$CreateSOTechModemSpeed}]}];
+			this._nexts = this.getNexts();
 			tstool_process_DescisionMultipleInput.prototype.onYesClick.call(this);
 		}
 	}
 	,validateNo: function() {
 		return true;
+	}
+	,isBoxInOpenedSpace: function() {
+		var boxLocationStatus = Main.HISTORY.findValueOfFirstClassInHistory(flow_all_fiberbox__$WhereIsBoxPlaced,"Placement");
+		if(boxLocationStatus.exists) {
+			return boxLocationStatus.value == "Open space";
+		} else {
+			return false;
+		}
+	}
+	,getNexts: function() {
+		var isWiFiOnly = Main.HISTORY.isClassInteractionInHistory(flow_all_customer_LanOrWiFi,tstool_layout_Interactions.Yes);
+		if(this.isBoxInOpenedSpace() || !isWiFiOnly) {
+			return [{ step : flow_tickets_CustomerInstruction, params : [{ step : flow_stability__$CreateSOTechModemSpeed},{ step : flow_stability__$CreateSOTechModemSpeed}]}];
+		} else {
+			return [{ step : flow_all_fiberbox__$AdvicePutOpenSpace}];
+		}
 	}
 	,__class__: flow_stability_IsAnyServiceImpactedForNormalUse
 });
@@ -44481,9 +44617,19 @@ $hxClasses["flow.stability._CreateSOTechModemSpeed"] = flow_stability__$CreateSO
 flow_stability__$CreateSOTechModemSpeed.__name__ = "flow.stability._CreateSOTechModemSpeed";
 flow_stability__$CreateSOTechModemSpeed.__super__ = TechTickets;
 flow_stability__$CreateSOTechModemSpeed.prototype = $extend(TechTickets.prototype,{
-	onClick: function() {
+	create: function() {
+		if(this.isBoxInColsedSpace()) {
+			this.set__detailTxt(StringTools.replace(this._detailTxt,"] ","] RESOLVED "));
+			this.set__titleTxt(StringTools.replace(this._titleTxt," ["," RESOLVED ["));
+		}
+		TechTickets.prototype.create.call(this);
+	}
+	,onClick: function() {
 		this._nexts = [{ step : flow_stability__$SendSpeedTemplate, params : []}];
 		TechTickets.prototype.onClick.call(this);
+	}
+	,isBoxInColsedSpace: function() {
+		return Main.HISTORY.isClassInHistory(flow_all_fiberbox__$AdvicePutOpenSpace);
 	}
 	,__class__: flow_stability__$CreateSOTechModemSpeed
 });
@@ -44507,11 +44653,20 @@ flow_stability__$RedoTestWithAnotherDevice.prototype = $extend(tstool_process_Tr
 		tstool_process_Triplet.prototype.onMidClick.call(this);
 	}
 	,getNext: function() {
-		var mainIssue = Main.HISTORY.findValueOfFirstClassInHistory(flow_Intro,"ISSUE");
-		if(mainIssue.value == "tv") {
-			return { step : flow_tickets_CustomerInstruction, params : [{ step : flow_tv__$CreateSOTicketSaltTV},{ step : flow_tv__$CreateSOTicketSaltTV}]};
-		} else {
+		var isWiFiOnly = Main.HISTORY.isClassInteractionInHistory(flow_all_customer_LanOrWiFi,tstool_layout_Interactions.Yes);
+		var openSpace = this.isBoxInOpenedSpace();
+		if(openSpace || !isWiFiOnly) {
 			return { step : flow_tickets_CustomerInstruction, params : [{ step : flow_stability__$CreateSOTechModemSpeed},{ step : flow_stability__$CreateSOTechModemSpeed}]};
+		} else {
+			return { step : flow_all_fiberbox__$AdvicePutOpenSpace};
+		}
+	}
+	,isBoxInOpenedSpace: function() {
+		var boxLocationStatus = Main.HISTORY.findValueOfFirstClassInHistory(flow_all_fiberbox__$WhereIsBoxPlaced,"Placement");
+		if(boxLocationStatus.exists) {
+			return boxLocationStatus.value == "Open space";
+		} else {
+			return false;
 		}
 	}
 	,__class__: flow_stability__$RedoTestWithAnotherDevice
@@ -44997,6 +45152,15 @@ flow_tv__$CreateSOTicketSaltTV.prototype = $extend(ActionTicketFiberTrouble.prot
 		this._nexts = [{ step : flow__$AddMemoVti, params : []}];
 		ActionTicketFiberTrouble.prototype.onClick.call(this);
 	}
+	,create: function() {
+		if(this.isBoxInColsedSpace()) {
+			this.set__titleTxt(this._titleTxt + "\nRESOLVED");
+		}
+		ActionTicketFiberTrouble.prototype.create.call(this);
+	}
+	,isBoxInColsedSpace: function() {
+		return Main.HISTORY.isClassInHistory(flow_all_fiberbox__$AdvicePutOpenSpace);
+	}
 	,__class__: flow_tv__$CreateSOTicketSaltTV
 });
 var flow_tv__$OpenSaltTVApp = function() {
@@ -45408,7 +45572,8 @@ flow_tv_network_CanCheckWithLan.prototype = $extend(tstool_process_Descision.pro
 		tstool_process_Descision.prototype.onYesClick.call(this);
 	}
 	,onNoClick: function() {
-		this._nexts = [{ step : flow_tickets_CustomerInstruction, params : [{ step : flow_tv__$CreateSOTicketSaltTV},{ step : flow_tv__$CreateSOTicketSaltTV}]}];
+		var whereIsBoxPlaced = Main.HISTORY.findValueOfFirstClassInHistory(flow_all_fiberbox__$WhereIsBoxPlaced,"Placement");
+		this._nexts = whereIsBoxPlaced.exists && whereIsBoxPlaced.value != "Open space" ? [{ step : flow_all_fiberbox__$AdvicePutOpenSpace}] : [{ step : flow_tickets_CustomerInstruction, params : [{ step : flow_tv__$CreateSOTicketSaltTV},{ step : flow_tv__$CreateSOTicketSaltTV}]}];
 		tstool_process_Descision.prototype.onNoClick.call(this);
 	}
 	,__class__: flow_tv_network_CanCheckWithLan
@@ -45541,7 +45706,7 @@ flow_tv_remote_DoesAppleTVLedBlinks.prototype = $extend(tstool_process_Descision
 			tmp = [{ step : flow_tv_remote_salttvv2_IsIssueWithGuide, params : []}];
 			break;
 		case "Siri v2":
-			tmp = [{ step : flow_tv__$CreateSOTicketSaltTV, params : []}];
+			tmp = [{ step : flow_tv__$CreateSOTicketSaltTV}];
 			break;
 		default:
 			tmp = [{ step : flow_tv_sound_volume_VolumeButtonDoesWork, params : []}];
@@ -46597,31 +46762,7 @@ flow_vti__$RXfromVTI.prototype = $extend(tstool_process_ActionMultipleInput.prot
 		}
 	}
 	,getNextRXGood: function() {
-		var boxLocationStatus = Main.HISTORY.findValueOfFirstClassInHistory(flow_all_fiberbox__$WhereIsBoxPlaced,"Placement");
-		var boxIsInOpendSpace = boxLocationStatus.exists && boxLocationStatus.value == "Open space";
-		if(Main.HISTORY.isClassInteractionInHistory(flow_tv_WhatIStheTVIssue,tstool_layout_Interactions.No)) {
-			if(boxIsInOpendSpace) {
-				this._nexts = [{ step : flow_tv_sound__$MakeSureHDMIWellConnected}];
-			} else {
-				this._nexts = [{ step : flow_all_fiberbox__$AdvicePutOpenSpace, params : [{ step : flow_tv_sound__$MakeSureHDMIWellConnected}]}];
-			}
-		} else if(Main.HISTORY.isClassInteractionInHistory(flow_tv_WhatIStheTVIssue,tstool_layout_Interactions.Mid)) {
-			if(boxIsInOpendSpace) {
-				this._nexts = [{ step : flow_tv_hardware_IsAppleTVvisibleOnTVScreen}];
-			} else {
-				this._nexts = [{ step : flow_all_fiberbox__$AdvicePutOpenSpace, params : [{ step : flow_tv_hardware_IsAppleTVvisibleOnTVScreen}]}];
-			}
-		} else if(Main.HISTORY.isClassInteractionInHistory(flow_all_customer_LanOrWiFi,tstool_layout_Interactions.No)) {
-			if(boxIsInOpendSpace) {
-				this._nexts = [{ step : flow_stability__$TestSpeed}];
-			} else {
-				this._nexts = [{ step : flow_all_fiberbox__$AdvicePutOpenSpace, params : [{ step : flow_stability__$TestSpeed}]}];
-			}
-		} else if(boxIsInOpendSpace) {
-			this._nexts = [{ step : flow_wifi_HaveRepeater}];
-		} else {
-			this._nexts = [{ step : flow_all_fiberbox__$AdvicePutOpenSpace, params : [{ step : flow_wifi_HaveRepeater}]}];
-		}
+		this._nexts = [{ step : flow_all_fiberbox__$WhereIsBoxPlaced}];
 	}
 	,getNextRXBAD: function() {
 		var next = flow_nointernet_customer_FiberCableChanged;
@@ -46923,7 +47064,8 @@ flow_wifi__$InformAboutRepeaterGoodness.prototype = $extend(tstool_process_Desci
 		tstool_process_Descision.prototype.onYesClick.call(this);
 	}
 	,onNoClick: function() {
-		this._nexts = [{ step : flow_stability__$TestSpeed, params : []}];
+		var whereIsBoxPlaced = Main.HISTORY.findValueOfFirstClassInHistory(flow_all_fiberbox__$WhereIsBoxPlaced,"Placement");
+		this._nexts = whereIsBoxPlaced.exists && whereIsBoxPlaced.value == "Multimedia" ? [{ step : flow_all_fiberbox__$AdvicePutOpenSpace, params : []}] : [{ step : flow_stability__$TestSpeed, params : []}];
 		tstool_process_Descision.prototype.onNoClick.call(this);
 	}
 	,__class__: flow_wifi__$InformAboutRepeaterGoodness
@@ -50874,6 +51016,9 @@ haxe_zip_Reader.prototype = {
 		var version = i.readUInt16();
 		var flags = i.readUInt16();
 		var utf8 = (flags & 2048) != 0;
+		if((flags & 63473) != 0) {
+			throw haxe_Exception.thrown("Unsupported flags " + flags);
+		}
 		var compression = i.readUInt16();
 		var compressed = compression != 0;
 		if(compressed && compression != 8) {
@@ -50892,7 +51037,7 @@ haxe_zip_Reader.prototype = {
 		}
 		var data = null;
 		if((flags & 8) != 0) {
-			csize = -1;
+			crc32 = null;
 		}
 		return { fileName : fname, fileSize : usize, fileTime : mtime, compressed : compressed, dataSize : csize, data : data, crc32 : crc32, extraFields : fields};
 	}
@@ -50905,21 +51050,25 @@ haxe_zip_Reader.prototype = {
 			if(e == null) {
 				break;
 			}
-			if(e.dataSize < 0) {
-				var bufSize = 65536;
-				if(tmp == null) {
-					tmp = new haxe_io_Bytes(new ArrayBuffer(bufSize));
-				}
-				var out = new haxe_io_BytesBuffer();
-				var z = new haxe_zip_InflateImpl(this.i,false,false);
-				while(true) {
-					var n = z.readBytes(tmp,0,bufSize);
-					out.addBytes(tmp,0,n);
-					if(n < bufSize) {
-						break;
+			if(e.crc32 == null) {
+				if(e.compressed) {
+					var bufSize = 65536;
+					if(tmp == null) {
+						tmp = new haxe_io_Bytes(new ArrayBuffer(bufSize));
 					}
+					var out = new haxe_io_BytesBuffer();
+					var z = new haxe_zip_InflateImpl(this.i,false,false);
+					while(true) {
+						var n = z.readBytes(tmp,0,bufSize);
+						out.addBytes(tmp,0,n);
+						if(n < bufSize) {
+							break;
+						}
+					}
+					e.data = out.getBytes();
+				} else {
+					e.data = this.i.read(e.dataSize);
 				}
-				e.data = out.getBytes();
 				e.crc32 = this.i.readInt32();
 				if(e.crc32 == 134695760) {
 					e.crc32 = this.i.readInt32();
@@ -50981,7 +51130,7 @@ http_XapiHelper.prototype = $extend(haxe_http_HttpJs.prototype,{
 			}
 		} catch( _g ) {
 			var e = haxe_Exception.caught(_g);
-			haxe_Log.trace(e,{ fileName : "http/XapiHelper.hx", lineNumber : 220, className : "http.XapiHelper", methodName : "onMyData"});
+			haxe_Log.trace(e,{ fileName : "http/XapiHelper.hx", lineNumber : 222, className : "http.XapiHelper", methodName : "onMyData"});
 			this.dispatcher.dispatch(false);
 		}
 	}
@@ -51775,7 +51924,11 @@ lime__$internal_backend_html5_HTML5Window.prototype = {
 		}
 	}
 	,handleCutOrCopyEvent: function(event) {
-		event.clipboardData.setData("text/plain",lime_system_Clipboard.get_text());
+		var text = lime_system_Clipboard.get_text();
+		if(text == null) {
+			text = "";
+		}
+		event.clipboardData.setData("text/plain",text);
 		if(event.cancelable) {
 			event.preventDefault();
 		}
@@ -56753,6 +56906,7 @@ var lime_net__$HTTPRequest_AbstractHTTPRequest = function(uri) {
 	this.method = "GET";
 	this.timeout = 30000;
 	this.withCredentials = false;
+	this.manageCookies = true;
 	this.__backend = new lime__$internal_backend_html5_HTML5HTTPRequest();
 	this.__backend.init(this);
 };
@@ -57346,7 +57500,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 526813;
+	this.version = 604837;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -57765,7 +57919,7 @@ lime_utils_AssetLibrary.prototype = {
 		if(Object.prototype.hasOwnProperty.call(this.cachedAudioBuffers.h,id)) {
 			return lime_app_Future.withValue(this.cachedAudioBuffers.h[id]);
 		} else if(Object.prototype.hasOwnProperty.call(this.classTypes.h,id)) {
-			return lime_app_Future.withValue(Type.createInstance(this.classTypes.h[id],[]));
+			return lime_app_Future.withValue(lime_media_AudioBuffer.fromBytes(js_Boot.__cast(Type.createInstance(this.classTypes.h[id],[]) , haxe_io_Bytes)));
 		} else if(Object.prototype.hasOwnProperty.call(this.pathGroups.h,id)) {
 			return lime_media_AudioBuffer.loadFromFiles(this.pathGroups.h[id]);
 		} else {
@@ -58557,7 +58711,7 @@ lime_utils_Preloader.prototype = {
 		while(_g < _g1.length) {
 			var library = [_g1[_g]];
 			++_g;
-			lime_utils_Log.verbose("Preloading asset library",{ fileName : "lime/utils/Preloader.hx", lineNumber : 132, className : "lime.utils.Preloader", methodName : "load"});
+			lime_utils_Log.verbose("Preloading asset library",{ fileName : "lime/utils/Preloader.hx", lineNumber : 134, className : "lime.utils.Preloader", methodName : "load"});
 			library[0].load().onProgress((function(library) {
 				return function(loaded,total) {
 					if(_gthis.bytesLoadedCache.h.__keys__[library[0].__id__] == null) {
@@ -58575,13 +58729,13 @@ lime_utils_Preloader.prototype = {
 					if(_gthis.bytesLoadedCache.h.__keys__[library[0].__id__] == null) {
 						_gthis.bytesLoaded += library[0].bytesTotal;
 					} else {
-						_gthis.bytesLoaded += library[0].bytesTotal - _gthis.bytesLoadedCache.h[library[0].__id__];
+						_gthis.bytesLoaded += (library[0].bytesTotal | 0) - _gthis.bytesLoadedCache.h[library[0].__id__];
 					}
 					_gthis.loadedAssetLibrary();
 				};
 			})(library)).onError((function() {
 				return function(e) {
-					lime_utils_Log.error(e,{ fileName : "lime/utils/Preloader.hx", lineNumber : 168, className : "lime.utils.Preloader", methodName : "load"});
+					lime_utils_Log.error(e,{ fileName : "lime/utils/Preloader.hx", lineNumber : 170, className : "lime.utils.Preloader", methodName : "load"});
 				};
 			})());
 		}
@@ -58604,9 +58758,9 @@ lime_utils_Preloader.prototype = {
 		}
 		var totalLibraries = this.libraries.length + this.libraryNames.length;
 		if(name != null) {
-			lime_utils_Log.verbose("Loaded asset library: " + name + " [" + current + "/" + totalLibraries + "]",{ fileName : "lime/utils/Preloader.hx", lineNumber : 195, className : "lime.utils.Preloader", methodName : "loadedAssetLibrary"});
+			lime_utils_Log.verbose("Loaded asset library: " + name + " [" + current + "/" + totalLibraries + "]",{ fileName : "lime/utils/Preloader.hx", lineNumber : 197, className : "lime.utils.Preloader", methodName : "loadedAssetLibrary"});
 		} else {
-			lime_utils_Log.verbose("Loaded asset library [" + current + "/" + totalLibraries + "]",{ fileName : "lime/utils/Preloader.hx", lineNumber : 199, className : "lime.utils.Preloader", methodName : "loadedAssetLibrary"});
+			lime_utils_Log.verbose("Loaded asset library [" + current + "/" + totalLibraries + "]",{ fileName : "lime/utils/Preloader.hx", lineNumber : 201, className : "lime.utils.Preloader", methodName : "loadedAssetLibrary"});
 		}
 		this.updateProgress();
 	}
@@ -58631,7 +58785,7 @@ lime_utils_Preloader.prototype = {
 			while(_g < _g1.length) {
 				var name = [_g1[_g]];
 				++_g;
-				lime_utils_Log.verbose("Preloading asset library: " + name[0],{ fileName : "lime/utils/Preloader.hx", lineNumber : 236, className : "lime.utils.Preloader", methodName : "updateProgress"});
+				lime_utils_Log.verbose("Preloading asset library: " + name[0],{ fileName : "lime/utils/Preloader.hx", lineNumber : 239, className : "lime.utils.Preloader", methodName : "updateProgress"});
 				lime_utils_Assets.loadLibrary(name[0]).onProgress((function(name) {
 					return function(loaded,total) {
 						if(total > 0) {
@@ -58668,7 +58822,7 @@ lime_utils_Preloader.prototype = {
 					};
 				})(name)).onError((function() {
 					return function(e) {
-						lime_utils_Log.error(e,{ fileName : "lime/utils/Preloader.hx", lineNumber : 290, className : "lime.utils.Preloader", methodName : "updateProgress"});
+						lime_utils_Log.error(e,{ fileName : "lime/utils/Preloader.hx", lineNumber : 293, className : "lime.utils.Preloader", methodName : "updateProgress"});
 					};
 				})());
 			}
@@ -58676,7 +58830,7 @@ lime_utils_Preloader.prototype = {
 		if(!this.simulateProgress && this.loadedLibraries == this.libraries.length + this.libraryNames.length) {
 			if(!this.preloadComplete) {
 				this.preloadComplete = true;
-				lime_utils_Log.verbose("Preload complete",{ fileName : "lime/utils/Preloader.hx", lineNumber : 301, className : "lime.utils.Preloader", methodName : "updateProgress"});
+				lime_utils_Log.verbose("Preload complete",{ fileName : "lime/utils/Preloader.hx", lineNumber : 306, className : "lime.utils.Preloader", methodName : "updateProgress"});
 			}
 			this.start();
 		}
@@ -86980,9 +87134,6 @@ openfl_utils_Assets.isValidBitmapData = function(bitmapData) {
 openfl_utils_Assets.isValidSound = function(sound) {
 	return true;
 };
-openfl_utils_Assets.list = function(type) {
-	return lime_utils_Assets.list(type);
-};
 openfl_utils_Assets.LimeAssets_onChange = function() {
 	openfl_utils_Assets.dispatchEvent(new openfl_events_Event("change"));
 };
@@ -88691,12 +88842,16 @@ tstool_layout_History.prototype = {
 		var steps = this.getStoredStepsArray();
 		steps.push({ processName : _currentProcess.get__name(), interaction : tstool_layout_Interactions.Next, processTitle : "", iteractionTitle : "", values : null, start : new Date()});
 		b += "<h4>Steps:</h4>";
-		b += "<ol>" + this.listSteps(steps) + "</ol>";
+		b += "<ol>";
+		b += this.listSteps(steps,{ fileName : "tstool/layout/History.hx", lineNumber : 341, className : "tstool.layout.History", methodName : "buildHistoryEmailBody"});
+		b += "</ol>";
 		if(translate && needsEnTranslation) {
 			b += "<h4>English:</h4>";
-			tstool_MainApp.translator.initialize("en-GB",null,{ fileName : "tstool/layout/History.hx", lineNumber : 340, className : "tstool.layout.History", methodName : "buildHistoryEmailBody"});
-			b += "<ol>" + this.listSteps(steps) + "</ol>";
-			tstool_MainApp.translator.initialize(lang,null,{ fileName : "tstool/layout/History.hx", lineNumber : 345, className : "tstool.layout.History", methodName : "buildHistoryEmailBody"});
+			tstool_MainApp.translator.initialize("en-GB",null,{ fileName : "tstool/layout/History.hx", lineNumber : 346, className : "tstool.layout.History", methodName : "buildHistoryEmailBody"});
+			b += "<ol>";
+			b += this.listSteps(steps,{ fileName : "tstool/layout/History.hx", lineNumber : 349, className : "tstool.layout.History", methodName : "buildHistoryEmailBody"});
+			b += "</ol>";
+			tstool_MainApp.translator.initialize(lang,null,{ fileName : "tstool/layout/History.hx", lineNumber : 354, className : "tstool.layout.History", methodName : "buildHistoryEmailBody"});
 		}
 		return b;
 	}
@@ -88763,7 +88918,7 @@ tstool_layout_History.prototype = {
 		var t = [];
 		var question = "";
 		var choice = "";
-		tstool_MainApp.translator.initialize(toLangPair,null,{ fileName : "tstool/layout/History.hx", lineNumber : 414, className : "tstool.layout.History", methodName : "getStoredStepsTranslatedArray"});
+		tstool_MainApp.translator.initialize(toLangPair,null,{ fileName : "tstool/layout/History.hx", lineNumber : 424, className : "tstool.layout.History", methodName : "getStoredStepsTranslatedArray"});
 		var _g = 0;
 		var _g1 = this.get_history();
 		while(_g < _g1.length) {
@@ -88809,7 +88964,7 @@ tstool_layout_History.prototype = {
 			choice = choice4;
 			t.push({ step : question, interaction : choice, values : i.values == null ? "" : haxe_ds_StringMap.stringify(i.values.h)});
 		}
-		tstool_MainApp.translator.initialize(tstool_MainApp.agent.get_mainLanguage(),null,{ fileName : "tstool/layout/History.hx", lineNumber : 424, className : "tstool.layout.History", methodName : "getStoredStepsTranslatedArray"});
+		tstool_MainApp.translator.initialize(tstool_MainApp.agent.get_mainLanguage(),null,{ fileName : "tstool/layout/History.hx", lineNumber : 434, className : "tstool.layout.History", methodName : "getStoredStepsTranslatedArray"});
 		return t;
 	}
 	,prepareListHistory: function(forClipBoard) {
@@ -88848,7 +89003,7 @@ tstool_layout_History.prototype = {
 		}
 		return t;
 	}
-	,listSteps: function(stepsArray) {
+	,listSteps: function(stepsArray,pos) {
 		var s = "";
 		var title = "";
 		var values = "";
@@ -88919,7 +89074,7 @@ tstool_layout_History.prototype = {
 					var _g1_value = _g_h[key];
 					var title1 = _g1_key;
 					var value = _g1_value;
-					if(StringTools.trim(value) != "") {
+					if(StringTools.trim(Std.string(value)) != "") {
 						translation = tstool_MainApp.translator.get("$" + processName + title1.split(" ").join(""),"headers");
 						if(translation == null || translation == "" || translation.indexOf("$") == 0) {
 							translation = title1;
@@ -92784,6 +92939,7 @@ flow_nointernet_customer_FiberCableChanged.SO_TICKET_NUM = "SO swap cable ticket
 flow_nointernet_fiberbox_BoxLedStatus._off = "Off";
 flow_nointernet_fiberbox_BoxLedStatus._whiteStable = "White Stable";
 flow_nointernet_fiberbox_BoxLedStatus._whiteBlink = "White Blink";
+flow_nointernet_fiberbox_BoxLedStatus._whiteLongBlink = "White Long Blink";
 flow_nointernet_fiberbox_BoxLedStatus._greenStable = "Green stable";
 flow_nointernet_fiberbox_BoxLedStatus._greenBlink = "Green Blink";
 flow_nointernet_fiberbox_BoxLedStatus._redBlink = "Red Blink";
@@ -92811,6 +92967,7 @@ flow_nointernet_fiberbox_NormalRxValues.BOX_TX = "Customer Box TX";
 flow_nointernet_fiberbox_NormalRxValues.JUSTIFICATION = "justification";
 flow_nointernet_fiberbox__$RebootBox.JUSTIFICATION = "justification";
 flow_nointernet_postLedChecks_IsSerialNumberCorrect.SERIAL_PREFIX = "Serial Nb";
+flow_nointernet_vti_CheckContractorVTI.BIEL_INCIDENT_LOCATION = "incidident_location";
 flow_nointernet_vti_CheckContractorVTI.BLANK_VOIP = "0000000000";
 flow_nointernet_vti_CheckContractorVTI.CONTRACTOR_ID = "Contractor ID";
 flow_nointernet_vti_CheckContractorVTI.VOIP_NUMBER = "VoIP Number";
@@ -92819,6 +92976,9 @@ flow_nointernet_vti_CheckContractorVTI.CUST_DATA_PRODUCT = "PRODUCTS";
 flow_nointernet_vti_CheckContractorVTI.CUST_DATA_PRODUCT_BOX = "BOX";
 flow_nointernet_vti_CheckContractorVTI.SAGEM = "Sagem";
 flow_nointernet_vti_CheckContractorVTI.ARCADYAN = "Arcadyan";
+flow_nointernet_vti_CheckContractorVTI.GIGABOX = "Gigabox";
+flow_nointernet_vti_CheckContractorVTI.B2B_expl_BIEL = "31194459";
+flow_nointernet_vti_CheckContractorVTI.B2C_ACRADAYN_expl_BIEL = "31194414";
 flow_nointernet_vti_IsBarred.STATUS = "STATUS";
 flow_nointernet_vti_IsBarred.NO_BARRING = "Nobarrings";
 flow_nointernet_vti_IsBarred.CUSTOMER = "CustomerOperator";

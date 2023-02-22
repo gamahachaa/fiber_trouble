@@ -6,6 +6,7 @@ $flow.all.fiberbox._WhereIsBoxPlaced.Multimedia	3. Multimedia distributor
 $flow.nointernet.fiberbox.BoxLedStatus.Off	Off
 $flow.nointernet.fiberbox.BoxLedStatus.WhiteStable	White stable
 $flow.nointernet.fiberbox.BoxLedStatus.WhiteBlink	White blinking
+$flow.nointernet.fiberbox.BoxLedStatus.whiteLongBlink	White on then Off
 $flow.nointernet.fiberbox.BoxLedStatus.Greenstable	Green stable
 $flow.nointernet.fiberbox.BoxLedStatus.GreenBlink	Green blinking
 $flow.nointernet.fiberbox.BoxLedStatus.RedBlink	Red blinking

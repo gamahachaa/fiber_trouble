@@ -32,7 +32,7 @@ class ApplicationMain
 
 		ManifestResources.init(config);
 
-		app.meta["build"] = "117";
+		app.meta["build"] = "118";
 		app.meta["company"] = "";
 		app.meta["file"] = "trouble_demo";
 		app.meta["name"] = "trouble_demo";
@@ -44,7 +44,7 @@ class ApplicationMain
 		#if !flash
 		
 		var attributes:lime.ui.WindowAttributes = {
-			allowHighDPI: false,
+			allowHighDPI: true,
 			alwaysOnTop: false,
 			borderless: false,
 			// display: 0,

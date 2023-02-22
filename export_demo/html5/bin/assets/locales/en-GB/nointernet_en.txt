@@ -31,12 +31,4 @@ $flow.nointernet.fiberbox.WhatColorBlink		Fiber LED blinking Red or Green	box/fi
 $flow.nointernet.fiberbox.WhichWeirdBoot	# Power green, Fiber red, no other LED<N><T>- power green, fiber red, <N><T>- no other LED starting <N><N># All LAN LED green, Power green, Fiber red, no other LED<N><T>- Power green, Fiber red, <N><T>- no other LED starting, <N><T>- at the rear of the box, all the green LEDs of the LAN ports are switched on even if no LAN cable is plugged<N><N># All LED  1 sec, Power green, fiber red <N><T>- all LEDs for one second<N><T>- power green, no other LED starting in the first 90s after it was powered<N><N># Non stop Reboot<N>no USB device is plugged and the box always reboot:<N><T>- power green, fiber red <N><T>- all LEDs for one second <N><T>- And again and again...	Which abnormal boot is it ?					
 $flow.nointernet.vti.IsWishDatePassed	"Wish date can be found in :<N>Customer events' log > <Q>Subscription<Q>  line<N><N>if the wish date is passed, then second level will need to investigate; else (if the wish date is not passed yet) tell the customer that his subscription will be connected on the wish date."	Is the wish date in VTI already passed?	vti/whishdate				
 $flow.nointernet.vti._SoOrderNotComplete	A ticket will be automatically generated upon advancing to the next step. Do not manually create one (SuperOffice). A copy of the content will be sent to your mailbox.<N><N>Inform that:<N><T>- a technical ticket is forwarded to our technical department for a thorough analysis.<N><T>- he may be contacted.<N><T>- he will receive feedback as soon as possible.<N><T> - <em>the box must always be powered (230V) and plugged in (SFP, Fibre, OTO) during the whole life of a ticket.<em>	Automatic ticket creation [414] in SuperOffice					
-							
-							
-							
-							
-							
-							
-							
-							
-							
+$flow.nointernet.customer.BielIncidentInQoof	If this is the case:<N><T><T>- I explain to the customer the nature of the problem<N><T><T>- Possibly I communicate the resolution time (if it is indicated in Qoof). <N><T><T>- I click on the resolution button<N><N>If I have any doubt I continue the trouble shooting normally	It seems that there is an incident reported by our partners.<N>I check that your contractor number is listed in: <LOCATION>.	general/click_resolved				https://qoof.salt.ch

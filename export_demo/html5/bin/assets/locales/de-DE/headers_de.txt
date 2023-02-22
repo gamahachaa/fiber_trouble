@@ -6,6 +6,7 @@ $flow.all.fiberbox._WhereIsBoxPlaced.Multimedia	3. Multimediaverteiler
 $flow.nointernet.fiberbox.BoxLedStatus.Off	aus
 $flow.nointernet.fiberbox.BoxLedStatus.WhiteStable	Konstant weiss
 $flow.nointernet.fiberbox.BoxLedStatus.WhiteBlink	Weiss blinkend
+$flow.nointernet.fiberbox.BoxLedStatus.whiteLongBlink	Weiß ein, dann aus
 $flow.nointernet.fiberbox.BoxLedStatus.Greenstable	Konstant grün
 $flow.nointernet.fiberbox.BoxLedStatus.GreenBlink	Grün blinkend
 $flow.nointernet.fiberbox.BoxLedStatus.RedBlink	Rot blinkend

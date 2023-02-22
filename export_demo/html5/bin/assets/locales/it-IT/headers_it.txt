@@ -6,6 +6,7 @@ $flow.all.fiberbox._WhereIsBoxPlaced.Multimedia	3. Armadio di distribuzione
 $flow.nointernet.fiberbox.BoxLedStatus.Off	Spento
 $flow.nointernet.fiberbox.BoxLedStatus.WhiteStable	Bianco stabile
 $flow.nointernet.fiberbox.BoxLedStatus.WhiteBlink	Bianco lampeggiante
+$flow.nointernet.fiberbox.BoxLedStatus.whiteLongBlink	Bianco acceso e poi spento
 $flow.nointernet.fiberbox.BoxLedStatus.Greenstable	Verde stabile
 $flow.nointernet.fiberbox.BoxLedStatus.GreenBlink	Verde lampeggiante
 $flow.nointernet.fiberbox.BoxLedStatus.RedBlink	Rosso lampeggiante

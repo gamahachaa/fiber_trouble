@@ -4,13 +4,20 @@ package flow.all.fiberbox;
 //import flixel.FlxG;
 //import flixel.text.FlxText;
 import flixel.addons.ui.ButtonLabelStyle;
+import flow.all.customer.IsSlowOrKaput;
+import flow.nointernet.fiberbox.IsBoxReachable;
 import flow.nointernet.so._CreateTicketModemCNX;
 import flow.nointernet.vti.CheckContractorVTI;
+import flow.phone.HowIsDeviceConnected;
+import flow.phone.IsTheDeviceWorking;
+import flow.phone.WhatIsthePhoneISsue;
 import flow.tickets.CustomerInstruction;
 import flow.tv.WhatIStheTVIssue;
 import flow.tv.hardware.IsAppleTVvisibleOnTVScreen;
 import flow.tv.hardware.IsAppleTVFourthGen;
 import flow.tv.sound._MakeSureHDMIWellConnected;
+import flow.vti.SerialVTI;
+import flow.vti._RXfromVTI;
 import tstool.layout.Alert;
 import tstool.layout.ClosableSubState;
 import tstool.layout.History.ValueReturn;
@@ -35,26 +42,7 @@ enum Box
 class WhatBoxIsIt extends Triplet
 {
 	var mainIssue:ValueReturn;
-
-	override public function onYesClick():Void
-	{
-		setCustomerProfile(Sagem);
-		this._nexts = [{step: _WhereIsBoxPlaced, params: []}];
-		super.onYesClick();
-	}
-	override public function onNoClick():Void
-	{
-		if (Main.customer.voIP == CheckContractorVTI.BLANK_VOIP)
-		{
-			//openAlert(["<ID>" => Main.customer.voIP, "<IDNAME>" => "Voip Number", "<PRODUCT>" => "Arcadyan box"]);
-			setCustomerProfile(Arcadyan, true);
-		}
-		else{
-			setCustomerProfile(Arcadyan);
-		}
-		this._nexts = [{step: _WhereIsBoxPlaced, params: []}];
-		super.onNoClick();
-	}
+	var box:Box;
 	inline function openAlert(message:Map<String,String>)
 	{
 		var alert:Alert = new AlertBadVoip(message);
@@ -64,12 +52,21 @@ class WhatBoxIsIt extends Triplet
 	inline function closeAlert()
 	{
 		closeSubState();
-		this._nexts = [{step: CheckContractorVTI, params: []}];
+		this._nexts = [ {step: CheckContractorVTI, params: []}];
 		super.onNoClick();
 	}
 	override public function create():Void
 	{
 		super.create();
+		#if debug
+		trace("flow.all.fiberbox.WhatBoxIsIt::create::Main.customer.dataSet", Main.customer.dataSet );
+		#end
+		box = Type.createEnum(Box ,Main.customer.dataSet.get(
+			CheckContractorVTI.CUST_DATA_PRODUCT).get(CheckContractorVTI.CUST_DATA_PRODUCT_BOX)
+		);
+		#if debug
+		trace("flow.all.fiberbox.WhatBoxIsIt::create::box", box );
+		#end
 		mainIssue = Main.HISTORY.findValueOfFirstClassInHistory(Intro, Intro.ISSUE);
 		if (Main.customer.contract.service == Office)
 		{
@@ -77,13 +74,71 @@ class WhatBoxIsIt extends Triplet
 			this.btnNo.visible = false;
 		}
 	}
+	override public function onYesClick():Void
+	{
+		if (checkBox(Sagem))
+		{
+			setCustomerProfile(Sagem);
+			getNext(Sagem);
+			super.onYesClick();
+		}
+	}
+	override public function onNoClick():Void
+	{
+		if (checkBox(Arcadyan))
+		{
+			getNext(Arcadyan);
+			super.onNoClick();
+		}
+	}
+
 	override public function onMidClick():Void
 	{
-		if (Main.customer.voIP == CheckContractorVTI.BLANK_VOIP)
+		//Gigabox
+
+		if (checkBox(Gigabox))
 		{
-			setCustomerProfile(Gigabox);
-			//this._nexts = [{step: _WhereIsBoxPlaced, params: []}];
-			//this._nexts = if (Main.HISTORY.isClassInteractionInHistory(Intro, No))
+			getNext(Gigabox);
+			super.onMidClick();
+		}
+		//else{
+			//openAlert(["<ID>" => Main.customer.voIP, "<IDNAME>" => "Voip Number", "<PRODUCT>"=>"Gigabox"]);
+		//}
+	}
+	function checkBox(boxClicked:Box)
+	{
+		if (box == boxClicked) return true;
+		openAlert(["<ID>" => Main.customer.voIP, "<IDNAME>" => "Voip Number", "<PRODUCT>" => Std.string(boxClicked)]);
+		return false;
+			
+	}
+	function setCustomerProfile(box:Box, ?fake:Bool=false )
+	{
+		Main.customer.iri = (box != Arcadyan || fake) ? Main.customer.contract.contractorID : Main.customer.voIP;
+		//Main.customer.dataSet.set(
+			//CheckContractorVTI.CUST_DATA_PRODUCT,
+			//[CheckContractorVTI.CUST_DATA_PRODUCT_BOX => Std.string(box)]
+		//);
+		Main.STORAGE_DISPLAY.push(CheckContractorVTI.CUST_DATA_PRODUCT_BOX);
+		Process.STORE(
+			CheckContractorVTI.CUST_DATA_PRODUCT_BOX,  Std.string(box)
+		);
+		#if debug
+		trace( Main.customer.dataSet );
+		#end
+	}
+	function getNext(box:Box):Void
+	{
+		var mainIssue = Main.HISTORY.findValueOfFirstClassInHistory(Intro, Intro.ISSUE);
+		var phoneIssue = Main.HISTORY.findValueOfFirstClassInHistory(WhatIsthePhoneISsue, WhatIsthePhoneISsue.ISSUE);
+		if (box == Arcadyan)
+			setCustomerProfile(Arcadyan, Main.customer.voIP == CheckContractorVTI.BLANK_VOIP);
+		else{
+			setCustomerProfile(box);
+		}
+
+		if ( box == Gigabox )
+		{
 			this._nexts = if (mainIssue.value == Intro.tv)
 			{
 				if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid))
@@ -94,54 +149,140 @@ class WhatBoxIsIt extends Triplet
 				else if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, No))
 				{
 					//sound
-					//[ {step: _StoreCustomersSetup }];
 					[ {step: _MakeSureHDMIWellConnected }];
 				}
 				else
 				{
 					// remote
-					//[ {step: WichRemote }];
 					[ {step: IsAppleTVFourthGen }];
 				}
-
 			}
-			else{
-				[ {
+			else
+			{
+				[
+				{
 					step: CustomerInstruction, params: [
 					{step: _CreateTicketModemCNX},
 					{step: _CreateTicketModemCNX}
 					]
 				}];
 			}
-
-			super.onMidClick();
-		}else{
-			openAlert(["<ID>" => Main.customer.voIP, "<IDNAME>" => "Voip Number", "<PRODUCT>"=>"Gigabox"]);
 		}
+		else{
+			if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))
+			{
+				// NO INTERNET
+				this._nexts = [ {step:IsBoxReachable}];
+			}
+			else if (mainIssue.value == Intro.phone )
+			{
+				// PHONE
+				if (phoneIssue.value == WhatIsthePhoneISsue.drop_calls)
+				{
+					this._nexts = [ {step:IsTheDeviceWorking}];
+				}
+				else if (phoneIssue.value == WhatIsthePhoneISsue.caller_id || phoneIssue.value == WhatIsthePhoneISsue.sound_quality)
+				{
+					this._nexts = [ {step: HowIsDeviceConnected}];
+				}
+				else
+				{
+					this._nexts = [ {step:IsBoxReachable}];
+				}
+			}
+			else {
+				// stability
+				  if (box == Arcadyan) this._nexts = [{step:SerialVTI}];
+				  else this._nexts = [{step:_RXfromVTI}];// Sagem
+			}
+		}
+        /*
+		if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))
+		{
+			// NO INTERNET
+			this._nexts = [ {step:IsBoxReachable}];
+		}
+		else if (mainIssue.value == Intro.phone )
+		{
+			// PHONE
+			if (phoneIssue.value == WhatIsthePhoneISsue.drop_calls)
+			{
+				this._nexts = [ {step:IsTheDeviceWorking}];
+			}
+			else if (phoneIssue.value == WhatIsthePhoneISsue.caller_id || phoneIssue.value == WhatIsthePhoneISsue.sound_quality)
+			{
+				this._nexts = [ {step: HowIsDeviceConnected}];
+			}
+			else
+			{
+				this._nexts = [ {step:IsBoxReachable}];
+			}
+		}
+		else{
+			// TV or stability
+			if (box == Arcadyan)
+				this._nexts = [{step:SerialVTI}];
+			else if (box == Gigabox)
+			{
+
+				this._nexts = if (mainIssue.value == Intro.tv)
+				{
+					if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid))
+					{
+						//tv
+						[ {step:  IsAppleTVvisibleOnTVScreen}];
+					}
+					else if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, No))
+					{
+						//sound
+						[ {step: _MakeSureHDMIWellConnected }];
+					}
+					else
+					{
+						// remote
+						[ {step: IsAppleTVFourthGen }];
+					}
+
+				}
+				else
+				{
+					[
+					{
+						step: CustomerInstruction, params: [
+						{step: _CreateTicketModemCNX},
+						{step: _CreateTicketModemCNX}
+						]
+					}];
+				}
+
+			}
+			else
+				this._nexts = [{step:_RXfromVTI}];// Sagem
+				
+		} */
 	}
-	function setCustomerProfile(box:Box, ?fake:Bool=false )
-	{
-		Main.customer.iri = (box != Arcadyan || fake) ? Main.customer.contract.contractorID : Main.customer.voIP;
-		Main.customer.dataSet.set(
-			CheckContractorVTI.CUST_DATA_PRODUCT,
-			[CheckContractorVTI.CUST_DATA_PRODUCT_BOX => Std.string(box)]
-		);
-		Main.STORAGE_DISPLAY.push(CheckContractorVTI.CUST_DATA_PRODUCT_BOX);
-		Process.STORE(
-			CheckContractorVTI.CUST_DATA_PRODUCT_BOX,  Std.string(box)
-			//arcadyan ? CheckContractorVTI.ARCADYAN:
-			//(Main.customer.contract.service == Gigabox ? Std.string(Gigabox) : CheckContractorVTI.SAGEM)
-		);
-		#if debug
-		trace( Main.customer.dataSet );
-		#end
-	}
+	//inline function chekcIfArcadyan()
+	//{
+	//if (Main.customer.dataSet != null)
+	//{
+	//if (Main.customer.dataSet.exists(CheckContractorVTI.CUST_DATA_PRODUCT))
+	//{
+	//if (Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).exists(CheckContractorVTI.CUST_DATA_PRODUCT_BOX))
+	//{
+	//return Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).get(CheckContractorVTI.CUST_DATA_PRODUCT_BOX) == CheckContractorVTI.ARCADYAN;
+	//}
+	//else return false;
+	//}
+	//else return false;
+	//}
+	//else return false;
+	//}
 
 }
 class AlertBadVoip extends Alert
 {
 	public function new(m:Map<String,String>)
 	{
-		 super(m);
+		super(m);
 	}
 }

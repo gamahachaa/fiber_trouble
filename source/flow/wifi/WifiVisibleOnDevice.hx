@@ -24,8 +24,6 @@ class WifiVisibleOnDevice extends Descision
 		var n:Array<ProcessContructor> = [
 			{step: _RestartDevice},
 			{step: WifiVisibleByAppleTV}
-			//{step: Main.HISTORY.isClassInteractionInHistory(flow.wifi.WifiVisibleByAppleTV, Yes)? _ConteactDeviceSupport: _CreateTicketWifiIssue}
-			//{step: Main.HISTORY.isClassInteractionInHistory(flow.wifi.WifiVisibleByAppleTV, Yes)? _ConteactDeviceSupport: _CreateTicketWifiIssue}
 		];
 		n.push(
 			if (Main.HISTORY.isClassInteractionInHistory(flow.wifi.WifiVisibleByAppleTV, Yes))
@@ -37,11 +35,6 @@ class WifiVisibleOnDevice extends Descision
 			}
 		);
 		this._nexts = n;
-		//this._nexts = [
-			//{step: _RestartDevice},
-			//{step: WifiVisibleByAppleTV},
-			//{step: Main.HISTORY.isClassInteractionInHistory(flow.wifi.WifiVisibleByAppleTV, Yes)? _ConteactDeviceSupport: _CreateTicketWifiIssue}
-		//];
 		super.onNoClick();
 	}
 }

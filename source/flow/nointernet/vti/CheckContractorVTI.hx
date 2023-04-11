@@ -49,6 +49,7 @@ class CheckContractorVTI extends TripletMultipleInput
 	var fetcher:CsvFetcher;
 	var incidentFilesContractor:Array<IncidentContractors>;
 	var incidentLocation:String;
+
 	public static inline var BIEL_INCIDENT_LOCATION:String = "incidident_location";
 	//static inline var VTI_VIOP_WITH_CHEATING:String = "^(?!41[0-9]{2}0000000)(41\d{9}|00000000000)$";
 	public static inline var BLANK_VOIP:String = "0000000000";
@@ -62,7 +63,6 @@ class CheckContractorVTI extends TripletMultipleInput
 	public static inline var GIGABOX:String = "Gigabox";
 	public static inline var B2B_expl_BIEL:String = "31194459";
 	public static inline var B2C_ACRADAYN_expl_BIEL:String = "31194414";
-	
 
 	//public static inline var GIGABOX:String = "Gigabox";
 
@@ -130,26 +130,37 @@ class CheckContractorVTI extends TripletMultipleInput
 	}
 	function onBielIncidentData(d:String)
 	{
-		var j:Dynamic = Json.parse(d);
-		incidentFilesContractor = [];
-		#if debug
-		//trace("flow.nointernet.vti.CheckContractorVTI::onBielIncidentData::j", j );
-		#end
-		if (j.status == Results.SUCCESS_VALUE)
+		try
 		{
-			var list:String = StringTools.urlDecode(j.additional);
-			var files:Array<String> = list.split(Params.STICKY_INCIDENT_BIEL_TITLE_SEP);
-			for (i in files)
+			var j:Dynamic = Json.parse(d);
+			incidentFilesContractor = [];
+			#if debug
+			trace("flow.nointernet.vti.CheckContractorVTI::onBielIncidentData::j", j );
+			#end
+			if (j.status == Results.SUCCESS_VALUE)
 			{
-				var split:Array<String> = i.split(Params.STICKY_INCIDENT_BIEL_SUB_SEP);
-				incidentFilesContractor.push(
+				var list:String = StringTools.urlDecode(j.additional);
+				var files:Array<String> = list.split(Params.STICKY_INCIDENT_BIEL_TITLE_SEP);
+				for (i in files)
 				{
-					location: split[0].replace(Params.INCIDENT_CSV,"").replace(".csv",""),
-					contractors: split[1].split(Params.STICKY_INCIDENT_BIEL_CONTRACTOR_SEP)
+					var split:Array<String> = i.split(Params.STICKY_INCIDENT_BIEL_SUB_SEP);
+					if (split.length > 2)
+					{
+						incidentFilesContractor.push(
+						{
+							location: split[0].replace(Params.INCIDENT_CSV,"").replace(".csv",""),
+							contractors: split[1].split(Params.STICKY_INCIDENT_BIEL_CONTRACTOR_SEP)
+						});
+
+					}
 				}
-				);
 			}
 		}
+		catch (e)
+		{
+			trace(e);
+		}
+
 		#if debug
 		//trace("flow.nointernet.vti.CheckContractorVTI::onBielIncidentData::incidentFilesContractor", incidentFilesContractor );
 		#end
@@ -210,28 +221,6 @@ class CheckContractorVTI extends TripletMultipleInput
 		profile.get("balance").get("vtiOverdueDate")):null,
 			(profile.get("plan").exists("plan") ? (profile.get("plan").get("plan").indexOf("Giga")>-1?Gigabox:profile.get("plan").get("plan").indexOf("Office")>-1?Office:Fiber):Fiber)
 		);
-
-		var box:String = if (Main.customer.contract.service == Gigabox)
-		{
-			GIGABOX;
-		}
-		else if (is_sagem)
-		{
-			SAGEM;
-		}
-		else{
-			ARCADYAN;
-		}
-		#if debug
-		trace("flow.nointernet.vti.CheckContractorVTI::onVtiAccountParsed::box", box, voip );
-		#end
-		Main.customer.dataSet.set(
-			CheckContractorVTI.CUST_DATA_PRODUCT,
-			[CheckContractorVTI.CUST_DATA_PRODUCT_BOX => box]
-		);
-		#if debug
-		trace(Main.customer);
-		#end
 
 		//this.question.
 		//question.text = question.text + " <em>" + Main.customer.contract.owner.name + "<em>";
@@ -295,6 +284,21 @@ class CheckContractorVTI extends TripletMultipleInput
 	function prepareAndMove(b2bChosen:Bool)
 	{
 		this.parser.destroy();
+
+		Main.customer.dataSet.set(
+			CheckContractorVTI.CUST_DATA_PRODUCT,[
+				CheckContractorVTI.CUST_DATA_PRODUCT_BOX => 
+					if (Main.customer.contract.service == Gigabox) 
+						GIGABOX
+					else if (is_sagem || b2bChosen) 
+						SAGEM
+					else 
+						ARCADYAN
+				]
+		);
+		#if debug
+		trace(Main.customer);
+		#end
 		var contractorID = multipleInputs.inputs.get(CONTRACTOR_ID).getInputedText();
 		var voipVTI = multipleInputs.inputs.get(VOIP_NUMBER).getInputedText();
 		var contactNB = multipleInputs.inputs.get(CONTACT_NUMBER).getInputedText();
@@ -307,9 +311,9 @@ class CheckContractorVTI extends TripletMultipleInput
 		Main.customer.contract.mobile = contactNB;
 
 		incidentLocation = checkIfIncidentForTheContractor(Main.customer.contract.contractorID);
-		if (mainIssue.value == Intro.order)
+		this._nexts = if (mainIssue.value == Intro.order)
 		{
-			this._nexts = [ {step: IsRedStep }];
+			[ {step: IsRedStep }];
 		}
 		else if (
 			incidentLocation == ""
@@ -321,19 +325,12 @@ class CheckContractorVTI extends TripletMultipleInput
 				!Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid)
 			)
 		)
-
 		{
-			this._nexts = [ {step: IsTicketOpened }];
+			[ {step: IsTicketOpened }];
 		}
 		else
 		{
-			this._nexts = [ {step: BielIncidentInQoof }];
-		}
-		if (b2bChosen)
-		{
-			Main.customer.dataSet.set(
-				CheckContractorVTI.CUST_DATA_PRODUCT,
-				[CheckContractorVTI.CUST_DATA_PRODUCT_BOX => SAGEM]);
+			[ {step: BielIncidentInQoof }];
 		}
 
 		setReminder();

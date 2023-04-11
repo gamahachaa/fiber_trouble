@@ -28,7 +28,7 @@
     <class path="C:\HaxeToolkit\haxe\lib\hscript\2,4,0" />
     <class path="C:\HaxeToolkit\haxe\lib\tstool\git" />
     <class path="C:\HaxeToolkit\haxe\lib\xapi\git" />
-    <class path="C:\HaxeToolkit\haxe\lib\thx,core\0,44,0\src" />
+    <class path="C:\HaxeToolkit\haxe\lib\thx,core\git\src" />
     <class path="C:\HaxeToolkit\haxe\lib\signals\1,3,2\src" />
     <class path="C:\HaxeToolkit\haxe\lib\uglifyjs\1,0,0\src" />
     <class path="source" />
@@ -41,7 +41,7 @@
     <option noInlineOnDebug="False" />
     <option mainClass="ApplicationMain" />
     <option enabledebug="False" />
-    <option additional="--macro lime._internal.macros.DefineMacro.run()&#xA;--macro openfl.utils._internal.ExtraParamsMacro.include()&#xA;--macro UglifyJS.run()&#xA;--remap flash:openfl&#xA;--macro flixel.system.macros.FlxDefines.run()&#xA;-dce full&#xA;--macro tstool.macros.TranslationVerificator.test(['Main','ActionTicketFiberTrouble','AssetPaths', 'Howl', 'TechTickets'])&#xA;-debug " />
+    <option additional="--macro lime._internal.macros.DefineMacro.run()&#xA;--macro openfl.utils._internal.ExtraParamsMacro.include()&#xA;--macro UglifyJS.run()&#xA;--remap flash:openfl&#xA;--macro flixel.system.macros.FlxDefines.run()&#xA;-dce full&#xA;--macro tstool.macros.TranslationVerificator.test(['Main','ActionTicketFiberTrouble','AssetPaths', 'Howl', 'TechTickets'])" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>

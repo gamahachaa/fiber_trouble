@@ -26,7 +26,7 @@ class HasCustomerLEXnetworkIssue extends Descision
 	var outages:String;
 	static inline var TEMP_OUTAGES:String = Params.MODULAR_MDS + "1";
 	static inline var TEMP_STICKIES:String = Params.MODULAR_MDS + "2";
-	
+
 	var stickiesKey:String;
 	var values:Map<String, Dynamic>;
 	static inline var FILES_ROOT_DEV:String = "/var/www/html/owncloud/data/bbaudry/files/qook/";
@@ -59,7 +59,7 @@ class HasCustomerLEXnetworkIssue extends Descision
 	}
 	override public function onNoClick():Void
 	{
-		
+
 		#if DEMO
 		this._nexts = [{step: ChekSaltTVKNownBugs, params: []}];
 		#else
@@ -69,14 +69,15 @@ class HasCustomerLEXnetworkIssue extends Descision
 	}
 	function ondata(d:String)
 	{
+		var hasOutages:Bool = false;
 		#if debug
 		trace("flow.nointernet.customer.HasCustomerLEXnetworkIssue::ondata::values", values );
 		#end
-		var lexID = values.get(VTIdataParser.lexId);	
+		var lexID = values.get(VTIdataParser.lexId);
 		var j:Dynamic = Json.parse(d);
 		//var tmp = "";
 		outages = "";
-		if (j.status == Results.SUCCESS_VALUE) 
+		if (j.status == Results.SUCCESS_VALUE)
 		{
 			//
 			//#if debug
@@ -88,7 +89,7 @@ class HasCustomerLEXnetworkIssue extends Descision
 			//trace("flow.nointernet.customer.HasCustomerLEXnetworkIssue::ondata::majorIncidents.toLowerCase().lastIndexOf(end)", majorIncidents.toLowerCase(), majorIncidents.toLowerCase().lastIndexOf("end") );
 			//trace(outages);
 			//#end
-			var hasOutages = false;
+
 			if ( majorIncidents.indexOf(Results.NO_INCIDENT) == -1)
 			{
 				hasOutages = true;
@@ -97,11 +98,10 @@ class HasCustomerLEXnetworkIssue extends Descision
 				outages = ExpReg.FRONTMATTER_IN_MD.replace(outages, "");
 			}
 			if ( stickyNotes.indexOf(Results.NO_INCIDENT) == -1)
-			{ 
+			{
 				outages += hasOutages ? StringUtils.LINEFEEDS_N +  StringUtils.LINEFEEDS_N : "";
 				outages += "<b>Qoof's Stiky<b>" + StringUtils.LINEFEEDS_N;
-				
-				
+
 				while (getTags(stickyNotes,"span").start != -1)
 				{
 					var tmpSub = getTags(stickyNotes,"span");
@@ -112,26 +112,29 @@ class HasCustomerLEXnetworkIssue extends Descision
 			#if debug
 			trace("flow.nointernet.customer.HasCustomerLEXnetworkIssue::ondata::outages", outages );
 			#end
-
 			this._detailTxt = outages.replace(lexID, '<em>$lexID<em>');
 			this._detailTxt = outages.replace("###", '<b>###<b>');
-			//this._detailTxt =  _detailTxt.;
-
-			_titleTxt = _titleTxt.replace("<OLT>", values.get(VTIdataParser.oltObject));
-			_titleTxt = _titleTxt.replace("<LEX>", '<em>$lexID<em>');
 			//this._titleTxt += " (LEX : " + values.get(VTIdataParser.lexId) + ")";
 			//#if debug
 			//trace('flow.nointernet.customer.HasCustomerLEXnetworkIssue::ondata::_titleTxt ${_titleTxt}');
 			//#end
-			super.create();
+			//super.create();
 			//if (outages == Params.NO_INCIDENT)
 			//{
-				//onNoClick();
+			//onNoClick();
 			//}
 		}
-		else{
-			trace(j);
+		else
+		{
+			//trace(j);
+
 		}
+
+		//this._detailTxt =  _detailTxt.;
+
+		_titleTxt = _titleTxt.replace("<OLT>", values.get(VTIdataParser.oltObject));
+		_titleTxt = _titleTxt.replace("<LEX>", '<em>$lexID<em>');
+		super.create();
 	}
 	override public function create():Void
 	{

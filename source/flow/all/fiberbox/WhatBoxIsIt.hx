@@ -1,8 +1,5 @@
 package flow.all.fiberbox;
 
-//import flow.nointernet.so.IsTicketOpened;
-//import flixel.FlxG;
-//import flixel.text.FlxText;
 import flixel.addons.ui.ButtonLabelStyle;
 import flow.all.customer.IsSlowOrKaput;
 import flow.nointernet.fiberbox.IsBoxReachable;
@@ -23,9 +20,7 @@ import tstool.layout.ClosableSubState;
 import tstool.layout.History.ValueReturn;
 import tstool.layout.SaltColor;
 import tstool.layout.UI;
-//import flow.tv.remote.WichRemote;
-//import flow.tv.sound._StoreCustomersSetup;
-//import tstool.process.Descision;
+
 import tstool.process.Process;
 import tstool.process.Triplet;
 
@@ -61,9 +56,9 @@ class WhatBoxIsIt extends Triplet
 		#if debug
 		trace("flow.all.fiberbox.WhatBoxIsIt::create::Main.customer.dataSet", Main.customer.dataSet );
 		#end
-		box = Type.createEnum(Box ,Main.customer.dataSet.get(
+		box = Type.createEnum(Box,Main.customer.dataSet.get(
 			CheckContractorVTI.CUST_DATA_PRODUCT).get(CheckContractorVTI.CUST_DATA_PRODUCT_BOX)
-		);
+							 );
 		#if debug
 		trace("flow.all.fiberbox.WhatBoxIsIt::create::box", box );
 		#end
@@ -102,7 +97,7 @@ class WhatBoxIsIt extends Triplet
 			super.onMidClick();
 		}
 		//else{
-			//openAlert(["<ID>" => Main.customer.voIP, "<IDNAME>" => "Voip Number", "<PRODUCT>"=>"Gigabox"]);
+		//openAlert(["<ID>" => Main.customer.voIP, "<IDNAME>" => "Voip Number", "<PRODUCT>"=>"Gigabox"]);
 		//}
 	}
 	function checkBox(boxClicked:Box)
@@ -110,15 +105,12 @@ class WhatBoxIsIt extends Triplet
 		if (box == boxClicked) return true;
 		openAlert(["<ID>" => Main.customer.voIP, "<IDNAME>" => "Voip Number", "<PRODUCT>" => Std.string(boxClicked)]);
 		return false;
-			
+
 	}
 	function setCustomerProfile(box:Box, ?fake:Bool=false )
 	{
 		Main.customer.iri = (box != Arcadyan || fake) ? Main.customer.contract.contractorID : Main.customer.voIP;
-		//Main.customer.dataSet.set(
-			//CheckContractorVTI.CUST_DATA_PRODUCT,
-			//[CheckContractorVTI.CUST_DATA_PRODUCT_BOX => Std.string(box)]
-		//);
+
 		Main.STORAGE_DISPLAY.push(CheckContractorVTI.CUST_DATA_PRODUCT_BOX);
 		Process.STORE(
 			CheckContractorVTI.CUST_DATA_PRODUCT_BOX,  Std.string(box)
@@ -192,92 +184,12 @@ class WhatBoxIsIt extends Triplet
 			}
 			else {
 				// stability
-				  if (box == Arcadyan) this._nexts = [{step:SerialVTI}];
-				  else this._nexts = [{step:_RXfromVTI}];// Sagem
+				if (box == Arcadyan) this._nexts = [{step:SerialVTI}];
+				else this._nexts = [{step:_RXfromVTI}];// Sagem
 			}
 		}
-        /*
-		if (Main.HISTORY.isClassInteractionInHistory(IsSlowOrKaput, No))
-		{
-			// NO INTERNET
-			this._nexts = [ {step:IsBoxReachable}];
-		}
-		else if (mainIssue.value == Intro.phone )
-		{
-			// PHONE
-			if (phoneIssue.value == WhatIsthePhoneISsue.drop_calls)
-			{
-				this._nexts = [ {step:IsTheDeviceWorking}];
-			}
-			else if (phoneIssue.value == WhatIsthePhoneISsue.caller_id || phoneIssue.value == WhatIsthePhoneISsue.sound_quality)
-			{
-				this._nexts = [ {step: HowIsDeviceConnected}];
-			}
-			else
-			{
-				this._nexts = [ {step:IsBoxReachable}];
-			}
-		}
-		else{
-			// TV or stability
-			if (box == Arcadyan)
-				this._nexts = [{step:SerialVTI}];
-			else if (box == Gigabox)
-			{
 
-				this._nexts = if (mainIssue.value == Intro.tv)
-				{
-					if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid))
-					{
-						//tv
-						[ {step:  IsAppleTVvisibleOnTVScreen}];
-					}
-					else if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, No))
-					{
-						//sound
-						[ {step: _MakeSureHDMIWellConnected }];
-					}
-					else
-					{
-						// remote
-						[ {step: IsAppleTVFourthGen }];
-					}
-
-				}
-				else
-				{
-					[
-					{
-						step: CustomerInstruction, params: [
-						{step: _CreateTicketModemCNX},
-						{step: _CreateTicketModemCNX}
-						]
-					}];
-				}
-
-			}
-			else
-				this._nexts = [{step:_RXfromVTI}];// Sagem
-				
-		} */
 	}
-	//inline function chekcIfArcadyan()
-	//{
-	//if (Main.customer.dataSet != null)
-	//{
-	//if (Main.customer.dataSet.exists(CheckContractorVTI.CUST_DATA_PRODUCT))
-	//{
-	//if (Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).exists(CheckContractorVTI.CUST_DATA_PRODUCT_BOX))
-	//{
-	//return Main.customer.dataSet.get(CheckContractorVTI.CUST_DATA_PRODUCT).get(CheckContractorVTI.CUST_DATA_PRODUCT_BOX) == CheckContractorVTI.ARCADYAN;
-	//}
-	//else return false;
-	//}
-	//else return false;
-	//}
-	//else return false;
-	//}
-
 }
 class AlertBadVoip extends Alert
 {

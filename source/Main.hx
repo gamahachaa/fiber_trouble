@@ -4,9 +4,7 @@ import flixel.FlxG;
 import flixel.FlxState;
 import flow.Intro;
 import flow.nointernet.customer.HasCustomerLEXnetworkIssue;
-//import flow.nointernet.fiberbox.BoxLedStatus;
-//import flow.tv.ChekSaltTVKNownBugs;
-//import flow.vti.ParseVTIHealthCheck;
+
 import format.csv.Data.Record;
 import format.csv.Reader;
 //import lime.utils.AssetType;
@@ -31,14 +29,13 @@ class Main extends MainApp
 	public static var adminFile:tstool.utils.Csv;
 	
 	public static var customer:Customer;
-	
 	public static var trackH:XapiTracker;
 	
 	public static var VERSION:String;
 	public static var VERSION_TRACKER:VersionTracker;
 	
 	public static var DEBUG:Bool;
-	public static var _mainDebug:Bool;
+	//public static var _mainDebug:Bool;
 	public static inline var DEBUG_LEVEL:Int = 0;
 	
 	static public var STORAGE_DISPLAY:Array<String> = [];
@@ -50,31 +47,22 @@ class Main extends MainApp
 	#else
 		public static inline var START_STEP:Class<Process> = Intro;
 	#end
-	public static var LANGS = ["fr-FR", "de-DE", "en-GB", "it-IT"];
-	public static inline var INTRO_PIC:String = "default.png";
-	public static inline var LIB_FOLDER_LOGIN:String = "/commonlibs/";
+	//public static var LANGS = ["fr-FR", "de-DE", "en-GB", "it-IT"];
+	//public static inline var INTRO_PIC:String = "default.png";
+	//public static inline var LIB_FOLDER_LOGIN:String = "/commonlibs/";
 	public static var snTabRecord:Array<Record>;
 	public static var SN_TAB:Array<String>;
 	
 	public function new()
 	{
-		super({
-				cookie:"trouble_20210505.user",
-				#if DEMO
-				scriptName:"trouble_demo",
-				#else
-				scriptName:"trouble",
-				#end
-				libFolder: LIB_FOLDER_LOGIN
-				
-		});
-		LIB_FOLDER = "../trouble/";
+		super();
+
 	
 		HISTORY = MainApp.stack;
 	
 		trackH =  MainApp.xapiHelper;
 		DEBUG = MainApp.debug;
-		_mainDebug = MainApp.debug;
+		//_mainDebug = MainApp.debug;
 		VERSION_TRACKER = MainApp.versionTracker;
 		customer = MainApp.cust;
 		initScreen();
@@ -84,12 +72,7 @@ class Main extends MainApp
 		 */
 		snTabRecord = Reader.parseCsv(Assets.getText("assets/data/fab_UMC_only.csv"));
 		SN_TAB = Lambda.map( snTabRecord, (e:Record)->(return e[0]));
-		
-		#if debug
-		var r = "(^-[0-9]{1,2}((,|.)[0-9]{1,3})?$)";
-		var reg = new EReg(r,"i");
-		trace( reg.match("-40000"));
-		#end
+
 	}
     static public function MOVE_ON(?old:Bool=false)
 	{

@@ -191,10 +191,10 @@ class WhatBoxIsIt extends Triplet
 
 	}
 }
-class AlertBadVoip extends Alert
+/*class AlertBadVoip extends Alert
 {
 	public function new(m:Map<String,String>)
 	{
 		super(m);
 	}
-}
+}*/

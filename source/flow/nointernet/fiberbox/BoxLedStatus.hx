@@ -30,6 +30,7 @@ class BoxLedStatus extends ActionRadios
 	static inline var _off:String = "Off";
 	static inline var _whiteStable:String= "White Stable";
 	static inline var _whiteBlink:String = "White Blink";
+	static inline var _whiteLongBlink:String = "White Long Blink";
 	
 	public static inline var _greenStable:String= "Green stable";
 	static inline var _greenBlink:String= "Green Blink";
@@ -65,12 +66,12 @@ class BoxLedStatus extends ActionRadios
 	public function new ()
 	{
 		var radiosTab = if (chekcIfSagem())
-		{
+		{   //SAGEM
 			[
 				{
 					title: POWER_TITLE,
 					hasTranslation:true,
-					values: [_off, _whiteStable, _redBlink]
+					values: [_off, _whiteStable, _redBlink, _whiteLongBlink]
 				},
 				{
 					title: FIBER_SAGEM_TITLE,
@@ -86,7 +87,7 @@ class BoxLedStatus extends ActionRadios
 				{
 					title: PHONE_SAGEM_TITLE,
 					hasTranslation:true,
-					values: [_off, _whiteStable, _whiteBlink, _redStable]
+					values: [_off, _whiteStable, _whiteBlink, _redStable, _blueStable]
 				},
 				{
 					title: WIFI_TITLE,
@@ -101,13 +102,13 @@ class BoxLedStatus extends ActionRadios
 			];
 		}
 		else
-		{
+		{ //ARCADYAN
 			
 			[
 				{
 					title: POWER_TITLE,
 					hasTranslation:true,
-					values:[_off, _greenStable, _blink]
+					values:[_off, _greenStable, _redBlink]
 				},
 				{
 					title: FIBER_TITLE,
@@ -220,6 +221,14 @@ class BoxLedStatus extends ActionRadios
 		{
 			{step: LedPowerOn};
 		
+		}
+		else if (powerLED == _whiteLongBlink)
+		{
+			{step: CustomerInstruction, params: [
+													{step: _SwapBox},
+													{step: _SwapBox}
+												]
+			};
 		}
 		else if (powerLED == _greenStable || powerLED == _whiteStable) // COMMON
 		{

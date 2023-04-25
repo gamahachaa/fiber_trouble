@@ -16,6 +16,7 @@
 	
 	<!--These window settings apply to all targets-->
 	<window width="1400" height="880" fps="60" background="#FF000000" hardware="true" vsync="true" />
+	<window if="debug" background="#FFD95350"/>
 	
 	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />
@@ -115,5 +116,6 @@
 	<!-- _________________________________ Custom _______________________________ -->
 	
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
+	<icon path="assets/images/favicon.png" />
 	<haxeflag name = "--macro" value="tstool.macros.TranslationVerificator.test(['Main','ActionTicketFiberTrouble','AssetPaths', 'Howl', 'TechTickets'])"/>
 </project>

@@ -1,5 +1,0 @@
-Admins,canjump
-bbaudry,true
-acorti,true
-apeter,true
-frenard,true

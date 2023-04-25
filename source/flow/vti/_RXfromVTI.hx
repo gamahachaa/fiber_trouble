@@ -1,6 +1,7 @@
 package flow.vti;
 import flow.all.customer.LanOrWiFi;
-import flow.all.fiberbox._AdvicePutOpenSpace;
+//import flow.all.fiberbox._AdvicePutOpenSpace;
+import flow.all.fiberbox._WhereIsBoxPlaced;
 import flow.nointernet.customer.FiberCableChanged;
 import flow.stability._TestSpeed;
 import flow.swapcable.SwapFiberCable;
@@ -21,12 +22,14 @@ using StringTools;
 class _RXfromVTI extends ActionMultipleInput
 {
 	var next:ProcessContructor;
+	var boxIsInOpendSpace:Bool;
 	public static inline var RX = "VTI RX";
 
 	public function new()
 	{
 		super(
-		[{
+			[
+		{
 			ereg: new EReg(ExpReg.RX, "i"),
 			hasTranslation:true,
 			input:{
@@ -37,14 +40,14 @@ class _RXfromVTI extends ActionMultipleInput
 			}
 		}]
 		);
-		
+
 	}
 	override public function onClick():Void
 	{
 		//this._nexts = [getNext()];
 		if (validate())
 		{
-			
+
 			var rx:String = this.multipleInputs.inputs.get(RX).getInputedText().replace("dBm","");
 			if (Std.parseFloat(rx) > -21)
 			{
@@ -56,83 +59,30 @@ class _RXfromVTI extends ActionMultipleInput
 			}
 			super.onClick();
 		}
-		
+
 	}
 	function getNextRXGood()
 	{
-		var boxLocationStatus = Main.HISTORY.findValueOfFirstClassInHistory(flow.all.fiberbox._WhereIsBoxPlaced, flow.all.fiberbox._WhereIsBoxPlaced.TITLE);
-		var boxIsInOpendSpace = boxLocationStatus.exists && (boxLocationStatus.value == flow.all.fiberbox._WhereIsBoxPlaced.ONE_OPENED);
-		if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, No))
-		{
-			/************************************
-			 * TV    SOUND
-			/************************************/
-			if(boxIsInOpendSpace)
-				this._nexts = [ {step: _MakeSureHDMIWellConnected}];
-				//this._nexts = [ {step: _StoreCustomersSetup}];
-			else
-				this._nexts = [ {step: _AdvicePutOpenSpace , params:[{step: _MakeSureHDMIWellConnected}]}];
-				//this._nexts = [ {step: _AdvicePutOpenSpace , params:[{step: _StoreCustomersSetup}]}];
-		}
-		else if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid))
-		{
-			/************************************
-			 * TV    FLOW
-			/************************************/
-			if(boxIsInOpendSpace)
-				this._nexts = [ {step: IsAppleTVvisibleOnTVScreen}];
-			else
-		this._nexts = [{step: _AdvicePutOpenSpace, params:[{step: IsAppleTVvisibleOnTVScreen}]}];
-		}
-		else
-		{
-			if (Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, No))
-			{
-				if(boxIsInOpendSpace)
-				this._nexts = [ {step: _TestSpeed}];
-			else
-				this._nexts = [  {step: _AdvicePutOpenSpace, params:[{step: _TestSpeed}]}];
-				
-				//this._nexts = [ {step: _TestSpeed, params: []}];
-
-			}
-			else
-			{
-				if(boxIsInOpendSpace)
-				this._nexts = [ {step: HaveRepeater}];
-			else
-				this._nexts = [  {step: _AdvicePutOpenSpace, params:[{step: HaveRepeater}]}];
-				
-				//this._nexts = [ {step:HaveRepeater}];
-			}
-		}
+		//isBoxInOpenedSpace();
+		//buildNexts();
+		this._nexts = [ {step:  _WhereIsBoxPlaced}];
 	}
 	function getNextRXBAD()
 	{
 		var next = FiberCableChanged;
 		if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, No))
 		{
-			/************************************
-			 * TV    SOUND
-			/************************************/
+			// TV    SOUND
 			this._nexts = [ {step: next, params: [
 				{step:_MakeSureHDMIWellConnected},
 				{step: SwapFiberCable},
 				{step:_MakeSureHDMIWellConnected}
 				]
 			}];
-			/*this._nexts = [ {step: next, params: [
-				{step:_StoreCustomersSetup},
-				{step: SwapFiberCable},
-				{step:_StoreCustomersSetup}
-				]
-			}];*/
 		}
 		else if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid))
 		{
-			/************************************
-			 * TV    FLOW
-			/************************************/
+			// TV    FLOW
 			this._nexts = [ {step: next, params: [
 				{step:IsAppleTVvisibleOnTVScreen},
 				{step: SwapFiberCable},
@@ -162,5 +112,59 @@ class _RXfromVTI extends ActionMultipleInput
 			}
 		}
 	}
+
+	/*function buildNexts():Void
+	{
+		if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, No))
+		{
+			
+			 // TV    SOUND
+			
+			if (boxIsInOpendSpace)
+				this._nexts = [ {step: _MakeSureHDMIWellConnected}];
+			
+			else
+				this._nexts = [ {step: _AdvicePutOpenSpace, params:[{step: _MakeSureHDMIWellConnected}]}];
+			
+		}
+		else if (Main.HISTORY.isClassInteractionInHistory(WhatIStheTVIssue, Mid))
+		{
+			
+			 // TV    FLOW
+			
+			if (boxIsInOpendSpace)
+				this._nexts = [ {step: IsAppleTVvisibleOnTVScreen}];
+			else
+				this._nexts = [ {step: _AdvicePutOpenSpace, params:[{step: IsAppleTVvisibleOnTVScreen}]}];
+		}
+		else
+		{
+			if (Main.HISTORY.isClassInteractionInHistory(LanOrWiFi, No))
+			{ // LAN
+				if (boxIsInOpendSpace)
+					this._nexts = [ {step: _TestSpeed}];
+				else
+					this._nexts = [  {step: _AdvicePutOpenSpace, params:[{step: _TestSpeed}]}];
+
+				//this._nexts = [ {step: _TestSpeed, params: []}];
+
+			}
+			else
+			{  // Wifi or Both
+				if (boxIsInOpendSpace)
+					this._nexts = [ {step: HaveRepeater}];
+				else
+					this._nexts = [  {step: _AdvicePutOpenSpace, params:[{step: HaveRepeater}]}];
+
+				//this._nexts = [ {step:HaveRepeater}];
+			}
+		}
+	}*/
+
+	//function isBoxInOpenedSpace():Void
+	//{
+		//var boxLocationStatus = Main.HISTORY.findValueOfFirstClassInHistory(flow.all.fiberbox._WhereIsBoxPlaced, flow.all.fiberbox._WhereIsBoxPlaced.TITLE);
+		//boxIsInOpendSpace = boxLocationStatus.exists && (boxLocationStatus.value == flow.all.fiberbox._WhereIsBoxPlaced.ONE_OPENED);
+	//}
 
 }

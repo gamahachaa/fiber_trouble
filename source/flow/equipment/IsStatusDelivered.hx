@@ -11,12 +11,12 @@ class IsStatusDelivered extends Descision
 {
 	override public function onYesClick():Void
 	{
-		this._nexts = [{step: WantstoChangeAdress, params: []}];
+		this._nexts = [{step: _TellCustToGoToPost, params: []}];
 		super.onYesClick();
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = [{step: _TellCustToGoToPost, params: []}];
+		this._nexts = [{step: WantstoChangeAdress, params: []}];
 		super.onNoClick();
 	}
 }

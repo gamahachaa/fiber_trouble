@@ -1,5 +1,8 @@
 package flow.tv.remote;
 
+//import flow.all.fiberbox._AdvicePutOpenSpace;
+//import flow.all.fiberbox._WhereIsBoxPlaced;
+//import flow.tickets.CustomerInstruction;
 import flow.tv.hardware.IsAppleTVvisibleOnTVScreen;
 import flow.tv.hardware._RepairProcess;
 import flow.tv.hardware._UnplugAppleTVPowerCable;
@@ -12,6 +15,7 @@ import flow.tv.remote.satltv._MakeSureBatteriesCoerrectlyInstalled;
 import flow.tv.remote.siri._GetCloseToAppleTV;
 import flow.tv.remote.siri._RechargeSiriRemote;
 import flow.tv.sound.volume.VolumeButtonDoesWork;
+import tstool.layout.History.ValueReturn;
 import tstool.process.Descision;
 //import tstool.process.Descision;
 //import tstool.process.DescisionLoop;
@@ -21,38 +25,41 @@ import tstool.process.Descision;
  * @author bb
  */
 //class DoesAppleTVLedBlinks extends DescisionLoop{
-class DoesAppleTVLedBlinks extends Descision{
+class DoesAppleTVLedBlinks extends Descision
+{
 	var remote:String;
-	override public function create():Void 
+	override public function create():Void
 	{
 		remote = Main.HISTORY.findValueOfFirstClassInHistory( WichRemote, WichRemote.REMOTE_VERSION).value;
 		super.create();
 	}
 	override public function onYesClick():Void
 	{
-		
-		this._nexts = switch (remote){
-			case WichRemote.SALT_V2 : [{step: IsIssueWithGuide, params: []}];
-			case WichRemote.SALT_V1 : [{step: DoesVolumeOnTvChange, params: []}]; //volume
-			case WichRemote.SIRI_V2 : [{step: _CreateSOTicketSaltTV, params: []}];
-			case _ : [{step: VolumeButtonDoesWork, params: []}];
+		//var whereIsBoxPlaced:ValueReturn = Main.HISTORY.findValueOfFirstClassInHistory(_WhereIsBoxPlaced, _WhereIsBoxPlaced.TITLE);
+		this._nexts = switch (remote)
+		{
+			case WichRemote.SALT_V2 : [ {step: IsIssueWithGuide, params: []}];
+			case WichRemote.SALT_V1 : [ {step: DoesVolumeOnTvChange, params: []}]; //volume
+			case WichRemote.SIRI_V2 : [ {step: _CreateSOTicketSaltTV}];
+			case _ : [ {step: VolumeButtonDoesWork, params: []}];
 		}
 		super.onYesClick();
 	}
 	override public function onNoClick():Void
 	{
-		this._nexts = switch (remote){
+		this._nexts = switch (remote)
+		{
 			case WichRemote.SALT_V2 :[
 				{step: _MakeSureBatteriesCoerrectlyInstalled},
 				{step: WasThePurchaseDoneLessThanOnYearAgo}
-			];
+				];
 			case WichRemote.SALT_V1 :[
 				{step: WasThePurchaseDoneLessThanOnYearAgo}
-			];
+				];
 			case _ : [
 				{step: _UnplugAppleTVPowerCable},
 				{step: _RechargeSiriRemote}
-			];
+				];
 		};
 		super.onNoClick();
 	}

@@ -47,11 +47,23 @@ class Main extends MainApp
 	public function new()
 	{
 		super();
-
-		HISTORY = MainApp.stack;
-		trackH =  MainApp.xapiHelper;
 		DEBUG = MainApp.debug;
+        /**
+         * this static object hold the steps history
+         */
+		HISTORY = MainApp.stack;
+		/**
+		 * this helper tracks xAPI activity streams to QAST
+		 */
+		trackH =  MainApp.xapiHelper;
+		
+		/**
+		 * helper service check the versio nupdates to reload the app
+		 */
 		VERSION_TRACKER = MainApp.versionTracker;
+		/**
+		 * customer oject
+		 */
 		customer = MainApp.cust;
 		initScreen();
 

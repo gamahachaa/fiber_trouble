@@ -17,22 +17,22 @@ if %DEV%==1 (
                                         
 :publication
 echo "publication"
-rem PREPARE DATESTAMP ------------------------------------------------------------------------------------------------------------------------------
+rem PREPARE DATESTAMP -----------------------------------------------------------
 for /f "tokens=2 delims==" %%a in ('wmic OS Get localdatetime /value') do set "dt=%%a"
 set "YY=%dt:~2,2%" & set "YYYY=%dt:~0,4%" & set "MM=%dt:~4,2%" & set "DD=%dt:~6,2%"
 set "HH=%dt:~8,2%" & set "Min=%dt:~10,2%" & set "Sec=%dt:~12,2%"
 set "datestamp=%YYYY%%MM%%DD%" & set "timestamp=%HH%%Min%%Sec%"
 set "fullstamp=%YYYY%%MM%%DD%_%HH%%Min%%Sec%"
-rem ------------------ DEFINE FILE NAMES ------------------------------------------------------------------------
+rem ------------------ DEFINE FILE NAMES ------------------------------
 set serverFolderName=trouble
 set mainScript=trouble
-rem -------------------------------------------------------------------------------------------------------------
+rem -------------------------------------------------------------------
 set oldScriptName=%mainScript%.js
 set newScriptName=%mainScript%_%fullstamp%.js
 
 set newScriptNameMin=%mainScript%_%fullstamp%.min.js
 set newMapName=%mainScript%_%fullstamp%.js.map
-rem PREPARE and CLEAR OLD FILE removal  -------------------------------------------------------------------------
+rem PREPARE and CLEAR OLD FILE removal  -------------------------------
 set BINDIR=%cd%\export\html5\bin\
 set ASSETSDIR=%BINDIR%\assets\
 set FILESDELETE=%BINDIR%%mainScript%_20*
@@ -40,17 +40,16 @@ set FILESDELETE=%BINDIR%%mainScript%_20*
 rem --------- ^ is the escape char for batch !!! --------------
 set "HOWL_TARGET=^<link rel="shortcut icon" type="image/png" href="./favicon.png"^>"
 set "HOWL=^<script type="text/javascript" src="./howl.js"^>^</script^>
-rem DELETE  ------------------------------------------------------------------------------------------------------------------------------
-rem if "%1"=="debug" goto :next
+rem DELETE  ----------------------------------------------------------
+
 del /F %FILESDELETE%
 :next
-rem REPLACE META LINK TO JS FILES  ------------------------------------------------------------------------------------------------------------------------------
+
 powershell -Command "Rename-Item -Path "%BINDIR%/index.html" -NewName tmp.html"
 powershell -Command "Rename-Item -Path "%BINDIR%/index_howl.html" -NewName index.html"
 powershell -Command "Rename-Item -Path "%BINDIR%/tmp.html" -NewName index_howl.html"
 
-rem powershell -Command "(gc %BINDIR%/index.html) -replace '%HOWL_TARGET%', '%HOWL_TARGET%\n%HOWL%' | Out-File -encoding UTF8 %BINDIR%/index.html"
-rem powershell -Command "(gc %BINDIR%/index.html) -replace './%oldScriptName%', './%newScriptName%' | Out-File -encoding UTF8 %BINDIR%/index.html"
+
 echo "DEV=%DEV%"
 if %DEV%==1 (
 	if "%1"=="release" goto :minify
@@ -58,8 +57,6 @@ if %DEV%==1 (
 	if "%1"=="debug" goto :follow
 ) ELSE (
 	goto :minify
-	rem if "%1"=="release" goto :minify
-	rem if "%1"=="debug" goto :EXPORT
 )
 
 
@@ -72,7 +69,7 @@ powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.js.map" -NewName %
 goto :EXPORT
 
 :follow
-
+powershell -Command "git --git-dir=%BINDIR%\.git --work-tree=%BINDIR% add ."
 powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.js" -NewName %newScriptName%"
 powershell -Command "Rename-Item -Path "%BINDIR%/%mainScript%.js.map" -NewName %newMapName%"
 
@@ -113,7 +110,7 @@ echo "JUST DEBUGGING"
 echo "NO DIRECTIVES"
 
  
-"C:\HaxeToolkit\haxe/haxelib" run lime build "Project_demo_outages.xml" html5 -debug -Dfdb
+rem "C:\HaxeToolkit\haxe/haxelib" run lime build "Project_demo_outages.xml" html5 -debug -Dfdb
 
 :completed
 

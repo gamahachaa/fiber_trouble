@@ -5,7 +5,7 @@ set BINDIR=%2\export\html5\bin
 
 echo %BINDIR%
 
-powershell -Command "git --git-dir=%BINDIR%\.git --work-tree=%BINDIR% add *"
+powershell -Command "git --git-dir=%BINDIR%\.git --work-tree=%BINDIR% add ."
 
 if %1%==debug (
     goto :dev
@@ -15,7 +15,7 @@ if %1%==debug (
 
 :master
 
-powershell -Command "git --git-dir=%BINDIR%\.git --work-tree=%BINDIR% commit -m cleaning_for_prod"
+powershell -Command "git --git-dir=%BINDIR%\.git --work-tree=%BINDIR% commit -am cleaning_for_prod"
 powershell -Command "git --git-dir=%BINDIR%\.git --work-tree=%BINDIR% push origin dev"
 powershell -Command "git --git-dir=%BINDIR%\.git --work-tree=%BINDIR% checkout master"
 
